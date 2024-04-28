@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="budynki-database" id="2AC74013-8348-7E22-2CA8-066D508CD543" version="3.5">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:06:41 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>2AC74013-8348-7E22-2CA8-066D508CD543</designId>
+</OSDM_Design>
