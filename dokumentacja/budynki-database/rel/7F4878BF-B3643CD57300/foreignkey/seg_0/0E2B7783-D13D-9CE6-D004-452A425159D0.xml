@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="0E2B7783-D13D-9CE6-D004-452A425159D0" containerWithKeyObject="FB0E4021-4EC2-9FAE-6FB5-0651B001A9B7" localFKIndex="018FCC53-3F34-16FD-35EA-D5ABF5AC0321" name="Platnosc_Umowa_FK">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 20:59:37 UTC</createdTime>
+<generatorID>C5083298-72D3-AB3A-A5C8-7BE75AC163B7</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<referredTableLongName>Umowa</referredTableLongName>
+<arc>D15C7E13-E3F7-6016-DC92-8CB30E9A5A37</arc>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>B68ECACD-D36D-AA2E-49C6-BD778639FFC2</referredTableID>
+<keyObject>A1E4CD54-7579-9787-1F7B-6A4CAA48DA24</keyObject>
+<referredKeyID>A1E4CD54-7579-9787-1F7B-6A4CAA48DA24</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>Numer_umowy</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

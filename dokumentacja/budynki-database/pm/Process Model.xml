@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<ProcessModel class="oracle.dbtools.crest.model.design.process.ProcessModel" name="Process Model" id="0ACC80D3-CE68-8890-7EAC-95EC85813E52">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:06:41 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</ProcessModel>

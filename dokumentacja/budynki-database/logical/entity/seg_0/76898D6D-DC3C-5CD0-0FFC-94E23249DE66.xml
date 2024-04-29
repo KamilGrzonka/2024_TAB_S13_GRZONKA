@@ -1,0 +1,164 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="76898D6D-DC3C-5CD0-0FFC-94E23249DE66" name="Zgloszenie">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:56:08 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="4B17BA39-D705-4E19-F72A-3E8595F8A181" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Numer zgloszenia" id="0EA2517A-4561-C2C6-7083-EC6D6A5EDCC6">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:56:15 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="4B17BA39-D705-4E19-F72A-3E8595F8A181" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Data zgloszenia" id="FA2093F3-CDFD-6DF6-D3DA-9D4145D565AE">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:56:55 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="4B17BA39-D705-4E19-F72A-3E8595F8A181" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Data wykonania" id="B56B34DB-126A-D9E7-AC6B-12ED38B06489">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:57:13 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="4B17BA39-D705-4E19-F72A-3E8595F8A181" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Status zgloszenia" id="08DA4DD2-F212-EB23-6F6A-A35C48E7AE9C">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 19:49:28 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="4B17BA39-D705-4E19-F72A-3E8595F8A181" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<ownDataTypeParameters>,1,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Typ zgloszenia" id="804A8C52-5ED2-FF78-47BB-F4484F8514B1">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 19:49:15 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="4B17BA39-D705-4E19-F72A-3E8595F8A181" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<ownDataTypeParameters>,1,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Koszt calkowity" id="199F9FE1-AFAD-38B1-44CF-5E55D19A4375">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:57:25 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="4B17BA39-D705-4E19-F72A-3E8595F8A181" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Priorytet" id="98EC65B5-46BB-A7E2-7DB7-87B837B8291C">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:57:56 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="4B17BA39-D705-4E19-F72A-3E8595F8A181" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Numer meldunku" id="721E9AAC-E4F2-B7F0-3AD6-93EE48D49955">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 20:28:20 UTC</createdTime>
+<generatorID>C8E82B25-56DA-AE4A-785C-EB69C1A8E681</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="4B17BA39-D705-4E19-F72A-3E8595F8A181" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>CAA8F7F4-3A83-A33E-8AF4-4F088ED9A16C</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Numer mieszkania" id="3EBEC4CA-07D7-A3B2-7C6D-A9CFC93E1A3B">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 20:28:43 UTC</createdTime>
+<generatorID>5E2D4ABE-A817-5E91-91C5-2D640C4D6224</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="4B17BA39-D705-4E19-F72A-3E8595F8A181" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>C4537913-E1EC-BC3D-21F6-03375198ED03</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Numer budynku" id="B5AD253C-0819-937C-074A-FC83A2AC7D5D">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 20:28:51 UTC</createdTime>
+<generatorID>6F398ADC-C81D-8E5D-8CA0-C0AF8966953A</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="4B17BA39-D705-4E19-F72A-3E8595F8A181" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>C3758A1E-47EE-5D5A-D349-57DF86DCA8EE</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="7B31C12C-DE6F-7E4A-CC29-B9148318C941" name="Zgloszenie PK">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:57:10 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="4B17BA39-D705-4E19-F72A-3E8595F8A181" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>0EA2517A-4561-C2C6-7083-EC6D6A5EDCC6</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

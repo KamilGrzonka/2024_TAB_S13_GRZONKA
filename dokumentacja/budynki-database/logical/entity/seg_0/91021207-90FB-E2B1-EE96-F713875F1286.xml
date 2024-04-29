@@ -1,0 +1,95 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="91021207-90FB-E2B1-EE96-F713875F1286" name="Mieszkanie">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:22:44 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Numer mieszkania" id="C4537913-E1EC-BC3D-21F6-03375198ED03">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:24:28 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Pietro" id="08A02773-7347-B3DD-5FF1-B52F14254714">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:33:38 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Liczba osob" id="1AB59429-A3BC-1DA1-1682-81E87FFB66C5">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:34:06 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Opis mieszkania" id="CBD7416F-2F40-0A18-7083-1BDA3BFA59CF">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:34:40 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Numer budynku" id="8130CC99-37C2-5298-44CB-7FC5419C2EFF">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 19:31:50 UTC</createdTime>
+<generatorID>06D86156-6A1B-6206-9D44-D68B52E576C2</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+</engineerTo>
+<referedAttribute>C3758A1E-47EE-5D5A-D349-57DF86DCA8EE</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="ABF79D5D-680B-73EE-C11A-5B68B5DF0160" name="Mieszkanie PK">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:33:36 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>C4537913-E1EC-BC3D-21F6-03375198ED03</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

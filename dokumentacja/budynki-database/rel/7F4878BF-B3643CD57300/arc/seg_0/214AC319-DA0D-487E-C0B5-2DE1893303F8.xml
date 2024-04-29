@@ -1,0 +1,12 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKArc class="oracle.dbtools.crest.model.design.relational.FKArc" directorySegmentName="seg_0" id="214AC319-DA0D-487E-C0B5-2DE1893303F8" name="Arc_5">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 20:59:37 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<mandatory>false</mandatory>
+<table>E4E3A2F8-BB93-E8DC-DABA-B0BA3D48EEC1</table>
+<fkeys>
+<fkeyID>D7B5DF83-8AFB-20A6-6642-C4C35E18344D</fkeyID>
+<fkeyID>B0A6A7A1-5F3A-E553-A75B-17657F6EAC15</fkeyID>
+</fkeys>
+</FKArc>

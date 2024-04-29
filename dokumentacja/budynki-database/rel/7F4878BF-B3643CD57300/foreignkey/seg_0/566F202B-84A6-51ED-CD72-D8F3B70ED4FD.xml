@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="566F202B-84A6-51ED-CD72-D8F3B70ED4FD" containerWithKeyObject="FB0E4021-4EC2-9FAE-6FB5-0651B001A9B7" localFKIndex="E8800418-DE6D-F855-AF11-D2DC0294C36B" name="Platnosc_Zadanie_FK">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 20:59:37 UTC</createdTime>
+<generatorID>2BE538D2-7F5A-7B4E-0BE6-972978CEE21A</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<referredTableLongName>Zadanie</referredTableLongName>
+<arc>D15C7E13-E3F7-6016-DC92-8CB30E9A5A37</arc>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>C756F305-CC11-448E-1673-AE7781232918</referredTableID>
+<keyObject>78B0C5FF-1B97-BAF8-3858-E185EBFFA6DF</keyObject>
+<referredKeyID>78B0C5FF-1B97-BAF8-3858-E185EBFFA6DF</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>Numer_zadania</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

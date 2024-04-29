@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Arc class="oracle.dbtools.crest.model.design.logical.Arc" directorySegmentName="seg_0" id="569DD739-5DF2-A952-DF7A-D92D0A23B2FE" name="Arc_2">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 19:36:08 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="C040EF3A-A7EA-7AE6-7E53-0DC3217256E9" value="true"/>
+</engineerTo>
+<entity>7B0D664E-B235-AE22-9E0C-BCF260DA8848</entity>
+<relations>
+<relationID>C5083298-72D3-AB3A-A5C8-7BE75AC163B7</relationID>
+<relationID>2BE538D2-7F5A-7B4E-0BE6-972978CEE21A</relationID>
+</relations>
+</Arc>

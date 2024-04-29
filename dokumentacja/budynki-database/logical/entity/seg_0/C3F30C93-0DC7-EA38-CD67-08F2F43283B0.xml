@@ -1,0 +1,123 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C3F30C93-0DC7-EA38-CD67-08F2F43283B0" name="Meldunek">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:41:34 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Numer meldunku" id="CAA8F7F4-3A83-A33E-8AF4-4F088ED9A16C">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:41:43 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Numer mieszkania" id="4D9C86CC-B9E8-82FE-4737-4310CA234AF4">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:42:03 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Data meldunku" id="95F1E8AA-83B2-9C30-2191-8A6C8D3BC6CD">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:42:50 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Data wymeldowania" id="6D002A62-3662-3B37-66F3-486CBBB51172">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:43:04 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Status meldunku" id="33FAB0B8-0D0B-21AB-337D-C24965DEBCAF">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:43:20 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Numer mieszkania1" id="860D0071-8251-60D1-2F03-5C2F98407E9A">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 19:31:13 UTC</createdTime>
+<generatorID>5F58C3A4-6503-D53E-E76A-3D864371129C</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+</engineerTo>
+<referedAttribute>C4537913-E1EC-BC3D-21F6-03375198ED03</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="PESEL" id="BD373B68-28AC-8DFA-9C66-0BA395F27B3A">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 19:31:31 UTC</createdTime>
+<generatorID>5DF70F2F-D16E-A459-ABF8-E3CA0F276734</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+</engineerTo>
+<referedAttribute>E9C3ECD0-BA3F-DA03-D7CA-D16B615861F2</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="CF3AF735-C36E-5987-8F3C-3FABB23A68B6" name="Meldunek PK">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:42:48 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>CAA8F7F4-3A83-A33E-8AF4-4F088ED9A16C</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="Relation_36" directorySegmentName="seg_0" id="5F58C3A4-6503-D53E-E76A-3D864371129C">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 19:31:13 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+</engineerTo>
+<sourcePk>ABF79D5D-680B-73EE-C11A-5B68B5DF0160</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>91021207-90FB-E2B1-EE96-F713875F1286</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>C3F30C93-0DC7-EA38-CD67-08F2F43283B0</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

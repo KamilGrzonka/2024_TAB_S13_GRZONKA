@@ -1,0 +1,124 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="7B0D664E-B235-AE22-9E0C-BCF260DA8848" name="Platnosc">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:49:33 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="C040EF3A-A7EA-7AE6-7E53-0DC3217256E9" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="Numer platnosci" id="F1366417-0198-C072-1222-8CCE98A7C1FF">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:49:43 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="C040EF3A-A7EA-7AE6-7E53-0DC3217256E9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Data naliczenia" id="38D2D6F2-7547-D13F-740E-0125BA012395">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:49:56 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="C040EF3A-A7EA-7AE6-7E53-0DC3217256E9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Data zrealizowania" id="D14C3436-694D-611D-CE0A-2346BCC6E7F4">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:50:05 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="C040EF3A-A7EA-7AE6-7E53-0DC3217256E9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Zrealizowana" id="52C8B4A9-5E95-47C0-BA76-5B2D6826E384">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:50:16 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="C040EF3A-A7EA-7AE6-7E53-0DC3217256E9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Naleznosc" id="C01954C2-0778-6A52-5377-EBF79D988EC1">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:50:28 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="C040EF3A-A7EA-7AE6-7E53-0DC3217256E9" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Numer umowy" id="BB7676A6-5EF2-0212-9348-F4030C869999">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 19:35:48 UTC</createdTime>
+<generatorID>C5083298-72D3-AB3A-A5C8-7BE75AC163B7</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="C040EF3A-A7EA-7AE6-7E53-0DC3217256E9" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>B40BD50B-DB0A-340D-0A37-45FA67CF559F</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Numer zadania" id="2F3F3BC6-0887-DB8F-F59D-C6516061DB22">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 19:35:58 UTC</createdTime>
+<generatorID>2BE538D2-7F5A-7B4E-0BE6-972978CEE21A</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="C040EF3A-A7EA-7AE6-7E53-0DC3217256E9" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<referedAttribute>87736DD3-9A2D-8035-E04B-81E81EA056E8</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="3D84EC81-A7EB-262D-9BB9-CC2DE457D308" name="Platnosc PK">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 17:49:55 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<engineerTo>
+<item key="C040EF3A-A7EA-7AE6-7E53-0DC3217256E9" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>F1366417-0198-C072-1222-8CCE98A7C1FF</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

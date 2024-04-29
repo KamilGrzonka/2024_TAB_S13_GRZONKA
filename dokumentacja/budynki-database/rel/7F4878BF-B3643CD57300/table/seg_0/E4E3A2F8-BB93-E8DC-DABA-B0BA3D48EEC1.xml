@@ -1,0 +1,186 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E4E3A2F8-BB93-E8DC-DABA-B0BA3D48EEC1" name="Zgloszenie">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 20:59:37 UTC</createdTime>
+<generatorID>76898D6D-DC3C-5CD0-0FFC-94E23249DE66</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Numer_zgloszenia" id="699BA9FF-FDB7-4A3E-AFE1-26422BC96BEC">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 20:59:37 UTC</createdTime>
+<generatorID>0EA2517A-4561-C2C6-7083-EC6D6A5EDCC6</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Data_zgloszenia" id="C6E066F9-3452-ACA2-C04A-D3B03BFEB2EE">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 20:59:37 UTC</createdTime>
+<generatorID>FA2093F3-CDFD-6DF6-D3DA-9D4145D565AE</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Data_wykonania" id="8B076DE4-42A0-234A-B986-0B6301979590">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 20:59:37 UTC</createdTime>
+<generatorID>B56B34DB-126A-D9E7-AC6B-12ED38B06489</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Status_zgloszenia" id="B9443E21-7797-6A88-2F40-8B8B84BA015F">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 20:59:37 UTC</createdTime>
+<generatorID>08DA4DD2-F212-EB23-6F6A-A35C48E7AE9C</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<ownDataTypeParameters>,1,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Typ_zgloszenia" id="A5810BA8-C200-D8FD-FA3E-090F83A7A97D">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 20:59:37 UTC</createdTime>
+<generatorID>804A8C52-5ED2-FF78-47BB-F4484F8514B1</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<ownDataTypeParameters>,1,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Koszt_calkowity" id="8BA596F3-2010-A53D-4402-7D2B2B9FF6A7">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 20:59:37 UTC</createdTime>
+<generatorID>199F9FE1-AFAD-38B1-44CF-5E55D19A4375</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Priorytet" id="4B55C977-0564-CA9F-CE17-DD90BF2B2C4C">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 20:59:37 UTC</createdTime>
+<generatorID>98EC65B5-46BB-A7E2-7DB7-87B837B8291C</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Meldunek_Numer_meldunku" id="F9F8979A-1164-BE44-E678-92D380F1CD34">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 20:59:37 UTC</createdTime>
+<generatorID>721E9AAC-E4F2-B7F0-3AD6-93EE48D49955</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A3E2CFD0-E920-4BEF-8984-384A1F4C651F" referredColumn="E0E6B4AF-80BA-A6A8-E05E-2647CAD2D551"/>
+</associations>
+</Column>
+<Column name="Mieszkanie_Numer_mieszkania" id="F8708720-FC3C-4AE2-4238-60B3F8E8FBC5">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 20:59:37 UTC</createdTime>
+<generatorID>3EBEC4CA-07D7-A3B2-7C6D-A9CFC93E1A3B</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B0A6A7A1-5F3A-E553-A75B-17657F6EAC15" referredColumn="3B68E5B0-7271-D3D8-A874-E665702A8047"/>
+</associations>
+</Column>
+<Column name="Budynek_Numer_budynku" id="3C24250B-F93D-5483-1EBD-88F5F7E434CB">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 20:59:37 UTC</createdTime>
+<generatorID>B5AD253C-0819-937C-074A-FC83A2AC7D5D</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="D7B5DF83-8AFB-20A6-6642-C4C35E18344D" referredColumn="8DE7A73A-EACA-3676-96DE-B4F135CF0DCE"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="B2D8C63A-315B-7489-AC7D-A636324C806C" name="Zgloszenie_PK">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 20:59:37 UTC</createdTime>
+<generatorID>7B31C12C-DE6F-7E4A-CC29-B9148318C941</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="699BA9FF-FDB7-4A3E-AFE1-26422BC96BEC"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EE9D7DF2-AC09-83DA-B6D0-1E1F1F0ED3FE" name="Zgloszenie_Meldunek_FK">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 20:59:37 UTC</createdTime>
+<generatorID>C8E82B25-56DA-AE4A-785C-EB69C1A8E681</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F9F8979A-1164-BE44-E678-92D380F1CD34"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DCA1EE14-007C-2A47-7FA4-060B4A8B30B2" name="Zgloszenie_Mieszkanie_FK">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 20:59:37 UTC</createdTime>
+<generatorID>5E2D4ABE-A817-5E91-91C5-2D640C4D6224</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F8708720-FC3C-4AE2-4238-60B3F8E8FBC5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="85D530DE-C8FB-EA58-A39A-1C5AA337DA6B" name="Zgloszenie_Budynek_FK">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-04-28 20:59:37 UTC</createdTime>
+<generatorID>6F398ADC-C81D-8E5D-8CA0-C0AF8966953A</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3C24250B-F93D-5483-1EBD-88F5F7E434CB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
