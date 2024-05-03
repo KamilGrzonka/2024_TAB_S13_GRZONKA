@@ -6,7 +6,11 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import ErrorPage from "./error-page";
-import Budynki from "./Budynki.tsx";
+import Persons from './pages/Persons';
+import Payments from './pages/Payments';
+import Registartions from './pages/Registrations';
+import Repairs from './pages/Repairs';
+import Reports from './pages/Reports';
 
 const router = createBrowserRouter([
   {
@@ -15,8 +19,24 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "budynki",
-        element: <Budynki />
+        path: "meldunki",
+        element: <Registartions />
+      },
+      {
+        path: "zgloszenia",
+        element: <Repairs />
+      },
+      {
+        path: "osoby",
+        element: <Persons />
+      },
+      {
+        path: "platnosci",
+        element: <Payments />
+      },
+      {
+        path: "raporty",
+        element: <Reports />
       },
     ],
   },
