@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="9D7973F6-D18B-2F7A-835E-F6115C1CDCB3" containerWithKeyObject="9CB4CEB4-E6F5-8E43-3FA9-722F9659C46D" localFKIndex="6D9E93FB-6D37-A30C-D3F2-0E67FBF9F485" name="Zadanie_Zgloszenie_FK">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-03 12:04:38 UTC</createdTime>
+<generatorID>FAEB76A6-A642-B521-5192-6D5CE2C144EF</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<referredTableLongName>Zgloszenie</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>D8B746A4-0803-9B56-CBF1-C8843A09CEEE</referredTableID>
+<keyObject>FB9D7C20-8F67-6E55-E430-53DDA40CE0AD</keyObject>
+<referredKeyID>FB9D7C20-8F67-6E55-E430-53DDA40CE0AD</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>Numer_zgloszenia</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

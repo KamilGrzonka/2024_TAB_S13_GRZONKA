@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="AADBF4F5-BE1A-3035-4011-0258D823FA7A" name="Osoba">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-03 12:04:38 UTC</createdTime>
+<generatorID>B11E17BB-25BA-B044-85DC-CDADD6AF477F</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PESEL" id="977FB348-2C6C-6FAF-58EB-08E47362A72C">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-03 12:04:38 UTC</createdTime>
+<generatorID>E9C3ECD0-BA3F-DA03-D7CA-D16B615861F2</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<ownDataTypeParameters>,11,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Imie_i_nazwisko" id="2F0EF7A1-B5BC-A020-E8BD-217ADAA530EB">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-03 12:04:38 UTC</createdTime>
+<generatorID>FF6C0C28-B656-055C-CFF4-09BE4CDCFDC7</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>80 CHAR</dataTypeSize>
+<ownDataTypeParameters>80 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Najmujacy" id="8813F440-90FF-A306-AB52-4B4C4BCDB399">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-03 12:04:38 UTC</createdTime>
+<generatorID>60A5717E-4D9B-5B2E-4DCB-31D258BB86B8</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6020C20A-3A10-7413-6E45-4B9A897E3AD7" name="Osoba_PK">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-03 12:04:38 UTC</createdTime>
+<generatorID>90AA0142-90B9-1244-1806-739260EAE247</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="977FB348-2C6C-6FAF-58EB-08E47362A72C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

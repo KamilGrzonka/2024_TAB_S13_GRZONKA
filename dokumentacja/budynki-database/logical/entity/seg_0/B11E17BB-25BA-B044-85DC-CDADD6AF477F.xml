@@ -4,7 +4,7 @@
 <createdTime>2024-04-28 17:45:29 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="623E9348-BE35-8ADB-D611-C48DA993DDAB" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -20,7 +20,7 @@
 <createdTime>2024-04-28 17:45:35 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="623E9348-BE35-8ADB-D611-C48DA993DDAB" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -33,19 +33,20 @@
 <createdTime>2024-04-28 17:48:29 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="623E9348-BE35-8ADB-D611-C48DA993DDAB" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<dataTypeSize>80 CHAR</dataTypeSize>
+<ownDataTypeParameters>80 CHAR,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Najmujacy" id="60A5717E-4D9B-5B2E-4DCB-31D258BB86B8">
 <createdBy>Marcin</createdBy>
 <createdTime>2024-04-28 17:49:02 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="623E9348-BE35-8ADB-D611-C48DA993DDAB" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -60,7 +61,7 @@
 <createdTime>2024-04-28 17:48:31 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="623E9348-BE35-8ADB-D611-C48DA993DDAB" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

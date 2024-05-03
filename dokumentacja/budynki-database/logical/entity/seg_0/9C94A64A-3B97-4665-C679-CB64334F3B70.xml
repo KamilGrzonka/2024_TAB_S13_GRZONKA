@@ -4,7 +4,7 @@
 <createdTime>2024-04-28 17:08:54 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="F1B8037B-3108-82A8-2F2C-4EBD776CC4C1" value="true"/>
+<item key="623E9348-BE35-8ADB-D611-C48DA993DDAB" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -20,7 +20,7 @@
 <createdTime>2024-04-28 17:09:52 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="F1B8037B-3108-82A8-2F2C-4EBD776CC4C1" value="true"/>
+<item key="623E9348-BE35-8ADB-D611-C48DA993DDAB" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -32,19 +32,20 @@
 <createdTime>2024-04-28 17:19:23 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="F1B8037B-3108-82A8-2F2C-4EBD776CC4C1" value="true"/>
+<item key="623E9348-BE35-8ADB-D611-C48DA993DDAB" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<dataTypeSize>150 CHAR</dataTypeSize>
+<ownDataTypeParameters>150 CHAR,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Liczba miejsc" id="5DEA184C-2661-96C0-2D2D-B8739279EB40">
 <createdBy>Marcin</createdBy>
 <createdTime>2024-04-28 17:21:07 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="F1B8037B-3108-82A8-2F2C-4EBD776CC4C1" value="true"/>
+<item key="623E9348-BE35-8ADB-D611-C48DA993DDAB" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -58,7 +59,7 @@
 <createdTime>2024-04-28 17:20:47 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="F1B8037B-3108-82A8-2F2C-4EBD776CC4C1" value="true"/>
+<item key="623E9348-BE35-8ADB-D611-C48DA993DDAB" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

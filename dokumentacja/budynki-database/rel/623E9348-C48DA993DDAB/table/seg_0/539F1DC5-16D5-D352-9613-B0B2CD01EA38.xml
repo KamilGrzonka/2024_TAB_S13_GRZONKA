@@ -1,0 +1,112 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="539F1DC5-16D5-D352-9613-B0B2CD01EA38" name="Umowa">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-03 12:04:38 UTC</createdTime>
+<generatorID>E80CFBC8-7196-9444-C53D-4BC4F7C69C74</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Numer_umowy" id="2859A763-1085-3F1C-9475-B6CB34C2910C">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-03 12:04:38 UTC</createdTime>
+<generatorID>B40BD50B-DB0A-340D-0A37-45FA67CF559F</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Data_zawarcia" id="981952B5-D6F3-8000-0227-67FEFAD28F5B">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-03 12:04:38 UTC</createdTime>
+<generatorID>2D017F36-BCE4-5715-3620-C380DA24125C</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Osoba_PESEL" id="8DD568DB-4B92-620D-3DCA-E4DBA4EDA00E">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-03 12:04:38 UTC</createdTime>
+<generatorID>5F78E2E7-B327-9D9F-B228-7BD76F009C96</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>11</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="ACB92B76-420B-F94D-75A7-B27D0D8AE458" referredColumn="977FB348-2C6C-6FAF-58EB-08E47362A72C"/>
+</associations>
+</Column>
+<Column name="Cennik_Numer_cennika" id="D8E9755B-934B-8C14-263E-642E5F441906">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-03 12:04:38 UTC</createdTime>
+<generatorID>78ED6625-2FF7-B088-F910-DD7B375855E0</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CF753F2C-4216-3149-6ED2-7993E753C07C" referredColumn="1DE519AB-41E5-4FD5-81BA-BE3E11B7FC3F"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="693C5FE4-C0A8-ED63-0FD0-DCAC7CFACA0A" name="Umowa_PK">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-03 12:04:38 UTC</createdTime>
+<generatorID>D438419E-78B2-919B-0286-8C5377FFFA4F</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2859A763-1085-3F1C-9475-B6CB34C2910C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8931CADD-1514-B3AC-C310-69836F84CFBB" name="Umowa__IDX">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-03 12:04:38 UTC</createdTime>
+<ownerDesignName>budynki-database</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<relationGeneratorID>A73ACC29-EFB1-09B5-63EF-3B0B94F2E2A2</relationGeneratorID>
+<indexColumnUsage>
+<colUsage columnID="D8E9755B-934B-8C14-263E-642E5F441906"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BD373023-8DC4-4ECF-26E5-1278C553FA4F" name="Umowa_Osoba_FK">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-03 12:04:38 UTC</createdTime>
+<generatorID>EED7FC98-E2AA-8662-5F7D-FEAA640B5FFB</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8DD568DB-4B92-620D-3DCA-E4DBA4EDA00E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="98506780-B3BB-1927-BCFC-F8C5E1DEDD9A" name="Umowa_Cennik_FK">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-03 12:04:38 UTC</createdTime>
+<generatorID>A73ACC29-EFB1-09B5-63EF-3B0B94F2E2A2</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D8E9755B-934B-8C14-263E-642E5F441906"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

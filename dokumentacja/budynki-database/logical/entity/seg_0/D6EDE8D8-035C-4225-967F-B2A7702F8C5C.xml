@@ -4,7 +4,7 @@
 <createdTime>2024-04-28 17:50:49 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="623E9348-BE35-8ADB-D611-C48DA993DDAB" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -20,7 +20,7 @@
 <createdTime>2024-04-28 17:50:59 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="623E9348-BE35-8ADB-D611-C48DA993DDAB" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -33,24 +33,26 @@
 <createdTime>2024-04-28 17:53:57 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="623E9348-BE35-8ADB-D611-C48DA993DDAB" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<dataTypeSize>150 CHAR</dataTypeSize>
+<ownDataTypeParameters>150 CHAR,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Nazwa" id="01F41CB2-76B8-08D2-8721-2181A9D14D3B">
 <createdBy>Marcin</createdBy>
 <createdTime>2024-04-28 17:53:47 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="623E9348-BE35-8ADB-D611-C48DA993DDAB" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<ownDataTypeParameters>100 CHAR,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
 <identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
@@ -59,7 +61,7 @@
 <createdTime>2024-04-28 17:51:05 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="623E9348-BE35-8ADB-D611-C48DA993DDAB" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>
