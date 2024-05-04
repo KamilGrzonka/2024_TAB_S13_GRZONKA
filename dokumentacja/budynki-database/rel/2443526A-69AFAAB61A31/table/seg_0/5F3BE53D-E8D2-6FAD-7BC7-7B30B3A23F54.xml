@@ -1,0 +1,138 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="5F3BE53D-E8D2-6FAD-7BC7-7B30B3A23F54" name="Zadanie">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>10000E34-86B2-C496-FB19-52B57D5BBED0</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Numer_zadania" id="4467E745-7D27-EA1F-A80A-DA293833CDA0">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>87736DD3-9A2D-8035-E04B-81E81EA056E8</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Koszt" id="1D723D3E-0737-B103-671A-79E0DF4FB975">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>1C00F295-C6BA-B15F-A042-9CB10B921EB9</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Opis" id="4AFEF5E4-224F-4669-D810-FBCA90EE7D1C">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>C30F425E-15A9-EFAB-2A90-4D25B2D6B59F</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>65535</dataTypeSize>
+<ownDataTypeParameters>65535,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Data_rozpoczecia" id="C0CAD729-BDED-54D2-3DB1-6CAF07D3B196">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>BE5E9C4F-7508-CA7F-EF75-60BCD5C68A57</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Data_zakonczenia" id="3FB7F088-49B1-E9DD-2DC1-BC1D8F15A3CC">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>64DB3DAC-EE46-2BF3-469D-7344586A27A5</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Firma_podwykonawcza_NIP" id="E4D38F78-0356-9903-F759-D336393F52AE">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>C6F3A6A7-5D9C-2F7F-A5A6-840A6FC3F15D</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5E6178EB-94C0-027D-AAFB-2B953D905554" referredColumn="C2F57700-63DC-BC44-AFFC-F873C4DFE760"/>
+</associations>
+</Column>
+<Column name="Zgloszenie_Numer_zgloszenia" id="5DEBCB9C-B523-1E2E-2F89-97F0AB6AAEB4">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>2132A0FD-EEA2-6C95-43AB-40527127C024</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B6AA69CB-5AE8-DA35-7EC7-58F101F104B1" referredColumn="DBA8846F-331D-46D2-7FDA-BD5E63AB8788"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="EF400864-9FEF-8065-D09C-54A4F643997A" name="Zadanie_PK">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>52EF8E96-020A-D82F-BEB3-F70605AC3616</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4467E745-7D27-EA1F-A80A-DA293833CDA0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="971425A3-5005-D1AB-4F66-2DEE3916C102" name="Zadanie_Zgloszenie_FK">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>FAEB76A6-A642-B521-5192-6D5CE2C144EF</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5DEBCB9C-B523-1E2E-2F89-97F0AB6AAEB4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4F6132DD-CC58-4C09-9D90-8F2DA0FEE31E" name="Zadanie_Firma_podwykonawcza_FK">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>2EE700F2-6590-8970-600A-3DB8B0F580F7</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E4D38F78-0356-9903-F759-D336393F52AE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

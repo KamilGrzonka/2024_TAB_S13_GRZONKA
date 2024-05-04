@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="2F7E6561-842C-2D7D-5362-92FB66D7615F" containerWithKeyObject="1DB787DF-5269-2DB2-C2BA-4827A3683A8C" localFKIndex="FBF75F16-0749-DCA7-1BD1-0B63DA3DC22B" name="Zgloszenie_Meldunek_FK">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>C8E82B25-56DA-AE4A-785C-EB69C1A8E681</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<referredTableLongName>Meldunek</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>13FBD52C-1172-BBAB-A50F-1F2544F16B55</referredTableID>
+<keyObject>BA740125-9745-B8B1-90A0-A4D71392E2CE</keyObject>
+<referredKeyID>BA740125-9745-B8B1-90A0-A4D71392E2CE</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>Numer_meldunku</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

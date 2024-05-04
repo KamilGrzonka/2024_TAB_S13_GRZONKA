@@ -1,0 +1,60 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B6C048FC-604F-943A-B6F3-7234733196CF" name="Budynek">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>9C94A64A-3B97-4665-C679-CB64334F3B70</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="Numer_budynku" id="E01EAD83-1986-B7EA-CA81-AB9C09A03283">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>C3758A1E-47EE-5D5A-D349-57DF86DCA8EE</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Adres" id="CF529F0A-0E57-873E-7A3D-21996D86212F">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>20F005CF-A4DD-728D-3255-45E0A627AFCC</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>150</dataTypeSize>
+<ownDataTypeParameters>150,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Liczba_miejsc" id="D9DFC789-6ED3-7F0D-B404-E57354BEEF67">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>5DEA184C-2661-96C0-2D2D-B8739279EB40</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="7C546F5A-32DD-FF6B-ABDA-6B00EA3FF955" name="Budynek_PK">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>63E19BB8-FF51-B494-5AE8-5635F4A1E399</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E01EAD83-1986-B7EA-CA81-AB9C09A03283"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

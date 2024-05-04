@@ -1,0 +1,62 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="668B5DAA-1629-8007-8D55-635D96F6C49F" name="Firma_podwykonawcza">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>D6EDE8D8-035C-4225-967F-B2A7702F8C5C</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="NIP" id="C2F57700-63DC-BC44-AFFC-F873C4DFE760">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>AE8FCA7A-539B-2DBC-3893-2FB1CF637DE0</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<ownDataTypeParameters>,10,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Adres" id="3D79FBC1-A507-7080-1F3C-14B5BB38A2C7">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>9BA0DC5E-D12A-2F0A-B666-0226E5694271</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>150</dataTypeSize>
+<ownDataTypeParameters>150,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nazwa" id="27A05F4D-266D-07A4-54B6-4F303E05792A">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>01F41CB2-76B8-08D2-8721-2181A9D14D3B</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100</dataTypeSize>
+<ownDataTypeParameters>100,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2F6D632C-7B88-D0C8-9157-D2B02D84F056" name="Firma_podwykonawcza_PK">
+<createdBy>Marcin</createdBy>
+<createdTime>2024-05-04 11:59:23 UTC</createdTime>
+<generatorID>D2FE3CF4-49D1-D4E1-A1BC-394E1DBEFB25</generatorID>
+<ownerDesignName>budynki-database</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C2F57700-63DC-BC44-AFFC-F873C4DFE760"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

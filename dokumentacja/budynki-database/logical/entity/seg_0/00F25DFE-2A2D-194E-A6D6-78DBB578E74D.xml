@@ -4,7 +4,7 @@
 <createdTime>2024-04-28 17:35:14 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="2443526A-9B07-362D-4667-69AFAAB61A31" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -20,11 +20,11 @@
 <createdTime>2024-04-28 17:35:30 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="2443526A-9B07-362D-4667-69AFAAB61A31" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
+<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Data poczatkowa" id="53489118-45C0-8DB0-16EC-D30DDE723D44">
@@ -32,7 +32,7 @@
 <createdTime>2024-04-28 17:35:43 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="2443526A-9B07-362D-4667-69AFAAB61A31" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -44,7 +44,7 @@
 <createdTime>2024-04-28 17:35:57 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="2443526A-9B07-362D-4667-69AFAAB61A31" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -56,12 +56,14 @@
 <createdTime>2024-04-28 17:37:12 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="2443526A-9B07-362D-4667-69AFAAB61A31" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Numer mieszkania" id="4A000B26-94FE-83EB-C2B4-D42BE3C3913F">
 <createdBy>Marcin</createdBy>
@@ -69,12 +71,12 @@
 <generatorID>6DCE358E-54B1-36F4-BBEF-3D077F5B7FD3</generatorID>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="2443526A-9B07-362D-4667-69AFAAB61A31" value="true"/>
 </engineerTo>
 <referedAttribute>C4537913-E1EC-BC3D-21F6-03375198ED03</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
+<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
@@ -84,7 +86,7 @@
 <createdTime>2024-04-28 17:35:41 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="2443526A-9B07-362D-4667-69AFAAB61A31" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

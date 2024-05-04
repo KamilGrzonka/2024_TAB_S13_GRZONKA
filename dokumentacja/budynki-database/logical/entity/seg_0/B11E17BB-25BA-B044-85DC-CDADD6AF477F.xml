@@ -4,7 +4,7 @@
 <createdTime>2024-04-28 17:45:29 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="623E9348-BE35-8ADB-D611-C48DA993DDAB" value="true"/>
+<item key="2443526A-9B07-362D-4667-69AFAAB61A31" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -20,7 +20,7 @@
 <createdTime>2024-04-28 17:45:35 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="623E9348-BE35-8ADB-D611-C48DA993DDAB" value="true"/>
+<item key="2443526A-9B07-362D-4667-69AFAAB61A31" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -33,20 +33,20 @@
 <createdTime>2024-04-28 17:48:29 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="623E9348-BE35-8ADB-D611-C48DA993DDAB" value="true"/>
+<item key="2443526A-9B07-362D-4667-69AFAAB61A31" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>80 CHAR</dataTypeSize>
-<ownDataTypeParameters>80 CHAR,,</ownDataTypeParameters>
+<dataTypeSize>80</dataTypeSize>
+<ownDataTypeParameters>80,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Najmujacy" id="60A5717E-4D9B-5B2E-4DCB-31D258BB86B8">
 <createdBy>Marcin</createdBy>
 <createdTime>2024-04-28 17:49:02 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="623E9348-BE35-8ADB-D611-C48DA993DDAB" value="true"/>
+<item key="2443526A-9B07-362D-4667-69AFAAB61A31" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -61,7 +61,7 @@
 <createdTime>2024-04-28 17:48:31 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="623E9348-BE35-8ADB-D611-C48DA993DDAB" value="true"/>
+<item key="2443526A-9B07-362D-4667-69AFAAB61A31" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

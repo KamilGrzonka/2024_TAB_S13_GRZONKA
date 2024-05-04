@@ -4,7 +4,7 @@
 <createdTime>2024-04-28 17:40:38 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="2443526A-9B07-362D-4667-69AFAAB61A31" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -20,11 +20,11 @@
 <createdTime>2024-04-28 17:40:45 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="2443526A-9B07-362D-4667-69AFAAB61A31" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
+<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Data zawarcia" id="2D017F36-BCE4-5715-3620-C380DA24125C">
@@ -32,7 +32,7 @@
 <createdTime>2024-04-28 17:40:58 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="2443526A-9B07-362D-4667-69AFAAB61A31" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -45,14 +45,14 @@
 <generatorID>EED7FC98-E2AA-8662-5F7D-FEAA640B5FFB</generatorID>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="2443526A-9B07-362D-4667-69AFAAB61A31" value="true"/>
 </engineerTo>
 <referedAttribute>E9C3ECD0-BA3F-DA03-D7CA-D16B615861F2</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT019</logicalDatatype>
 <dataTypePrecision>11</dataTypePrecision>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
+<ownDataTypeParameters>,11,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Numer cennika" id="78ED6625-2FF7-B088-F910-DD7B375855E0">
 <createdBy>Marcin</createdBy>
@@ -60,12 +60,12 @@
 <generatorID>A73ACC29-EFB1-09B5-63EF-3B0B94F2E2A2</generatorID>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="2443526A-9B07-362D-4667-69AFAAB61A31" value="true"/>
 </engineerTo>
 <referedAttribute>71F336E3-7173-53BA-B641-39CA6B3D4644</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
+<logicalDatatype>LOGDT011</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
@@ -75,7 +75,7 @@
 <createdTime>2024-04-28 17:40:56 UTC</createdTime>
 <ownerDesignName>budynki-database</ownerDesignName>
 <engineerTo>
-<item key="7F4878BF-6545-ED1D-AFAD-B3643CD57300" value="true"/>
+<item key="2443526A-9B07-362D-4667-69AFAAB61A31" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

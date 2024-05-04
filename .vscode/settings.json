@@ -1,3 +1,6 @@
 {
-    "typescript.preferences.autoImportFileExcludePatterns": ["@radix-ui"]
+    "typescript.preferences.autoImportFileExcludePatterns": [
+        "@radix-ui"
+    ],
+    "java.compile.nullAnalysis.mode": "automatic"
 }

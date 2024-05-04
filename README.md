@@ -42,7 +42,7 @@ https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
 
 Jeżeli chodzi o loginy i hasła to jak gdzieś trzeba było wpisać to podawałem "postgres".
 
-W pgAdmin 4 trzeba połączyć się z serwerem, utworzyć nową bazę danych "budynki-database", z zaznaczoną bazą z menu Tools wybrać Query Tool, wkleić tam zawartość [skryptu ddl](./dokumentacja/budynki-database.ddl) i kliknąć Execute script (f5).
+W pgAdmin 4 trzeba połączyć się z serwerem, utworzyć nową bazę danych "budynki-database", z zaznaczoną bazą z menu Tools wybrać Query Tool, wkleić tam zawartość [skryptu ddl](./dokumentacja/budynki-database.sql) i kliknąć Execute script (f5).
 
 ## Pnpm
 Jeżeli ktoś ma zainstalowane nvm albo node to najlepiej odinstalować najpierw (możliwe że zadziała wam ze zwykłym npm ale ja miałem problem przy shadcn).
@@ -64,6 +64,8 @@ https://download.oracle.com/java/17/latest/jdk-17_windows-x64_bin.exe
 ## Projekt Spring Boot
 Polecam [InteliJ](https://www.jetbrains.com/idea/download) (wersja ultimate dla studenta lub community niżej na stronie) albo VSCode z [dodatkami](https://code.visualstudio.com/docs/java/java-spring-boot).
 
+Uruchamianie projektu odbywa się w pliku `BudynkiBackendApplication.java`
+
 ## Projekt React (Vite)
 Polecam VSCode.\
 W lokalizacji projektu należy wpisać polecenie w terminalu\
@@ -73,6 +75,9 @@ Uruchamianie projektu to polecenie\
 lub jeżeli ktoś chce otworzyć serwer w sieci lokalnej to\
 `run dev --host`
 
+Po pullu najlepiej znowu wpisać\
+`pnpm install`\
+na wypadek gdyby ktoś dodał jakieś paczki do projektu.
 ## Ustawienia VSCode
 Bardzo przydatne dodatki:
 
