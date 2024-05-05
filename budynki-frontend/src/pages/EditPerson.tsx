@@ -1,7 +1,8 @@
+import React from 'react';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
+import { Box, Container, Typography } from "@mui/material";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -86,9 +87,19 @@ export default function EditPerson() {
   }
 
   return (
+    <Container sx={{ marginBottom: 8 }}>
+      <Box
+        sx={{
+          display: "fixed-inline",
+          alignItems: "center",
+          marginLeft: 10,
+          marginRight: 10,
+          marginTop: 5,
+        }}
+      >
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <div>Dodaj osobę</div>
+        <Typography variant="h3">{`Osoby`}</Typography>
         <FormField
           control={form.control}
           name="imie"
@@ -151,5 +162,7 @@ export default function EditPerson() {
         )}
       </form>
     </Form>
+    </Box>
+    </Container>
   );
 }

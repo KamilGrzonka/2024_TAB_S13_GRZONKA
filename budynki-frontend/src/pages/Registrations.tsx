@@ -1,4 +1,5 @@
-import BuildingsList from "@/components/BuildingsList";
+import React from 'react';
+import BuildingsList from "../components/BuildingsList";
 import { Box, Container, Typography } from "@mui/material";
 
 const Registrations = () => {
@@ -9,7 +10,7 @@ const Registrations = () => {
           display: "inline-block",
           justifyContent: "center",
           alignItems: "center",
-          marginLeft: 30,
+          marginLeft: 10,
           marginTop: 5,
           marginBottom: 4,
         }}

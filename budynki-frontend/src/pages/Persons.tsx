@@ -10,7 +10,7 @@ const Persons = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginLeft: 30,
+          marginLeft: 10,
           marginTop: 5,
         }}
       >
@@ -24,7 +24,7 @@ const Persons = () => {
           display: "inline-flex",
           justifyContent: "center",
           alignItems: "center",
-          marginLeft: 30,
+          marginLeft: 10,
           marginBottom: 4,
         }}
       >

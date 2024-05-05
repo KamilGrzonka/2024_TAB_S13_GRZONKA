@@ -1,5 +1,6 @@
+import React from 'react';
 import { Box, Container, Typography } from "@mui/material";
-import BuildingsList from "@/components/BuildingsList";
+import BuildingsList from "../components/BuildingsList";
 
 const Payments = () => {
   return (
@@ -9,7 +10,7 @@ const Payments = () => {
           display: "inline-block",
           justifyContent: "center",
           alignItems: "center",
-          marginLeft: 30,
+          marginLeft: 10,
           marginTop: 5,
           marginBottom: 4,
         }}

@@ -1,7 +1,8 @@
+import React from 'react';
 import { Box, Button, Container, Typography } from "@mui/material";
 
 import { Link } from "react-router-dom";
-import BuildingsList from "@/components/BuildingsList";
+import BuildingsList from "../components/BuildingsList";
 
 const Buildings = () => {
   return (
@@ -11,7 +12,7 @@ const Buildings = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginLeft: 30,
+          marginLeft: 10,
           marginTop: 5,
         }}
       >
@@ -25,13 +26,13 @@ const Buildings = () => {
           display: "inline-flex",
           justifyContent: "center",
           alignItems: "center",
-          marginLeft: 30,
+          marginLeft: 10,
           marginBottom: 4,
         }}
       >
         <Typography variant="h5">{`Wybierz budynek, którego szczegóły chcesz zobaczyć:`}</Typography>
       </Box>
-      <BuildingsList />
+      <BuildingsList></BuildingsList>
     </Container>
   );
 };

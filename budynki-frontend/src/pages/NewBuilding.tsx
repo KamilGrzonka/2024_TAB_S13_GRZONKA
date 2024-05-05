@@ -1,8 +1,9 @@
+import React from 'react';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
-import { Button } from "@/components/ui/button";
+import { Box, Container, Typography } from "@mui/material";
+import { Button } from "../components/ui/button";
 import {
   Form,
   FormControl,
@@ -10,8 +11,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "../components/ui/form";
+import { Input } from "../components/ui/input";
 import { LoaderCircle } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -71,9 +72,19 @@ export default function NewBuilding() {
   }
 
   return (
+    <Container sx={{ marginBottom: 8 }}>
+      <Box
+        sx={{
+          display: "fixed-inline",
+          alignItems: "center",
+          marginLeft: 10,
+          marginRight: 10,
+          marginTop: 5,
+        }}
+      >
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <div>Dodaj budynek</div>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-auto">
+        <Typography variant="h3">{`Budynki`}</Typography>
         <FormField
           control={form.control}
           name="adres"
@@ -100,6 +111,7 @@ export default function NewBuilding() {
             </FormItem>
           )}
         />
+        <Box sx={{ textAlign: "center" }}>
         {isLoading ? (
           <Button disabled>
             <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
@@ -108,7 +120,10 @@ export default function NewBuilding() {
         ) : (
           <Button type="submit">Dodaj</Button>
         )}
+        </Box>
       </form>
     </Form>
+    </Box>
+    </Container>
   );
 }

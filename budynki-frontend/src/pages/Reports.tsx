@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, Container, Typography } from "@mui/material";
 
 const Reports = () => {
@@ -8,7 +9,7 @@ const Reports = () => {
           display: "inline-block",
           justifyContent: "center",
           alignItems: "center",
-          marginLeft: 30,
+          marginLeft: 10,
           marginTop: 5,
           marginBottom: 4,
         }}
