@@ -12,24 +12,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 public class BudynekController {
-    private final BudynekRepository budynekRepository;
+    private final BudynekRepository repository;
 
-    public BudynekController(BudynekRepository budynekRepository) {
-        this.budynekRepository = budynekRepository;
+    public BudynekController(BudynekRepository repository) {
+        this.repository = repository;
     }
 
     @GetMapping("api/budynki")
-    public Iterable<Budynek> findAllBudynki() {
-        return this.budynekRepository.findAll();
+    public Iterable<Budynek> findAll() {
+        return repository.findAll();
     }
-    
+
     @PostMapping("api/budynki")
-    public Budynek postMethodName(@RequestBody Budynek budynek) {
-        return this.budynekRepository.save(budynek);
+    public Budynek add(@RequestBody Budynek budynek) {
+        return repository.save(budynek);
     }
-    
+
     @GetMapping("api/budynki/{id}")
     public Budynek findById(@PathVariable Integer id) {
-        return this.budynekRepository.findById(id).orElseThrow(() -> new BudynkiEntityNotFoundException(id, "budynek"));
+        return repository.findById(id).orElseThrow(() -> new BudynkiEntityNotFoundException(id, "budynek"));
     }
 }

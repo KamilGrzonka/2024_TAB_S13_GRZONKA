@@ -40,7 +40,7 @@ const BuildingLabel = ({ name, address, id }: BuildingLabelProps) => {
         </Typography>
       </div>
       <Button variant="contained" endIcon={<ArrowForwardIcon />}>
-        <Link to={{ pathname: `/${id}` }}>Szczegóły</Link>
+        <Link to={`${id}`}>Szczegóły</Link>
       </Button>
     </Paper>
   );

@@ -3,6 +3,7 @@ import BuildingLabel from "../components/BuildingLabel";
 
 import { useQuery } from "@tanstack/react-query";
 import { LoaderCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface BuildingData {
   numberBudynku: number;
@@ -36,7 +37,7 @@ const Buildings = () => {
       >
         <Typography variant="h3">{`Budynki`}</Typography>
         <Button sx={{ padding: 2 }} color="primary" variant="contained">
-          Dodaj budynek
+          <Link to="nowy">Dodaj budynek</Link>
         </Button>
       </Box>
       <Box

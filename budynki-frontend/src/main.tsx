@@ -12,6 +12,7 @@ import Persons from "./pages/Persons.tsx";
 import Payments from "./pages/Payments.tsx";
 import Reports from "./pages/Reports.tsx";
 import Buildings from "./pages/Buildings.tsx";
+import NewBuilding from "./pages/NewBuilding.tsx";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "budynki",
         element: <Buildings />,
+      },
+      {
+        path: "budynki/nowy",
+        element: <NewBuilding />
       },
       {
         path: "meldunki",
