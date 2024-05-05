@@ -1,5 +1,5 @@
+import BuildingsList from "@/components/BuildingsList";
 import { Box, Container, Typography } from "@mui/material";
-import BuildingLabel from "../components/BuildingLabel";
 
 const Registrations = () => {
   return (
@@ -17,8 +17,7 @@ const Registrations = () => {
         <Typography variant="h3">{`Meldunki`}</Typography>
         <Typography variant="h5">{`Wybierz budynek, którego dotyczy meldunek:`}</Typography>
       </Box>
-      <BuildingLabel name="Złota 44" address="Złota 44, 00-120 Warszawa" />
-      <BuildingLabel name="Złota 44" address="Złota 44, 00-120 Warszawa" />
+      <BuildingsList />
     </Container>
   );
 };

@@ -13,6 +13,9 @@ import Payments from "./pages/Payments.tsx";
 import Reports from "./pages/Reports.tsx";
 import Buildings from "./pages/Buildings.tsx";
 import NewBuilding from "./pages/NewBuilding.tsx";
+import PersonsFromBuilding from "./pages/PersonsFromBuilding.tsx";
+import DisplayPerson from "./pages/DisplayPerson.tsx";
+import EditPerson from "./pages/EditPerson.tsx";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +46,22 @@ const router = createBrowserRouter([
       {
         path: "osoby",
         element: <Persons />,
+      },
+      {
+        path: "osoby/:id",
+        element: <PersonsFromBuilding />,
+      },
+      {
+        path: "osoby/:id/nowy",
+        element: <EditPerson />,
+      },
+      {
+        path: "osoby/:id/:id",
+        element: <DisplayPerson />,
+      },
+      {
+        path: "osoby/:id/:id/edytuj",
+        element: <EditPerson />,
       },
       {
         path: "platnosci",
