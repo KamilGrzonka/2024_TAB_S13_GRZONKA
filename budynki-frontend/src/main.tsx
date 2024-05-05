@@ -3,7 +3,11 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 
-import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 
 import ErrorPage from "./error-page.tsx";
 import Registrations from "./pages/Registrations.tsx";
@@ -13,7 +17,6 @@ import Payments from "./pages/Payments.tsx";
 import Reports from "./pages/Reports.tsx";
 import Buildings from "./pages/Buildings.tsx";
 import NewBuilding from "./pages/NewBuilding.tsx";
-import PersonsFromBuilding from "./pages/PersonsFromBuilding.tsx";
 import DisplayPerson from "./pages/DisplayPerson.tsx";
 import EditPerson from "./pages/EditPerson.tsx";
 
@@ -33,7 +36,7 @@ const router = createBrowserRouter([
       },
       {
         path: "budynki/nowy",
-        element: <NewBuilding />
+        element: <NewBuilding />,
       },
       {
         path: "meldunki",
@@ -48,19 +51,15 @@ const router = createBrowserRouter([
         element: <Persons />,
       },
       {
-        path: "osoby/:id",
-        element: <PersonsFromBuilding />,
-      },
-      {
-        path: "osoby/:id/nowy",
+        path: "osoby/nowy",
         element: <EditPerson />,
       },
       {
-        path: "osoby/:id/:id",
+        path: "osoby/:id",
         element: <DisplayPerson />,
       },
       {
-        path: "osoby/:id/:id/edytuj",
+        path: "osoby/:id/edytuj",
         element: <EditPerson />,
       },
       {
