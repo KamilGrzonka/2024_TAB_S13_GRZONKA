@@ -1,7 +1,7 @@
-import { Box, Button, Container, Paper, Typography } from "@mui/material";
-import BuildingLabel from '../components/BuildingLabel';
+import { Box, Container, Typography } from "@mui/material";
+import BuildingLabel from "../components/BuildingLabel";
 
-const Persons = () => {
+const Repairs = () => {
   return (
     <Container sx={{ marginBottom: 8 }}>
       <Box
@@ -14,8 +14,8 @@ const Persons = () => {
           marginBottom: 4,
         }}
       >
-        <Typography variant="h3">{`Osoby`}</Typography>
-        <Typography variant="h5">{`Wybierz budynek, z którym związana jest osoba:`}</Typography>
+        <Typography variant="h3">{`Zgłoszenia`}</Typography>
+        <Typography variant="h5">{`Wybierz budynek, którego dotyczy zgłoszenie:`}</Typography>
       </Box>
       <BuildingLabel name="Złota 44" address="Złota 44, 00-120 Warszawa" />
       <BuildingLabel name="Złota 44" address="Złota 44, 00-120 Warszawa" />
@@ -23,4 +23,4 @@ const Persons = () => {
   );
 };
 
-export default Persons;
+export default Repairs;

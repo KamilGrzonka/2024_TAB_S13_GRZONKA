@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
 import { SidebarData } from './SidebarData';
@@ -17,7 +16,7 @@ function Navbar() {
               return (
                 <li key={index} className={item.cName}>
                   <Link to={item.path}>
-                    {item.icon}
+                    {/* {item.icon} */}
                     <span>{item.title}</span>
                   </Link>
                 </li>
