@@ -7,5 +7,5 @@ import com.s13tab.budynkibackend.model.Meldunek;
 
 @RepositoryRestResource(collectionResourceRel = "meldunki", path = "meldunki")
 public interface MeldunekRepository extends CrudRepository<Meldunek, Integer> {
-
+    
 }
