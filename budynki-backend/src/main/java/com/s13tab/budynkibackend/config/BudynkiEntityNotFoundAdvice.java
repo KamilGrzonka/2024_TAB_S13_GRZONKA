@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.s13tab.budynkibackend.exception.BudynkiEntityNotFoundException;
 
+import java.util.NoSuchElementException;
+
 @ControllerAdvice
 class BudynkiEntityNotFoundAdvice {
 
@@ -17,4 +19,10 @@ class BudynkiEntityNotFoundAdvice {
   String employeeNotFoundHandler(BudynkiEntityNotFoundException ex) {
     return ex.getMessage();
   }
+
+  @ResponseBody
+  @ExceptionHandler(NoSuchElementException.class)
+  @ResponseStatus(HttpStatus.I_AM_A_TEAPOT)
+  String noSuchElementExceptionHandler(NoSuchElementException ex){return ex.getMessage();}
+
 }

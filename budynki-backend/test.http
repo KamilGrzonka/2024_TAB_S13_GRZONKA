@@ -1,0 +1,98 @@
+
+#BUDUNKI
+
+ #GET http://localhost:8080/api/budynki
+
+ #GET http://localhost:8080/api/budynki/1
+
+# POST http://localhost:8080/api/budynki
+# Content-Type: application/json; charset=UTF-8
+
+# {
+#     "adres" : "feegfgew",
+#     "liczbaMiejsc" : 10
+# }
+
+#OSOBY
+
+# GET http://localhost:8080/api/osoby
+
+# GET http://localhost:8080/api/osoby/12345678910
+
+# GET http://localhost:8080/api/osoby/meldunki/12345678910
+
+# POST http://localhost:8080/api/osoby
+# Content-Type: application/json; charset=UTF-8
+
+# {
+#     "pesel" : 12345678920,
+#     "imieINazwisko" : "Jan Kowalski",
+#     "najmujacy" : true
+# }
+
+# PUT http://localhost:8080/api/osoby/1
+# Content-Type: application/json; charset=UTF-8
+
+# {
+#     "imieINazwisko" : "Jan Kowalski",
+#     "najmujacy" : true
+# }
+
+
+#MIESZKANIA
+
+#GET http://localhost:8080/api/mieszkania
+
+# GET http://localhost:8080/api/mieszkania/1
+
+# POST http://localhost:8080/api/mieszkania
+# Content-Type: application/json; charset=UTF-8
+
+# {
+#     "numerMieszkania" : 3,
+#     "pietro" : 0,
+#     "liczbaOsob" : 1,
+#     "opis" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+#     "numerBudynku" : 1
+# }
+
+# PUT http://localhost:8080/api/mieszkania/2
+# Content-Type: application/json; charset=UTF-8
+
+# {
+#     "pietro" : 1,
+#     "liczbaOsob" : 3,
+#     "opis" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+#     "numerBudynku" : 1
+# }
+
+#MELDUNKI
+
+# GET http://localhost:8080/api/meldunki
+
+# GET http://localhost:8080/api/meldunki/1
+
+# POST http://localhost:8080/api/meldunki
+# Content-Type: application/json; charset=UTF-8
+
+# {
+#     "dataMeldunku" : "2015-10-05",
+#     "dataWymeldowania" : "2015-10-05",
+#     "statusMeldunku" : true,
+#     "osobaPesel" : 12345678910,
+#     "numerMieszkania" : 1
+# }
+
+# PUT http://localhost:8080/api/meldunki/1
+# Content-Type: application/json; charset=UTF-8
+
+# {
+#     "dataMeldunku" : "2015-10-30",
+#     "dataWymeldowania" : "2015-10-05",
+#     "statusMeldunku" : true,
+#     "osobaPesel" : 12345678910,
+#     "numerMieszkania" : 1
+# }
+
+
+

@@ -1,11 +1,9 @@
 package com.s13tab.budynkibackend.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,4 +25,8 @@ public class Osoba {
 
     @Column(name = "najmujacy", nullable = false)
     private Boolean najmujacy;
+
+    @OneToMany(mappedBy = "osoba")
+    private List<Meldunek> meldunki;
+
 }

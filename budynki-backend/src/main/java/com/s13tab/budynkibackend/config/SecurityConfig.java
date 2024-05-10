@@ -22,6 +22,7 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(Customizer.withDefaults());
 
+
         return http.build();
     }
 

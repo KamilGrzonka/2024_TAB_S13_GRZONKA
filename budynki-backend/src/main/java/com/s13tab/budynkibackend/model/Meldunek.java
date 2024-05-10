@@ -43,4 +43,5 @@ public class Meldunek {
     @ManyToOne
     @JoinColumn(name = "mieszkanie_numer_mieszkania", nullable = false)
     private Mieszkanie mieszkanie;
+
 }
