@@ -1,3 +1,4 @@
+import React from 'react';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -41,8 +42,8 @@ const formSchema = z.object({
   najmujacy: z.string().regex(/^(Tak|Nie)$/i, { message: "Tak lub Nie" }),
 });
 
-export default function EditPerson() {
-  const [isLoading, setLoading] = useState(false);
+export default function AddPerson() {
+  const [isLoading, setLoading] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -50,22 +51,23 @@ export default function EditPerson() {
       imie: "",
       nazwisko: "",
       najmujacy: "",
-      pesel: ""
-    }
+      pesel: "",
+    },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setLoading(true);
     const newOsoba: PersonData = await fetch(
-      `http://localhost:8080/api/osoby/${values.pesel}`,
+      `http://localhost:8080/api/osoby`,
       {
-        method: "PUT",
+        method: "POST",
         mode: "cors",
         credentials: "include",
         headers: {
           "Content-Type": "application/json; charset=UTF-8",
         },
         body: JSON.stringify({
+          pesel: values.pesel,
           imieINazwisko: `${values.imie} ${values.nazwisko}`,
           najmujacy: values.najmujacy.toLowerCase() === "tak",
         }),
@@ -96,72 +98,72 @@ export default function EditPerson() {
           marginTop: 5,
         }}
       >
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <Typography variant="h3">{`Osoby`}</Typography>
-            <FormField
-              control={form.control}
-              name="imie"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Imię:</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Imię" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="nazwisko"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Nazwisko:</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Nazwisko" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="pesel"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Numer PESEL:</FormLabel>
-                  <FormControl>
-                    <Input type="number" placeholder="PESEL" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="najmujacy"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Wynajmujący:</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Wynajmujący" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            {isLoading ? (
-              <Button disabled>
-                <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
-                Edytuj
-              </Button>
-            ) : (
-              <Button type="submit">Edytuj</Button>
-            )}
-          </form>
-        </Form>
-      </Box>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <Typography variant="h3">{`Osoby`}</Typography>
+        <FormField
+          control={form.control}
+          name="imie"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Imię:</FormLabel>
+              <FormControl>
+                <Input placeholder="Imię" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="nazwisko"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Nazwisko:</FormLabel>
+              <FormControl>
+                <Input placeholder="Nazwisko" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="pesel"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Numer PESEL:</FormLabel>
+              <FormControl>
+                <Input type="number" placeholder="PESEL" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="najmujacy"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Wynajmujący:</FormLabel>
+              <FormControl>
+                <Input placeholder="Wynajmujący" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        {isLoading ? (
+          <Button disabled>
+            <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
+            Dodaj
+          </Button>
+        ) : (
+          <Button type="submit">Dodaj</Button>
+        )}
+      </form>
+    </Form>
+    </Box>
     </Container>
   );
 }

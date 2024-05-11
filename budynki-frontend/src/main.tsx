@@ -19,6 +19,7 @@ import Buildings from "./pages/Buildings.tsx";
 import NewBuilding from "./pages/NewBuilding.tsx";
 import DisplayPerson from "./pages/DisplayPerson.tsx";
 import EditPerson from "./pages/EditPerson.tsx";
+import AddPerson from "./pages/AddPerson.tsx";
 
 const router = createBrowserRouter([
   {
@@ -52,7 +53,7 @@ const router = createBrowserRouter([
       },
       {
         path: "osoby/nowy",
-        element: <EditPerson />,
+        element: <AddPerson />,
       },
       {
         path: "osoby/:id",
