@@ -18,7 +18,7 @@ const Buildings = () => {
       >
         <Typography variant="h3">{`Budynki`}</Typography>
         <Button sx={{ padding: 2 }} color="primary" variant="contained">
-          <Link to="nowy">Dodaj budynek</Link>
+          <Link to="dodaj">Dodaj budynek</Link>
         </Button>
       </Box>
       <Box

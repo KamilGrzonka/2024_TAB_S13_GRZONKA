@@ -16,7 +16,7 @@ import Persons from "./pages/Persons.tsx";
 import Payments from "./pages/Payments.tsx";
 import Reports from "./pages/Reports.tsx";
 import Buildings from "./pages/Buildings.tsx";
-import NewBuilding from "./pages/NewBuilding.tsx";
+import AddBuilding from "./pages/AddBuilding.tsx";
 import DisplayPerson from "./pages/DisplayPerson.tsx";
 import EditPerson from "./pages/EditPerson.tsx";
 import AddPerson from "./pages/AddPerson.tsx";
@@ -36,8 +36,8 @@ const router = createBrowserRouter([
         element: <Buildings />,
       },
       {
-        path: "budynki/nowy",
-        element: <NewBuilding />,
+        path: "budynki/dodaj",
+        element: <AddBuilding />,
       },
       {
         path: "meldunki",
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
         element: <Persons />,
       },
       {
-        path: "osoby/nowy",
+        path: "osoby/dodaj",
         element: <AddPerson />,
       },
       {

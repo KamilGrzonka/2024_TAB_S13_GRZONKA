@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    marginLeft: "240px",
     marginBottom: "25px",
   },
   buildingName: {

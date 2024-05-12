@@ -16,7 +16,7 @@ const Persons = () => {
       >
         <Typography variant="h3">{`Osoby`}</Typography>
         <Button sx={{ padding: 2 }} color="primary" variant="contained">
-          <Link to="nowy">Dodaj osobę</Link>
+          <Link to="dodaj">Dodaj osobę</Link>
         </Button>
       </Box>
       <Box

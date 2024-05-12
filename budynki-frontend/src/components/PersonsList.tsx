@@ -1,12 +1,7 @@
 import BuildingLabel from "@/components/BuildingLabel";
+import { PersonData } from "@/types/PersonData";
 import { useQuery } from "@tanstack/react-query";
 import { LoaderCircle } from "lucide-react";
-
-interface PersonData {
-  pesel: number;
-  imieINazwisko: string;
-  najmujacy: boolean;
-}
 
 async function fetchPersons() {
   const persons: PersonData[] = await fetch(
@@ -33,8 +28,8 @@ export default function PersonsList() {
       ) => (
         <BuildingLabel
           key={person.pesel}
-          name={person.imieINazwisko}
-          address={`${person.pesel} ${person.najmujacy ? "najmujacy" : "nie najmujacy"}`}
+          name={person.imieINazwisko.replace(",", "")}
+          address={`${person.pesel} ${person.najmujacy ? "najmujący" : "nie najmujący"}`}
           id={person.pesel}
         />
       ),
