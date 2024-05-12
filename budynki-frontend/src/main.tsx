@@ -21,6 +21,9 @@ import AddBuilding from "./pages/AddBuilding.tsx";
 import DisplayPerson from "./pages/DisplayPerson.tsx";
 import EditPerson from "./pages/EditPerson.tsx";
 import AddPerson from "./pages/AddPerson.tsx";
+import DisplayApartment from "./pages/DisplayApartment.tsx";
+import AddApartment from "./pages/AddApartment.tsx";
+import EditApartment from "./pages/EditApartment.tsx";
 
 const router = createBrowserRouter([
   {
@@ -37,12 +40,24 @@ const router = createBrowserRouter([
         element: <Buildings />,
       },
       {
-        path: "budynki/:id",
+        path: "budynki/dodaj",
+        element: <AddBuilding />,
+      },
+      {
+        path: "budynki/:buildingId",
         element: <Apartments />,
       },
       {
-        path: "budynki/dodaj",
-        element: <AddBuilding />,
+        path: "budynki/:buildingId/:apartmentId",
+        element: <DisplayApartment />,
+      },
+      {
+        path: "budynki/:buildingId/dodaj",
+        element: <AddApartment />,
+      },
+      {
+        path: "budynki/:buildingId/:apartmentId/edytuj",
+        element: <EditApartment />,
       },
       {
         path: "meldunki",
@@ -61,11 +76,11 @@ const router = createBrowserRouter([
         element: <AddPerson />,
       },
       {
-        path: "osoby/:id",
+        path: "osoby/:personId",
         element: <DisplayPerson />,
       },
       {
-        path: "osoby/:id/edytuj",
+        path: "osoby/:personId/edytuj",
         element: <EditPerson />,
       },
       {

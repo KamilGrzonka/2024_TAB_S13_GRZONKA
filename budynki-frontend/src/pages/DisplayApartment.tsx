@@ -1,36 +1,37 @@
 import { Typography } from "@material-ui/core";
 import { Link, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { PersonData } from "@/types/PersonData";
 import { useQuery } from "@tanstack/react-query";
 import { LoaderCircle } from "lucide-react";
+import { ApartmentData } from "@/types/ApartmentData";
 
-async function fetchPerson(id: number) {
-  const person: PersonData = await fetch(
-    "http://localhost:8080/api/osoby/" + id,
+async function fetchApartment(id: number) {
+  const apartment: ApartmentData = await fetch(
+    `http://localhost:8080/api/mieszkania/${id}`,
   ).then((response) => {
     if (!response.ok) {
       throw new Error(`Failed to fetch: ${response.status}`);
     }
     return response.json();
   });
-  return person;
+  return apartment;
 }
 
-export default function DisplayPerson() {
-  const { personId } = useParams();
-  const person = useQuery({
-    queryKey: ["person", personId],
-    queryFn: () => fetchPerson(Number(personId)),
+export default function DisplayApartment() {
+  const { apartmentId } = useParams();
+  const apartment = useQuery({
+    queryKey: ["apartment", apartmentId],
+    queryFn: () => fetchApartment(Number(apartmentId)),
   });
 
   return (
     <>
-      {person.isSuccess ? (
+      {apartment.isSuccess ? (
         <div className="mt-8 mx-auto max-w-md">
-          <Typography variant="h3">{person.data.imieINazwisko}</Typography>
-          <p>PESEL: {person.data.pesel}</p>
-          <p>Najemca: {person.data.najmujacy ? "Tak" : "Nie"} </p>
+          <Typography variant="h3">{apartment.data.numerMieszkania}</Typography>
+          <p>Piętro: {apartment.data.pietro}</p>
+          <p>Liczba osób: {apartment.data.liczbaOsob} </p>
+          <p>Opis: {apartment.data.opis} </p>
           <div id="buttons" className="mt-4">
             <Button asChild className="bg-blue-500">
               <Link to="edytuj">Edytuj dane</Link>
@@ -40,7 +41,7 @@ export default function DisplayPerson() {
           </Button> */}
           </div>
         </div>
-      ) : person.isLoading ? (
+      ) : apartment.isLoading ? (
         <div className="flex items-center justify-center">
           <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
           Loading...

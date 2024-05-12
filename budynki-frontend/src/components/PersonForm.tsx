@@ -44,7 +44,7 @@ const formSchema = z.object({
   najmujacy: z.coerce.boolean(),
 });
 
-export default function PersonForm(person: PersonOptionalData) {
+export default function PersonForm(person: PersonOptionalData) { //ToDo pozbyć się tego nieczytelnego monstrum
   const personDefaults = person.pesel
     ? {
         imie: person.imieINazwisko?.split(",")[0]?.trim() || "",
@@ -175,12 +175,12 @@ export default function PersonForm(person: PersonOptionalData) {
           )}
         />
         {isLoading ? (
-          <Button disabled>
+          <Button disabled className="bg-blue-500">
             <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
-            Edytuj
+            {person.pesel ? <>Edytuj</> : <>Dodaj</>}
           </Button>
         ) : (
-          <Button type="submit">Edytuj</Button>
+          <Button className="bg-blue-500" type="submit">{person.pesel ? <>Edytuj</> : <>Dodaj</>}</Button>
         )}
       </form>
     </Form>

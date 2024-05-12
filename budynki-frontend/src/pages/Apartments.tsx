@@ -6,7 +6,6 @@ import { ApartmentData } from "@/types/ApartmentData.ts";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -40,14 +39,14 @@ async function fetchBuilding(id: number) {
 }
 
 const Apartments = () => {
-  const { id } = useParams();
+  const { buildingId } = useParams();
   const apartments = useQuery({
-    queryKey: ["building-apartments"],
-    queryFn: () => fetchApartments(Number(id)),
+    queryKey: ["building-apartments", buildingId],
+    queryFn: () => fetchApartments(Number(buildingId)),
   });
   const building = useQuery({
-    queryKey: ["building"],
-    queryFn: () => fetchBuilding(Number(id)),
+    queryKey: ["building", buildingId],
+    queryFn: () => fetchBuilding(Number(buildingId)),
   });
 
   return (
@@ -102,7 +101,6 @@ const Apartments = () => {
         )}
       </Box>
       <Table>
-        <TableCaption>A list of your recent invoices.</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">Numer mieszkania</TableHead>
@@ -123,7 +121,7 @@ const Apartments = () => {
                 <TableCell>{apartment.liczbaOsob}</TableCell>
                 <TableCell className="text-right">{apartment.opis}</TableCell>
                 <TableCell className="justify-end flex">
-                  <Link to={`${id}`}>
+                  <Link to={`${apartment.numerMieszkania}`}>
                     <Button variant="contained" endIcon={<ArrowForwardIcon />}>
                       Szczegóły
                     </Button>

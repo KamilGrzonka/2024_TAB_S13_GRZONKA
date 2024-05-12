@@ -2,26 +2,26 @@ import { Box, Container } from "@mui/material";
 import { LoaderCircle } from "lucide-react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import PersonForm from "@/components/PersonForm";
-import { PersonData } from "@/types/PersonData";
+import ApartmentForm from "@/components/ApartmentForm";
+import { ApartmentData } from "@/types/ApartmentData";
 
-async function fetchPerson(id: number) {
-  const person: PersonData = await fetch(
-    "http://localhost:8080/api/osoby/" + id,
+async function fetchApartment(id: number) {
+  const apartment: ApartmentData = await fetch(
+    `http://localhost:8080/api/mieszkania/${id}`,
   ).then((response) => {
     if (!response.ok) {
       throw new Error(`Failed to fetch: ${response.status}`);
     }
     return response.json();
   });
-  return person;
+  return apartment;
 }
 
-export default function EditPerson() {
-  const { personId } = useParams();
-  const person = useQuery({
-    queryKey: ["person", personId],
-    queryFn: () => fetchPerson(Number(personId)),
+export default function EditApartment() {
+  const { apartmentId } = useParams();
+  const apartment = useQuery({
+    queryKey: ["apartment", apartmentId],
+    queryFn: () => fetchApartment(Number(apartmentId)),
   });
 
   return (
@@ -35,9 +35,9 @@ export default function EditPerson() {
           marginTop: 5,
         }}
       >
-        {person.isSuccess ? (
-          <PersonForm {...person.data} />
-        ) : person.isLoading ? (
+        {apartment.isSuccess ? (
+          <ApartmentForm {...apartment.data} />
+        ) : apartment.isLoading ? (
           <div className="flex items-center justify-center">
             <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
             Loading...

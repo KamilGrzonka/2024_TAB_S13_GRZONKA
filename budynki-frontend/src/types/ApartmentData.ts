@@ -3,4 +3,5 @@ export interface ApartmentData {
   pietro: number;
   liczbaOsob: number;
   opis: string;
+  numerBudynku: number;
 }
