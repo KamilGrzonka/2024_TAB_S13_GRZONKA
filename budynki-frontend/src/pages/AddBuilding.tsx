@@ -59,10 +59,10 @@ export default function AddBuilding() {
       },
     ).then((response) => response.json());
     setLoading(false);
-    if (newBuilding.numberBudynku) {
+    if (newBuilding.numerBudynku) {
       toast(
         <div>
-          <div>Numer budynku: {newBuilding.numberBudynku}</div>
+          <div>Numer budynku: {newBuilding.numerBudynku}</div>
           <div>Adres budynku: {newBuilding.adres}</div>
           <div>Liczba mieszkań: {newBuilding.liczbaMiejsc}</div>
         </div>,

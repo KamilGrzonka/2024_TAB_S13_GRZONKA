@@ -1,5 +1,5 @@
 export interface BuildingData {
-  numberBudynku: number;
+  numerBudynku: number;
   adres: string;
   liczbaMiejsc: number;
 }

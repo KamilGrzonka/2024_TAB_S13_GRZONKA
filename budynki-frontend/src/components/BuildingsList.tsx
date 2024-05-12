@@ -1,12 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import BuildingLabel from "./BuildingLabel";
 import { LoaderCircle } from "lucide-react";
-
-interface BuildingData {
-  numberBudynku: number;
-  adres: string;
-  liczbaMiejsc: number;
-}
+import { BuildingData } from "@/types/BuildingData";
 
 async function fetchBuildings() {
   const buildings: BuildingData[] = await fetch(
@@ -29,10 +24,10 @@ export default function BuildingsList() {
   return buildings.isSuccess ? (
     buildings.data.map((building) => (
       <BuildingLabel
-        key={building.numberBudynku}
+        key={building.numerBudynku}
         name={building.adres.split(",")[0]}
         address={building.adres}
-        id={building.numberBudynku}
+        id={building.numerBudynku}
       />
     ))
   ) : buildings.isPending ? (

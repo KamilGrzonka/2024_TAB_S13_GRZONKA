@@ -1,11 +1,8 @@
-import React from 'react';
 import { Box, Button, Container, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { BuildingData } from "@/types/BuildingData.ts";
 import { ApartmentData } from "@/types/ApartmentData.ts";
-import { useNavigate, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -13,12 +10,14 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow } from "@/components/ui/table";
+  TableRow,
+} from "@/components/ui/table";
+import { LoaderCircle } from "lucide-react";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
-async function fetchApartments() {
+async function fetchApartments(id: number) {
   const apartments: ApartmentData[] = await fetch(
-    "http://localhost:8080/api/mieszkania",
+    `http://localhost:8080/api/budynki/mieszkania/${id}`,
   ).then((response) => {
     if (!response.ok) {
       throw new Error(`Failed to fetch: ${response.status}`);
@@ -28,30 +27,30 @@ async function fetchApartments() {
   return apartments;
 }
 
+async function fetchBuilding(id: number) {
+  const building: BuildingData = await fetch(
+    `http://localhost:8080/api/budynki/${id}`,
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(`Failed to fetch: ${response.status}`);
+    }
+    return response.json();
+  });
+  return building;
+}
 
 const Apartments = () => {
-    const apartments = useQuery({
-        queryKey: ["apartments"],
-        queryFn: fetchApartments,
-    });
+  const { id } = useParams();
+  const apartments = useQuery({
+    queryKey: ["building-apartments"],
+    queryFn: () => fetchApartments(Number(id)),
+  });
+  const building = useQuery({
+    queryKey: ["building"],
+    queryFn: () => fetchBuilding(Number(id)),
+  });
 
-    const [building, setUser] = useState<BuildingData | null>(null);
-    const navigate = useNavigate();
-    const location  = useLocation();
-
-    useEffect(() => {
-        async function fetchUser() {
-            const b: BuildingData = await (await fetch(
-                `http://localhost:8080/api/budynki/${window.location.href.split('/budynki/')[1]}`,
-            )).json();
-
-            setUser(b);
-        }
-
-        fetchUser();
-    }, []);
-
-  return apartments.isSuccess ? (
+  return (
     <Container sx={{ marginBottom: 8 }}>
       <Box
         sx={{
@@ -62,7 +61,20 @@ const Apartments = () => {
           marginTop: 5,
         }}
       >
-        <Typography variant="h3">{building.adres.split(",")[0]}</Typography>
+        {building.isSuccess ? (
+          <Typography variant="h3">
+            {building.data.adres.split(",")[0]}
+          </Typography>
+        ) : building.isLoading ? (
+          <div className="flex items-center justify-center">
+            <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
+            Loading...
+          </div>
+        ) : (
+          <div className="flex items-center justify-center">
+            <span className="text-red-700">Error!</span>
+          </div>
+        )}
         <Button sx={{ padding: 2 }} color="primary" variant="contained">
           <Link to="dodaj">Dodaj mieszkanie</Link>
         </Button>
@@ -76,40 +88,62 @@ const Apartments = () => {
           marginBottom: 4,
         }}
       >
-        <Typography variant="h5">{building?.adres}</Typography>
+        {building.isSuccess ? (
+          <Typography variant="h5">{building.data.adres}</Typography>
+        ) : building.isLoading ? (
+          <div className="flex items-center justify-center">
+            <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
+            Loading...
+          </div>
+        ) : (
+          <div className="flex items-center justify-center">
+            <span className="text-red-700">Error!</span>
+          </div>
+        )}
       </Box>
       <Table>
         <TableCaption>A list of your recent invoices.</TableCaption>
         <TableHeader>
-            <TableRow>
+          <TableRow>
             <TableHead className="w-[100px]">Numer mieszkania</TableHead>
             <TableHead>Piętro</TableHead>
             <TableHead>Liczba osób</TableHead>
             <TableHead className="text-right">Opis</TableHead>
             <TableHead className="text-right">Szczegóły</TableHead>
-            </TableRow>
+          </TableRow>
         </TableHeader>
-        <TableBody>
+        {apartments.isSuccess ? (
+          <TableBody>
             {apartments.data.map((apartment) => (
-            <TableRow key={apartment.id}>
-                <TableCell className="font-medium">{apartment.numerMieszkania}</TableCell>
+              <TableRow key={apartment.numerMieszkania}>
+                <TableCell className="font-medium">
+                  {apartment.numerMieszkania}
+                </TableCell>
                 <TableCell>{apartment.pietro}</TableCell>
                 <TableCell>{apartment.liczbaOsob}</TableCell>
                 <TableCell className="text-right">{apartment.opis}</TableCell>
-                <TableCell>
-                    //ToDo button xD
+                <TableCell className="justify-end flex">
+                  <Link to={`${id}`}>
+                    <Button variant="contained" endIcon={<ArrowForwardIcon />}>
+                      Szczegóły
+                    </Button>
+                  </Link>
                 </TableCell>
-            </TableRow>
+              </TableRow>
             ))}
-        </TableBody>
-    </Table>
-
+          </TableBody>
+        ) : apartments.isLoading ? (
+          <div className="flex items-center justify-center">
+            <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
+            Loading...
+          </div>
+        ) : (
+          <div className="flex items-center justify-center">
+            <span className="text-red-700">Error!</span>
+          </div>
+        )}
+      </Table>
     </Container>
-  )
-  : (
-    <div className="flex items-center justify-center">
-      <span className="text-red-700">Error!</span>
-    </div>
   );
 };
 

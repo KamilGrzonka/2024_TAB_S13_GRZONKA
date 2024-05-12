@@ -38,9 +38,11 @@ const BuildingLabel = ({ name, address, id }: BuildingLabelProps) => {
           {address}
         </Typography>
       </div>
-      <Button variant="contained" endIcon={<ArrowForwardIcon />}>
-        <Link to={`${id}`}>Szczegóły</Link>
-      </Button>
+      <Link to={`${id}`}>
+        <Button variant="contained" endIcon={<ArrowForwardIcon />}>
+          Szczegóły
+        </Button>
+      </Link>
     </Paper>
   );
 };
