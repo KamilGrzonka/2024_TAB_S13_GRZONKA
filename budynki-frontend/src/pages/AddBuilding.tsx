@@ -15,12 +15,7 @@ import { Input } from "../components/ui/input";
 import { LoaderCircle } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-
-interface BuildingData {
-  numberBudynku: number;
-  adres: string;
-  liczbaMiejsc: number;
-}
+import { BuildingData } from "@/types/BuildingData.ts";
 
 const formSchema = z.object({
   ulica: z.string().min(1, { message: "Wprowadź poprawną ulicę" }),
