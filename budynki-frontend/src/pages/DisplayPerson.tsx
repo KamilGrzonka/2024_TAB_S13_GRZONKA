@@ -28,9 +28,8 @@ export default function DisplayPerson() {
     <>
       {person.isSuccess ? (
         <div className="mt-8 mx-auto max-w-md">
-          <Typography variant="h3">{person.data.imieINazwisko}</Typography>
+          <Typography variant="h3">{`${person.data.imie} ${person.data.nazwisko}`}</Typography>
           <p>PESEL: {person.data.pesel}</p>
-          <p>Najemca: {person.data.najmujacy ? "Tak" : "Nie"} </p>
           <div id="buttons" className="mt-4">
             <Button asChild className="bg-blue-500">
               <Link to="edytuj">Edytuj dane</Link>

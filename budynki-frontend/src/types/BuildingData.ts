@@ -1,5 +1,8 @@
 export interface BuildingData {
-  numerBudynku: number;
-  adres: string;
+  id: number;
+  ulica: string;
+  numerBudynku: string;
+  kodPocztowy: string;
+  miasto: string;
   liczbaMiejsc: number;
 }

@@ -1,5 +1,5 @@
 import logo from '../../assets/logo.png';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { SidebarData } from './SidebarData';
 import './Navbar.css';
 import { IconContext } from 'react-icons';
@@ -15,10 +15,10 @@ function Navbar() {
             {SidebarData.map((item, index) => {
               return (
                 <li key={index} className={item.cName}>
-                  <Link to={item.path}>
+                  <NavLink to={item.path}>
                     {/* {item.icon} */}
                     <span>{item.title}</span>
-                  </Link>
+                  </NavLink>
                 </li>
               );
             })}

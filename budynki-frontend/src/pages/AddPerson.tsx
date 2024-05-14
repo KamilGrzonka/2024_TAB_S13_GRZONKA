@@ -1,5 +1,5 @@
 import { Box, Container } from "@mui/material";
-import PersonForm from "@/components/PersonForm";
+import PersonAddForm from "@/components/PersonAddForm";
 
 export default function AddPerson() {
   return (
@@ -13,7 +13,7 @@ export default function AddPerson() {
           marginTop: 5,
         }}
       >
-        <PersonForm />
+        <PersonAddForm />
       </Box>
     </Container>
   );

@@ -1,78 +1,49 @@
 package com.s13tab.budynkibackend.controller;
 
-import com.s13tab.budynkibackend.exception.BudynkiEntityNotFoundException;
-import com.s13tab.budynkibackend.model.Meldunek;
-import com.s13tab.budynkibackend.model.dto.MeldunekDto;
-import com.s13tab.budynkibackend.repository.MeldunekRepository;
-import com.s13tab.budynkibackend.repository.MieszkanieRepository;
-import com.s13tab.budynkibackend.repository.OsobaRepository;
+import com.s13tab.budynkibackend.dto.MeldunekDTO;
+import com.s13tab.budynkibackend.mapper.MeldunekMapper;
+import com.s13tab.budynkibackend.service.MeldunekService;
 
-import java.util.stream.StreamSupport;
+import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-
+@RequiredArgsConstructor
+@Validated
+@RequestMapping("/api/meldunki")
 @RestController
 public class MeldunekController {
 
-    private final MeldunekRepository repository;
-    private final OsobaRepository osobaRepository;
+    private final MeldunekService meldunekService;
 
-    private final MieszkanieRepository mieszkanieRepository;
+    private final MeldunekMapper meldunekMapper;
 
-
-    public MeldunekController(MeldunekRepository repository,
-                              MieszkanieRepository mieszkanieRepository,
-                              OsobaRepository osobaRepository){
-        this.repository = repository;
-        this.mieszkanieRepository = mieszkanieRepository;
-        this.osobaRepository = osobaRepository;}
-
-    @GetMapping("api/meldunki")
-    public Iterable<MeldunekDto> findAll(){return StreamSupport
-        .stream(repository.findAll().spliterator(), false).toList()
-    .stream().map(meldunek -> convertToDto(meldunek)).toList();}
-
-    @GetMapping("api/meldunki/{id}")
-    public MeldunekDto findById(@PathVariable Integer id) {
-        return convertToDto(repository.findById(id).orElseThrow(() -> new BudynkiEntityNotFoundException(id, "meldunek")));
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<MeldunekDTO> findAll() {
+        return meldunekMapper.convertToDTO(meldunekService.findAll());
     }
 
-    @PostMapping("api/meldunki")
-    public MeldunekDto add(@RequestBody MeldunekDto meldunek) {
-        return convertToDto(repository.save(convertToEntity(meldunek)));
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public MeldunekDTO add(@RequestBody MeldunekDTO mieszkanie) {
+        return meldunekMapper.convertToDTO(meldunekService.save(meldunekMapper.convertToEntity(mieszkanie)));
     }
 
-    @PutMapping("api/meldunki/{numerMeldunku}")
-    public MeldunekDto replace(@RequestBody MeldunekDto newMeldunek, @PathVariable Integer numerMeldunku) {
-         return convertToDto(repository.findById(numerMeldunku).map(meldunek -> {
-                    meldunek.setDataMeldunku(newMeldunek.dataMeldunku());
-                    meldunek.setDataWymeldowania(newMeldunek.dataWymeldowania());
-                    meldunek.setStatusMeldunku(newMeldunek.statusMeldunku());
-                    meldunek.setOsoba(osobaRepository.findById(newMeldunek.osobaPesel()).orElseThrow());
-                    meldunek.setMieszkanie(mieszkanieRepository.findById(newMeldunek.numerMieszkania()).orElseThrow());
-                    return repository.save(meldunek);
-                })
-                .orElseGet(() -> {
-                    return (repository.save(convertToEntity(newMeldunek)));
-                }));
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public MeldunekDTO findById(@PathVariable Long id) {
+        return meldunekMapper.convertToDTO(meldunekService.findById(id));
     }
 
-    private Meldunek convertToEntity(MeldunekDto meldunekDto)
-    {
-        return new Meldunek(meldunekDto.numerMeldunku(),
-        meldunekDto.dataMeldunku(), meldunekDto.dataWymeldowania(), meldunekDto.statusMeldunku(),
-        osobaRepository.findById(meldunekDto.osobaPesel()).orElseThrow(),
-        mieszkanieRepository.findById(meldunekDto.numerMieszkania()).orElseThrow());
-    }
-
-    private MeldunekDto convertToDto(Meldunek meldunek)
-    {
-        return new MeldunekDto(meldunek.getNumerMeldunku(), meldunek.getDataMeldunku(), 
-        meldunek.getDataWymeldowania(),
-         meldunek.getStatusMeldunku(),
-          meldunek.getOsoba().getPesel(),
-           meldunek.getMieszkanie().getNumerMieszkania());
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK) // powinno być OK przy zamianie i CREATE przy stworzeniu nowego
+    public MeldunekDTO replace(@RequestBody MeldunekDTO newMeldunek, @PathVariable Long id) {
+        return meldunekMapper.convertToDTO(meldunekService.replace(meldunekMapper.convertToEntity(newMeldunek), id));
     }
 
 }

@@ -16,7 +16,7 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
 async function fetchApartments(id: number) {
   const apartments: ApartmentData[] = await fetch(
-    `http://localhost:8080/api/budynki/mieszkania/${id}`,
+    `http://localhost:8080/api/budynki/${id}/mieszkania`,
   ).then((response) => {
     if (!response.ok) {
       throw new Error(`Failed to fetch: ${response.status}`);
@@ -62,7 +62,7 @@ const Apartments = () => {
       >
         {building.isSuccess ? (
           <Typography variant="h3">
-            {building.data.adres.split(",")[0]}
+            {`${building.data.numerBudynku} ${building.data.ulica}`}
           </Typography>
         ) : building.isLoading ? (
           <div className="flex items-center justify-center">
@@ -88,7 +88,7 @@ const Apartments = () => {
         }}
       >
         {building.isSuccess ? (
-          <Typography variant="h5">{building.data.adres}</Typography>
+          <Typography variant="h5">{`${building.data.numerBudynku} ${building.data.ulica}, ${building.data.kodPocztowy} ${building.data.miasto}`}</Typography>
         ) : building.isLoading ? (
           <div className="flex items-center justify-center">
             <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
@@ -118,7 +118,7 @@ const Apartments = () => {
                   {apartment.numerMieszkania}
                 </TableCell>
                 <TableCell>{apartment.pietro}</TableCell>
-                <TableCell>{apartment.liczbaOsob}</TableCell>
+                <TableCell>{apartment.liczbaMieszkancow}</TableCell>
                 <TableCell className="text-right">{apartment.opis}</TableCell>
                 <TableCell className="justify-end flex">
                   <Link to={`${apartment.numerMieszkania}`}>

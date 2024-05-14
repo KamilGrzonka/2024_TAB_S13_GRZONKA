@@ -2,7 +2,7 @@ import { Box, Container } from "@mui/material";
 import { LoaderCircle } from "lucide-react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import PersonForm from "@/components/PersonForm";
+import PersonEditForm from "@/components/PersonAddForm";
 import { PersonData } from "@/types/PersonData";
 
 async function fetchPerson(id: number) {
@@ -36,7 +36,7 @@ export default function EditPerson() {
         }}
       >
         {person.isSuccess ? (
-          <PersonForm {...person.data} />
+          <PersonEditForm {...person.data} />
         ) : person.isLoading ? (
           <div className="flex items-center justify-center">
             <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />

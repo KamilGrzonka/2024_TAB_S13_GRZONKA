@@ -30,7 +30,7 @@ export default function DisplayApartment() {
         <div className="mt-8 mx-auto max-w-md">
           <Typography variant="h3">{apartment.data.numerMieszkania}</Typography>
           <p>Piętro: {apartment.data.pietro}</p>
-          <p>Liczba osób: {apartment.data.liczbaOsob} </p>
+          <p>Liczba mieszkańców: {apartment.data.liczbaMieszkancow} </p>
           <p>Opis: {apartment.data.opis} </p>
           <div id="buttons" className="mt-4">
             <Button asChild className="bg-blue-500">

@@ -23,28 +23,24 @@ import lombok.Setter;
 @Entity
 @Table(name = "platnosc")
 public class Platnosc {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "numer_platnosci", nullable = false)
-    private Integer numerPlatnosci;
-
-    @Column(name = "data_naliczenia", nullable = false)
-    private Date dataNaliczenia;
+    @Column(name = "platnosc_id", nullable = false)
+    private Long id;
 
     @Column(name = "data_zrealizowania", nullable = false)
     private Date dataZrealizowania;
 
-    @Column(name = "zrealizowana", nullable = false)
-    private Boolean zrealizowana;
-
-    @Column(name = "naleznosc", scale = 10, precision = 2, nullable = false)
-    private BigDecimal naleznosc;
+    @Column(name = "wartosc", scale = 2, precision = 10, nullable = false)
+    private BigDecimal wartosc;
 
     @ManyToOne
-    @JoinColumn(name = "zadanie_numer_zadania")
+    @JoinColumn(name = "zadanie_id")
     private Zadanie zadanie;
 
     @ManyToOne
-    @JoinColumn(name = "umowa_numer_umowy")
+    @JoinColumn(name = "umowa_id")
     private Umowa umowa;
+
 }

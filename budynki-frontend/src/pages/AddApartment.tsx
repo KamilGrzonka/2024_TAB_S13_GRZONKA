@@ -1,5 +1,5 @@
 import { Box, Container } from "@mui/material";
-import ApartmentForm from "@/components/ApartmentForm";
+import ApartmentAddForm from "@/components/ApartmentAddForm";
 
 export default function AddApartment() {
   return (
@@ -13,7 +13,7 @@ export default function AddApartment() {
           marginTop: 5,
         }}
       >
-        <ApartmentForm />
+        <ApartmentAddForm />
       </Box>
     </Container>
   );

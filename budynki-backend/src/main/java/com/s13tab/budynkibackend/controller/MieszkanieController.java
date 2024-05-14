@@ -1,93 +1,61 @@
 package com.s13tab.budynkibackend.controller;
 
-import com.s13tab.budynkibackend.exception.BudynkiEntityNotFoundException;
-import com.s13tab.budynkibackend.model.Mieszkanie;
-import com.s13tab.budynkibackend.model.dto.MeldunekDto;
-import com.s13tab.budynkibackend.model.dto.MieszkanieDto;
-import com.s13tab.budynkibackend.repository.BudynekRepository;
-import com.s13tab.budynkibackend.repository.MieszkanieRepository;
+import com.s13tab.budynkibackend.service.MieszkanieService;
+
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
-import java.util.stream.StreamSupport;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import com.s13tab.budynkibackend.model.Meldunek;
+import com.s13tab.budynkibackend.dto.MeldunekDTO;
+import com.s13tab.budynkibackend.dto.MieszkanieDTO;
+import com.s13tab.budynkibackend.mapper.MeldunekMapper;
+import com.s13tab.budynkibackend.mapper.MieszkanieMapper;
 
+@RequiredArgsConstructor
+@Validated
+@RequestMapping("/api/mieszkania")
 @RestController
 public class MieszkanieController {
 
-    private final MieszkanieRepository repository;
-    private final BudynekRepository budynekRepository;
+    private final MieszkanieService mieszkanieService;
 
-    public MieszkanieController(MieszkanieRepository repository, 
-    BudynekRepository budynekRepository) {
-        this.repository = repository;
-        this.budynekRepository = budynekRepository;
+    private final MieszkanieMapper mieszkanieMapper;
+
+    private final MeldunekMapper meldunekMapper;
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<MieszkanieDTO> findAll() {
+        return mieszkanieMapper.convertToDTO(mieszkanieService.findAll());
     }
 
-    @GetMapping("api/mieszkania")
-    public Iterable<MieszkanieDto>findAll(){return StreamSupport
-        .stream(repository.findAll().spliterator(), false).toList()
-                   .stream().map(m -> convertToDto(m)).toList();}
-
-    @GetMapping("api/mieszkania/{id}")
-    public MieszkanieDto findById(@PathVariable Integer id)
-    {
-        return convertToDto(repository.findById(id).orElseThrow(() -> new BudynkiEntityNotFoundException(id, "mieszkanie")));
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public MieszkanieDTO add(@RequestBody MieszkanieDTO mieszkanie) {
+        return mieszkanieMapper.convertToDTO(mieszkanieService.save(mieszkanieMapper.convertToEntity(mieszkanie)));
     }
 
-    @PostMapping("api/mieszkania")
-    public MieszkanieDto add(@RequestBody MieszkanieDto mieszkanie){
-        return convertToDto(repository.save(convertToEntity(mieszkanie)));
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public MieszkanieDTO findById(@PathVariable Long id) {
+        return mieszkanieMapper.convertToDTO(mieszkanieService.findById(id));
     }
 
-    @GetMapping("api/mieszkania/meldunki/{id}")
-    public List<MeldunekDto> findMeldunkiById(@PathVariable Integer id) {
-        return repository.findById(id).orElseThrow().getMeldunki()
-        .stream()
-        .map(meldunek -> convertToDto(meldunek)).toList();
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK) // powinno być OK przy zamianie i CREATE przy stworzeniu nowego
+    public MieszkanieDTO replace(@RequestBody MieszkanieDTO newMieszkanie, @PathVariable Long id) {
+        return mieszkanieMapper
+                .convertToDTO(mieszkanieService.replace(mieszkanieMapper.convertToEntity(newMieszkanie), id));
     }
 
-    @PutMapping("api/mieszkania/{numerMieszkania}")
-    public MieszkanieDto replace(@RequestBody MieszkanieDto newMieszkanie, @PathVariable Integer numerMieszkania){
-        return convertToDto(repository.findById(numerMieszkania).map(mieszkanie -> {
-            mieszkanie.setLiczbaOsob(newMieszkanie.liczbaOsob());
-            mieszkanie.setPietro(newMieszkanie.pietro());
-            mieszkanie.setOpis(newMieszkanie.opis());
-            mieszkanie.setBudynek(budynekRepository.findById(newMieszkanie.numerBudynku())
-            .orElseThrow());
-            
-            return repository.save(mieszkanie);
-        })
-                .orElseGet(() -> {
-                    return (repository.save(convertToEntity(newMieszkanie)));
-                }));
-    }
-
-    private Mieszkanie convertToEntity(MieszkanieDto mieszkanie)
-    {
-       return new Mieszkanie(mieszkanie.numerMieszkania(),
-                mieszkanie.pietro(), mieszkanie.liczbaOsob(), 
-                mieszkanie.opis(),
-                budynekRepository.findById(mieszkanie.numerBudynku()).orElseThrow(), null);
-    }
-
-    private MieszkanieDto convertToDto(Mieszkanie mieszkanie)
-    {
-        return new MieszkanieDto(mieszkanie.getNumerMieszkania(), mieszkanie.getPietro(),
-        mieszkanie.getLiczbaOsob(), mieszkanie.getOpis(), mieszkanie.getBudynek().getNumberBudynku());
-    }
-
-    /////////////////////////////////////////////////////
-
-    private MeldunekDto convertToDto(Meldunek meldunek)
-    {
-        return new MeldunekDto(meldunek.getNumerMeldunku(), meldunek.getDataMeldunku(), 
-        meldunek.getDataWymeldowania(),
-         meldunek.getStatusMeldunku(),
-          meldunek.getOsoba().getPesel(),
-           meldunek.getMieszkanie().getNumerMieszkania());
+    @GetMapping("/{id}/meldunki")
+    @ResponseStatus(HttpStatus.OK)
+    public List<MeldunekDTO> findMeldunkiById(@PathVariable Long id) {
+        return meldunekMapper.convertToDTO(mieszkanieService.findMeldunkiById(id));
     }
 
 }

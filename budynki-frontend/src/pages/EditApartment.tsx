@@ -2,7 +2,7 @@ import { Box, Container } from "@mui/material";
 import { LoaderCircle } from "lucide-react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import ApartmentForm from "@/components/ApartmentForm";
+import ApartmentEditForm from "@/components/ApartmentAddForm";
 import { ApartmentData } from "@/types/ApartmentData";
 
 async function fetchApartment(id: number) {
@@ -36,7 +36,7 @@ export default function EditApartment() {
         }}
       >
         {apartment.isSuccess ? (
-          <ApartmentForm {...apartment.data} />
+          <ApartmentEditForm {...apartment.data} />
         ) : apartment.isLoading ? (
           <div className="flex items-center justify-center">
             <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />

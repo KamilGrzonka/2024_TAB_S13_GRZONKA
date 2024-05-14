@@ -1,7 +1,8 @@
 export interface ApartmentData {
+  id: number;
   numerMieszkania: number;
   pietro: number;
-  liczbaOsob: number;
+  liczbaMieszkancow: number;
   opis: string;
-  numerBudynku: number;
+  budynekId: number;
 }

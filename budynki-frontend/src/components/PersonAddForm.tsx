@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -14,15 +13,15 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
 import { LoaderCircle } from "lucide-react";
 import { PersonData } from "@/types/PersonData";
+import { useNavigate } from "react-router-dom";
 
 interface PersonOptionalData {
   pesel?: number;
-  imieINazwisko?: string;
-  najmujacy?: boolean;
+  imie?: string;
+  nazwisko?: string;
 }
 
 const formSchema = z.object({
@@ -41,18 +40,17 @@ const formSchema = z.object({
     ),
   imie: z.string().min(1, { message: "Wprowadź poprawne imię" }),
   nazwisko: z.string().min(1, { message: "Wprowadź poprawne nazwisko" }),
-  najmujacy: z.coerce.boolean(),
 });
 
-export default function PersonForm(person: PersonOptionalData) { //ToDo pozbyć się tego nieczytelnego monstrum
+export default function PersonAddForm(person: PersonOptionalData) { //ToDo pozbyć się tego nieczytelnego monstrum
+  const navigate = useNavigate();
   const personDefaults = person.pesel
     ? {
-        imie: person.imieINazwisko?.split(",")[0]?.trim() || "",
-        nazwisko: person.imieINazwisko?.split(",")[1]?.trim() || "",
-        najmujacy: person.najmujacy || false,
+        imie: person.imie || "",
+        nazwisko: person.nazwisko || "",
         pesel: person.pesel.toString() || "",
       }
-    : { imie: "", nazwisko: "", najmujacy: false, pesel: "" };
+    : { imie: "", nazwisko: "", pesel: "" };
   const [isLoading, setLoading] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -63,17 +61,18 @@ export default function PersonForm(person: PersonOptionalData) { //ToDo pozbyć 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setLoading(true);
     const newOsoba: PersonData = await fetch(
-      `http://localhost:8080/api/osoby/${values.pesel}`,
+      `http://localhost:8080/api/osoby`,
       {
-        method: "PUT",
+        method: "POST",
         mode: "cors",
         credentials: "include",
         headers: {
           "Content-Type": "application/json; charset=UTF-8",
         },
         body: JSON.stringify({
-          imieINazwisko: `${values.imie}, ${values.nazwisko}`,
-          najmujacy: values.najmujacy,
+          pesel: values.pesel,
+          imie: values.imie,
+          nazwisko: values.nazwisko,
         }),
       },
     ).then((response) => response.json());
@@ -82,10 +81,11 @@ export default function PersonForm(person: PersonOptionalData) { //ToDo pozbyć 
       toast(
         <div>
           <div>Pesel: {newOsoba.pesel}</div>
-          <div>Imie i nazwisko: {newOsoba.imieINazwisko}</div>
-          <div>Najmujacy: {newOsoba.najmujacy ? "Tak" : "Nie"}</div>
+          <div>Imię: {newOsoba.imie}</div>
+          <div>Nazwisko: {newOsoba.nazwisko}</div>
         </div>,
       );
+      navigate("..", {relative: "path"});
     } else {
       toast(<span className="text-red-700">Error!</span>);
     }
@@ -144,33 +144,6 @@ export default function PersonForm(person: PersonOptionalData) { //ToDo pozbyć 
                 />
               </FormControl>
               <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="najmujacy"
-          render={({ field }) => (
-            <FormItem>
-              <div className="flex items-center space-y-0 space-x-2">
-                <FormLabel>Wynajmujący:</FormLabel>
-                <FormControl>
-                  <Checkbox
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
-                </FormControl>
-                <FormMessage />
-              </div>
-              {person.pesel ? (
-                <FormDescription>
-                  Aktualnie{" "}
-                  {personDefaults.najmujacy ? "wynajmujący" : "nie wynajmujący"}
-                  .
-                </FormDescription>
-              ) : (
-                <></>
-              )}
             </FormItem>
           )}
         />

@@ -27,10 +27,10 @@ export default function PersonsList() {
         person, // ToDo osoby to nie budynki
       ) => (
         <BuildingLabel
-          key={person.pesel}
-          name={person.imieINazwisko.replace(",", "")}
-          address={`${person.pesel} ${person.najmujacy ? "najmujący" : "nie najmujący"}`}
-          id={person.pesel}
+          key={person.id}
+          name={`${person.imie} ${person.nazwisko}`}
+          address={`${person.pesel}`}
+          id={person.id}
         />
       ),
     )

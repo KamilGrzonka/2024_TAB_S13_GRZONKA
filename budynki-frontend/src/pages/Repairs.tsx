@@ -1,4 +1,3 @@
-import React from 'react';
 import BuildingsList from "../components/BuildingsList";
 import { Box, Container, Typography } from "@mui/material";
 

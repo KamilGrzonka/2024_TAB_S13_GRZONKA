@@ -15,24 +15,35 @@ import java.util.List;
 @Entity
 @Table(name = "mieszkanie")
 public class Mieszkanie {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "mieszkanie_id", nullable = false)
+    private Long id;
+
     @Column(name = "numer_mieszkania", nullable = false)
     private Integer numerMieszkania;
 
     @Column(name = "pietro", nullable = false)
     private Short pietro;
 
-    @Column(name = "liczba_osob", nullable = false)
-    private Short liczbaOsob;
+    @Column(name = "liczba_mieszkancow", nullable = false)
+    private Short liczbaMieszkancow;
 
-    @Column(name = "opis", length = 65535, nullable = false)
+    @Column(name = "opis", length = 65535)
     private String opis;
 
     @ManyToOne
-    @JoinColumn(name = "budynek_numer_budynku")
+    @JoinColumn(name = "budynek_id", nullable = false)
     private Budynek budynek;
 
     @OneToMany(mappedBy = "mieszkanie")
     private List<Meldunek> meldunki;
+
+    @OneToMany(mappedBy = "mieszkanie")
+    private List<Cennik> cenniki;
+
+    @OneToMany(mappedBy = "mieszkanie")
+    private List<Zgloszenie> zgloszenia;
 
 }

@@ -23,10 +23,11 @@ import lombok.Setter;
 @Entity
 @Table(name = "cennik")
 public class Cennik {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "numer_cennika", nullable = false)
-    private Integer numerCennika;
+    @Column(name = "cennik_id", nullable = false)
+    private Long id;
 
     @Column(name = "data_poczatkowa", nullable = false)
     private Date dataPoczatkowa;
@@ -34,10 +35,11 @@ public class Cennik {
     @Column(name = "data_koncowa", nullable = false)
     private Date dataKoncowa;
 
-    @Column(name = "cena", scale = 10, precision = 2, nullable = false)
+    @Column(name = "cena", scale = 2, precision = 10, nullable = false)
     private BigDecimal cena;
 
     @ManyToOne
-    @JoinColumn(name = "mieszkanie_numer_mieszkania", nullable = false)
+    @JoinColumn(name = "mieszkanie_id", nullable = false)
     private Mieszkanie mieszkanie;
+
 }

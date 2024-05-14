@@ -22,19 +22,21 @@ import lombok.Setter;
 @Entity
 @Table(name = "umowa")
 public class Umowa {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "numer_umowy", nullable = false)
-    private Integer numerUmowy;
+    @Column(name = "umowa_id", nullable = false)
+    private Long id;
 
     @Column(name = "data_zawarcia", nullable = false)
     private Date dataZawarcia;
 
     @ManyToOne
-    @JoinColumn(name = "osoba_pesel", nullable = false)
+    @JoinColumn(name = "osoba_id", nullable = false)
     private Osoba osoba;
 
     @ManyToOne
-    @JoinColumn(name = "cennik_numer_cennika", nullable = false)
+    @JoinColumn(name = "cennik_id", nullable = false)
     private Cennik cennik;
+
 }

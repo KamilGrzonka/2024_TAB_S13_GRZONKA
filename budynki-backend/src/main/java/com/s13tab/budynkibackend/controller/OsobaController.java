@@ -1,85 +1,67 @@
 package com.s13tab.budynkibackend.controller;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.stream.StreamSupport;
 
-import com.s13tab.budynkibackend.model.Meldunek;
+import com.s13tab.budynkibackend.dto.MeldunekDTO;
+import com.s13tab.budynkibackend.dto.OsobaDTO;
+import com.s13tab.budynkibackend.mapper.MeldunekMapper;
+import com.s13tab.budynkibackend.mapper.OsobaMapper;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.s13tab.budynkibackend.exception.BudynkiEntityNotFoundException;
-import com.s13tab.budynkibackend.model.Osoba;
-import com.s13tab.budynkibackend.model.dto.MeldunekDto;
-import com.s13tab.budynkibackend.model.dto.OsobaDto;
-import com.s13tab.budynkibackend.repository.OsobaRepository;
+import com.s13tab.budynkibackend.service.OsobaService;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Validated
+@RequestMapping("/api/osoby")
 @RestController
 public class OsobaController {
-    private final OsobaRepository repository;
 
-    public OsobaController(OsobaRepository repository) {
-        this.repository = repository;
+    private final OsobaService osobaService;
+
+    private final OsobaMapper osobaMapper;
+
+    private final MeldunekMapper meldunekMapper;
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<OsobaDTO> findAll() {
+        return osobaMapper.convertToDTO(osobaService.findAll());
     }
 
-    @GetMapping("api/osoby")
-    public Iterable<OsobaDto> findAll() {
-        return StreamSupport.stream(repository.findAll().spliterator(), false).toList()
-        .stream().map(osoba -> convertToDto(osoba)).toList();
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public OsobaDTO add(@RequestBody OsobaDTO osoba) {
+        return osobaMapper.convertToDTO(osobaService.save(osobaMapper.convertToEntity(osoba)));
     }
 
-    @GetMapping("api/osoby/{pesel}")
-    public OsobaDto findById(@PathVariable BigDecimal pesel) {
-        return convertToDto(repository.findById(pesel).orElseThrow(() -> new BudynkiEntityNotFoundException(pesel, "osoba")));
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public OsobaDTO findById(@PathVariable Long id) {
+        return osobaMapper.convertToDTO(osobaService.findById(id));
     }
 
-    @PostMapping("api/osoby")
-    public OsobaDto add(@RequestBody OsobaDto osoba)
-    {
-        return convertToDto(repository.save(convertToEntity(osoba)));
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK) // powinno być OK przy zamianie i CREATE przy stworzeniu nowego
+    public OsobaDTO replace(@RequestBody OsobaDTO newOsoba, @PathVariable Long id) {
+        return osobaMapper.convertToDTO(osobaService.replace(osobaMapper.convertToEntity(newOsoba), id));
     }
 
-    @PutMapping("api/osoby/{pesel}")
-    public OsobaDto replace(@RequestBody Osoba newOsoba, @PathVariable BigDecimal pesel) {
-        return convertToDto(repository.findById(pesel).map(osoba -> {
-            osoba.setImieINazwisko(newOsoba.getImieINazwisko());
-            osoba.setNajmujacy(newOsoba.getNajmujacy());
-            return repository.save(osoba);
-        })
-                .orElseGet(() -> {
-                    newOsoba.setPesel(pesel);
-                    return repository.save(newOsoba);
-                }));
-    }
-
-    @GetMapping("api/osoby/meldunki/{id}")
-    public List<MeldunekDto> findMeldunkiById(@PathVariable BigDecimal id){
-        return repository.findById(id).orElseThrow().getMeldunki()
-        .stream()
-        .map(meldunek -> convertToDto(meldunek)).toList();
-    }
-
-    private Osoba convertToEntity(OsobaDto osobaDto)
-    {
-        return new Osoba(osobaDto.pesel(), osobaDto.imieINazwisko(), osobaDto.najmujacy(), null);
-    }
-
-    private OsobaDto convertToDto(Osoba osoba)
-    {
-        return new OsobaDto(osoba.getPesel(),osoba.getImieINazwisko(), osoba.getNajmujacy());
-    }
-
-     private MeldunekDto convertToDto(Meldunek meldunek)
-    {
-        return new MeldunekDto(meldunek.getNumerMeldunku(), meldunek.getDataMeldunku(), 
-        meldunek.getDataWymeldowania(),
-         meldunek.getStatusMeldunku(),
-          meldunek.getOsoba().getPesel(),
-           meldunek.getMieszkanie().getNumerMieszkania());
+    @GetMapping("/{id}/meldunki")
+    @ResponseStatus(HttpStatus.OK)
+    public List<MeldunekDTO> findMeldunkiById(@PathVariable Long id) {
+        return meldunekMapper.convertToDTO(osobaService.findMeldunkiById(id));
     }
 
 }

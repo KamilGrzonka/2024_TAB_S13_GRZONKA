@@ -66,7 +66,7 @@ const formSchema = z.object({
   opis: z.string().min(1, { message: "Wprowadź poprawny opis" }),
 });
 
-export default function ApartmentForm(apartment: ApartmentOptionalData) {
+export default function ApartmentEditForm(apartment: ApartmentOptionalData) {
   const navigate = useNavigate();
   const { buildingId } = useParams();
   //ToDo pozbyć się tego nieczytelnego monstrum
@@ -97,7 +97,7 @@ export default function ApartmentForm(apartment: ApartmentOptionalData) {
           "Content-Type": "application/json; charset=UTF-8",
         },
         body: JSON.stringify({
-          numerMieszkania: values.numerMieszkania,
+          mieszkanieId: values.numerMieszkania,
           pietro: values.pietro,
           liczbaOsob: values.liczbaOsob,
           opis: values.opis,
@@ -111,9 +111,9 @@ export default function ApartmentForm(apartment: ApartmentOptionalData) {
         <div>
           <div>Numer mieszkania: {newApartment.numerMieszkania}</div>
           <div>Pietro: {newApartment.pietro}</div>
-          <div>Liczba osób: {newApartment.liczbaOsob}</div>
+          <div>Liczba osób: {newApartment.liczbaMieszkancow}</div>
           <div>Opis: {newApartment.opis}</div>
-          <div>Numer budynku: {newApartment.numerBudynku}</div>
+          <div>Numer budynku: {newApartment.budynekId}</div>
         </div>,
       );
       navigate("..", {relative: "path"});

@@ -1,5 +1,6 @@
 export interface PersonData {
+  id: number;
   pesel: number;
-  imieINazwisko: string;
-  najmujacy: boolean;
+  imie: string;
+  nazwisko: string;
 }

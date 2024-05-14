@@ -1,6 +1,7 @@
 package com.s13tab.budynkibackend.model;
 
 import java.sql.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,26 +24,27 @@ import lombok.Setter;
 @Entity
 @Table(name = "meldunek")
 public class Meldunek {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "numer_meldunku", nullable = false)
-    private Integer numerMeldunku;
+    @Column(name = "meldunek_id", nullable = false)
+    private Long id;
 
     @Column(name = "data_meldunku", nullable = false)
     private Date dataMeldunku;
 
-    @Column(name = "data_wymeldowania", nullable = false)
+    @Column(name = "data_wymeldowania")
     private Date dataWymeldowania;
 
-    @Column(name = "status_meldunku", nullable = false)
-    private Boolean statusMeldunku;
-
     @ManyToOne
-    @JoinColumn(name = "osoba_pesel", nullable = false)
+    @JoinColumn(name = "osoba_id", nullable = false)
     private Osoba osoba;
 
     @ManyToOne
-    @JoinColumn(name = "mieszkanie_numer_mieszkania", nullable = false)
+    @JoinColumn(name = "mieszkanie_id", nullable = false)
     private Mieszkanie mieszkanie;
+
+    @OneToMany(mappedBy = "meldunek")
+    private List<Zgloszenie> zgloszenia;
 
 }

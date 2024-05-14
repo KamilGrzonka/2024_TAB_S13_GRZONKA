@@ -53,7 +53,10 @@ export default function AddBuilding() {
           "Content-Type": "application/json; charset=UTF-8",
         },
         body: JSON.stringify({
-          adres: `${values.ulica} ${values.numer}, ${values.kod} ${values.miejscowosc}`,
+          ulica: values.ulica,
+          numerBudynku: values.numer,
+          kodPocztowy: values.kod,
+          miasto: values.miejscowosc,
           liczbaMiejsc: values.liczba,
         }),
       },
@@ -62,8 +65,8 @@ export default function AddBuilding() {
     if (newBuilding.numerBudynku) {
       toast(
         <div>
-          <div>Numer budynku: {newBuilding.numerBudynku}</div>
-          <div>Adres budynku: {newBuilding.adres}</div>
+          <div>Id budynku: {newBuilding.id}</div>
+          <div>Adres budynku: {`${newBuilding.numerBudynku} ${newBuilding.ulica}, ${newBuilding.kodPocztowy} ${newBuilding.miasto}`}</div>
           <div>Liczba mieszkań: {newBuilding.liczbaMiejsc}</div>
         </div>,
       );

@@ -1,6 +1,5 @@
 package com.s13tab.budynkibackend.model;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -16,17 +15,25 @@ import lombok.Setter;
 @Entity
 @Table(name = "osoba")
 public class Osoba {
+
     @Id
-    @Column(name = "pesel", scale = 11, nullable = false)
-    private BigDecimal pesel;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "osoba_id", nullable = false)
+    private Long id;
 
-    @Column(name = "imie_i_nazwisko", nullable = false)
-    private String imieINazwisko;
+    @Column(name = "pesel", length = 11, nullable = false, unique = true)
+    private String pesel;
 
-    @Column(name = "najmujacy", nullable = false)
-    private Boolean najmujacy;
+    @Column(name = "imie", length = 40, nullable = false)
+    private String imie;
+
+    @Column(name = "nazwisko", length = 40, nullable = false)
+    private String nazwisko;
 
     @OneToMany(mappedBy = "osoba")
     private List<Meldunek> meldunki;
+
+    @OneToMany(mappedBy = "osoba")
+    private List<Umowa> umowy;
 
 }

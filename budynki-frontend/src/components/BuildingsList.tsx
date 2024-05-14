@@ -24,10 +24,10 @@ export default function BuildingsList() {
   return buildings.isSuccess ? (
     buildings.data.map((building) => (
       <BuildingLabel
-        key={building.numerBudynku}
-        name={building.adres.split(",")[0]}
-        address={building.adres}
-        id={building.numerBudynku}
+        key={building.id}
+        name={`${building.numerBudynku} ${building.ulica}`}
+        address={`${building.numerBudynku} ${building.ulica}, ${building.kodPocztowy} ${building.miasto}`}
+        id={building.id}
       />
     ))
   ) : buildings.isPending ? (

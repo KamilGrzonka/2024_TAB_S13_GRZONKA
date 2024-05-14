@@ -1,81 +1,61 @@
 package com.s13tab.budynkibackend.controller;
 
-import com.s13tab.budynkibackend.model.Mieszkanie;
-import com.s13tab.budynkibackend.model.dto.BudynekDto;
-import com.s13tab.budynkibackend.model.dto.MieszkanieDto;
-
 import org.springframework.web.bind.annotation.RestController;
 
-import com.s13tab.budynkibackend.exception.BudynkiEntityNotFoundException;
-import com.s13tab.budynkibackend.model.Budynek;
-import com.s13tab.budynkibackend.repository.BudynekRepository;
+import com.s13tab.budynkibackend.dto.BudynekDTO;
+import com.s13tab.budynkibackend.dto.MieszkanieDTO;
+import com.s13tab.budynkibackend.mapper.BudynekMapper;
+import com.s13tab.budynkibackend.mapper.MieszkanieMapper;
+import com.s13tab.budynkibackend.service.BudynekService;
+
+import lombok.RequiredArgsConstructor;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
+@RequiredArgsConstructor
+@Validated
+@RequestMapping("/api/budynki")
 @RestController
 public class BudynekController {
-    private final BudynekRepository repository;
 
-    public BudynekController(BudynekRepository repository) {
-        this.repository = repository;
+    private final BudynekService budynekService;
+
+    private final BudynekMapper budynekMapper;
+
+    private final MieszkanieMapper mieszkanieMapper;
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<BudynekDTO> findAll() {
+        return budynekMapper.convertToDTO(budynekService.findAll());
     }
 
-    // @GetMapping("api/budynki")
-    // public Iterable<Budynek> findAll() {
-    //     return repository.findAll();
-    // }
-
-   @GetMapping("api/budynki")
-   public List<BudynekDto> findAll() {
-       return StreamSupport
-               .stream(repository.findAll().spliterator(), false).toList()
-               .stream().map(budynek -> convertToDto(budynek)).collect(Collectors.toList());
-   }
-
-    @GetMapping("api/budynki/mieszkania/{id}")
-    public List<MieszkanieDto> findAllFlatsInTheBuilding(@PathVariable BigDecimal id){
-
-        return repository.findById(id.intValue()).orElseThrow().getMieszkania().stream()
-        .map(mieszkanie -> convertToDto(mieszkanie)).toList();
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public BudynekDTO add(@RequestBody BudynekDTO budynek) {
+        return budynekMapper.convertToDTO(budynekService.save(budynekMapper.convertToEntity(budynek)));
     }
 
-    @PostMapping("api/budynki")
-    public Budynek add(@RequestBody BudynekDto budynek) {
-        return repository.save(convertToEntity(budynek));
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public BudynekDTO findById(@PathVariable Long id) {
+        return budynekMapper.convertToDTO(budynekService.findById(id));
     }
 
-    @GetMapping("api/budynki/{id}")
-    public BudynekDto findById(@PathVariable Integer id) {
-        return convertToDto(repository.findById(id).orElseThrow(() -> new BudynkiEntityNotFoundException(id, "budynek")));
-    }
+    @GetMapping("/{id}/mieszkania")
+    @ResponseStatus(HttpStatus.OK)
+    public List<MieszkanieDTO> findMieszkaniaById(@PathVariable Long id) {
 
-    private Budynek convertToEntity(BudynekDto budynekDto)
-    {
-        return new Budynek(budynekDto.numerBudynku(), budynekDto.adres(), 
-        budynekDto.liczbaMiejsc(),
-         null);
-    }
-
-    private BudynekDto convertToDto(Budynek budynek)
-    {
-        return new BudynekDto(budynek.getNumberBudynku(),
-        budynek.getAdres(), budynek.getLiczbaMiejsc());
-    }
-
-    ////////////////////////////////////////////////////////////
-
-    // to chyba jest niezbyt dobre rozwiązanie ale idk
-    private MieszkanieDto convertToDto(Mieszkanie mieszkanie)
-    {
-        return new MieszkanieDto(mieszkanie.getNumerMieszkania(), mieszkanie.getPietro(),
-        mieszkanie.getLiczbaOsob(), mieszkanie.getOpis(), mieszkanie.getBudynek().getNumberBudynku());
+        return mieszkanieMapper.convertToDTO(budynekService.findMieszkaniaById(id));
     }
 
 }
