@@ -1,6 +1,6 @@
 export interface PersonData {
-  id: number;
-  pesel: number;
-  imie: string;
-  nazwisko: string;
+  id: number; // id
+  pesel: number; // length = 11, nullable = false, unique = true
+  imie: string; // length = 40, nullable = false
+  nazwisko: string; // length = 40, nullable = false
 }

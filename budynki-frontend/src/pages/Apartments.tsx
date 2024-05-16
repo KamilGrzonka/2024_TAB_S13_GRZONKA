@@ -100,20 +100,20 @@ const Apartments = () => {
           </div>
         )}
       </Box>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[100px]">Numer mieszkania</TableHead>
-            <TableHead>Piętro</TableHead>
-            <TableHead>Liczba osób</TableHead>
-            <TableHead className="text-right">Opis</TableHead>
-            <TableHead className="text-right">Szczegóły</TableHead>
-          </TableRow>
-        </TableHeader>
-        {apartments.isSuccess ? (
+      {apartments.isSuccess ? (
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[100px]">Numer mieszkania</TableHead>
+              <TableHead>Piętro</TableHead>
+              <TableHead>Liczba osób</TableHead>
+              <TableHead className="text-right">Opis</TableHead>
+              <TableHead className="text-right">Szczegóły</TableHead>
+            </TableRow>
+          </TableHeader>
           <TableBody>
             {apartments.data.map((apartment) => (
-              <TableRow key={apartment.numerMieszkania}>
+              <TableRow key={apartment.id}>
                 <TableCell className="font-medium">
                   {apartment.numerMieszkania}
                 </TableCell>
@@ -130,17 +130,17 @@ const Apartments = () => {
               </TableRow>
             ))}
           </TableBody>
-        ) : apartments.isLoading ? (
-          <div className="flex items-center justify-center">
-            <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
-            Loading...
-          </div>
-        ) : (
-          <div className="flex items-center justify-center">
-            <span className="text-red-700">Error!</span>
-          </div>
-        )}
-      </Table>
+        </Table>
+      ) : apartments.isLoading ? (
+        <div className="flex items-center justify-center">
+          <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
+          Loading...
+        </div>
+      ) : (
+        <div className="flex items-center justify-center">
+          <span className="text-red-700">Error!</span>
+        </div>
+      )}
     </Container>
   );
 };

@@ -4,24 +4,15 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import PersonEditForm from "@/components/PersonAddForm";
 import { PersonData } from "@/types/PersonData";
+import { postBackendApi } from "@/components/fetchBackendApi";
 
-async function fetchPerson(id: number) {
-  const person: PersonData = await fetch(
-    "http://localhost:8080/api/osoby/" + id,
-  ).then((response) => {
-    if (!response.ok) {
-      throw new Error(`Failed to fetch: ${response.status}`);
-    }
-    return response.json();
-  });
-  return person;
-}
+import { Typography } from "@mui/material";
 
 export default function EditPerson() {
   const { personId } = useParams();
   const person = useQuery({
     queryKey: ["person", personId],
-    queryFn: () => fetchPerson(Number(personId)),
+    queryFn: () => postBackendApi<PersonData>(personId),
   });
 
   return (
@@ -35,6 +26,7 @@ export default function EditPerson() {
           marginTop: 5,
         }}
       >
+        <Typography variant="h3">{`Osoby`}</Typography>
         {person.isSuccess ? (
           <PersonEditForm {...person.data} />
         ) : person.isLoading ? (

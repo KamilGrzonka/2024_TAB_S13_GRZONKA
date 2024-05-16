@@ -1,5 +1,5 @@
 import { Box, Container } from "@mui/material";
-import ApartmentAddForm from "@/components/ApartmentAddForm";
+import ApartmentAddForm from "@/components/forms/apartment/ApartmentAddForm";
 
 export default function AddApartment() {
   return (

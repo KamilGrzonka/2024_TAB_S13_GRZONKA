@@ -1,6 +1,9 @@
 {
     "typescript.preferences.autoImportFileExcludePatterns": [
-        "@radix-ui"
+        "@radix-ui",
+        "@material-ui",
+        "@mui",
+        "react-day-picker",
     ],
     "java.compile.nullAnalysis.mode": "automatic"
 }
