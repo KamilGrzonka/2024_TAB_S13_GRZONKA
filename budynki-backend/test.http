@@ -5,11 +5,16 @@
 
  #GET http://localhost:8080/api/budynki/1
 
+ # GET http://localhost:8080/api/budynki/1/mieszkania
+
 # POST http://localhost:8080/api/budynki
 # Content-Type: application/json; charset=UTF-8
 
 # {
-#     "adres" : "feegfgew",
+#     "ulica" : "Kwiatowa",
+#     "numerBudynku" : "6",
+#     "kodPocztowy" : "22-123",
+#     "miasto" : "Katowice",
 #     "liczbaMiejsc" : 10
 # }
 
@@ -25,9 +30,9 @@
 # Content-Type: application/json; charset=UTF-8
 
 # {
-#     "pesel" : 12345678920,
-#     "imieINazwisko" : "Jan Kowalski",
-#     "najmujacy" : true
+#     "pesel" : 12345678911,
+#     "imie" : "Jan",
+#     "nazwisko" : "Kowalski"
 # }
 
 # PUT http://localhost:8080/api/osoby/1
@@ -49,11 +54,11 @@
 # Content-Type: application/json; charset=UTF-8
 
 # {
-#     "numerMieszkania" : 3,
+#     "numerMieszkania" : 2,
 #     "pietro" : 0,
-#     "liczbaOsob" : 1,
+#     "liczbaMieszkancow" : 3,
 #     "opis" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-#     "numerBudynku" : 1
+#     "budynekId" : 1
 # }
 
 # PUT http://localhost:8080/api/mieszkania/2
@@ -78,9 +83,8 @@
 # {
 #     "dataMeldunku" : "2015-10-05",
 #     "dataWymeldowania" : "2015-10-05",
-#     "statusMeldunku" : true,
-#     "osobaPesel" : 12345678910,
-#     "numerMieszkania" : 1
+#     "osobaId" : 1,
+#     "mieszkanieId" : 2
 # }
 
 # PUT http://localhost:8080/api/meldunki/1
@@ -92,6 +96,159 @@
 #     "statusMeldunku" : true,
 #     "osobaPesel" : 12345678910,
 #     "numerMieszkania" : 1
+# }
+
+#UMOWA
+
+# GET http://localhost:8080/api/umowy
+
+# GET http://localhost:8080/api/umowy/1
+
+# POST http://localhost:8080/api/umowy
+# Content-Type: application/json; charset=UTF-8
+
+# {
+#     "dataZawarcia" : "2015-01-30",
+#     "osobaId" : 1,
+#     "cennikId" : 1
+# }
+
+# PUT http://localhost:8080/api/umowy/1
+# Content-Type: application/json; charset=UTF-8
+
+# {
+#     "dataZawarcia" : "2015-01-30",
+#     "osobaId" : 2,
+#     "cennikId" : 1
+# }
+
+#CENNIK
+
+ #GET http://localhost:8080/api/cenniki
+
+# GET http://localhost:8080/api/cenniki/1
+
+
+# POST http://localhost:8080/api/cenniki
+# Content-Type: application/json; charset=UTF-8
+
+# {
+#     "dataPoczatkowa": "2015-01-30",
+#     "dataKoncowa": "2015-02-30",
+#     "cena" : 100.0, 
+#     "mieszkanieId": 1
+# }
+
+# PUT http://localhost:8080/api/cenniki/1
+# Content-Type: application/json; charset=UTF-8
+
+# {
+#     "dataPoczatkowa": "2015-01-30",
+#     "dataKoncowa": "2015-02-30",
+#     "cena" : 100.0, 
+#     "mieszkanieId": 2
+# }
+
+#FIRMA
+
+# GET http://localhost:8080/api/firmy
+
+# GET http://localhost:8080/api/firmy/1
+
+# POST http://localhost:8080/api/firmy
+# Content-Type: application/json; charset=UTF-8
+
+# {
+#     "nazwa": "BudPol",
+#     "nip": "123456789",
+#     "ulica": "Rybna",
+#     "numerBudynku": "10",
+#     "numerLokalu": "5",
+#     "kodPocztowy": "12-123",
+#     "miasto": "Kraków"
+# }
+
+# PUT http://localhost:8080/api/firmy/1
+# Content-Type: application/json; charset=UTF-8
+
+# {
+#     "nazwa": "BudPol",
+#     "nip": "123456789",
+#     "ulica": "Rybna",
+#     "numerBudynku": "10",
+#     "numerLokalu": "5",
+#     "kodPocztowy": "12-123",
+#     "miasto": "Warszawa"
+# }
+
+#ZGŁOSZENIE
+
+# GET http://localhost:8080/api/zgloszenia
+
+# GET http://localhost:8080/api/zgloszenia/1
+
+# POST http://localhost:8080/api/zgloszenia
+# Content-Type: application/json; charset=UTF-8
+
+# {
+#     "dataZgloszenia" : "2015-01-30",
+#     "dataWykonania" : "2015-02-28",
+#     "statusZgloszenia" : "ZGLOSZONE",
+#     "typZgloszenia" : "REMONT",
+#     "kosztCalkowity" : 10000,
+#     "priorytet" : 1,
+#     "meldunekId" : 1,
+#     "mieszkanieId" : 1,
+#     "budynekId" : 1
+# }
+
+# PUT http://localhost:8080/api/zgloszenia/1
+# Content-Type: application/json; charset=UTF-8
+
+# {
+#     "dataZgloszenia" : "2015-01-30",
+#     "dataWykonania" : "2015-02-28",
+#     "statusZgloszenia" : "ZGLOSZONE",
+#     "typZgloszenia" : "REMONT",
+#     "kosztCalkowity" : 10000,
+#     "priorytet" : 2,
+#     "meldunekId" : 1,
+#     "mieszkanieId" : 1,
+#     "budynekId" : 1
+# }
+
+#ZADANIE
+
+# GET http://localhost:8080/api/zadania
+
+# GET http://localhost:8080/api/zadania/1
+
+# POST http://localhost:8080/api/zadania
+# Content-Type: application/json; charset=UTF-8
+
+# {
+#     "koszt" : 10000,
+#     "opis" : "Lorem ipsum",
+#     "dataRozpoczecia" : "2015-02-28",
+#     "dataZakonczenia" : "2015-03-28",
+#     "firmaId" : 1,
+#     "zgloszenieId" : 1
+# }
+
+#PLATNOSC
+
+# GET http://localhost:8080/api/platnosci
+
+# GET http://localhost:8080/api/platnosci/1
+
+# POST http://localhost:8080/api/platnosci
+# Content-Type: application/json; charset=UTF-8
+
+# {
+#     "dataZrealizowania" : "2015-01-30",
+#     "wartosc" : 10000,
+#     "zadanieId" : 1,
+#     "umowaId" : 1
 # }
 
 
