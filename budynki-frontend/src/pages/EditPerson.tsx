@@ -22,7 +22,7 @@ export default function EditPerson() {
           URL={`/osoby/${personId}`}
           FORM_SCHEMA={personFormSchema}
           ADITIONAL_FORM_SUBMIT_VALUES={{ id: personId }}
-          QUERY_KEYS={["person", personId]}
+          QUERY_KEYS={["person", `${personId}`]}
         />
       </Box>
     </Container>

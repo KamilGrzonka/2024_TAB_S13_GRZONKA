@@ -8,13 +8,21 @@ import { postBackendApi } from "../fetchBackendApi";
 import { Button } from "../ui/button";
 import { LoaderCircle } from "lucide-react";
 import camelToTitle from "@/utils/camelToTitle";
-import { FormField, FormItem, FormLabel, FormControl, FormMessage, Form } from "../ui/form";
+import {
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+  Form,
+} from "../ui/form";
 import { Input } from "../ui/input";
+import { AnySchema } from "@/types/AnySchema";
 
 interface EditFormProps {
   URL: string;
-  FORM_SCHEMA: any;
-  ADITIONAL_FORM_SUBMIT_VALUES?: any;
+  FORM_SCHEMA: AnySchema;
+  ADITIONAL_FORM_SUBMIT_VALUES?: object;
 }
 
 export default function AddForm({
@@ -27,7 +35,7 @@ export default function AddForm({
       Object.keys(FORM_SCHEMA.shape).reduce(
         (acc, key) => ({
           ...acc,
-          [key]: undefined,
+          [key]: "",
         }),
         {},
       ),
@@ -48,14 +56,17 @@ export default function AddForm({
       ...values,
     })) && navigate("..", { relative: "path" });
   }
+
+  type SchemaShapeKeyType = keyof typeof FORM_SCHEMA.shape;
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-      {Object.keys(defaultValues).map((key) => (
+        {Object.keys(FORM_SCHEMA.shape).map((key) => (
           <FormField
             key={key}
             control={form.control}
-            name={key}
+            name={key as SchemaShapeKeyType}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>{camelToTitle(field.name)}:</FormLabel>

@@ -19,12 +19,13 @@ import {
 import { Input } from "../ui/input";
 import { LoaderCircle } from "lucide-react";
 import { Button } from "../ui/button";
+import { AnySchema } from "@/types/AnySchema";
 
 interface EditFormProps {
   URL: string;
-  FORM_SCHEMA: any;
-  ADITIONAL_FORM_SUBMIT_VALUES: any;
-  QUERY_KEYS: any[];
+  FORM_SCHEMA: AnySchema;
+  ADITIONAL_FORM_SUBMIT_VALUES: object;
+  QUERY_KEYS: string[];
 }
 
 export default function EditForm<T = AnyEntity>({
@@ -38,7 +39,7 @@ export default function EditForm<T = AnyEntity>({
       Object.keys(FORM_SCHEMA.shape).reduce(
         (acc, key) => ({
           ...acc,
-          [key]: undefined,
+          [key]: "",
         }),
         {},
       ),
@@ -80,14 +81,16 @@ export default function EditForm<T = AnyEntity>({
     })) && navigate("..", { relative: "path" });
   }
 
-  return query.isSuccess ? (
+  type SchemaShapeKeyType = keyof typeof FORM_SCHEMA.shape;
+
+  return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        {Object.keys(defaultValues).map((key) => (
+        {Object.keys(FORM_SCHEMA.shape).map((key) => (
           <FormField
             key={key}
             control={form.control}
-            name={key}
+            name={key as SchemaShapeKeyType}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>{camelToTitle(field.name)}:</FormLabel>
@@ -110,14 +113,5 @@ export default function EditForm<T = AnyEntity>({
         </Button>
       </form>
     </Form>
-  ) : query.isLoading ? (
-    <div className="flex items-center justify-center">
-      <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
-      Loading...
-    </div>
-  ) : (
-    <div className="flex items-center justify-center">
-      <span className="text-red-700">Error!</span>
-    </div>
   );
 }

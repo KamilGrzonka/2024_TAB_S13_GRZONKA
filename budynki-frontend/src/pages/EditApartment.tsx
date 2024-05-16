@@ -21,7 +21,7 @@ export default function EditApartment() {
           URL={`/mieszkania/${apartmentId}`}
           FORM_SCHEMA={apartmentFormSchema}
           ADITIONAL_FORM_SUBMIT_VALUES={{ id: apartmentId, budynekId: buildingId }}
-          QUERY_KEYS={["apartment", buildingId, apartmentId]}
+          QUERY_KEYS={["apartment", `${buildingId}`, `${apartmentId}`]}
         />
       </Box>
     </Container>
