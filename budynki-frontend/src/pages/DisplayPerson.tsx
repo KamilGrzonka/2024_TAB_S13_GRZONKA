@@ -4,24 +4,13 @@ import { Button } from "@/components/ui/button";
 import { PersonData } from "@/types/PersonData";
 import { useQuery } from "@tanstack/react-query";
 import { LoaderCircle } from "lucide-react";
-
-async function fetchPerson(id: number) {
-  const person: PersonData = await fetch(
-    "http://localhost:8080/api/osoby/" + id,
-  ).then((response) => {
-    if (!response.ok) {
-      throw new Error(`Failed to fetch: ${response.status}`);
-    }
-    return response.json();
-  });
-  return person;
-}
+import { getBackendApi } from "@/components/fetchBackendApi";
 
 export default function DisplayPerson() {
   const { personId } = useParams();
   const person = useQuery({
     queryKey: ["person", personId],
-    queryFn: () => fetchPerson(Number(personId)),
+    queryFn: () => getBackendApi<PersonData>(`/osoby/${personId}`),
   });
 
   return (

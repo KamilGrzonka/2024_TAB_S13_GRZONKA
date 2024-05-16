@@ -4,7 +4,7 @@ export interface CompanyData {
     nip: string; // length = 10, nullable = false, unique = true
     ulica: string; // length = 80, nullable = false
     numerBudynku: string; // length = 5, nullable = false
-    numerLokalu: string; // length = 5
+    numerLokalu?: string; // length = 5
     kodPocztowy: string; // length = 6, nullable = false
     miasto: string; // length = 80, nullable = false
 }

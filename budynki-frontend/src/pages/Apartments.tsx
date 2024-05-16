@@ -2,7 +2,6 @@ import { Box, Button, Container, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import { BuildingData } from "@/types/BuildingData.ts";
-import { ApartmentData } from "@/types/ApartmentData.ts";
 import {
   Table,
   TableBody,
@@ -13,40 +12,18 @@ import {
 } from "@/components/ui/table";
 import { LoaderCircle } from "lucide-react";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-
-async function fetchApartments(id: number) {
-  const apartments: ApartmentData[] = await fetch(
-    `http://localhost:8080/api/budynki/${id}/mieszkania`,
-  ).then((response) => {
-    if (!response.ok) {
-      throw new Error(`Failed to fetch: ${response.status}`);
-    }
-    return response.json();
-  });
-  return apartments;
-}
-
-async function fetchBuilding(id: number) {
-  const building: BuildingData = await fetch(
-    `http://localhost:8080/api/budynki/${id}`,
-  ).then((response) => {
-    if (!response.ok) {
-      throw new Error(`Failed to fetch: ${response.status}`);
-    }
-    return response.json();
-  });
-  return building;
-}
+import { getBackendApi } from "@/components/fetchBackendApi";
+import { ApartmentData } from "@/types/ApartmentData";
 
 const Apartments = () => {
   const { buildingId } = useParams();
   const apartments = useQuery({
     queryKey: ["building-apartments", buildingId],
-    queryFn: () => fetchApartments(Number(buildingId)),
+    queryFn: () => getBackendApi<ApartmentData[]>(`/budynki/${buildingId}/mieszkania`),
   });
   const building = useQuery({
     queryKey: ["building", buildingId],
-    queryFn: () => fetchBuilding(Number(buildingId)),
+    queryFn: () => getBackendApi<BuildingData>(`/budynki/${buildingId}`),
   });
 
   return (
@@ -121,7 +98,7 @@ const Apartments = () => {
                 <TableCell>{apartment.liczbaMieszkancow}</TableCell>
                 <TableCell className="text-right">{apartment.opis}</TableCell>
                 <TableCell className="justify-end flex">
-                  <Link to={`${apartment.numerMieszkania}`}>
+                  <Link to={`${apartment.id}`}>
                     <Button variant="contained" endIcon={<ArrowForwardIcon />}>
                       Szczegóły
                     </Button>

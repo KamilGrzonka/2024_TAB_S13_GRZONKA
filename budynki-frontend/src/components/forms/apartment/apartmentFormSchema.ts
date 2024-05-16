@@ -1,9 +1,9 @@
 import { z } from "zod";
-import { zNumberNonNegative, zNumberPositive } from "../zodWrapper";
+import { zNonNegative, zNumber, zPositive, zStringMinMax } from "../zodWrapper";
 
 export const apartmentFormSchema = z.object({
-  numerMieszkania: zNumberPositive(),
-  pietro: zNumberNonNegative(),
-  liczbaMieszkancow: zNumberNonNegative(),
-  opis: z.string().optional(),
+  numerMieszkania: zNumber().pipe(zPositive()), // nullable = false
+  pietro: zNumber().pipe(zNonNegative()), // nullable = false
+  liczbaMieszkancow: zNumber().pipe(zNonNegative()), // nullable = false
+  opis: zStringMinMax({min: 0, max: 65535}).optional(), // length = 65535
 });

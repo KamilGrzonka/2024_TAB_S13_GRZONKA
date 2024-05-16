@@ -1,5 +1,6 @@
+import AddForm from "@/components/forms/AddForm";
+import { personFormSchema } from "@/components/forms/person/personFormSchema";
 import { Box, Container } from "@mui/material";
-import PersonAddForm from "@/components/PersonAddForm";
 
 export default function AddPerson() {
   return (
@@ -13,7 +14,7 @@ export default function AddPerson() {
           marginTop: 5,
         }}
       >
-        <PersonAddForm />
+        <AddForm URL={`/osoby`} FORM_SCHEMA={personFormSchema} />
       </Box>
     </Container>
   );

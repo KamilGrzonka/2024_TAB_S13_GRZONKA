@@ -4,24 +4,13 @@ import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { LoaderCircle } from "lucide-react";
 import { ApartmentData } from "@/types/ApartmentData";
-
-async function fetchApartment(id: number) {
-  const apartment: ApartmentData = await fetch(
-    `http://localhost:8080/api/mieszkania/${id}`,
-  ).then((response) => {
-    if (!response.ok) {
-      throw new Error(`Failed to fetch: ${response.status}`);
-    }
-    return response.json();
-  });
-  return apartment;
-}
+import { getBackendApi } from "@/components/fetchBackendApi";
 
 export default function DisplayApartment() {
   const { apartmentId } = useParams();
   const apartment = useQuery({
     queryKey: ["apartment", apartmentId],
-    queryFn: () => fetchApartment(Number(apartmentId)),
+    queryFn: () => getBackendApi<ApartmentData>(`/mieszkania/${apartmentId}`),
   });
 
   return (

@@ -1,7 +1,10 @@
+import AddForm from "@/components/forms/AddForm";
+import { apartmentFormSchema } from "@/components/forms/apartment/apartmentFormSchema";
 import { Box, Container } from "@mui/material";
-import ApartmentAddForm from "@/components/forms/apartment/ApartmentAddForm";
+import { useParams } from "react-router-dom";
 
 export default function AddApartment() {
+  const { buildingId, apartmentId } = useParams();
   return (
     <Container sx={{ marginBottom: 8 }}>
       <Box
@@ -13,7 +16,14 @@ export default function AddApartment() {
           marginTop: 5,
         }}
       >
-        <ApartmentAddForm />
+        <AddForm
+          URL={`/mieszkania`}
+          FORM_SCHEMA={apartmentFormSchema}
+          ADITIONAL_FORM_SUBMIT_VALUES={{
+            id: apartmentId,
+            budynekId: buildingId,
+          }}
+        />
       </Box>
     </Container>
   );
