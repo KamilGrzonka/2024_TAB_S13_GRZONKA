@@ -1,8 +1,8 @@
 export interface ApartmentData {
-  id: number;
-  numerMieszkania: number;
-  pietro: number;
-  liczbaMieszkancow: number;
-  opis: string;
-  budynekId: number;
+  id: number; // id
+  numerMieszkania: number; // nullable = false
+  pietro: number; // nullable = false
+  liczbaMieszkancow: number; // nullable = false
+  opis: string; // length = 65535
+  budynekId: number; // nullable = false
 }

@@ -1,9 +1,9 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { Link } from "react-router-dom";
+import { Button } from "./ui/button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,11 +38,11 @@ const BuildingLabel = ({ name, address, id }: BuildingLabelProps) => {
           {address}
         </Typography>
       </div>
-      <Link to={`${id}`}>
-        <Button variant="contained" endIcon={<ArrowForwardIcon />}>
-          Szczegóły
-        </Button>
-      </Link>
+      <Button asChild>
+        <Link to={`${id}`}>
+          Szczegóły <ArrowForwardIcon />
+        </Link>
+      </Button>
     </Paper>
   );
 };
