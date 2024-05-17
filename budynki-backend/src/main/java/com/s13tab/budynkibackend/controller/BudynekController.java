@@ -3,8 +3,10 @@ package com.s13tab.budynkibackend.controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.s13tab.budynkibackend.dto.BudynekDTO;
+import com.s13tab.budynkibackend.dto.MeldunekDTO;
 import com.s13tab.budynkibackend.dto.MieszkanieDTO;
 import com.s13tab.budynkibackend.mapper.BudynekMapper;
+import com.s13tab.budynkibackend.mapper.MeldunekMapper;
 import com.s13tab.budynkibackend.mapper.MieszkanieMapper;
 import com.s13tab.budynkibackend.service.BudynekService;
 
@@ -33,6 +35,8 @@ public class BudynekController {
 
     private final MieszkanieMapper mieszkanieMapper;
 
+    private final MeldunekMapper meldunekMapper;
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<BudynekDTO> findAll() {
@@ -56,6 +60,13 @@ public class BudynekController {
     public List<MieszkanieDTO> findMieszkaniaById(@PathVariable Long id) {
 
         return mieszkanieMapper.convertToDTO(budynekService.findMieszkaniaById(id));
+    }
+
+    @GetMapping("/{id}/meldunki")
+    @ResponseStatus(HttpStatus.OK)
+    public List<MeldunekDTO> findMeldunkiById(@PathVariable Long id)
+    {
+        return meldunekMapper.convertToDTO(budynekService.findMeldunkiById(id));
     }
 
 }

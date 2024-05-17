@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.s13tab.budynkibackend.model.Budynek;
+import com.s13tab.budynkibackend.model.Meldunek;
 import com.s13tab.budynkibackend.model.Mieszkanie;
 import com.s13tab.budynkibackend.repository.BudynekRepository;
 
@@ -34,6 +35,13 @@ public class BudynekService {
 
     public List<Mieszkanie> findMieszkaniaById(Long id) {
         return findById(id).getMieszkania();
+    }
+
+    public List<Meldunek> findMeldunkiById(Long id)
+    {
+       List<Mieszkanie> mieszkania = findById(id).getMieszkania();
+       return mieszkania.stream()
+       .map(mieszkanie -> mieszkanie.getMeldunki()).flatMap(List::stream).toList();
     }
 
     public Long count() {
