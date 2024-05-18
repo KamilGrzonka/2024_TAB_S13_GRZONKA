@@ -7,12 +7,14 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import { AnySchema } from "@/types/AnySchema";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { ControllerRenderProps } from "react-hook-form";
+import { z } from "zod";
 
 interface FormDatepickerProps {
-  field: ControllerRenderProps<any, any>;
+  field: ControllerRenderProps<z.infer<AnySchema>>;
 }
 
 export default function FormDatepicker({ field }: FormDatepickerProps) {
@@ -39,7 +41,7 @@ export default function FormDatepicker({ field }: FormDatepickerProps) {
       <PopoverContent className="w-auto p-0" align="start">
         <Calendar
           mode="single"
-          selected={field.value}
+          selected={field.value as Date | undefined}
           onSelect={field.onChange}
           disabled={(date) =>
             date > new Date() || date < new Date("1900-01-01")

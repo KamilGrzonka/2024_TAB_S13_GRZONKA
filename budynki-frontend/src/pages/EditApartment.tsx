@@ -31,7 +31,7 @@ export default function EditApartment() {
         <LoadingComponent queryResult={query}>
           <FormGenerator
             formSchema={apartmentFormSchema}
-            formFieldDefiner={apartmentFormFields(query.data)}
+            formFieldDefiner={apartmentFormFields({entityData: query.data})}
             url={`/mieszkania/${apartmentId}`}
             method={`PUT`}
             additionalSubmitFields={{

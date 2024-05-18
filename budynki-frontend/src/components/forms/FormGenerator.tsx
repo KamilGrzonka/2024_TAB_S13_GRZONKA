@@ -9,13 +9,14 @@ import { LoaderCircle } from "lucide-react";
 import camelToTitle from "@/utils/camelToTitle";
 import { FormField, FormItem, FormLabel, FormMessage, Form } from "../ui/form";
 import { AnySchema } from "@/types/AnySchema";
-import { FormFieldDefiner } from "@/types/FormDefiner";
 import FormInput from "./formElement/FormInput";
 import FormRadio from "./formElement/FormRadio";
 import FormSelect from "./formElement/FormSelect";
 import FormDatepicker from "./formElement/DatePicker";
 import { FormFieldType } from "@/types/enums/FormFieldType";
 import { AnyFormKeys } from "@/types/AnyFormKeys";
+import FormTextArea from "./formElement/TextArea";
+import { FormFieldDefiner } from "./FormDefiner";
 
 interface FormGeneratorProps {
   formSchema: AnySchema;
@@ -64,7 +65,7 @@ export default function FormGenerator({
             control={form.control}
             name={name}
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="flex flex-col">
                 <FormLabel>{camelToTitle(name)}:</FormLabel>
 
                 {type == FormFieldType.INPUT ||
@@ -76,6 +77,8 @@ export default function FormGenerator({
                   <FormSelect field={field} options={options} name={name} />
                 ) : type == FormFieldType.DATEPICKER ? (
                   <FormDatepicker field={field} />
+                ) : type == FormFieldType.TEXTAREA ? (
+                  <FormTextArea field={field} name={name} />
                 ) : (
                   <div className="flex items-center justify-center">
                     <span className="text-red-700">
@@ -96,7 +99,7 @@ export default function FormGenerator({
           {form.formState.isLoading && (
             <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
           )}
-          Dodaj
+          {method == 'PUT' ? "Edytuj" : "Dodaj"}
         </Button>
       </form>
     </Form>

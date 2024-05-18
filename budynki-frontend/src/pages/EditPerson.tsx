@@ -28,7 +28,7 @@ export default function EditPerson() {
         <LoadingComponent queryResult={query}>
           <FormGenerator
             formSchema={personFormSchema}
-            formFieldDefiner={personFormFields(query.data)}
+            formFieldDefiner={personFormFields({entityData: query.data})}
             url={`/osoby/${personId}`}
             method={`PUT`}
             additionalSubmitFields={{

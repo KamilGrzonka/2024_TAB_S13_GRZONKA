@@ -24,6 +24,8 @@ import AddPerson from "./pages/AddPerson.tsx";
 import DisplayApartment from "./pages/DisplayApartment.tsx";
 import AddApartment from "./pages/AddApartment.tsx";
 import EditApartment from "./pages/EditApartment.tsx";
+import EditPriceList from "./pages/EditPriceList.tsx";
+import AddPriceList from "./pages/AddPriceList.tsx";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +60,14 @@ const router = createBrowserRouter([
       {
         path: "budynki/:buildingId/:apartmentId/edytuj",
         element: <EditApartment />,
+      },
+      {
+        path: "budynki/:buildingId/:apartmentId/dodaj",
+        element: <AddPriceList />,
+      },
+      {
+        path: "budynki/:buildingId/:apartmentId/:priceListId",
+        element: <EditPriceList />,
       },
       {
         path: "meldunki",

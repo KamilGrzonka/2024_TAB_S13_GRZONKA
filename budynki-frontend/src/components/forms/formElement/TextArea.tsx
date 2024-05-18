@@ -1,23 +1,21 @@
 import { FormControl } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { AnySchema } from "@/types/AnySchema";
-import { FormFieldType } from "@/types/enums/FormFieldType";
 import camelToTitle from "@/utils/camelToTitle";
 import { ControllerRenderProps } from "react-hook-form";
 import { z } from "zod";
 
-interface FormInputProps {
+interface FormTextAreaProps {
   field: ControllerRenderProps<z.infer<AnySchema>>;
-  type: FormFieldType;
   name: string;
 }
 
-export default function FormInput({ field, type, name }: FormInputProps) {
+export default function FormTextArea({ field, name }: FormTextAreaProps) {
   return (
     <FormControl>
-      <Input
-        type={type == FormFieldType.INPUT_NUMBER ? "number" : "text"}
+      <Textarea
         placeholder={camelToTitle(name)}
+        className="resize-y"
         {...field}
         value={field.value as string | number | readonly string[] | undefined}
       />

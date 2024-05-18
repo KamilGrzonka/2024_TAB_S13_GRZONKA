@@ -51,24 +51,24 @@ export function zStringMinMax({
     .max(max, { message: maxMessage });
 }
 
-export function zNumberMinMaxDigits({ // only works for positive numbers
+export function zNumberMinMaxDigits({
   min,
   minMessage,
   max,
   maxMessage,
 }: zMinMaxArgs = {}) {
-  min = min || 1;
-  max = max || 10;
-  min = Math.abs(min);
-  max = Math.abs(max);
-  const minNumber = Number("1"+"0".repeat(min-1));
-  const maxNumber = Number("9".repeat(max));
-  minMessage = minMessage ?? `Wprowadź minimum ${min} ${odmiana(min)}`;
-  maxMessage = maxMessage ?? `Wprowadź maksimum ${max} ${odmiana(max)}`;
-  return z
-    .number()
-    .min(minNumber, { message: minMessage })
-    .max(maxNumber, { message: maxMessage });
+  return z.coerce.string().pipe(
+    zStringMinMax({
+      min: min,
+      minMessage: minMessage,
+      max: max,
+      maxMessage: maxMessage,
+    }).pipe(zNumber()),
+  );
+}
+
+export function zDate({ message }: zNonValueArgs) {
+  return z.coerce.date({ message: message });
 }
 
 export const polishChars = "a-zA-ZąćęłńóśżźĄĆĘŁŃÓŚŻŹ";

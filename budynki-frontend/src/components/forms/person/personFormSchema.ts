@@ -1,8 +1,8 @@
 import { z } from "zod";
 import { polishChars, zNumber, zNumberMinMaxDigits, zStringMinMax } from "../zodWrapper";
 import { PersonData } from "@/types/PersonData";
-import { FormFieldDefiner } from "@/types/FormDefiner";
 import { FormFieldType } from "@/types/enums/FormFieldType";
+import { FormFieldDefiner } from "../FormDefiner";
 
 export const personFormSchema = z.object({
   pesel: zNumber().pipe(zNumberMinMaxDigits({min: 11, max: 11})), // length = 11, nullable = false, unique = true
@@ -14,7 +14,13 @@ export type PersonFormSchema = typeof personFormSchema;
 
 export type PersonFormKeys = "pesel" | "imie" | "nazwisko";
 
-export function personFormFields(entityData?: PersonData) {
+interface PersonFormFieldsData {
+  entityData?: PersonData;
+}
+
+export function personFormFields({
+  entityData,
+}: PersonFormFieldsData = {}) {
   const entityFormField: FormFieldDefiner<PersonFormKeys>[] = [
     {
       name: "pesel",

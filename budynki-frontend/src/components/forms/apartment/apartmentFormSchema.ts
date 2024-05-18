@@ -1,8 +1,8 @@
 import { z } from "zod";
 import { zNonNegative, zNumber, zPositive, zStringMinMax } from "../zodWrapper";
-import { FormFieldDefiner } from "@/types/FormDefiner";
 import { FormFieldType } from "@/types/enums/FormFieldType";
 import { ApartmentData } from "@/types/ApartmentData";
+import { FormFieldDefiner } from "../FormDefiner";
 
 export const apartmentFormSchema = z.object({
   numerMieszkania: zNumber().pipe(zPositive()), // nullable = false
@@ -19,7 +19,13 @@ export type ApartmentFormKeys =
   | "liczbaMieszkancow"
   | "opis";
 
-export function apartmentFormFields(entityData?: ApartmentData) {
+interface ApartmentFormFieldsData {
+  entityData?: ApartmentData;
+}
+
+export function apartmentFormFields({
+  entityData,
+}: ApartmentFormFieldsData = {}) {
   const entityFormField: FormFieldDefiner<ApartmentFormKeys>[] = [
     {
       name: "numerMieszkania",
@@ -42,7 +48,7 @@ export function apartmentFormFields(entityData?: ApartmentData) {
     {
       name: "opis",
       defaultValue: `${entityData?.opis || ""}`,
-      type: FormFieldType.INPUT,
+      type: FormFieldType.TEXTAREA,
       options: [],
     },
   ];

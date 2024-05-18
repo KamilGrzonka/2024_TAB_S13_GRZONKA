@@ -6,19 +6,21 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
-import { FormFieldOptionDefiner } from "@/types/FormDefiner";
+import { FormFieldOptionDefiner } from "../FormDefiner";
 import camelToTitle from "@/utils/camelToTitle";
 import { ControllerRenderProps } from "react-hook-form";
+import { z } from "zod";
+import { AnySchema } from "@/types/AnySchema";
 
 interface FormSelectProps {
-  field: ControllerRenderProps<any, any>;
+  field: ControllerRenderProps<z.infer<AnySchema>>;
   name: string;
   options: FormFieldOptionDefiner[];
 }
 
 export default function FormSelect({ field, name, options }: FormSelectProps) {
   return (
-    <Select onValueChange={field.onChange} defaultValue={field.value}>
+    <Select onValueChange={field.onChange} defaultValue={field.value as string | undefined}>
       <FormControl>
         <SelectTrigger>
           <SelectValue placeholder={camelToTitle(name)} />

@@ -1,8 +1,8 @@
 import { z } from "zod";
 import { polishChars, zNonNegative, zNumber, zStringMinMax } from "../zodWrapper";
 import { BuildingData } from "@/types/BuildingData";
-import { FormFieldDefiner } from "@/types/FormDefiner";
 import { FormFieldType } from "@/types/enums/FormFieldType";
+import { FormFieldDefiner } from "../FormDefiner";
 
 export const buildingFormSchema = z.object({
   ulica: zStringMinMax(), // length = 80, nullable = false
@@ -16,7 +16,13 @@ export type BuildingFormSchema = typeof buildingFormSchema;
 
 export type BuildingFormKeys = "ulica" | "numerBudynku" | "kodPocztowy" | "miasto" | "liczbaMiejsc";
 
-export function buildingFormFields(entityData?: BuildingData) {
+interface BuildingFormFieldsData {
+  entityData?: BuildingData;
+}
+
+export function buildingFormFields({
+  entityData,
+}: BuildingFormFieldsData = {}) {
   const entityFormField: FormFieldDefiner<BuildingFormKeys>[] = [
     {
       name: "ulica",
