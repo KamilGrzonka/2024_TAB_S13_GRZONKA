@@ -1,5 +1,5 @@
-import AddForm from "@/components/forms/AddForm";
-import { buildingFormSchema } from "@/components/forms/building/buildingFormSchema";
+import FormGenerator from "@/components/forms/FormGenerator";
+import { buildingFormFields, buildingFormSchema } from "@/components/forms/building/buildingFormSchema";
 import { Box, Container } from "@mui/material";
 
 export default function AddBuilding() {
@@ -14,7 +14,13 @@ export default function AddBuilding() {
           marginTop: 5,
         }}
       >
-        <AddForm URL={`/budynki`} FORM_SCHEMA={buildingFormSchema} />
+        <FormGenerator
+            formSchema={buildingFormSchema}
+            formFieldDefiner={buildingFormFields()}
+            url={`/budynki`}
+            method={`POST`}
+            additionalSubmitFields={{}}
+          />
       </Box>
     </Container>
   );

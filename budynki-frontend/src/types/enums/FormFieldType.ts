@@ -1,0 +1,8 @@
+export enum FormFieldType {
+  INPUT,
+  INPUT_NUMBER,
+  RADIO,
+  SELECT,
+  SELECT_MULTIPLE,
+  DATEPICKER,
+}

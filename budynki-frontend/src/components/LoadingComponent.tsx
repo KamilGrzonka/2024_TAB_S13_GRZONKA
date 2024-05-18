@@ -3,19 +3,19 @@ import { LoaderCircle } from "lucide-react";
 import { ReactNode } from "react";
 
 interface LoadingComponentProps {
-  result: UseQueryResult<unknown, Error>;
+  queryResult: UseQueryResult<unknown, Error> | {isSuccess?: unknown, isLoading?: unknown};
   children?: ReactNode;
 }
 
-export default function LoadingComponent({ // Typescript nie wykrywa tego jakbym chciał, jak nie wymyslę jak to zrobić to do usunięcia
-  result,
+export default function LoadingComponent({ // Typescript nie wykrywa tego jakbym chciał
+  queryResult,
   children,
 }: LoadingComponentProps) {
   return (
     <>
-      {result.isSuccess ? (
+      {queryResult.isSuccess ? (
         children
-      ) : result.isLoading ? (
+      ) : queryResult.isLoading ? (
         <div className="flex items-center justify-center">
           <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
           Loading...
