@@ -1,4 +1,5 @@
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
+import { Button } from "@/components/ui/button";
 import PersonsList from "../components/PersonsList";
 import { Link } from "react-router-dom";
 
@@ -10,12 +11,11 @@ const Persons = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginLeft: 10,
           marginTop: 5,
         }}
       >
         <Typography variant="h3">{`Osoby`}</Typography>
-        <Button sx={{ padding: 2 }} color="primary" variant="contained">
+        <Button asChild className="bg-blue-500 pt-6 pb-6 pl-10 pr-10">
           <Link to="dodaj">Dodaj osobę</Link>
         </Button>
       </Box>
@@ -24,7 +24,6 @@ const Persons = () => {
           display: "inline-flex",
           justifyContent: "center",
           alignItems: "center",
-          marginLeft: 10,
           marginBottom: 4,
         }}
       >

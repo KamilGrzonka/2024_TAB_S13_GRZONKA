@@ -1,4 +1,5 @@
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
+import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import { BuildingData } from "@/types/BuildingData.ts";
@@ -14,6 +15,7 @@ import { LoaderCircle } from "lucide-react";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { getBackendApi } from "@/components/fetchBackendApi";
 import { ApartmentData } from "@/types/ApartmentData";
+import { ChevronRight } from 'lucide-react';
 
 const Apartments = () => {
   const { buildingId } = useParams();
@@ -33,7 +35,6 @@ const Apartments = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginLeft: 10,
           marginTop: 5,
         }}
       >
@@ -51,7 +52,7 @@ const Apartments = () => {
             <span className="text-red-700">Error!</span>
           </div>
         )}
-        <Button sx={{ padding: 2 }} color="primary" variant="contained">
+        <Button asChild className="bg-blue-500 pt-6 pb-6 pl-10 pr-10">
           <Link to="dodaj">Dodaj mieszkanie</Link>
         </Button>
       </Box>
@@ -60,7 +61,6 @@ const Apartments = () => {
           display: "inline-flex",
           justifyContent: "center",
           alignItems: "center",
-          marginLeft: 10,
           marginBottom: 4,
         }}
       >
@@ -99,9 +99,7 @@ const Apartments = () => {
                 <TableCell className="text-right">{apartment.opis}</TableCell>
                 <TableCell className="justify-end flex">
                   <Link to={`${apartment.id}`}>
-                    <Button variant="contained" endIcon={<ArrowForwardIcon />}>
-                      Szczegóły
-                    </Button>
+                    <ChevronRight className="mr-5"/>
                   </Link>
                 </TableCell>
               </TableRow>

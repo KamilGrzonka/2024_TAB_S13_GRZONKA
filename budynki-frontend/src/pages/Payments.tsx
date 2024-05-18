@@ -9,7 +9,6 @@ const Payments = () => {
           display: "inline-block",
           justifyContent: "center",
           alignItems: "center",
-          marginLeft: 10,
           marginTop: 5,
           marginBottom: 4,
         }}
