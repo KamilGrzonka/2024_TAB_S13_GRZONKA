@@ -1,45 +1,54 @@
-import { z } from "zod";
-import { polishChars, zNumber, zNumberMinMaxDigits, zStringMinMax } from "../zodWrapper";
-import { PersonData } from "@/types/PersonData";
-import { FormFieldType } from "@/types/enums/FormFieldType";
-import { FormFieldDefiner } from "../FormDefiner";
+import { PersonData } from "@/types/Entities";
+import { PersonFormKeys } from "@/types/FormKeys";
+import { HttpMethods } from "@/types/HttpMethods";
+import { formDefiner } from "../FormDefiner";
+import {
+  zNumber,
+  zNumberMinMaxDigits,
+  zStringMinMax,
+  polishChars,
+} from "../zodWrapper";
 
-export const personFormSchema = z.object({
-  pesel: zNumber().pipe(zNumberMinMaxDigits({min: 11, max: 11})), // length = 11, nullable = false, unique = true
-  imie: zStringMinMax({ max: 40 }).regex(RegExp(`^[${polishChars} -]+$`), "Wprowadź poprawne imię"), // length = 40, nullable = false
-  nazwisko: zStringMinMax({ max: 40 }).regex(RegExp(`^[${polishChars} -]+$`), "Wprowadź poprawne nazwisko"), // length = 40, nullable = false
-});
-
-export type PersonFormSchema = typeof personFormSchema;
-
-export type PersonFormKeys = "pesel" | "imie" | "nazwisko";
-
-interface PersonFormFieldsData {
+interface PersonFormArgs {
   entityData?: PersonData;
+  endpoint: string;
+  method: HttpMethods;
+  additionalSubmitFields?: {
+    osobaId?: number | string;
+  };
 }
 
-export function personFormFields({
+export function personForm({
   entityData,
-}: PersonFormFieldsData = {}) {
-  const entityFormField: FormFieldDefiner<PersonFormKeys>[] = [
+  endpoint,
+  method,
+  additionalSubmitFields,
+}: PersonFormArgs) {
+  return formDefiner<PersonFormKeys>(
     {
-      name: "pesel",
-      defaultValue: `${entityData?.pesel || ""}`,
-      type: FormFieldType.INPUT,
-      options: [],
+      pesel: zNumber().pipe(zNumberMinMaxDigits({min: 11, max: 11})), // length = 11, nullable = false, unique = true
+      imie: zStringMinMax({ max: 40 }).regex(RegExp(`^[${polishChars} -]+$`), "Wprowadź poprawne imię"), // length = 40, nullable = false
+      nazwisko: zStringMinMax({ max: 40 }).regex(RegExp(`^[${polishChars} -]+$`), "Wprowadź poprawne nazwisko"), // length = 40, nullable = false
     },
     {
-      name: "imie",
-      defaultValue: `${entityData?.imie || ""}`,
-      type: FormFieldType.INPUT,
-      options: [],
+      pesel: {
+        type: "INPUT",
+        defaultValue: `${entityData?.pesel || ""}`,
+        options: [],
+      },
+      imie: {
+        type: "INPUT",
+        defaultValue: `${entityData?.imie || ""}`,
+        options: [],
+      },
+      nazwisko: {
+        type: "INPUT",
+        defaultValue: `${entityData?.nazwisko || ""}`,
+        options: [],
+      },
     },
-    {
-      name: "nazwisko",
-      defaultValue: `${entityData?.nazwisko || ""}`,
-      type: FormFieldType.INPUT,
-      options: [],
-    },
-  ];
-  return entityFormField;
+    endpoint,
+    method,
+    additionalSubmitFields,
+  );
 }

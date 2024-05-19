@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import BuildingLabel from "./BuildingLabel";
 import { LoaderCircle } from "lucide-react";
-import { BuildingData } from "@/types/BuildingData";
 import { getBackendApi } from "./fetchBackendApi";
+import { BuildingData } from "@/types/Entities";
 
 export default function BuildingsList() {
   const buildings = useQuery({

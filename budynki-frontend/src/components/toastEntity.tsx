@@ -1,4 +1,4 @@
-import { AnyEntity } from "@/types/AnyEntity";
+import { AnyEntity } from "@/types/Entities";
 import { toast } from "sonner";
 
 export function toastEntity(

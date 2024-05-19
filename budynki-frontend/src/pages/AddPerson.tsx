@@ -1,5 +1,5 @@
 import FormGenerator from "@/components/forms/FormGenerator";
-import { personFormFields, personFormSchema } from "@/components/forms/person/personFormSchema";
+import { personForm } from "@/components/forms/person/personFormSchema";
 import { Box, Container } from "@mui/material";
 
 export default function AddPerson() {
@@ -15,11 +15,10 @@ export default function AddPerson() {
         }}
       >
         <FormGenerator
-            formSchema={personFormSchema}
-            formFieldDefiner={personFormFields()}
-            url={`/osoby`}
-            method={`POST`}
-            additionalSubmitFields={{}}
+            formDefiner={personForm({
+              endpoint: `/osoby`,
+              method: "POST",
+            })}
           />
       </Box>
     </Container>

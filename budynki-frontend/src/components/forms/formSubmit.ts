@@ -1,6 +1,6 @@
 import { toast } from "sonner";
 import { toastEntity } from "../toastEntity";
-import { AnyEntity } from "@/types/AnyEntity";
+import { AnyEntity } from "@/types/Entities";
 
 export async function formSubmit(
   fn: (endpoint: string, method?: string, body?: unknown) => Promise<AnyEntity>,

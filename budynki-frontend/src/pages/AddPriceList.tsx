@@ -1,13 +1,10 @@
 import { useParams } from "react-router-dom";
 import { Box, Container } from "@mui/material";
 import FormGenerator from "@/components/forms/FormGenerator";
-import {
-  priceListFormFields,
-  priceListFormSchema,
-} from "@/components/forms/priceList/PriceListFormSchema";
+import { priceListForm } from "@/components/forms/priceList/PriceListFormSchema";
 
 export default function AddPriceList() {
-  const { priceListId } = useParams();
+  const { apartmentId } = useParams();
 
   return (
     <Container sx={{ marginBottom: 8 }}>
@@ -20,15 +17,15 @@ export default function AddPriceList() {
           marginTop: 5,
         }}
       >
-          <FormGenerator
-            formSchema={priceListFormSchema}
-            formFieldDefiner={priceListFormFields()}
-            url={`/cenniki/`}
-            method={`POST`}
-            additionalSubmitFields={{
-              cennikId: priceListId,
-            }}
-          />
+        <FormGenerator
+          formDefiner={priceListForm({
+            endpoint: `/cenniki`,
+            method: "POST",
+            additionalSubmitFields: {
+              mieszkanieId: `${apartmentId}`,
+            },
+          })}
+        />
       </Box>
     </Container>
   );

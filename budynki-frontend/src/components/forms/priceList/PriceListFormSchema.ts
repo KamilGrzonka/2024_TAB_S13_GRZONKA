@@ -1,45 +1,51 @@
+import { PriceListData } from "@/types/Entities";
+import { PriceListFormKeys } from "@/types/FormKeys";
+import { HttpMethods } from "@/types/HttpMethods";
 import { z } from "zod";
-import { zNonNegative, zNumber } from "../zodWrapper";
-import { PriceListData } from "@/types/PriceListData";
-import { FormFieldType } from "@/types/enums/FormFieldType";
-import { FormFieldDefiner } from "../FormDefiner";
+import { formDefiner } from "../FormDefiner";
+import { zNumber, zNonNegative } from "../zodWrapper";
 
-export const priceListFormSchema = z.object({
-  dataPoczatkowa: z.coerce.date(), // nullable = false
-  dataKoncowa: z.coerce.date(), // nullable = false
-  cena: zNumber().pipe(zNonNegative()), // scale = 2, precision = 10, nullable = false
-});
-
-export type PriceListFormSchema = typeof priceListFormSchema;
-
-export type PriceListFormKeys = "dataPoczatkowa" | "dataKoncowa" | "cena";
-
-interface priceListFormFieldsData {
+interface PriceListFormArgs {
   entityData?: PriceListData;
+  endpoint: string;
+  method: HttpMethods;
+  additionalSubmitFields: {
+    mieszkanieId: number | string;
+    cennikId?: number | string;
+  };
 }
 
-export function priceListFormFields({
-  entityData
-}: priceListFormFieldsData = {}) {
-  const entityFormField: FormFieldDefiner<PriceListFormKeys>[] = [
+export function priceListForm({
+  entityData,
+  endpoint,
+  method,
+  additionalSubmitFields,
+}: PriceListFormArgs) {
+  return formDefiner<PriceListFormKeys>(
     {
-      name: "dataPoczatkowa",
-      defaultValue: `${entityData?.dataPoczatkowa || ""}`,
-      type: FormFieldType.DATEPICKER,
-      options: [],
+      dataPoczatkowa: z.coerce.date(), // nullable = false
+      dataKoncowa: z.coerce.date(), // nullable = false
+      cena: zNumber().pipe(zNonNegative()), // scale = 2, precision = 10, nullable = false
     },
     {
-      name: "dataKoncowa",
-      defaultValue: `${entityData?.dataKoncowa || ""}`,
-      type: FormFieldType.DATEPICKER,
-      options: [],
+      dataPoczatkowa: {
+        type: "DATEPICKER",
+        defaultValue: entityData?.dataPoczatkowa,
+        options: [],
+      },
+      dataKoncowa: {
+        type: "DATEPICKER",
+        defaultValue: entityData?.dataKoncowa,
+        options: [],
+      },
+      cena: {
+        type: "INPUT_NUMBER",
+        defaultValue: entityData?.cena,
+        options: [],
+      },
     },
-    {
-      name: "cena",
-      defaultValue: `${entityData?.cena || ""}`,
-      type: FormFieldType.INPUT_NUMBER,
-      options: [],
-    },
-  ];
-  return entityFormField;
+    endpoint,
+    method,
+    additionalSubmitFields,
+  );
 }

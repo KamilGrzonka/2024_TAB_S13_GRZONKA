@@ -1,8 +1,8 @@
 import LoadingComponent from "@/components/LoadingComponent";
 import { getBackendApi } from "@/components/fetchBackendApi";
 import FormGenerator from "@/components/forms/FormGenerator";
-import { personFormFields, personFormSchema } from "@/components/forms/person/personFormSchema";
-import { PersonData } from "@/types/PersonData";
+import { personForm } from "@/components/forms/person/personFormSchema";
+import { PersonData } from "@/types/Entities";
 import { Box, Container } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
@@ -27,13 +27,14 @@ export default function EditPerson() {
       >
         <LoadingComponent queryResult={query}>
           <FormGenerator
-            formSchema={personFormSchema}
-            formFieldDefiner={personFormFields({entityData: query.data})}
-            url={`/osoby/${personId}`}
-            method={`PUT`}
-            additionalSubmitFields={{
-              osobaId: personId,
-            }}
+            formDefiner={personForm({
+              endpoint: `/osoby/${personId}`,
+              method: "PUT",
+              additionalSubmitFields: {
+                osobaId: `${personId}`,
+              },
+              entityData: query.data,
+            })}
           />
         </LoadingComponent>
       </Box>

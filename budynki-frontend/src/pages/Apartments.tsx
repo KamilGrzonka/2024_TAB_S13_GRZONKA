@@ -2,7 +2,6 @@ import { Box, Container, Typography } from "@mui/material";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
-import { BuildingData } from "@/types/BuildingData.ts";
 import {
   Table,
   TableBody,
@@ -12,10 +11,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { LoaderCircle } from "lucide-react";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { getBackendApi } from "@/components/fetchBackendApi";
-import { ApartmentData } from "@/types/ApartmentData";
 import { ChevronRight } from 'lucide-react';
+import { ApartmentData, BuildingData } from "@/types/Entities";
 
 const Apartments = () => {
   const { buildingId } = useParams();
