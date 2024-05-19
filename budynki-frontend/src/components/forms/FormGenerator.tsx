@@ -98,6 +98,7 @@ export default function FormGenerator<T extends AnyFormKeys>({
             />
           );
         })}
+        <div className="flex items-center justify-between">
         <Button
           disabled={form.formState.isLoading || !form.formState.isValid}
           type="submit"
