@@ -1,7 +1,9 @@
 package com.s13tab.budynkibackend.controller;
 
 import com.s13tab.budynkibackend.dto.MeldunekDTO;
+import com.s13tab.budynkibackend.dto.ZgloszenieDTO;
 import com.s13tab.budynkibackend.mapper.MeldunekMapper;
+import com.s13tab.budynkibackend.mapper.ZgloszenieMapper;
 import com.s13tab.budynkibackend.service.MeldunekService;
 
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ public class MeldunekController {
     private final MeldunekService meldunekService;
 
     private final MeldunekMapper meldunekMapper;
+    private final ZgloszenieMapper zgloszenieMapper;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -44,6 +47,13 @@ public class MeldunekController {
     @ResponseStatus(HttpStatus.OK) // powinno być OK przy zamianie i CREATE przy stworzeniu nowego
     public MeldunekDTO replace(@RequestBody MeldunekDTO newMeldunek, @PathVariable Long id) {
         return meldunekMapper.convertToDTO(meldunekService.replace(meldunekMapper.convertToEntity(newMeldunek), id));
+    }
+
+    @GetMapping("/{id}/zgloszenia")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ZgloszenieDTO> findZgloszeniaById(@PathVariable Long id)
+    {
+        return zgloszenieMapper.convertToDTO(meldunekService.findZgloszeniaById(id));
     }
 
 }

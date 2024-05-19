@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.s13tab.budynkibackend.model.Budynek;
 import com.s13tab.budynkibackend.model.Meldunek;
 import com.s13tab.budynkibackend.model.Mieszkanie;
+import com.s13tab.budynkibackend.model.Zgloszenie;
 import com.s13tab.budynkibackend.repository.BudynekRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -37,8 +38,11 @@ public class BudynekService {
         return findById(id).getMieszkania();
     }
 
-    public List<Meldunek> findMeldunkiById(Long id)
-    {
+    public List<Zgloszenie> findZgloszeniaById(Long id) {
+        return findById(id).getZgloszenia();
+    }
+
+    public List<Meldunek> findMeldunkiById(Long id) {
        List<Mieszkanie> mieszkania = findById(id).getMieszkania();
        return mieszkania.stream()
        .map(mieszkanie -> mieszkanie.getMeldunki()).flatMap(List::stream).toList();

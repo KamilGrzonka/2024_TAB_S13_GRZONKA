@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.s13tab.budynkibackend.model.Cennik;
 import com.s13tab.budynkibackend.model.Meldunek;
 import com.s13tab.budynkibackend.model.Mieszkanie;
+import com.s13tab.budynkibackend.model.Zgloszenie;
 import com.s13tab.budynkibackend.repository.MieszkanieRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -49,6 +51,14 @@ public class MieszkanieService {
 
     public List<Meldunek> findMeldunkiById(Long id) {
         return findById(id).getMeldunki();
+    }
+
+    public List<Cennik> findCennikiById(Long id) {
+        return findById(id).getCenniki();
+    }
+
+    public List<Zgloszenie> findZgloszeniaById(Long id) {
+        return findById(id).getZgloszenia();
     }
 
     public Long count() {
