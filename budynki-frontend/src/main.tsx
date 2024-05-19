@@ -20,10 +20,11 @@ import Apartments from "./pages/Apartments.tsx";
 import PricesList from "./pages/PricesList.tsx";
 import DisplayApartment from "./pages/DisplayApartment.tsx";
 import DisplayForm from "./components/forms/DisplayForm.tsx";
-import { BuildingFormAdd } from "./components/forms/building/BuildingForms.tsx";
+import { BuildingFormAdd, BuildingFormEdit } from "./components/forms/building/BuildingForms.tsx";
 import { ApartmentFormAdd, ApartmentFormEdit } from "./components/forms/apartment/ApartmentForms.tsx";
 import { PriceListFormAdd, PriceListFormEdit } from "./components/forms/priceList/PriceListForms.tsx";
 import { PersonFormAdd, PersonFormEdit } from "./components/forms/person/PersonForms.tsx";
+import { RegistrationFormAdd, RegistrationFormEdit } from "./components/forms/registration/ResistrationForms.tsx";
 
 const router = createBrowserRouter([
   {
@@ -79,16 +80,28 @@ const router = createBrowserRouter([
         element: <DisplayForm />,
         children: [
           {
-            path: "budynki/dodaj",
-            element: <BuildingFormAdd />,
-          },
-          {
             path: "budynki/:buildingId/dodaj",
             element: <ApartmentFormAdd />,
           },
           {
             path: "budynki/:buildingId/:apartmentId/edytuj",
             element: <ApartmentFormEdit />,
+          },
+          {
+            path: "budynki/dodaj",
+            element: <BuildingFormAdd />,
+          },
+          {
+            path: "budynki/:buildingId/edytuj",
+            element: <BuildingFormEdit />,
+          },
+          {
+            path: "osoby/dodaj",
+            element: <PersonFormAdd />,
+          },
+          {
+            path: "osoby/:personId/edytuj",
+            element: <PersonFormEdit />,
           },
           {
             path: "budynki/:buildingId/:apartmentId/cennik/dodaj",
@@ -99,12 +112,12 @@ const router = createBrowserRouter([
             element: <PriceListFormEdit />,
           },
           {
-            path: "osoby/dodaj",
-            element: <PersonFormAdd />,
+            path: "meldunki/:buildingId/dodaj",
+            element: <RegistrationFormAdd />,
           },
           {
-            path: "osoby/:personId/edytuj",
-            element: <PersonFormEdit />,
+            path: "meldunki/:buildingId/:registrationId/edytuj",
+            element: <RegistrationFormEdit />,
           },
         ]
       }

@@ -22,11 +22,15 @@ export type CompanyFormKeys =
 
 export type ContractFormKeys = "dataZawarcia" | "osobaId" | "cennikId";
 
-export type PaymentFormKeys =
+export type IncomingPaymentFormKeys =
   | "dataZrealizowania"
   | "wartosc"
-  | "zadanieId"
   | "umowaId";
+
+export type OutgoingPaymentFormKeys =
+  | "dataZrealizowania"
+  | "wartosc"
+  | "zadanieId";
 
 export type PersonFormKeys = "pesel" | "imie" | "nazwisko";
 
@@ -59,11 +63,12 @@ export type TaskFormKeys =
 export type AnyFormKeys =
   | ApartmentFormKeys
   | BuildingFormKeys
-  // | CompanyFormKeys
+  | CompanyFormKeys
   // | ContractFormKeys
-  // | PaymentFormKeys
+  // | IncomingPaymentFormKeys
+  // | OutgoingPaymentFormKeys
   | PersonFormKeys
-  | PriceListFormKeys;
-  // | RegistrationFormKeys
-  // | RepairFormKeys
-  // | TaskFormKeys;
+  | PriceListFormKeys
+  | RegistrationFormKeys;
+// | RepairFormKeys
+// | TaskFormKeys;

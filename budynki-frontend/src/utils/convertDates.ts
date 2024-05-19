@@ -40,11 +40,11 @@ function convertDates<T>(object: T, fn: (date: Date) => Date | string) {
 }
 
 function toDates(date: Date) {
-  return new Date(date);
+  return date ? new Date(date) : undefined as unknown as Date;
 }
 
 function toString(date: Date) {
-  return date.toDateString();
+  return date ? date.toDateString() : "";
 }
 
 export function entityDateToDate<T>(object: T) {

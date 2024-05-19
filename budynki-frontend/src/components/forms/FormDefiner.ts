@@ -61,11 +61,12 @@ export function formDefiner<T extends AnyFormKeys>(
 export function optionDataToLabel<U extends AnyEntity>( // nie testowane
   labels: (keyof U)[],
   optionsData: U[],
+  additionalLabelText?: {[K in keyof U]? : string}
 ): FormFieldOptionDefiner[] {
   return optionsData
     ? optionsData.map((option: U) => ({
         id: option.id,
-        label: labels.map((label) => option[label]).join(" "),
+        label: labels.map((label) => `${additionalLabelText?.[label] || ""}${option[label]}`).join(" "),
       }))
     : [];
 }
