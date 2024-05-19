@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.s13tab.budynkibackend.model.Meldunek;
+import com.s13tab.budynkibackend.model.Zgloszenie;
 import com.s13tab.budynkibackend.repository.MeldunekRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -43,6 +44,10 @@ public class MeldunekService {
             newMeldunek.setId(id);
             return save(newMeldunek);
         });
+    }
+
+    public List<Zgloszenie> findZgloszeniaById(Long id) {
+        return findById(id).getZgloszenia();
     }
 
     public Long count() {

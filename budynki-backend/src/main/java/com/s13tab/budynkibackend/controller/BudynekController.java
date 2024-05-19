@@ -5,9 +5,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.s13tab.budynkibackend.dto.BudynekDTO;
 import com.s13tab.budynkibackend.dto.MeldunekDTO;
 import com.s13tab.budynkibackend.dto.MieszkanieDTO;
+import com.s13tab.budynkibackend.dto.ZgloszenieDTO;
 import com.s13tab.budynkibackend.mapper.BudynekMapper;
 import com.s13tab.budynkibackend.mapper.MeldunekMapper;
 import com.s13tab.budynkibackend.mapper.MieszkanieMapper;
+import com.s13tab.budynkibackend.mapper.ZgloszenieMapper;
 import com.s13tab.budynkibackend.service.BudynekService;
 
 import lombok.RequiredArgsConstructor;
@@ -32,10 +34,9 @@ public class BudynekController {
     private final BudynekService budynekService;
 
     private final BudynekMapper budynekMapper;
-
     private final MieszkanieMapper mieszkanieMapper;
-
     private final MeldunekMapper meldunekMapper;
+    private final ZgloszenieMapper zgloszenieMapper;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -67,6 +68,13 @@ public class BudynekController {
     public List<MeldunekDTO> findMeldunkiById(@PathVariable Long id)
     {
         return meldunekMapper.convertToDTO(budynekService.findMeldunkiById(id));
+    }
+
+    @GetMapping("/{id}/zgloszenia")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ZgloszenieDTO> findZgloszeniaById(@PathVariable Long id)
+    {
+        return zgloszenieMapper.convertToDTO(budynekService.findZgloszeniaById(id));
     }
 
 }

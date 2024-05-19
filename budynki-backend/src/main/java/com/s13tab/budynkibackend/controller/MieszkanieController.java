@@ -10,10 +10,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import com.s13tab.budynkibackend.dto.CennikDTO;
 import com.s13tab.budynkibackend.dto.MeldunekDTO;
 import com.s13tab.budynkibackend.dto.MieszkanieDTO;
+import com.s13tab.budynkibackend.dto.ZgloszenieDTO;
+import com.s13tab.budynkibackend.mapper.CennikMapper;
 import com.s13tab.budynkibackend.mapper.MeldunekMapper;
 import com.s13tab.budynkibackend.mapper.MieszkanieMapper;
+import com.s13tab.budynkibackend.mapper.ZgloszenieMapper;
 
 @RequiredArgsConstructor
 @Validated
@@ -24,8 +28,9 @@ public class MieszkanieController {
     private final MieszkanieService mieszkanieService;
 
     private final MieszkanieMapper mieszkanieMapper;
-
     private final MeldunekMapper meldunekMapper;
+    private final CennikMapper cennikMapper;
+    private final ZgloszenieMapper zgloszenieMapper;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -56,6 +61,18 @@ public class MieszkanieController {
     @ResponseStatus(HttpStatus.OK)
     public List<MeldunekDTO> findMeldunkiById(@PathVariable Long id) {
         return meldunekMapper.convertToDTO(mieszkanieService.findMeldunkiById(id));
+    }
+
+    @GetMapping("/{id}/cenniki")
+    @ResponseStatus(HttpStatus.OK)
+    public List<CennikDTO> findCennikiById(@PathVariable Long id) {
+        return cennikMapper.convertToDTO(mieszkanieService.findCennikiById(id));
+    }
+
+    @GetMapping("/{id}/zgloszenia")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ZgloszenieDTO> findZgloszeniaById(@PathVariable Long id) {
+        return zgloszenieMapper.convertToDTO(mieszkanieService.findZgloszeniaById(id));
     }
 
 }
