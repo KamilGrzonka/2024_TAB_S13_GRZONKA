@@ -25,6 +25,9 @@ import { ApartmentFormAdd, ApartmentFormEdit } from "./components/forms/apartmen
 import { PriceListFormAdd, PriceListFormEdit } from "./components/forms/priceList/PriceListForms.tsx";
 import { PersonFormAdd, PersonFormEdit } from "./components/forms/person/PersonForms.tsx";
 import { RegistrationFormAdd, RegistrationFormEdit } from "./components/forms/registration/ResistrationForms.tsx";
+import RegistrationsOfBuilding from "./pages/RegistrationsOfBuilding.tsx";
+import DisplayRegistration from "./pages/DisplayRegistration.tsx";
+import DisplayPerson from "./pages/DisplayPerson.tsx";
 
 const router = createBrowserRouter([
   {
@@ -66,7 +69,7 @@ const router = createBrowserRouter([
       },
       {
         path: "osoby/:personId",
-        element: <Persons />,
+        element: <DisplayPerson />,
       },
       {
         path: "platnosci",
@@ -94,6 +97,14 @@ const router = createBrowserRouter([
           {
             path: "budynki/:buildingId/edytuj",
             element: <BuildingFormEdit />,
+          },
+          {
+            path: "meldunki/:buildingId",
+            element: <RegistrationsOfBuilding />,
+          },
+          {
+            path: "meldunki/:buildingId/:registrationId",
+            element: <DisplayRegistration />,
           },
           {
             path: "osoby/dodaj",

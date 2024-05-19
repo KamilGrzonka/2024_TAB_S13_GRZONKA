@@ -1,9 +1,11 @@
 package com.s13tab.budynkibackend.controller;
 
 import com.s13tab.budynkibackend.dto.MeldunekDTO;
+import com.s13tab.budynkibackend.dto.MeldunkiWyswietlDTO;
 import com.s13tab.budynkibackend.dto.ZgloszenieDTO;
 import com.s13tab.budynkibackend.mapper.MeldunekMapper;
 import com.s13tab.budynkibackend.mapper.ZgloszenieMapper;
+import com.s13tab.budynkibackend.model.Meldunek;
 import com.s13tab.budynkibackend.service.MeldunekService;
 
 import lombok.RequiredArgsConstructor;
@@ -51,9 +53,17 @@ public class MeldunekController {
 
     @GetMapping("/{id}/zgloszenia")
     @ResponseStatus(HttpStatus.OK)
-    public List<ZgloszenieDTO> findZgloszeniaById(@PathVariable Long id)
-    {
+    public List<ZgloszenieDTO> findZgloszeniaById(@PathVariable Long id) {
         return zgloszenieMapper.convertToDTO(meldunekService.findZgloszeniaById(id));
+    }
+
+    @GetMapping("/{id}/meldunkiWyswietl")
+    @ResponseStatus(HttpStatus.OK)
+    public MeldunkiWyswietlDTO findMeldunekToDisplayById(@PathVariable Long id) {
+        Meldunek meldunek = meldunekService.findById(id);
+        return new MeldunkiWyswietlDTO(meldunek.getId(), meldunek.getOsoba().getId(), meldunek.getMieszkanie().getId(),
+                meldunek.getMieszkanie().getNumerMieszkania(), meldunek.getOsoba().getImie(),
+                meldunek.getOsoba().getNazwisko(), meldunek.getDataMeldunku(), meldunek.getDataWymeldowania());
     }
 
 }

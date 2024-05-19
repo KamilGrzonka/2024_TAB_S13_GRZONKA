@@ -1,23 +1,35 @@
-import { Typography } from "@material-ui/core";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { LoaderCircle } from "lucide-react";
 import { getBackendApi } from "@/components/fetchBackendApi";
+import { Box, Container, Typography } from "@mui/material";
+import { X } from "lucide-react";
 import { PersonData } from "@/types/Entities";
 
 export default function DisplayPerson() {
   const { personId } = useParams();
+  const navigate = useNavigate();
   const person = useQuery({
     queryKey: ["person", personId],
     queryFn: () => getBackendApi<PersonData>(`/osoby/${personId}`),
   });
 
   return (
-    <>
+    <Container sx={{ marginBottom: 8 }}>
       {person.isSuccess ? (
         <div className="mt-8 mx-auto max-w-md">
-          <Typography variant="h3">{`${person.data.imie} ${person.data.nazwisko}`}</Typography>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginTop: 5,
+            }}
+          >
+            <Typography variant="h3">{`${person.data.imie} ${person.data.nazwisko}`}</Typography>
+            <X onClick={() => navigate(-1)} size={36} />
+          </Box>
           <p>PESEL: {person.data.pesel}</p>
           <div id="buttons" className="mt-4">
             <Button asChild className="bg-blue-500">
@@ -38,6 +50,6 @@ export default function DisplayPerson() {
           <span className="text-red-700">Error!</span>
         </div>
       )}
-    </>
+    </Container>
   );
 }

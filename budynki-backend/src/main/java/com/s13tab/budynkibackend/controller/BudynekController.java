@@ -4,12 +4,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.s13tab.budynkibackend.dto.BudynekDTO;
 import com.s13tab.budynkibackend.dto.MeldunekDTO;
+import com.s13tab.budynkibackend.dto.MeldunkiWyswietlDTO;
 import com.s13tab.budynkibackend.dto.MieszkanieDTO;
 import com.s13tab.budynkibackend.dto.ZgloszenieDTO;
 import com.s13tab.budynkibackend.mapper.BudynekMapper;
 import com.s13tab.budynkibackend.mapper.MeldunekMapper;
 import com.s13tab.budynkibackend.mapper.MieszkanieMapper;
 import com.s13tab.budynkibackend.mapper.ZgloszenieMapper;
+import com.s13tab.budynkibackend.model.Meldunek;
 import com.s13tab.budynkibackend.service.BudynekService;
 
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Validated
@@ -65,16 +68,26 @@ public class BudynekController {
 
     @GetMapping("/{id}/meldunki")
     @ResponseStatus(HttpStatus.OK)
-    public List<MeldunekDTO> findMeldunkiById(@PathVariable Long id)
-    {
+    public List<MeldunekDTO> findMeldunkiById(@PathVariable Long id) {
         return meldunekMapper.convertToDTO(budynekService.findMeldunkiById(id));
     }
 
     @GetMapping("/{id}/zgloszenia")
     @ResponseStatus(HttpStatus.OK)
-    public List<ZgloszenieDTO> findZgloszeniaById(@PathVariable Long id)
-    {
+    public List<ZgloszenieDTO> findZgloszeniaById(@PathVariable Long id) {
         return zgloszenieMapper.convertToDTO(budynekService.findZgloszeniaById(id));
+    }
+
+    @GetMapping("/{id}/meldunkiWyswietl")
+    @ResponseStatus(HttpStatus.OK)
+    public List<MeldunkiWyswietlDTO> findMeldunkiToDisplayById(@PathVariable Long id) {
+        List<Meldunek> meldunki = budynekService.findMeldunkiById(id);
+        return meldunki.stream()
+                .map(meldunek -> new MeldunkiWyswietlDTO(meldunek.getId(), meldunek.getOsoba().getId(),
+                        meldunek.getMieszkanie().getId(),
+                        meldunek.getMieszkanie().getNumerMieszkania(), meldunek.getOsoba().getImie(),
+                        meldunek.getOsoba().getNazwisko(), meldunek.getDataMeldunku(), meldunek.getDataWymeldowania()))
+                .collect(Collectors.toList());
     }
 
 }
