@@ -15,7 +15,11 @@ function Navbar() {
             {SidebarData.map((item, index) => {
               return (
                 <li key={index} className={item.cName}>
-                  <NavLink to={item.path}>
+                  <NavLink
+                    to={item.path}
+                    className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+                    end={item.path === '/'}
+                  >
                     {/* {item.icon} */}
                     <span>{item.title}</span>
                   </NavLink>

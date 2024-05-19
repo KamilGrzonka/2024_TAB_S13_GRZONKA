@@ -78,26 +78,24 @@ const Apartments = () => {
         )}
       </Box>
       {apartments.isSuccess ? (
-        <Table>
+        <Table className="table-fixed w-full">
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[100px]">Numer mieszkania</TableHead>
-              <TableHead>Piętro</TableHead>
-              <TableHead>Liczba osób</TableHead>
-              <TableHead className="text-right">Opis</TableHead>
-              <TableHead className="text-right">Szczegóły</TableHead>
+              <TableHead className="w-1/6 text-center">Numer mieszkania</TableHead>
+              <TableHead className="w-1/6 text-center">Piętro</TableHead>
+              <TableHead className="w-1/6 text-center">Liczba osób</TableHead>
+              <TableHead className="w-2/6 text-center">Opis</TableHead>
+              <TableHead className="w-1/6 text-center">Szczegóły</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {apartments.data.map((apartment) => (
               <TableRow key={apartment.id}>
-                <TableCell className="font-medium">
-                  {apartment.numerMieszkania}
-                </TableCell>
-                <TableCell>{apartment.pietro}</TableCell>
-                <TableCell>{apartment.liczbaMieszkancow}</TableCell>
-                <TableCell className="text-right">{apartment.opis}</TableCell>
-                <TableCell className="justify-end flex">
+                <TableCell className="font-medium text-center">{apartment.numerMieszkania}</TableCell>
+                <TableCell className= "text-center">{apartment.pietro}</TableCell>
+                <TableCell className="text-center">{apartment.liczbaMieszkancow}</TableCell>
+                <TableCell className= "text-center">{apartment.opis}</TableCell>
+                <TableCell className="justify-center flex">
                   <Link to={`${apartment.id}`}>
                     <ChevronRight className="mr-5"/>
                   </Link>

@@ -17,8 +17,8 @@ import Payments from "./pages/Payments.tsx";
 import Reports from "./pages/Reports.tsx";
 import Buildings from "./pages/Buildings.tsx";
 import Apartments from "./pages/Apartments.tsx";
+import PricesList from "./pages/PricesList.tsx";
 import AddBuilding from "./pages/AddBuilding.tsx";
-import DisplayPerson from "./pages/DisplayPerson.tsx";
 import EditPerson from "./pages/EditPerson.tsx";
 import AddPerson from "./pages/AddPerson.tsx";
 import DisplayApartment from "./pages/DisplayApartment.tsx";
@@ -62,7 +62,11 @@ const router = createBrowserRouter([
         element: <EditApartment />,
       },
       {
-        path: "budynki/:buildingId/:apartmentId/dodaj",
+        path: "budynki/:buildingId/:apartmentId/cennik",
+        element: <PricesList />,
+      },
+      {
+        path: "budynki/:buildingId/:apartmentId/cennik/dodaj",
         element: <AddPriceList />,
       },
       {
@@ -84,10 +88,6 @@ const router = createBrowserRouter([
       {
         path: "osoby/dodaj",
         element: <AddPerson />,
-      },
-      {
-        path: "osoby/:personId",
-        element: <DisplayPerson />,
       },
       {
         path: "osoby/:personId/edytuj",
