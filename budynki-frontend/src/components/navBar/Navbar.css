@@ -28,6 +28,15 @@
   top: 0px;
 }
 
+.nav-link {
+  text-decoration: none;
+}
+
+.nav-link.active {
+  font-weight: bold;
+  background-color: #4f63c9;
+}
+
 .nav-text {
   display: flex;
   justify-content: start;

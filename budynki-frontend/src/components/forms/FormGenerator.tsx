@@ -98,15 +98,21 @@ export default function FormGenerator<T extends AnyFormKeys>({
             />
           );
         })}
+        <div className="flex items-center justify-between">
         <Button
           disabled={form.formState.isLoading || !form.formState.isValid}
           type="submit"
+          className="bg-blue-500 pt-6 pb-6 pl-10 pr-10"
         >
           {form.formState.isLoading && (
             <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
           )}
           {formDefiner.method == "PUT" ? "Edytuj" : "Dodaj"}
         </Button>
+        <Button type="button" className="bg-blue-500 pt-6 pb-6 pl-10 pr-10" onClick={() => navigate(-1)}>
+          Anuluj
+        </Button>
+        </div>
       </form>
     </Form>
   );

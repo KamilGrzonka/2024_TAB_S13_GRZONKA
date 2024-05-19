@@ -17,7 +17,7 @@ import Payments from "./pages/Payments.tsx";
 import Reports from "./pages/Reports.tsx";
 import Buildings from "./pages/Buildings.tsx";
 import Apartments from "./pages/Apartments.tsx";
-import DisplayPerson from "./pages/DisplayPerson.tsx";
+import PricesList from "./pages/PricesList.tsx";
 import DisplayApartment from "./pages/DisplayApartment.tsx";
 import DisplayForm from "./components/forms/DisplayForm.tsx";
 import { BuildingFormAdd } from "./components/forms/building/BuildingForms.tsx";
