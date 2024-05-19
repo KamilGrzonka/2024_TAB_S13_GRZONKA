@@ -1,17 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { Box, Container } from "@mui/material";
-import { PriceListData } from "@/types/PriceListData";
 import { getBackendApi } from "@/components/fetchBackendApi";
 import LoadingComponent from "@/components/LoadingComponent";
 import FormGenerator from "@/components/forms/FormGenerator";
-import {
-  priceListFormFields,
-  priceListFormSchema,
-} from "@/components/forms/priceList/PriceListFormSchema";
+import { priceListForm } from "@/components/forms/priceList/PriceListFormSchema";
+import { PriceListData } from "@/types/Entities";
 
 export default function EditPriceList() {
-  const { priceListId } = useParams();
+  const { apartmentId, priceListId } = useParams();
   const query = useQuery({
     queryKey: ["cennik", priceListId],
     queryFn: () => getBackendApi<PriceListData>(`/cenniki/${priceListId}`),
@@ -30,13 +27,15 @@ export default function EditPriceList() {
       >
         <LoadingComponent queryResult={query}>
           <FormGenerator
-            formSchema={priceListFormSchema}
-            formFieldDefiner={priceListFormFields({ entityData: query.data })}
-            url={`/cenniki/${priceListId}`}
-            method={`PUT`}
-            additionalSubmitFields={{
-              cennikId: priceListId,
-            }}
+            formDefiner={priceListForm({
+              endpoint: `/cenniki/${priceListId}`,
+              method: "PUT",
+              additionalSubmitFields: {
+                mieszkanieId: `${apartmentId}`,
+                cennikId: `${priceListId}`,
+              },
+              entityData: query.data,
+            })}
           />
         </LoadingComponent>
       </Box>

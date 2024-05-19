@@ -1,56 +1,56 @@
-import { z } from "zod";
+import { ApartmentFormKeys } from "@/types/FormKeys";
 import { zNonNegative, zNumber, zPositive, zStringMinMax } from "../zodWrapper";
-import { FormFieldType } from "@/types/enums/FormFieldType";
-import { ApartmentData } from "@/types/ApartmentData";
-import { FormFieldDefiner } from "../FormDefiner";
+import { formDefiner } from "../FormDefiner";
+import { ApartmentData } from "@/types/Entities";
+import { HttpMethods } from "@/types/HttpMethods";
 
-export const apartmentFormSchema = z.object({
-  numerMieszkania: zNumber().pipe(zPositive()), // nullable = false
-  pietro: zNumber().pipe(zNonNegative()), // nullable = false
-  liczbaMieszkancow: zNumber().pipe(zNonNegative()), // nullable = false
-  opis: zStringMinMax({ min: 0, max: 65535 }).optional(), // length = 65535
-});
-
-export type ApartmentFormSchema = typeof apartmentFormSchema;
-
-export type ApartmentFormKeys =
-  | "numerMieszkania"
-  | "pietro"
-  | "liczbaMieszkancow"
-  | "opis";
-
-interface ApartmentFormFieldsData {
+interface ApartmentFormArgs {
   entityData?: ApartmentData;
+  endpoint: string;
+  method: HttpMethods;
+  additionalSubmitFields: {
+    budynekId: number | string;
+    apartmentId?: number | string;
+  };
 }
 
-export function apartmentFormFields({
+export function apartmentForm({
   entityData,
-}: ApartmentFormFieldsData = {}) {
-  const entityFormField: FormFieldDefiner<ApartmentFormKeys>[] = [
+  endpoint,
+  method,
+  additionalSubmitFields,
+}: ApartmentFormArgs) {
+  return formDefiner<ApartmentFormKeys>(
     {
-      name: "numerMieszkania",
-      defaultValue: `${entityData?.numerMieszkania || ""}`,
-      type: FormFieldType.INPUT,
-      options: [],
+      numerMieszkania: zNumber().pipe(zPositive()), // nullable = false
+      pietro: zNumber().pipe(zNonNegative()), // nullable = false
+      liczbaMieszkancow: zNumber().pipe(zNonNegative()), // nullable = false
+      opis: zStringMinMax({ min: 0, max: 65535 }).optional(), // length = 65535
     },
     {
-      name: "pietro",
-      defaultValue: `${entityData?.pietro || ""}`,
-      type: FormFieldType.INPUT,
-      options: [],
+      numerMieszkania: {
+        type: "INPUT",
+        defaultValue: entityData?.numerMieszkania,
+        options: [],
+      },
+      pietro: {
+        type: "INPUT",
+        defaultValue: entityData?.pietro,
+        options: [],
+      },
+      liczbaMieszkancow: {
+        type: "INPUT",
+        defaultValue: entityData?.liczbaMieszkancow,
+        options: [],
+      },
+      opis: {
+        type: "TEXTAREA",
+        defaultValue: entityData?.opis,
+        options: [],
+      },
     },
-    {
-      name: "liczbaMieszkancow",
-      defaultValue: `${entityData?.liczbaMieszkancow || ""}`,
-      type: FormFieldType.INPUT,
-      options: [],
-    },
-    {
-      name: "opis",
-      defaultValue: `${entityData?.opis || ""}`,
-      type: FormFieldType.TEXTAREA,
-      options: [],
-    },
-  ];
-  return entityFormField;
+    endpoint,
+    method,
+    additionalSubmitFields,
+  );
 }

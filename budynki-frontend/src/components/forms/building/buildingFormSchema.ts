@@ -1,59 +1,66 @@
-import { z } from "zod";
-import { polishChars, zNonNegative, zNumber, zStringMinMax } from "../zodWrapper";
-import { BuildingData } from "@/types/BuildingData";
-import { FormFieldType } from "@/types/enums/FormFieldType";
-import { FormFieldDefiner } from "../FormDefiner";
+import { BuildingFormKeys } from "@/types/FormKeys";
+import { HttpMethods } from "@/types/HttpMethods";
+import { formDefiner } from "../FormDefiner";
+import {
+  zStringMinMax,
+  polishChars,
+  zNumber,
+  zNonNegative,
+} from "../zodWrapper";
+import { BuildingData } from "@/types/Entities";
 
-export const buildingFormSchema = z.object({
-  ulica: zStringMinMax(), // length = 80, nullable = false
-  numerBudynku: zStringMinMax({max: 5}).regex(RegExp(`^\\d+[${polishChars}]?$`), "Wprowadź poprawny numer budynku"), // length = 5, nullable = false
-  kodPocztowy: zStringMinMax({min: 6, max: 6}).regex(/^\d{2}-\d{3}$/, "Wprowadź poprawny kod pocztowy"), // length = 6, nullable = false
-  miasto: zStringMinMax().regex(RegExp(`^[${polishChars} -]+$`), "Wprowadź poprawne miasto"), // length = 80, nullable = false
-  liczbaMiejsc: zNumber().pipe(zNonNegative()), // nullable = false
-});
-
-export type BuildingFormSchema = typeof buildingFormSchema;
-
-export type BuildingFormKeys = "ulica" | "numerBudynku" | "kodPocztowy" | "miasto" | "liczbaMiejsc";
-
-interface BuildingFormFieldsData {
+interface BuildingFormArgs {
   entityData?: BuildingData;
+  endpoint: string;
+  method: HttpMethods;
+  additionalSubmitFields?: {
+    budynekId?: number | string;
+  };
 }
 
-export function buildingFormFields({
+export function buildingForm({
   entityData,
-}: BuildingFormFieldsData = {}) {
-  const entityFormField: FormFieldDefiner<BuildingFormKeys>[] = [
+  endpoint,
+  method,
+  additionalSubmitFields,
+}: BuildingFormArgs) {
+  return formDefiner<BuildingFormKeys>(
     {
-      name: "ulica",
-      defaultValue: `${entityData?.ulica || ""}`,
-      type: FormFieldType.INPUT,
-      options: [],
+      ulica: zStringMinMax(), // length = 80, nullable = false
+      numerBudynku: zStringMinMax({max: 5}).regex(RegExp(`^\\d+[${polishChars}]?$`), "Wprowadź poprawny numer budynku"), // length = 5, nullable = false
+      kodPocztowy: zStringMinMax({min: 6, max: 6}).regex(/^\d{2}-\d{3}$/, "Wprowadź poprawny kod pocztowy"), // length = 6, nullable = false
+      miasto: zStringMinMax().regex(RegExp(`^[${polishChars} -]+$`), "Wprowadź poprawne miasto"), // length = 80, nullable = false
+      liczbaMiejsc: zNumber().pipe(zNonNegative()), // nullable = false
     },
     {
-      name: "numerBudynku",
-      defaultValue: `${entityData?.numerBudynku || ""}`,
-      type: FormFieldType.INPUT,
-      options: [],
+      ulica: {
+        type: "INPUT",
+        defaultValue: entityData?.ulica,
+        options: [],
+      },
+      numerBudynku: {
+        type: "INPUT",
+        defaultValue: entityData?.numerBudynku,
+        options: [],
+      },
+      kodPocztowy: {
+        type: "INPUT",
+        defaultValue: entityData?.kodPocztowy,
+        options: [],
+      },
+      miasto: {
+        type: "INPUT",
+        defaultValue: entityData?.miasto,
+        options: [],
+      },
+      liczbaMiejsc: {
+        type: "INPUT",
+        defaultValue: entityData?.liczbaMiejsc,
+        options: [],
+      },
     },
-    {
-      name: "kodPocztowy",
-      defaultValue: `${entityData?.kodPocztowy || ""}`,
-      type: FormFieldType.INPUT,
-      options: [],
-    },
-    {
-      name: "miasto",
-      defaultValue: `${entityData?.miasto || ""}`,
-      type: FormFieldType.INPUT,
-      options: [],
-    },
-    {
-      name: "liczbaMiejsc",
-      defaultValue: `${entityData?.liczbaMiejsc || ""}`,
-      type: FormFieldType.INPUT,
-      options: [],
-    },
-  ];
-  return entityFormField;
+    endpoint,
+    method,
+    additionalSubmitFields,
+  );
 }

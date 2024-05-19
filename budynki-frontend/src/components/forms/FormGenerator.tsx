@@ -8,90 +8,96 @@ import { Button } from "../ui/button";
 import { LoaderCircle } from "lucide-react";
 import camelToTitle from "@/utils/camelToTitle";
 import { FormField, FormItem, FormLabel, FormMessage, Form } from "../ui/form";
-import { AnySchema } from "@/types/AnySchema";
 import FormInput from "./formElement/FormInput";
 import FormRadio from "./formElement/FormRadio";
 import FormSelect from "./formElement/FormSelect";
 import FormDatepicker from "./formElement/DatePicker";
-import { FormFieldType } from "@/types/enums/FormFieldType";
-import { AnyFormKeys } from "@/types/AnyFormKeys";
 import FormTextArea from "./formElement/TextArea";
-import { FormFieldDefiner } from "./FormDefiner";
+import { FormDefiner } from "./FormDefiner";
+import { AnyFormKeys } from "@/types/FormKeys";
 
-interface FormGeneratorProps {
-  formSchema: AnySchema;
-  formFieldDefiner: FormFieldDefiner<AnyFormKeys>[];
-  url: string;
-  method: string;
-  additionalSubmitFields: object;
+interface FormGeneratorProps<T extends AnyFormKeys> {
+  formDefiner: FormDefiner<T>;
 }
 
-export default function FormGenerator({
-  formSchema,
-  formFieldDefiner,
-  url,
-  method,
-  additionalSubmitFields,
-}: FormGeneratorProps) {
-  const defaultValues = formFieldDefiner.reduce(
-    (acc, { name, defaultValue }) => ({
-      ...acc,
-      [name]: defaultValue,
-    }),
-    {},
-  );
+export default function FormGenerator<T extends AnyFormKeys>({
+  formDefiner,
+}: FormGeneratorProps<T>) {
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const defaultValues = Object.keys(formDefiner.formFields).reduce((acc, key) => ({
+    ...acc,
+    [key]: formDefiner.formFields[key as T].defaultValue,
+  }), {});
+  
+  const form = useForm<z.infer<typeof formDefiner.formSchema>>({
+    resolver: zodResolver(formDefiner.formSchema),
     mode: "onChange",
     defaultValues: defaultValues,
   });
 
   const navigate = useNavigate();
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    (await formSubmit(fetchBackendApi, url, method, {
-      ...additionalSubmitFields,
-      ...values,
-    })) && navigate("..", { relative: "path" });
+  async function onSubmit(values: z.infer<typeof formDefiner.formSchema>) {
+    (await formSubmit(
+      fetchBackendApi,
+      formDefiner.endpoint,
+      formDefiner.method,
+      {
+        ...formDefiner.additionalSubmitFields,
+        ...values,
+      },
+    )) && navigate("..", { relative: "path" });
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        {formFieldDefiner.map(({ name, type, options }) => (
-          <FormField
-            key={name}
-            control={form.control}
-            name={name}
-            render={({ field }) => (
-              <FormItem className="flex flex-col">
-                <FormLabel>{camelToTitle(name)}:</FormLabel>
+        {Object.keys(formDefiner.formFields).map((key) => {
+          const name = key as T;
+          const type = formDefiner.formFields[key as T].type;
+          const options = formDefiner.formFields[key as T].options;
 
-                {type == FormFieldType.INPUT ||
-                type == FormFieldType.INPUT_NUMBER ? (
-                  <FormInput field={field} type={type} name={name} />
-                ) : type == FormFieldType.RADIO ? (
-                  <FormRadio field={field} options={options} />
-                ) : type == FormFieldType.SELECT ? (
-                  <FormSelect field={field} options={options} name={name} />
-                ) : type == FormFieldType.DATEPICKER ? (
-                  <FormDatepicker field={field} />
-                ) : type == FormFieldType.TEXTAREA ? (
-                  <FormTextArea field={field} name={name} />
-                ) : (
-                  <div className="flex items-center justify-center">
-                    <span className="text-red-700">
-                      Form field type not supported!
-                    </span>
-                  </div>
-                )}
+          return (
+            <FormField
+              key={name}
+              control={form.control}
+              name={name}
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <FormLabel>{camelToTitle(name)}:</FormLabel>
 
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        ))}
+                  {type == "INPUT" || type == "INPUT_NUMBER" ? (
+                    <FormInput<typeof field>
+                      field={field}
+                      type={type}
+                      name={name}
+                    />
+                  ) : type == "RADIO" ? (
+                    <FormRadio<typeof field> field={field} options={options} />
+                  ) : type == "SELECT" ? (
+                    <FormSelect<typeof field>
+                      field={field}
+                      options={options}
+                      name={name}
+                    />
+                  ) : type == "DATEPICKER" ? (
+                    <FormDatepicker<typeof field> field={field} />
+                  ) : type == "TEXTAREA" ? (
+                    <FormTextArea<typeof field> field={field} name={name} />
+                  ) : (
+                    <div className="flex items-center justify-center">
+                      <span className="text-red-700">
+                        Form field type not supported!
+                      </span>
+                    </div>
+                  )}
+
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          );
+        })}
         <Button
           disabled={form.formState.isLoading || !form.formState.isValid}
           type="submit"
@@ -99,7 +105,7 @@ export default function FormGenerator({
           {form.formState.isLoading && (
             <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
           )}
-          {method == 'PUT' ? "Edytuj" : "Dodaj"}
+          {formDefiner.method == "PUT" ? "Edytuj" : "Dodaj"}
         </Button>
       </form>
     </Form>

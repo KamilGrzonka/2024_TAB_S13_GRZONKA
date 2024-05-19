@@ -1,8 +1,5 @@
 import FormGenerator from "@/components/forms/FormGenerator";
-import {
-  apartmentFormFields,
-  apartmentFormSchema,
-} from "@/components/forms/apartment/apartmentFormSchema";
+import { apartmentForm } from "@/components/forms/apartment/apartmentFormSchema";
 import { Box, Container } from "@mui/material";
 import { useParams } from "react-router-dom";
 
@@ -20,11 +17,13 @@ export default function AddApartment() {
         }}
       >
         <FormGenerator
-          formSchema={apartmentFormSchema}
-          formFieldDefiner={apartmentFormFields()}
-          url={`/mieszkania`}
-          method={`POST`}
-          additionalSubmitFields={{ budynekId: buildingId }}
+          formDefiner={apartmentForm({
+            endpoint: `/mieszkania`,
+            method: "POST",
+            additionalSubmitFields: {
+              budynekId: `${buildingId}`,
+            },
+          })}
         />
       </Box>
     </Container>

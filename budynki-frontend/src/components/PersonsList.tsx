@@ -1,5 +1,5 @@
 import BuildingLabel from "@/components/BuildingLabel";
-import { PersonData } from "@/types/PersonData";
+import { PersonData } from "@/types/Entities";
 import { useQuery } from "@tanstack/react-query";
 import { LoaderCircle } from "lucide-react";
 

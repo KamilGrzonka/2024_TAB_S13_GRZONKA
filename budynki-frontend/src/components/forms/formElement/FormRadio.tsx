@@ -1,21 +1,19 @@
 import { FormControl, FormItem, FormLabel } from "@/components/ui/form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { FormFieldOptionDefiner } from "../FormDefiner";
 import { ControllerRenderProps } from "react-hook-form";
-import { z } from "zod";
-import { AnySchema } from "@/types/AnySchema";
+import { FormFieldOptionDefiner } from "../FormDefiner";
 
-interface FormRadioProps {
-  field: ControllerRenderProps<z.infer<AnySchema>>;
+interface FormRadioProps<T extends ControllerRenderProps> {
+  field: T;
   options: FormFieldOptionDefiner[];
 }
 
-export default function FormRadio({ field, options }: FormRadioProps) {
+export default function FormRadio<T extends ControllerRenderProps>({ field, options }: FormRadioProps<T>) {
   return (
     <FormControl>
       <RadioGroup
         onValueChange={field.onChange}
-        defaultValue={field.value as string | undefined}
+        defaultValue={field.value}
         className="flex flex-col space-y-1"
       >
         {options?.map(({ id, label }) => (
