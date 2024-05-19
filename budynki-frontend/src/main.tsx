@@ -17,15 +17,13 @@ import Payments from "./pages/Payments.tsx";
 import Reports from "./pages/Reports.tsx";
 import Buildings from "./pages/Buildings.tsx";
 import Apartments from "./pages/Apartments.tsx";
-import AddBuilding from "./pages/AddBuilding.tsx";
 import DisplayPerson from "./pages/DisplayPerson.tsx";
-import EditPerson from "./pages/EditPerson.tsx";
-import AddPerson from "./pages/AddPerson.tsx";
 import DisplayApartment from "./pages/DisplayApartment.tsx";
-import AddApartment from "./pages/AddApartment.tsx";
-import EditApartment from "./pages/EditApartment.tsx";
-import EditPriceList from "./pages/EditPriceList.tsx";
-import AddPriceList from "./pages/AddPriceList.tsx";
+import DisplayForm from "./components/forms/DisplayForm.tsx";
+import { BuildingFormAdd } from "./components/forms/building/BuildingForms.tsx";
+import { ApartmentFormAdd, ApartmentFormEdit } from "./components/forms/apartment/ApartmentForms.tsx";
+import { PriceListFormAdd, PriceListFormEdit } from "./components/forms/priceList/PriceListForms.tsx";
+import { PersonFormAdd, PersonFormEdit } from "./components/forms/person/PersonForms.tsx";
 
 const router = createBrowserRouter([
   {
@@ -42,32 +40,12 @@ const router = createBrowserRouter([
         element: <Buildings />,
       },
       {
-        path: "budynki/dodaj",
-        element: <AddBuilding />,
-      },
-      {
         path: "budynki/:buildingId",
         element: <Apartments />,
       },
       {
         path: "budynki/:buildingId/:apartmentId",
         element: <DisplayApartment />,
-      },
-      {
-        path: "budynki/:buildingId/dodaj",
-        element: <AddApartment />,
-      },
-      {
-        path: "budynki/:buildingId/:apartmentId/edytuj",
-        element: <EditApartment />,
-      },
-      {
-        path: "budynki/:buildingId/:apartmentId/dodaj",
-        element: <AddPriceList />,
-      },
-      {
-        path: "budynki/:buildingId/:apartmentId/:priceListId",
-        element: <EditPriceList />,
       },
       {
         path: "meldunki",
@@ -82,16 +60,8 @@ const router = createBrowserRouter([
         element: <Persons />,
       },
       {
-        path: "osoby/dodaj",
-        element: <AddPerson />,
-      },
-      {
         path: "osoby/:personId",
         element: <DisplayPerson />,
-      },
-      {
-        path: "osoby/:personId/edytuj",
-        element: <EditPerson />,
       },
       {
         path: "platnosci",
@@ -101,6 +71,39 @@ const router = createBrowserRouter([
         path: "raporty",
         element: <Reports />,
       },
+      {
+        element: <DisplayForm />,
+        children: [
+          {
+            path: "budynki/dodaj",
+            element: <BuildingFormAdd />,
+          },
+          {
+            path: "budynki/:buildingId/dodaj",
+            element: <ApartmentFormAdd />,
+          },
+          {
+            path: "budynki/:buildingId/:apartmentId/edytuj",
+            element: <ApartmentFormEdit />,
+          },
+          {
+            path: "budynki/:buildingId/:apartmentId/dodaj",
+            element: <PriceListFormAdd />,
+          },
+          {
+            path: "budynki/:buildingId/:apartmentId/:priceListId",
+            element: <PriceListFormEdit />,
+          },
+          {
+            path: "osoby/dodaj",
+            element: <PersonFormAdd />,
+          },
+          {
+            path: "osoby/:personId/edytuj",
+            element: <PersonFormEdit />,
+          },
+        ]
+      }
     ],
   },
 ]);
