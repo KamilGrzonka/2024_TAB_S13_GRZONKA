@@ -1,8 +1,7 @@
 import { Box, Container, Typography } from "@mui/material";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
-import { Link, useParams } from "react-router-dom";
-import { PersonData } from "@/types/PersonData";
+import { Link } from "react-router-dom";
 import {
   Table,
   TableBody,
@@ -12,29 +11,16 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { LoaderCircle } from "lucide-react";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import { getBackendApi } from "@/components/fetchBackendApi";
 import { ChevronRight } from 'lucide-react';
-
-async function fetchPersons() {
-  const persons: PersonData[] = await fetch(
-    "http://localhost:8080/api/osoby",
-  ).then((response) => {
-    if (!response.ok) {
-      throw new Error(`Failed to fetch: ${response.status}`);
-    }
-    return response.json();
-  });
-  return persons;
-}
-
-
+import { getBackendApi } from "@/components/fetchBackendApi";
+import { PersonData } from "@/types/Entities";
 
 const Persons = () => {
   const persons = useQuery({
     queryKey: ["persons"],
-    queryFn: fetchPersons,
+    queryFn: () => getBackendApi<PersonData[]>(`/osoby`),
   });
+
   return (
     <Container sx={{ marginBottom: 8 }}>
       <Box

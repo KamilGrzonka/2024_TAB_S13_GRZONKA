@@ -2,7 +2,6 @@ import { Box, Container, Typography } from "@mui/material";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { PriceListData } from "@/types/PriceListData.ts";
 import {
   Table,
   TableBody,
@@ -12,9 +11,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { LoaderCircle, ChevronRight, X } from "lucide-react";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { getBackendApi } from "@/components/fetchBackendApi";
-import { BuildingData } from "@/types/ApartmentData";
+import { BuildingData, PriceListData } from "@/types/Entities";
 
 const PricesList = () => {
   const { buildingId, apartmentId } = useParams();
@@ -24,7 +22,7 @@ const PricesList = () => {
   });
   const priceList = useQuery({
     queryKey: ["prices", apartmentId],
-    queryFn: () => getBackendApi<PriceListData>(`/cenniki`),
+    queryFn: () => getBackendApi<PriceListData[]>(`/cenniki`),
   });
 
   const navigate = useNavigate();
@@ -80,8 +78,8 @@ const PricesList = () => {
             {priceList.data.map((price) => (
               <TableRow key={price.id}>
                 <TableCell className="font-medium text-center">{price.cena}</TableCell>
-                <TableCell className= "text-center">{price.dataPoczatkowa}</TableCell>
-                <TableCell className= "text-center">{price.dataKoncowa}</TableCell>
+                <TableCell className= "text-center">{price.dataPoczatkowa.toDateString()}</TableCell>
+                <TableCell className= "text-center">{price.dataKoncowa.toDateString()}</TableCell>
                 <TableCell className="justify-center flex">
                   <Link to={`${price.id}`}>
                     <ChevronRight className="mr-5"/>

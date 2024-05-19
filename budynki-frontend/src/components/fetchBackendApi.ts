@@ -1,3 +1,5 @@
+import { entityDateToDate } from "@/utils/convertDates";
+
 export async function fetchBackendApi<T>(
   endpoint: string,
   method: string = "GET",
@@ -16,8 +18,9 @@ export async function fetchBackendApi<T>(
   if (!response.ok) {
     throw new Error(`Fetch failed: ${response.status}`);
   }
-  const responseJson: Promise<T> = response.json();
-  return responseJson;
+  const responseJson: T = await response.json();
+
+  return entityDateToDate(responseJson);
 }
 
 export async function getBackendApi<T>(endpoint: string, body?: unknown) {

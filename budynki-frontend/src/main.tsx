@@ -48,6 +48,10 @@ const router = createBrowserRouter([
         element: <DisplayApartment />,
       },
       {
+        path: "budynki/:buildingId/:apartmentId/cennik",
+        element: <PricesList />,
+      },
+      {
         path: "meldunki",
         element: <Registrations />,
       },
@@ -61,7 +65,7 @@ const router = createBrowserRouter([
       },
       {
         path: "osoby/:personId",
-        element: <DisplayPerson />,
+        element: <Persons />,
       },
       {
         path: "platnosci",
@@ -87,11 +91,11 @@ const router = createBrowserRouter([
             element: <ApartmentFormEdit />,
           },
           {
-            path: "budynki/:buildingId/:apartmentId/dodaj",
+            path: "budynki/:buildingId/:apartmentId/cennik/dodaj",
             element: <PriceListFormAdd />,
           },
           {
-            path: "budynki/:buildingId/:apartmentId/:priceListId",
+            path: "budynki/:buildingId/:apartmentId/cennik/:priceListId",
             element: <PriceListFormEdit />,
           },
           {
