@@ -6,7 +6,6 @@ import { ApartmentData } from "@/types/Entities";
 import { Box, Container } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import { X } from 'lucide-react';
 
 export default function EditApartment() {
   const { buildingId, apartmentId } = useParams();

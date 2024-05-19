@@ -3,11 +3,10 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { LoaderCircle } from "lucide-react";
-import { ApartmentData } from "@/types/ApartmentData";
 import { getBackendApi } from "@/components/fetchBackendApi";
 import { Box, Container, Typography } from "@mui/material";
-import { BuildingData } from "@/types/BuildingData.ts";
 import { X } from 'lucide-react';
+import { ApartmentData, BuildingData } from "@/types/Entities";
 
 export default function DisplayApartment() {
   const { apartmentId } = useParams();

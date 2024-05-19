@@ -1,10 +1,10 @@
 import { Typography } from "@material-ui/core";
 import { Link, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { PersonData } from "@/types/PersonData";
 import { useQuery } from "@tanstack/react-query";
 import { LoaderCircle } from "lucide-react";
 import { getBackendApi } from "@/components/fetchBackendApi";
+import { PersonData } from "@/types/Entities";
 
 export default function DisplayPerson() {
   const { personId } = useParams();

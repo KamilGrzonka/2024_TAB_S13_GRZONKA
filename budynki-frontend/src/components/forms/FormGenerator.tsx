@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { ControllerRenderProps, DefaultValues, Path, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { formSubmit } from "./formSubmit";
@@ -27,7 +27,7 @@ export default function FormGenerator<T extends AnyFormKeys>({
   const defaultValues = Object.keys(formDefiner.formFields).reduce((acc, key) => ({
     ...acc,
     [key]: formDefiner.formFields[key as T].defaultValue,
-  }), {});
+  }), {} as DefaultValues<z.infer<typeof formDefiner.formSchema>>);
   
   const form = useForm<z.infer<typeof formDefiner.formSchema>>({
     resolver: zodResolver(formDefiner.formSchema),
@@ -61,29 +61,29 @@ export default function FormGenerator<T extends AnyFormKeys>({
             <FormField
               key={name}
               control={form.control}
-              name={name}
+              name={name as unknown as Path<z.infer<typeof formDefiner.formSchema>>}
               render={({ field }) => (
                 <FormItem className="flex flex-col">
                   <FormLabel>{camelToTitle(name)}:</FormLabel>
 
                   {type == "INPUT" || type == "INPUT_NUMBER" ? (
-                    <FormInput<typeof field>
-                      field={field}
+                    <FormInput
+                      field={field as unknown as ControllerRenderProps}
                       type={type}
                       name={name}
                     />
                   ) : type == "RADIO" ? (
-                    <FormRadio<typeof field> field={field} options={options} />
+                    <FormRadio field={field as unknown as ControllerRenderProps} options={options} />
                   ) : type == "SELECT" ? (
-                    <FormSelect<typeof field>
-                      field={field}
+                    <FormSelect
+                      field={field as unknown as ControllerRenderProps}
                       options={options}
                       name={name}
                     />
                   ) : type == "DATEPICKER" ? (
-                    <FormDatepicker<typeof field> field={field} />
+                    <FormDatepicker field={field as unknown as ControllerRenderProps} />
                   ) : type == "TEXTAREA" ? (
-                    <FormTextArea<typeof field> field={field} name={name} />
+                    <FormTextArea field={field as unknown as ControllerRenderProps} name={name} />
                   ) : (
                     <div className="flex items-center justify-center">
                       <span className="text-red-700">
