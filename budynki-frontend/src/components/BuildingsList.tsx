@@ -19,7 +19,7 @@ export default function BuildingsList() {
         id={building.id}
       />
     ))
-  ) : buildings.isPending ? (
+  ) : buildings.isLoading ? (
     <div className="flex items-center justify-center">
       <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
       Loading...

@@ -12,6 +12,8 @@ function convertDates<T>(object: T, fn: (date: Date) => Date | string) {
     "dataZakonczenia",
   ];
 
+  const wasArray: boolean = Array.isArray(object);
+
   const objectArray = Array.isArray(object) ? object : [object];
 
   const foundDateFields: string[] = [];
@@ -29,10 +31,10 @@ function convertDates<T>(object: T, fn: (date: Date) => Date | string) {
       });
     });
 
-    if (objectArray.length <= 1) {
-      return objectArray[0] as T;
-    } else {
+    if (wasArray) {
       return objectArray as T;
+    } else {
+      return objectArray[0] as T;
     }
   }
 
