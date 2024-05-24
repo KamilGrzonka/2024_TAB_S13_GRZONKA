@@ -16,6 +16,10 @@ function convertDates<T>(object: T, fn: (date: Date) => Date | string) {
 
   const objectArray = Array.isArray(object) ? object : [object];
 
+  if(!objectArray.length) {
+    return object;
+  }
+
   const foundDateFields: string[] = [];
 
   for (const dateField of dateFields) {
