@@ -9,14 +9,18 @@ import {
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import { ControllerRenderProps } from "react-hook-form";
+import { ControllerRenderProps, UseFormReturn } from "react-hook-form";
 
 interface FormDatepickerProps<T extends ControllerRenderProps> {
   field: T;
+  name: string;
+  form: UseFormReturn;
 }
 
 export default function FormDatepicker<T extends ControllerRenderProps>({
   field,
+  name,
+  form,
 }: FormDatepickerProps<T>) {
   return (
     <Popover>
@@ -38,7 +42,12 @@ export default function FormDatepicker<T extends ControllerRenderProps>({
           </Button>
         </FormControl>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0" align="start">
+      <PopoverContent className="flex w-auto flex-col space-y-2 p-2" align="start">
+        <Button variant="outline" className="w-full" onClick={() => {
+                  form.setValue(name, "");
+                }}>
+          Reset
+        </Button>
         <Calendar
           mode="single"
           selected={field.value}

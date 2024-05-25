@@ -55,7 +55,7 @@ export default function FormSelect<T extends ControllerRenderProps>({
           </Button>
         </FormControl>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0">
+      <PopoverContent className="w-auto p-0" align="start">
         <Command>
           <CommandInput placeholder={customLabel ?? camelToTitle(name)} />
           <CommandEmpty>Brak wyników.</CommandEmpty>

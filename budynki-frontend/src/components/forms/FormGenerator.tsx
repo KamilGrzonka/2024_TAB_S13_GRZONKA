@@ -126,6 +126,8 @@ export default function FormGenerator<T extends AnyFormKeys>({
                   ) : type == "DATEPICKER" ? (
                     <FormDatepicker
                       field={field as unknown as ControllerRenderProps}
+                      name={name}
+                      form={form as unknown as UseFormReturn}
                     />
                   ) : type == "TEXTAREA" ? (
                     <FormTextArea
