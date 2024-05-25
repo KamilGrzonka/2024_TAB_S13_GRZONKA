@@ -28,11 +28,11 @@ export default function DisplayPerson() {
             }}
           >
             <Typography variant="h3">{`${person.data.imie} ${person.data.nazwisko}`}</Typography>
-            <X onClick={() => navigate(-1)} size={36} />
+            <X className="hover:cursor-pointer" onClick={() => navigate(-1)} size={36} />
           </Box>
           <p>PESEL: {person.data.pesel}</p>
           <div id="buttons" className="mt-4">
-            <Button asChild className="bg-blue-500">
+            <Button asChild>
               <Link to="edytuj">Edytuj dane</Link>
             </Button>
             {/* <Button variant="destructive">

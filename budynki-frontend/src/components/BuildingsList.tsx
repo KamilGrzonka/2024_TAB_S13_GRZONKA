@@ -11,6 +11,7 @@ export default function BuildingsList() {
   });
 
   return buildings.isSuccess ? (
+    <div className="space-y-4">{
     buildings.data.map((building) => (
       <BuildingLabel
         key={building.id}
@@ -18,7 +19,8 @@ export default function BuildingsList() {
         address={`${building.numerBudynku} ${building.ulica}, ${building.kodPocztowy} ${building.miasto}`}
         id={building.id}
       />
-    ))
+    ))}
+    </div>
   ) : buildings.isLoading ? (
     <div className="flex items-center justify-center">
       <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />

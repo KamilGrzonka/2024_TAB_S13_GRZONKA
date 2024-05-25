@@ -42,7 +42,7 @@ const PricesList = () => {
         }}
       >
         <Typography variant="h3">Cennik</Typography>
-        <X onClick={() => navigate(-1)} size={36} />
+        <X className="hover:cursor-pointer" onClick={() => navigate(-1)} size={36} />
       </Box>
       <Box
         sx={{
@@ -102,7 +102,7 @@ const PricesList = () => {
             </TableBody>
           </Table>
           <div className="flex justify-center mt-20">
-            <Button asChild className="bg-blue-500 pt-6 pb-6 pl-10 pr-10">
+            <Button asChild className="pt-6 pb-6 pl-10 pr-10">
               <Link to="dodaj">Dodaj cenę</Link>
             </Button>
           </div>

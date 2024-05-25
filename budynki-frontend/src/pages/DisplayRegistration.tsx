@@ -36,7 +36,7 @@ export default function DisplayRegistration() {
           }}
         >
           <Typography variant="h3">{`${building.data.numerBudynku} ${building.data.ulica}`}</Typography>
-          <X onClick={() => navigate(-1)} size={36} />
+          <X className="hover:cursor-pointer" onClick={() => navigate(-1)} size={36} />
         </Box>
       ) : building.isLoading ? (
         <div className="flex items-center justify-center">

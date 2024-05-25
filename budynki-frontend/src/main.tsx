@@ -30,6 +30,7 @@ import DisplayRegistration from "./pages/DisplayRegistration.tsx";
 import DisplayPerson from "./pages/DisplayPerson.tsx";
 import { CompanyFormAdd, CompanyFormEdit } from "./components/forms/company/CompanyForms.tsx";
 import { RepairFormAdd, RepairFormEdit } from "./components/forms/repair/RepairForms.tsx";
+import Companies from "./pages/Companies.tsx";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
       {
         path: "platnosci",
         element: <Payments />,
+      },
+      {
+        path: "firmy",
+        element: <Companies />,
       },
       {
         path: "raporty",

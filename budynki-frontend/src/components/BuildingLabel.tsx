@@ -1,23 +1,30 @@
-import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
+// import { makeStyles } from "@material-ui/core/styles";
+// import Paper from "@material-ui/core/Paper";
+// import Typography from "@material-ui/core/Typography";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: theme.spacing(2),
-    backgroundColor: "#f0f0f0",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: "25px",
-  },
-  buildingName: {
-    marginBottom: theme.spacing(1),
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     padding: theme.spacing(2),
+//     backgroundColor: "#f0f0f0",
+//     display: "flex",
+//     alignItems: "center",
+//     justifyContent: "space-between",
+//     marginBottom: "25px",
+//   },
+//   buildingName: {
+//     marginBottom: theme.spacing(1),
+//   },
+// }));
 
 interface BuildingLabelProps {
   name: string;
@@ -26,24 +33,39 @@ interface BuildingLabelProps {
 }
 
 const BuildingLabel = ({ name, address, id }: BuildingLabelProps) => {
-  const classes = useStyles();
+  // const classes = useStyles();
 
   return (
-    <Paper elevation={3} className={classes.root}>
-      <div>
-        <Typography variant="subtitle1" className={classes.buildingName}>
-          {name}
-        </Typography>
-        <Typography variant="body2" color="textSecondary">
-          {address}
-        </Typography>
-      </div>
-      <Button asChild>
-        <Link to={`${id}`}>
-          Szczegóły <ArrowForwardIcon />
-        </Link>
-      </Button>
-    </Paper>
+    <>
+      <Card className="flex justify-between">
+        <CardHeader>
+          <CardTitle className="text-lg font-normal">{name}</CardTitle>
+          <CardDescription>{address}</CardDescription>
+        </CardHeader>
+        <CardContent className="flex items-center justify-center p-6">
+          <Button asChild>
+            <Link to={`${id}`}>
+              Szczegóły <ArrowForwardIcon />
+            </Link>
+          </Button>
+        </CardContent>
+      </Card>
+      {/* <Paper elevation={3} className={classes.root}>
+        <div>
+          <Typography variant="subtitle1" className={classes.buildingName}>
+            {name}
+          </Typography>
+          <Typography variant="body2" color="textSecondary">
+            {address}
+          </Typography>
+        </div>
+        <Button asChild>
+          <Link to={`${id}`}>
+            Szczegóły <ArrowForwardIcon />
+          </Link>
+        </Button>
+      </Paper> */}
+    </>
   );
 };
 

@@ -50,7 +50,7 @@ const Apartments = () => {
             <span className="text-red-700">Error!</span>
           </div>
         )}
-        <Button asChild className="bg-blue-500 pt-6 pb-6 pl-10 pr-10">
+        <Button asChild className="pt-6 pb-6 pl-10 pr-10">
           <Link to="dodaj">Dodaj mieszkanie</Link>
         </Button>
       </Box>

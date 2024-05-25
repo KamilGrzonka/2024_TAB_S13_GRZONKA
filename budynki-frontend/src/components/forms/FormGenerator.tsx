@@ -87,7 +87,7 @@ export default function FormGenerator<T extends AnyFormKeys>({
                   <FormLabel>{customLabel ?? camelToTitle(name)}:</FormLabel>
                   {/* Debug lines */}
                   {/* <p className="font-bold">Wartość pola: {field.value as unknown instanceof Date ? (field.value as Date).toDateString() : field.value as string}</p> */}
-                  <p className="font-bold">Wartość pola: {`${field.value}`}</p>
+                  {/* <p className="font-bold">Wartość pola: {`${field.value}`}</p> */}
                   {type == "INPUT" || type == "INPUT_NUMBER" ? (
                     <FormInput
                       field={field as unknown as ControllerRenderProps}
@@ -134,7 +134,7 @@ export default function FormGenerator<T extends AnyFormKeys>({
           <Button
             disabled={form.formState.isLoading || !form.formState.isValid}
             type="submit"
-            className="bg-blue-500 pt-6 pb-6 pl-10 pr-10"
+            className="pt-6 pb-6 pl-10 pr-10"
           >
             {form.formState.isLoading && (
               <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
@@ -143,7 +143,7 @@ export default function FormGenerator<T extends AnyFormKeys>({
           </Button>
           <Button
             type="button"
-            className="bg-blue-500 pt-6 pb-6 pl-10 pr-10"
+            className="pt-6 pb-6 pl-10 pr-10"
             onClick={() => navigate(-1)}
           >
             Anuluj

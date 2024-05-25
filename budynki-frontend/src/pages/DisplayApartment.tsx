@@ -33,7 +33,7 @@ export default function DisplayApartment() {
           }}
         >
           <Typography variant="h3">{`${building.data.numerBudynku} ${building.data.ulica}`}</Typography>
-          <X onClick={() => navigate(-1)} size={36}/>
+          <X className="hover:cursor-pointer" onClick={() => navigate(-1)} size={36}/>
         </Box>
       ) : building.isLoading ? (
         <div className="flex items-center justify-center">
@@ -75,10 +75,10 @@ export default function DisplayApartment() {
           <Typography variant="h6">Liczba mieszkańców: {apartment.data.liczbaMieszkancow} </Typography>
           <Typography variant="h6">Opis: {apartment.data.opis} </Typography>
           <div id="buttons" className="flex mt-20 justify-center">
-            <Button asChild className="bg-blue-500 mr-40 pt-6 pb-6 pl-10 pr-10">
+            <Button asChild className="mr-40 pt-6 pb-6 pl-10 pr-10">
               <Link to="edytuj">Edytuj dane</Link>
             </Button>
-            <Button asChild className="bg-blue-500 pt-6 pb-6 pl-10 pr-10">
+            <Button asChild className="pt-6 pb-6 pl-10 pr-10">
               <Link to="cennik">Historia cen</Link>
             </Button>
             {/* <Button variant="destructive">

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { SidebarData } from './SidebarData';
 import './Navbar.css';
 import { IconContext } from 'react-icons';
+import { ModeToggle } from '../ui/mode-toggle';
 
 function Navbar() {
   
@@ -10,7 +11,7 @@ function Navbar() {
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
         <nav className='nav-menu'>
-          <ul className='nav-menu-items'>
+          <ul className='nav-menu-items relative'>
             <img src={logo} className='logo' alt="logo" />
             {SidebarData.map((item, index) => {
               return (
@@ -26,6 +27,7 @@ function Navbar() {
                 </li>
               );
             })}
+            <div className="m-1 absolute bottom-0"><ModeToggle /></div>
           </ul>
         </nav>
       </IconContext.Provider>
