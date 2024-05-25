@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.s13tab.budynkibackend.dto.OsobaDTO;
 import com.s13tab.budynkibackend.dto.ZadanieDTO;
 import com.s13tab.budynkibackend.dto.ZgloszenieDTO;
+import com.s13tab.budynkibackend.mapper.OsobaMapper;
 import com.s13tab.budynkibackend.mapper.ZadanieMapper;
 import com.s13tab.budynkibackend.mapper.ZgloszenieMapper;
 import com.s13tab.budynkibackend.service.ZgloszenieService;
@@ -30,6 +32,7 @@ public class ZgloszenieController {
     private final ZgloszenieMapper zgloszenieMapper;
     private final ZgloszenieService zgloszenieService;
     private final ZadanieMapper zadanieMapper;
+    private final OsobaMapper osobaMapper;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -64,6 +67,13 @@ public class ZgloszenieController {
     public ZgloszenieDTO replace(@RequestBody ZgloszenieDTO newZgloszenie, @PathVariable Long id)
     {
         return zgloszenieMapper.convertToDTO(zgloszenieService.replace(zgloszenieMapper.convertToEntity(newZgloszenie), id));
+    }
+
+    @GetMapping("/{id}/osoba")
+    @ResponseStatus(HttpStatus.OK)
+    public OsobaDTO findOsobaById(@PathVariable Long id)
+    {
+        return osobaMapper.convertToDTO(zgloszenieService.findOsobaById(id));
     }
 
 }

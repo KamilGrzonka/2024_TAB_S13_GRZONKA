@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.s13tab.budynkibackend.model.Osoba;
 import com.s13tab.budynkibackend.model.Zadanie;
 import com.s13tab.budynkibackend.model.Zgloszenie;
 import com.s13tab.budynkibackend.repository.ZgloszenieRepository;
@@ -61,6 +62,11 @@ public class ZgloszenieService {
 
     public Long count() {
         return zgloszenieRepository.count();
+    }
+
+    public Osoba findOsobaById(Long id)
+    {
+        return findById(id).getOsoba();
     }
 
 }
