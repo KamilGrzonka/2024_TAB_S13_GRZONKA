@@ -38,18 +38,18 @@ export function personForm({
     },
     {
       pesel: {
-        type: "INPUT",
-        defaultValue: `${entityData?.pesel || ""}`,
+        type: "INPUT_NUMBER",
+        defaultValue: entityData?.pesel,
         options: [],
       },
       imie: {
         type: "INPUT",
-        defaultValue: `${entityData?.imie || ""}`,
+        defaultValue: entityData?.imie,
         options: [],
       },
       nazwisko: {
         type: "INPUT",
-        defaultValue: `${entityData?.nazwisko || ""}`,
+        defaultValue: entityData?.nazwisko,
         options: [],
       },
     },

@@ -18,13 +18,17 @@ public class OsobaMapper {
 
     // private final UmowaService umowaService;
 
+    // private final ZgloszenieService zgloszenieService;
+
     public OsobaDTO convertToDTO(Osoba osoba) {
         // List<Long> meldunki = osoba.getMeldunki().stream().map(Meldunek::getId)
         //         .collect(Collectors.toList());
         // List<Long> umowy = osoba.getUmowy().stream().map(Umowa::getId)
         //         .collect(Collectors.toList());
+        // List<Long> zgloszenia = meldunek.getZgloszenia().stream().map(Zgloszenie::getId)
+        //         .collect(Collectors.toList());
         return new OsobaDTO(osoba.getId(), osoba.getPesel(), osoba.getImie(), osoba.getNazwisko()
-                // , meldunki, umowy
+                // , meldunki, umowy, zgloszenia
                 );
     }
 
@@ -33,9 +37,12 @@ public class OsobaMapper {
         //         .map(meldunekId -> meldunekService.findById(meldunekId)).collect(Collectors.toList());
         // List<Umowa> umowy = osobaDTO.getUmowyId().stream()
         //         .map(umowaId -> umowaService.findById(umowaId)).collect(Collectors.toList());
+        // List<Zgloszenie> zgloszenia = meldunekDTO.getZgloszeniaId().stream()
+        //         .map(zgloszenieId -> zgloszenieService.findById(zgloszenieId))
+        //         .collect(Collectors.toList());
         return new Osoba(osobaDTO.getId(), osobaDTO.getPesel(), osobaDTO.getImie(), osobaDTO.getNazwisko(),
-                // meldunki, umowy
-                null, null
+                // meldunki, umowy, zgloszenia
+                null, null, null
                 );
     }
 

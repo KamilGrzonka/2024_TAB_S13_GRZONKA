@@ -31,7 +31,7 @@ public class ZgloszenieDTO {
 
     private Short priorytet;
 
-    private Long meldunekId;
+    private Long osobaId;
 
     private Long mieszkanieId;
 

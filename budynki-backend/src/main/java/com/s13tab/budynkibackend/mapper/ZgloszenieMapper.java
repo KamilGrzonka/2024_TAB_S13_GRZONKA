@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 import com.s13tab.budynkibackend.dto.ZgloszenieDTO;
 import com.s13tab.budynkibackend.model.Zgloszenie;
 import com.s13tab.budynkibackend.service.BudynekService;
-import com.s13tab.budynkibackend.service.MeldunekService;
 import com.s13tab.budynkibackend.service.MieszkanieService;
+import com.s13tab.budynkibackend.service.OsobaService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @Component
 public class ZgloszenieMapper {
 
-    private final MeldunekService meldunekService;
+    private final OsobaService osobaService;
 
     private final MieszkanieService mieszkanieService;
 
@@ -32,7 +32,7 @@ public class ZgloszenieMapper {
                 zgloszenie.getDataWykonania(), zgloszenie.getStatusZgloszenia(),
                 zgloszenie.getTypZgloszenia(),
                 zgloszenie.getKosztCalkowity(), zgloszenie.getPriorytet(),
-                zgloszenie.getMeldunek().getId(),
+                zgloszenie.getOsoba().getId(),
                 zgloszenie.getMieszkanie().getId(), zgloszenie.getBudynek().getId()
                 // , zadania
                 );
@@ -45,7 +45,7 @@ public class ZgloszenieMapper {
                 zgloszenieDTO.getDataWykonania(), zgloszenieDTO.getStatusZgloszenia(),
                 zgloszenieDTO.getTypZgloszenia(),
                 zgloszenieDTO.getKosztCalkowity(), zgloszenieDTO.getPriorytet(),
-                meldunekService.findById(zgloszenieDTO.getMeldunekId()),
+                osobaService.findById(zgloszenieDTO.getOsobaId()),
                 mieszkanieService.findById(zgloszenieDTO.getMieszkanieId()),
                 budynekService.findById(zgloszenieDTO.getBudynekId()),
                 // zadania

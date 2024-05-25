@@ -76,7 +76,7 @@ export interface RepairData {
   typZgloszenia: RepairType; // nullable = false
   kosztCalkowity?: number; // scale = 2, precision = 10
   priorytet: number; // nullable = false
-  meldunekId?: number;
+  osobaId?: number;
   mieszkanieId?: number;
   budynekId?: number;
 }

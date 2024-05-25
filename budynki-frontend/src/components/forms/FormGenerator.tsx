@@ -31,9 +31,11 @@ export default function FormGenerator<T extends AnyFormKeys>({
   const defaultValues = Object.keys(formDefiner.formFields).reduce(
     (acc, key) => ({
       ...acc,
-      [key]: formDefiner.formFields[key as T].defaultValue
-        ? `${formDefiner.formFields[key as T].defaultValue}`
-        : formDefiner.formFields[key as T].defaultValue,
+      [key]:
+        formDefiner.formFields[key as T].defaultValue != undefined &&
+        formDefiner.formFields[key as T].defaultValue != null
+          ? `${formDefiner.formFields[key as T].defaultValue}`
+          : undefined,
     }),
     {} as DefaultValues<z.infer<typeof formDefiner.formSchema>>,
   );

@@ -13,7 +13,7 @@ export type FormFieldType =
   | "TEXTAREA";
 
 export type FormFieldOptionDefiner = {
-  id: number;
+  id: number | string;
   label: string;
 }
 

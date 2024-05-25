@@ -49,7 +49,7 @@ export type RepairFormKeys =
   | "typZgloszenia"
   | "kosztCalkowity"
   | "priorytet"
-  | "meldunekId"
+  | "osobaId"
   | "budynekId"
   | "mieszkanieId";
 
@@ -69,6 +69,6 @@ export type AnyFormKeys =
   // | OutgoingPaymentFormKeys
   | PersonFormKeys
   | PriceListFormKeys
-  | RegistrationFormKeys;
-// | RepairFormKeys
+  | RegistrationFormKeys
+  | RepairFormKeys;
 // | TaskFormKeys;

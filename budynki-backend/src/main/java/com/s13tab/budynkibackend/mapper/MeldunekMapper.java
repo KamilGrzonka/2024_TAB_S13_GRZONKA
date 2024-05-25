@@ -20,27 +20,15 @@ public class MeldunekMapper {
 
     private final MieszkanieService mieszkanieService;
 
-    // private final ZgloszenieService zgloszenieService;
-
     public MeldunekDTO convertToDTO(Meldunek meldunek) {
-        // List<Long> zgloszenia = meldunek.getZgloszenia().stream().map(Zgloszenie::getId)
-        //         .collect(Collectors.toList());
         return new MeldunekDTO(meldunek.getId(), meldunek.getDataMeldunku(), meldunek.getDataWymeldowania(),
-                meldunek.getOsoba().getId(), meldunek.getMieszkanie().getId()
-                // , zgloszenia
-                );
+                meldunek.getOsoba().getId(), meldunek.getMieszkanie().getId());
     }
 
     public Meldunek convertToEntity(MeldunekDTO meldunekDTO) {
-        // List<Zgloszenie> zgloszenia = meldunekDTO.getZgloszeniaId().stream()
-        //         .map(zgloszenieId -> zgloszenieService.findById(zgloszenieId))
-        //         .collect(Collectors.toList());
         return new Meldunek(meldunekDTO.getId(), meldunekDTO.getDataMeldunku(), meldunekDTO.getDataWymeldowania(),
                 osobaService.findById(meldunekDTO.getOsobaId()),
-                mieszkanieService.findById(meldunekDTO.getMieszkanieId()),
-                // zgloszenia
-                null
-                );
+                mieszkanieService.findById(meldunekDTO.getMieszkanieId()));
     }
 
     public List<MeldunekDTO> convertToDTO(List<Meldunek> meldunki) {

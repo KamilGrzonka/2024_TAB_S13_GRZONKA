@@ -57,8 +57,8 @@ public class Zgloszenie {
     private Short priorytet;
 
     @ManyToOne
-    @JoinColumn(name = "meldunek_id")
-    private Meldunek meldunek;
+    @JoinColumn(name = "osoba_id")
+    private Osoba osoba;
 
     @ManyToOne
     @JoinColumn(name = "mieszkanie_id")

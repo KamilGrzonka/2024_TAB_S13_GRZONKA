@@ -55,7 +55,7 @@ export function companyForm({
         options: [],
       },
       nip: {
-        type: "INPUT",
+        type: "INPUT_NUMBER",
         defaultValue: entityData?.nip,
         options: [],
       },

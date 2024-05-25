@@ -5,9 +5,11 @@ import java.util.List;
 import com.s13tab.budynkibackend.dto.MeldunekDTO;
 import com.s13tab.budynkibackend.dto.OsobaDTO;
 import com.s13tab.budynkibackend.dto.UmowaDTO;
+import com.s13tab.budynkibackend.dto.ZgloszenieDTO;
 import com.s13tab.budynkibackend.mapper.MeldunekMapper;
 import com.s13tab.budynkibackend.mapper.OsobaMapper;
 import com.s13tab.budynkibackend.mapper.UmowaMapper;
+import com.s13tab.budynkibackend.mapper.ZgloszenieMapper;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -35,6 +37,7 @@ public class OsobaController {
     private final OsobaMapper osobaMapper;
     private final MeldunekMapper meldunekMapper;
     private final UmowaMapper umowaMapper;
+    private final ZgloszenieMapper zgloszenieMapper;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -70,6 +73,12 @@ public class OsobaController {
     @ResponseStatus(HttpStatus.OK)
     public List<UmowaDTO> findUmowyById(@PathVariable Long id) {
         return umowaMapper.convertToDTO(osobaService.findUmowyById(id));
+    }
+
+    @GetMapping("/{id}/zgloszenia")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ZgloszenieDTO> findZgloszeniaById(@PathVariable Long id) {
+        return zgloszenieMapper.convertToDTO(osobaService.findZgloszeniaById(id));
     }
 
 }

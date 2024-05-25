@@ -44,7 +44,7 @@ public class ZgloszenieService {
             zgloszenie.setTypZgloszenia(newZgloszenie.getTypZgloszenia());
             zgloszenie.setKosztCalkowity(newZgloszenie.getKosztCalkowity());
             zgloszenie.setPriorytet(newZgloszenie.getPriorytet());
-            zgloszenie.setMeldunek(newZgloszenie.getMeldunek());
+            zgloszenie.setOsoba(newZgloszenie.getOsoba());
             zgloszenie.setMieszkanie(newZgloszenie.getMieszkanie());
             zgloszenie.setBudynek(newZgloszenie.getBudynek());
             return save(zgloszenie);

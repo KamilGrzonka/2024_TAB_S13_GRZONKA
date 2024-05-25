@@ -63,7 +63,7 @@ export function buildingForm({
         options: [],
       },
       liczbaMiejsc: {
-        type: "INPUT",
+        type: "INPUT_NUMBER",
         defaultValue: entityData?.liczbaMiejsc,
         options: [],
       },

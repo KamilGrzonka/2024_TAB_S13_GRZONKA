@@ -36,4 +36,7 @@ public class Osoba {
     @OneToMany(mappedBy = "osoba")
     private List<Umowa> umowy;
 
+    @OneToMany(mappedBy = "osoba")
+    private List<Zgloszenie> zgloszenia;
+
 }

@@ -52,8 +52,10 @@ public class BootstrapService {
 
     public void populateDatabase() {
         if (budynekService.count() != 0 || cennikService.count() != 0 || firmaService.count() != 0
-                || meldunekService.count() != 0 || mieszkanieService.count() != 0 || osobaService.count() != 0
-                || platnoscService.count() != 0 || umowaService.count() != 0 || zadanieService.count() != 0
+                || meldunekService.count() != 0 || mieszkanieService.count() != 0
+                || osobaService.count() != 0
+                || platnoscService.count() != 0 || umowaService.count() != 0
+                || zadanieService.count() != 0
                 || zgloszenieService.count() != 0) {
             return;
         }
@@ -63,38 +65,46 @@ public class BootstrapService {
         budynekService.save(new Budynek(null, "Mickiewicza", "8A", "44-003", "Katowice", 20, null, null));
         budynekService.save(new Budynek(null, "Główna", "53", "30-001", "Kraków", 16, null, null));
 
-        mieszkanieService.save(new Mieszkanie(null, 1, (short) 0, (short) 3, "Mieszkanie z łazienką i dwoma pokojami.",
-                budynekService.findById(1), null, null, null));
+        mieszkanieService.save(
+                new Mieszkanie(null, 1, (short) 0, (short) 3, "Mieszkanie z łazienką i dwoma pokojami.",
+                        budynekService.findById(1), null, null, null));
         mieszkanieService.save(new Mieszkanie(null, 101, (short) 1, (short) 1,
-                "Mieszkanie z łazienką, dwoma pokojami i balkonem.", budynekService.findById(1), null, null, null));
+                "Mieszkanie z łazienką, dwoma pokojami i balkonem.", budynekService.findById(1), null,
+                null, null));
         mieszkanieService.save(new Mieszkanie(null, 1, (short) 0, (short) 4,
-                "Mieszkanie dla studentów, łazienka, cztery pokoje, korytarz.", budynekService.findById(2), null, null,
+                "Mieszkanie dla studentów, łazienka, cztery pokoje, korytarz.",
+                budynekService.findById(2), null, null,
                 null));
         mieszkanieService.save(
-                new Mieszkanie(null, 2, (short) 0, (short) 1, null, budynekService.findById(2), null, null, null));
+                new Mieszkanie(null, 2, (short) 0, (short) 1, null, budynekService.findById(2), null,
+                        null, null));
 
-        cennikService.save(new Cennik(null, new Date(1716422400000L), new Date(1719014400000L), new BigDecimal(1807.23),
+        cennikService.save(new Cennik(null, new Date(1716422400000L), new Date(1719014400000L),
+                new BigDecimal(1807.23),
                 mieszkanieService.findById(1)));
-        cennikService.save(new Cennik(null, new Date(1713830400000L), new Date(1716422400000L), new BigDecimal(1653.86),
+        cennikService.save(new Cennik(null, new Date(1713830400000L), new Date(1716422400000L),
+                new BigDecimal(1653.86),
                 mieszkanieService.findById(1)));
-        cennikService.save(new Cennik(null, new Date(1716422400000L), new Date(1719014400000L), new BigDecimal(1530.47),
+        cennikService.save(new Cennik(null, new Date(1716422400000L), new Date(1719014400000L),
+                new BigDecimal(1530.47),
                 mieszkanieService.findById(2)));
-        cennikService.save(new Cennik(null, new Date(1716422400000L), new Date(1719014400000L), new BigDecimal(1530.47),
+        cennikService.save(new Cennik(null, new Date(1716422400000L), new Date(1719014400000L),
+                new BigDecimal(1530.47),
                 mieszkanieService.findById(3)));
 
-        osobaService.save(new Osoba(null, "12345678901", "Krzysztof", "Kowalski", null, null));
-        osobaService.save(new Osoba(null, "10987654321", "Andrzej", "Nowak", null, null));
-        osobaService.save(new Osoba(null, "65432110987", "Dariusz", "Lewandowski", null, null));
-        osobaService.save(new Osoba(null, "65498732110", "Grzegoż", "Wójcik", null, null));
+        osobaService.save(new Osoba(null, "12345678901", "Krzysztof", "Kowalski", null, null, null));
+        osobaService.save(new Osoba(null, "10987654321", "Andrzej", "Nowak", null, null, null));
+        osobaService.save(new Osoba(null, "65432110987", "Dariusz", "Lewandowski", null, null, null));
+        osobaService.save(new Osoba(null, "65498732110", "Grzegoż", "Wójcik", null, null, null));
 
         meldunekService.save(new Meldunek(null, new Date(1716422400000L), new Date(1719014400000L),
-                osobaService.findById(1), mieszkanieService.findById(1), null));
+                osobaService.findById(1), mieszkanieService.findById(1)));
         meldunekService.save(new Meldunek(null, new Date(1716422400000L), null, osobaService.findById(2),
-                mieszkanieService.findById(1), null));
+                mieszkanieService.findById(1)));
         meldunekService.save(new Meldunek(null, new Date(1716422400000L), new Date(1719014400000L),
-                osobaService.findById(3), mieszkanieService.findById(2), null));
+                osobaService.findById(3), mieszkanieService.findById(2)));
         meldunekService.save(new Meldunek(null, new Date(1716422400000L), new Date(1719014400000L),
-                osobaService.findById(4), mieszkanieService.findById(3), null));
+                osobaService.findById(4), mieszkanieService.findById(3)));
 
     }
 

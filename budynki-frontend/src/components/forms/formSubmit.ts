@@ -10,7 +10,7 @@ export async function formSubmit(
 ) {
   try {
     const newEntity: AnyEntity = await fn(endpoint, method, body);
-    toastEntity(newEntity, "Dodano wpis");
+    toastEntity(newEntity, method == "POST" ? "Dodano wpis" : "Edytowano wpis");
     return true;
   } catch (error) {
     error instanceof Error && toast.error(error.message);

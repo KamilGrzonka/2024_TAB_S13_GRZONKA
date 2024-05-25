@@ -23,6 +23,4 @@ public class MeldunekDTO {
 
     private Long mieszkanieId;
 
-    // private List<Long> zgloszeniaId;
-
 }

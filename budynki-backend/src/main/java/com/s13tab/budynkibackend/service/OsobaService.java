@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.s13tab.budynkibackend.model.Meldunek;
 import com.s13tab.budynkibackend.model.Osoba;
 import com.s13tab.budynkibackend.model.Umowa;
+import com.s13tab.budynkibackend.model.Zgloszenie;
 import com.s13tab.budynkibackend.repository.OsobaRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -52,6 +53,10 @@ public class OsobaService {
 
     public List<Umowa> findUmowyById(Long id) {
         return findById(id).getUmowy();
+    }
+
+    public List<Zgloszenie> findZgloszeniaById(Long id) {
+        return findById(id).getZgloszenia();
     }
 
     public Long count() {

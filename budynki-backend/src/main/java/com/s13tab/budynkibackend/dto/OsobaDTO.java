@@ -23,4 +23,6 @@ public class OsobaDTO {
 
     // private List<Long> umowyId;
 
+    // private List<Long> zgloszeniaId;
+
 }

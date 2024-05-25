@@ -29,17 +29,17 @@ export function apartmentForm({
     },
     {
       numerMieszkania: {
-        type: "INPUT",
+        type: "INPUT_NUMBER",
         defaultValue: entityData?.numerMieszkania,
         options: [],
       },
       pietro: {
-        type: "INPUT",
+        type: "INPUT_NUMBER",
         defaultValue: entityData?.pietro,
         options: [],
       },
       liczbaMieszkancow: {
-        type: "INPUT",
+        type: "INPUT_NUMBER",
         defaultValue: entityData?.liczbaMieszkancow,
         options: [],
       },
