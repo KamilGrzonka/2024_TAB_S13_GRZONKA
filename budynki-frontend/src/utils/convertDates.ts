@@ -50,7 +50,7 @@ function toDates(date: Date) {
 }
 
 function toString(date: Date) {
-  return date ? date.toDateString() : "";
+  return date ? date.toLocaleDateString() : "";
 }
 
 export function entityDateToDate<T>(object: T) {

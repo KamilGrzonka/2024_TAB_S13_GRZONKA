@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { ControllerRenderProps, UseFormReturn } from "react-hook-form";
+import { pl } from "date-fns/locale"
 
 interface FormDatepickerProps<T extends ControllerRenderProps> {
   field: T;
@@ -34,7 +35,7 @@ export default function FormDatepicker<T extends ControllerRenderProps>({
             )}
           >
             {field.value ? (
-              format(field.value, "PPP")
+              format(field.value, "PPP", {locale: pl})
             ) : (
               <span>Wybierz datę</span>
             )}
@@ -53,6 +54,7 @@ export default function FormDatepicker<T extends ControllerRenderProps>({
           selected={field.value}
           onSelect={field.onChange}
           disabled={(date) => date < new Date("1900-01-01")}
+          locale={pl}
           initialFocus
         />
       </PopoverContent>

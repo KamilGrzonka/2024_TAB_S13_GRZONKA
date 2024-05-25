@@ -101,7 +101,7 @@ export default function FormGenerator<T extends AnyFormKeys>({
                     {customLabel ?? camelToTitle(name)}:
                   </FormLabel>
                   {/* Debug lines */}
-                  {/* <p className="font-bold">Wartość pola: {field.value as unknown instanceof Date ? (field.value as Date).toDateString() : field.value as string}</p> */}
+                  {/* <p className="font-bold">Wartość pola: {field.value as unknown instanceof Date ? (field.value as Date).toLocaleDateString() : field.value as string}</p> */}
                   {/* <p className="font-bold">Wartość pola: {`${field.value}`}</p> */}
                   {type == "INPUT" || type == "INPUT_NUMBER" ? (
                     <FormInput

@@ -2,7 +2,7 @@ import { RepairFormKeys } from "@/types/FormKeys";
 import { formDefiner, optionDataToLabel } from "../FormDefiner";
 import { ApartmentData, PersonData, RepairData } from "@/types/Entities";
 import { HttpMethods } from "@/types/HttpMethods";
-import { zDate, zEnum, zNonNegative, zNumber, zOptional } from "../zodWrapper";
+import { zDate, zEnum, zNonNegative, zNumber, zNumberPrecisionScale, zOptional } from "../zodWrapper";
 import { RepairStatus } from "@/types/enums/RepairStatus";
 import { RepairType } from "@/types/enums/RepairType";
 
@@ -40,7 +40,7 @@ export function repairForm({
         ],
       }), // nullable = false
       typZgloszenia: zEnum({ enums: [RepairType.REMONT, RepairType.USTERKA] }), // nullable = false
-      kosztCalkowity: zOptional(zNumber().pipe(zNonNegative())), // scale = 2, precision = 10
+      kosztCalkowity: zOptional(zNumber().pipe(zNonNegative()).pipe(zNumberPrecisionScale())), // scale = 2, precision = 10
       priorytet: zNumber(), // nullable = false
       osobaId: zOptional(zNumber().pipe(zNonNegative())),
       mieszkanieId: zOptional(zNumber().pipe(zNonNegative())),

@@ -110,10 +110,10 @@ const Registrations = () => {
                   </Link>
                 </TableCell>
                 <TableCell className="text-center">
-                  {registration.dataMeldunku.toDateString()}
+                  {registration.dataMeldunku.toLocaleDateString()}
                 </TableCell>
                 <TableCell className="text-center">
-                  {registration.dataWymeldowania?.toDateString() || ""}
+                  {registration.dataWymeldowania?.toLocaleDateString() || ""}
                 </TableCell>
                 <TableCell className="justify-center flex">
                   <Link to={`${registration.meldunekId}`}>

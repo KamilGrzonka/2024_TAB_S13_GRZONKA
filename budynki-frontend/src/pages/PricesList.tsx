@@ -42,7 +42,7 @@ const PricesList = () => {
         }}
       >
         <Typography variant="h3">Cennik</Typography>
-        <X className="hover:cursor-pointer" onClick={() => navigate(-1)} size={36} />
+        <X className="hover:cursor-pointer" onClick={() => navigate("..", { relative: "path" })} size={36} />
       </Box>
       <Box
         sx={{
@@ -87,10 +87,10 @@ const PricesList = () => {
                     {price.cena}
                   </TableCell>
                   <TableCell className="text-center">
-                    {price.dataPoczatkowa.toDateString()}
+                    {price.dataPoczatkowa.toLocaleDateString()}
                   </TableCell>
                   <TableCell className="text-center">
-                    {price.dataKoncowa.toDateString()}
+                    {price.dataKoncowa.toLocaleDateString()}
                   </TableCell>
                   <TableCell className="justify-center flex">
                     <Link to={`${price.id}`}>

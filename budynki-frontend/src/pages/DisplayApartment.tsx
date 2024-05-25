@@ -33,7 +33,7 @@ export default function DisplayApartment() {
           }}
         >
           <Typography variant="h3">{`${building.data.numerBudynku} ${building.data.ulica}`}</Typography>
-          <X className="hover:cursor-pointer" onClick={() => navigate(-1)} size={36}/>
+          <X className="hover:cursor-pointer" onClick={() => navigate("..", { relative: "path" })} size={36}/>
         </Box>
       ) : building.isLoading ? (
         <div className="flex items-center justify-center">

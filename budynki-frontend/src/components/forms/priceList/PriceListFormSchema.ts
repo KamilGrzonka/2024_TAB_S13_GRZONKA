@@ -2,7 +2,7 @@ import { PriceListData } from "@/types/Entities";
 import { PriceListFormKeys } from "@/types/FormKeys";
 import { HttpMethods } from "@/types/HttpMethods";
 import { formDefiner } from "../FormDefiner";
-import { zNumber, zNonNegative, zDate } from "../zodWrapper";
+import { zNumber, zNonNegative, zDate, zNumberPrecisionScale } from "../zodWrapper";
 
 interface PriceListFormArgs {
   entityData?: PriceListData;
@@ -24,7 +24,7 @@ export function priceListForm({
     {
       dataPoczatkowa: zDate(), // nullable = false
       dataKoncowa: zDate(), // nullable = false
-      cena: zNumber().pipe(zNonNegative()), // scale = 2, precision = 10, nullable = false
+      cena: zNumber().pipe(zNonNegative()).pipe(zNumberPrecisionScale()), // scale = 2, precision = 10, nullable = false
     },
     {
       dataPoczatkowa: {

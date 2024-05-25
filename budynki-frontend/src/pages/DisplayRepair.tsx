@@ -33,7 +33,7 @@ export default function DisplayRepair() {
           }}
         >
           <Typography variant="h3">{`${building.data.numerBudynku} ${building.data.ulica}`}</Typography>
-          <X className="hover:cursor-pointer" onClick={() => navigate(-1)} size={36} />
+          <X className="hover:cursor-pointer" onClick={() => navigate("..", { relative: "path" })} size={36} />
         </Box>
       ) : building.isLoading ? (
         <div className="flex items-center justify-center">
@@ -91,11 +91,11 @@ export default function DisplayRepair() {
             Status Zgłoszenia: {repair.data.statusZgloszenia}
           </Typography>
           <Typography variant="h6">
-            Data zgłoszenia: {repair.data.dataZgloszenia.toDateString()}{" "}
+            Data zgłoszenia: {repair.data.dataZgloszenia.toLocaleDateString()}{" "}
           </Typography>
           <Typography variant="h6">
             Data końcowa:{" "}
-            {repair.data.dataWykonania?.toDateString() || ""}
+            {repair.data.dataWykonania?.toLocaleDateString() || ""}
           </Typography>
           <Typography variant="h6">
             Koszt całkowity: {repair.data.kosztCalkowity}

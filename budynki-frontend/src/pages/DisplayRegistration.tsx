@@ -36,7 +36,7 @@ export default function DisplayRegistration() {
           }}
         >
           <Typography variant="h3">{`${building.data.numerBudynku} ${building.data.ulica}`}</Typography>
-          <X className="hover:cursor-pointer" onClick={() => navigate(-1)} size={36} />
+          <X className="hover:cursor-pointer" onClick={() => navigate("..", { relative: "path" })} size={36} />
         </Box>
       ) : building.isLoading ? (
         <div className="flex items-center justify-center">
@@ -86,11 +86,11 @@ export default function DisplayRegistration() {
             </Link>
           </Typography>
           <Typography variant="h6">
-            Data początkowa: {registration.data.dataMeldunku.toDateString()}{" "}
+            Data początkowa: {registration.data.dataMeldunku.toLocaleDateString()}{" "}
           </Typography>
           <Typography variant="h6">
             Data końcowa:{" "}
-            {registration.data.dataWymeldowania?.toDateString() || ""}
+            {registration.data.dataWymeldowania?.toLocaleDateString() || ""}
           </Typography>
           <div id="buttons" className="flex mt-20 justify-center">
             <Button asChild className="mr-40 pt-6 pb-6 pl-10 pr-10">
