@@ -8,14 +8,20 @@ interface FormInputProps<T extends ControllerRenderProps> {
   field: T;
   type: FormFieldType;
   name: string;
+  customLabel?: string;
 }
 
-export default function FormInput<T extends ControllerRenderProps>({ field, type, name }: FormInputProps<T>) {
+export default function FormInput<T extends ControllerRenderProps>({
+  field,
+  type,
+  name,
+  customLabel,
+}: FormInputProps<T>) {
   return (
     <FormControl>
       <Input
         type={type == "INPUT_NUMBER" ? "number" : "text"}
-        placeholder={camelToTitle(name)}
+        placeholder={customLabel ?? camelToTitle(name)}
         {...field}
       />
     </FormControl>

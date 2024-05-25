@@ -15,7 +15,9 @@ interface FormDatepickerProps<T extends ControllerRenderProps> {
   field: T;
 }
 
-export default function FormDatepicker<T extends ControllerRenderProps>({ field }: FormDatepickerProps<T>) {
+export default function FormDatepicker<T extends ControllerRenderProps>({
+  field,
+}: FormDatepickerProps<T>) {
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -41,9 +43,7 @@ export default function FormDatepicker<T extends ControllerRenderProps>({ field 
           mode="single"
           selected={field.value}
           onSelect={field.onChange}
-          disabled={(date) =>
-            date < new Date("1900-01-01")
-          }
+          disabled={(date) => date < new Date("1900-01-01")}
           initialFocus
         />
       </PopoverContent>

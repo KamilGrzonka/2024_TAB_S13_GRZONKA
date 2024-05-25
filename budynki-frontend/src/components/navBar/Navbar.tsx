@@ -21,7 +21,7 @@ function Navbar() {
                     end={item.path === '/'}
                   >
                     {/* {item.icon} */}
-                    <span>{item.title}</span>
+                    <span className='nav-title'>{item.title}</span>
                   </NavLink>
                 </li>
               );

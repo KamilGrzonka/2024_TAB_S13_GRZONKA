@@ -1,9 +1,8 @@
 import { PriceListData } from "@/types/Entities";
 import { PriceListFormKeys } from "@/types/FormKeys";
 import { HttpMethods } from "@/types/HttpMethods";
-import { z } from "zod";
 import { formDefiner } from "../FormDefiner";
-import { zNumber, zNonNegative } from "../zodWrapper";
+import { zNumber, zNonNegative, zDate } from "../zodWrapper";
 
 interface PriceListFormArgs {
   entityData?: PriceListData;
@@ -23,8 +22,8 @@ export function priceListForm({
 }: PriceListFormArgs) {
   return formDefiner<PriceListFormKeys>(
     {
-      dataPoczatkowa: z.coerce.date(), // nullable = false
-      dataKoncowa: z.coerce.date(), // nullable = false
+      dataPoczatkowa: zDate(), // nullable = false
+      dataKoncowa: zDate(), // nullable = false
       cena: zNumber().pipe(zNonNegative()), // scale = 2, precision = 10, nullable = false
     },
     {

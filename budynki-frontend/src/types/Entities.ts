@@ -78,7 +78,7 @@ export interface RepairData {
   priorytet: number; // nullable = false
   osobaId?: number;
   mieszkanieId?: number;
-  budynekId?: number;
+  budynekId: number; // nullable = false
 }
 
 export interface TaskData {

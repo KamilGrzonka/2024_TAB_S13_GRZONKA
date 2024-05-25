@@ -1,12 +1,12 @@
 import LoadingComponent from "@/components/LoadingComponent";
 import { getBackendApi } from "@/components/fetchBackendApi";
-import { ApartmentData, PersonData, RegistrationData } from "@/types/Entities";
+import { ApartmentData, PersonData, RepairData } from "@/types/Entities";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import FormGenerator from "../FormGenerator";
-import { registrationForm } from "./registrationFormSchema";
+import { repairForm } from "./repairFormSchema";
 
-export function RegistrationFormAdd() {
+export function RepairFormAdd() {
   const { buildingId } = useParams();
   const persons = useQuery({
     queryKey: ["persons"],
@@ -19,16 +19,19 @@ export function RegistrationFormAdd() {
   });
   return (
     <>
-      <h2 className="pb-5 text-3xl tracking-tight">Dodawanie meldunku</h2>
+      <h2 className="pb-5 text-3xl tracking-tight">Dodawanie zgłoszenia</h2>
       <LoadingComponent queryResult={[persons, apartments]}>
         <FormGenerator
-          formDefiner={registrationForm({
-            endpoint: `/meldunki`,
+          formDefiner={repairForm({
+            endpoint: `/zgloszenia`,
             method: "POST",
             entityData: {
               apartments: apartments.data!,
               persons: persons.data!,
             },
+            additionalSubmitFields: {
+                budynekId: `${buildingId}`,
+            }
           })}
         />
       </LoadingComponent>
@@ -36,12 +39,12 @@ export function RegistrationFormAdd() {
   );
 }
 
-export function RegistrationFormEdit() {
-  const { buildingId, registrationId } = useParams();
+export function RepairFormEdit() {
+  const { buildingId, repairId } = useParams();
   const query = useQuery({
-    queryKey: ["registration", registrationId],
+    queryKey: ["repair", repairId],
     queryFn: () =>
-      getBackendApi<RegistrationData>(`/meldunki/${registrationId}`),
+      getBackendApi<RepairData>(`/zgloszenia/${repairId}`),
   });
   const persons = useQuery({
     queryKey: ["persons"],
@@ -54,19 +57,20 @@ export function RegistrationFormEdit() {
   });
   return (
     <>
-      <h2 className="pb-5 text-3xl tracking-tight">Edytowanie meldunku</h2>
+      <h2 className="pb-5 text-3xl tracking-tight">Edytowanie zgłoszenia</h2>
       <LoadingComponent queryResult={[query, persons, apartments]}>
         <FormGenerator
-          formDefiner={registrationForm({
-            endpoint: `/meldunki/${registrationId}`,
+          formDefiner={repairForm({
+            endpoint: `/zgloszenia/${repairId}`,
             method: "PUT",
             entityData: {
               apartments: apartments.data!,
               persons: persons.data!,
-              registration: query.data,
+              repair: query.data,
             },
             additionalSubmitFields: {
-              meldunekId: `${registrationId}`,
+                zgloszenieId: `${repairId}`,
+                budynekId: `${buildingId}`,
             },
           })}
         />

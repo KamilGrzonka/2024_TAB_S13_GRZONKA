@@ -67,8 +67,23 @@ export function zNumberMinMaxDigits({
   );
 }
 
-export function zDate({ message }: zNonValueArgs) {
+export function zDate({ message }: zNonValueArgs = {}) {
+  message = message ?? "Podaj datę";
   return z.coerce.date({ message: message });
+}
+
+export function zOptional(schema: z.ZodTypeAny) {
+  return schema.or(z.literal(""));
+}
+
+interface zEnumArgs {
+  enums: readonly [string, ...string[]];
+  message?: string;
+}
+
+export function zEnum({enums, message}: zEnumArgs) {
+  message = message ?? "Wybierz jedną z podanych opcji";
+  return z.enum(enums, {message: message});
 }
 
 export const polishChars = "a-zA-ZąćęłńóśżźĄĆĘŁŃÓŚŻŹ";

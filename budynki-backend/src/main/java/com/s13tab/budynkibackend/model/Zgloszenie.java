@@ -65,7 +65,7 @@ public class Zgloszenie {
     private Mieszkanie mieszkanie;
 
     @ManyToOne
-    @JoinColumn(name = "budynek_id")
+    @JoinColumn(name = "budynek_id", nullable = false)
     private Budynek budynek;
 
     @OneToMany(mappedBy = "zgloszenie")

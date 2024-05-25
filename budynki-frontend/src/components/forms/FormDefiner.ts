@@ -21,6 +21,7 @@ type FormFieldDefiner = {
   type: FormFieldType;
   defaultValue: unknown;
   options: FormFieldOptionDefiner[];
+  customLabel?: string;
 }
 
 type FormFieldsDefiner<T extends AnyFormKeys> = {

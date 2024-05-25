@@ -6,13 +6,18 @@ import { ControllerRenderProps } from "react-hook-form";
 interface FormTextAreaProps<T extends ControllerRenderProps> {
   field: T;
   name: string;
+  customLabel?: string;
 }
 
-export default function FormTextArea<T extends ControllerRenderProps>({ field, name }: FormTextAreaProps<T>) {
+export default function FormTextArea<T extends ControllerRenderProps>({
+  field,
+  name,
+  customLabel,
+}: FormTextAreaProps<T>) {
   return (
     <FormControl>
       <Textarea
-        placeholder={camelToTitle(name)}
+        placeholder={customLabel ?? camelToTitle(name)}
         className="resize-y"
         {...field}
       />

@@ -28,6 +28,8 @@ import { RegistrationFormAdd, RegistrationFormEdit } from "./components/forms/re
 import RegistrationsOfBuilding from "./pages/RegistrationsOfBuilding.tsx";
 import DisplayRegistration from "./pages/DisplayRegistration.tsx";
 import DisplayPerson from "./pages/DisplayPerson.tsx";
+import { CompanyFormAdd, CompanyFormEdit } from "./components/forms/company/CompanyForms.tsx";
+import { RepairFormAdd, RepairFormEdit } from "./components/forms/repair/RepairForms.tsx";
 
 const router = createBrowserRouter([
   {
@@ -129,6 +131,22 @@ const router = createBrowserRouter([
           {
             path: "meldunki/:buildingId/:registrationId/edytuj",
             element: <RegistrationFormEdit />,
+          },
+          {
+            path: "firmy/dodaj",
+            element: <CompanyFormAdd />,
+          },
+          {
+            path: "firmy/:companyId/edytuj",
+            element: <CompanyFormEdit />,
+          },
+          {
+            path: "zgloszenia/:buildingId/dodaj",
+            element: <RepairFormAdd />,
+          },
+          {
+            path: "zgloszenia/:buildingId/:repairId/edytuj",
+            element: <RepairFormEdit />,
           },
         ]
       }

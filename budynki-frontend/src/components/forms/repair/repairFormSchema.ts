@@ -1,16 +1,14 @@
 import { RepairFormKeys } from "@/types/FormKeys";
 import { formDefiner, optionDataToLabel } from "../FormDefiner";
-import { ApartmentData, BuildingData, PersonData, RepairData } from "@/types/Entities";
+import { ApartmentData, PersonData, RepairData } from "@/types/Entities";
 import { HttpMethods } from "@/types/HttpMethods";
-import { z } from "zod";
-import { zNonNegative, zNumber } from "../zodWrapper";
+import { zDate, zEnum, zNonNegative, zNumber, zOptional } from "../zodWrapper";
 import { RepairStatus } from "@/types/enums/RepairStatus";
 import { RepairType } from "@/types/enums/RepairType";
 
 interface RepairFormEntityData {
   repair?: RepairData;
   persons: PersonData[];
-  buildings: BuildingData[];
   apartments: ApartmentData[];
 }
 
@@ -19,7 +17,8 @@ interface RepairFormArgs {
   endpoint: string;
   method: HttpMethods;
   additionalSubmitFields?: {
-    meldunekId?: number | string;
+    zgloszenieId?: number | string;
+    budynekId: number | string;
   };
 }
 
@@ -31,19 +30,20 @@ export function repairForm({
 }: RepairFormArgs) {
   return formDefiner<RepairFormKeys>(
     {
-      dataZgloszenia: z.coerce.date(), // nullable = false
-      dataWykonania: z.coerce.date().optional(),
-      statusZgloszenia: z.enum([
-        RepairStatus.W_TRAKCIE,
-        RepairStatus.ZAKONCZONE,
-        RepairStatus.ZGLOSZONE,
-      ]), // nullable = false
-      typZgloszenia: z.enum([RepairType.REMONT, RepairType.USTERKA]), // nullable = false
-      kosztCalkowity: zNumber().pipe(zNonNegative()).optional(), // scale = 2, precision = 10
+      dataZgloszenia: zDate(), // nullable = false
+      dataWykonania: zOptional(zDate()),
+      statusZgloszenia: zEnum({
+        enums: [
+          RepairStatus.W_TRAKCIE,
+          RepairStatus.ZAKONCZONE,
+          RepairStatus.ZGLOSZONE,
+        ],
+      }), // nullable = false
+      typZgloszenia: zEnum({ enums: [RepairType.REMONT, RepairType.USTERKA] }), // nullable = false
+      kosztCalkowity: zOptional(zNumber().pipe(zNonNegative())), // scale = 2, precision = 10
       priorytet: zNumber(), // nullable = false
-      osobaId: zNumber().pipe(zNonNegative()).optional(),
-      mieszkanieId: zNumber().pipe(zNonNegative()).optional(),
-      budynekId: zNumber().pipe(zNonNegative()).optional(),
+      osobaId: zOptional(zNumber().pipe(zNonNegative())),
+      mieszkanieId: zOptional(zNumber().pipe(zNonNegative())),
     },
     {
       dataZgloszenia: {
@@ -58,13 +58,23 @@ export function repairForm({
       },
       statusZgloszenia: {
         type: "RADIO",
-        defaultValue: entityData.repair?.statusZgloszenia,
-        options: [{id: RepairStatus.ZGLOSZONE, label: "Zgłoszone"}, {id: RepairStatus.W_TRAKCIE, label: "W trakcie"}, {id: RepairStatus.ZAKONCZONE, label: "Zakończone"}],
+        defaultValue:
+          entityData.repair?.statusZgloszenia || RepairStatus.ZGLOSZONE,
+        options: [
+          { id: RepairStatus.ZGLOSZONE, label: "Zgłoszone" },
+          { id: RepairStatus.W_TRAKCIE, label: "W trakcie" },
+          { id: RepairStatus.ZAKONCZONE, label: "Zakończone" },
+        ],
+        customLabel: "Status Zgłoszenia",
       },
       typZgloszenia: {
         type: "RADIO",
-        defaultValue: entityData.repair?.typZgloszenia,
-        options: [{id: RepairType.REMONT, label: "Remont"}, {id: RepairType.USTERKA, label: "Usterka"}],
+        defaultValue: entityData.repair?.typZgloszenia || RepairType.REMONT,
+        options: [
+          { id: RepairType.REMONT, label: "Remont" },
+          { id: RepairType.USTERKA, label: "Usterka" },
+        ],
+        customLabel: "Typ Zgłoszenia",
       },
       kosztCalkowity: {
         type: "INPUT_NUMBER",
@@ -79,17 +89,17 @@ export function repairForm({
       osobaId: {
         type: "SELECT",
         defaultValue: entityData.repair?.osobaId,
-        options: optionDataToLabel(["imie", "nazwisko", "pesel"], entityData.persons),
-      },
-      budynekId: {
-        type: "SELECT",
-        defaultValue: entityData.repair?.budynekId,
-        options: optionDataToLabel(["numerBudynku", "ulica", "miasto"], entityData.buildings),
+        options: optionDataToLabel(
+          ["imie", "nazwisko", "pesel"],
+          entityData.persons,
+        ),
       },
       mieszkanieId: {
         type: "SELECT",
         defaultValue: entityData.repair?.mieszkanieId,
-        options: optionDataToLabel(["numerMieszkania"], entityData.apartments, {numerMieszkania: "mieszkanie nr.: "}),
+        options: optionDataToLabel(["numerMieszkania"], entityData.apartments, {
+          numerMieszkania: "mieszkanie nr.: ",
+        }),
       },
     },
     endpoint,

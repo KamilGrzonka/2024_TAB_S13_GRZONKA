@@ -32,10 +32,10 @@ export default function FormGenerator<T extends AnyFormKeys>({
     (acc, key) => ({
       ...acc,
       [key]:
-        formDefiner.formFields[key as T].defaultValue != undefined &&
-        formDefiner.formFields[key as T].defaultValue != null
+        formDefiner.formFields[key as T].defaultValue != null ||
+        formDefiner.formFields[key as T].defaultValue != undefined
           ? `${formDefiner.formFields[key as T].defaultValue}`
-          : undefined,
+          : "",
     }),
     {} as DefaultValues<z.infer<typeof formDefiner.formSchema>>,
   );
@@ -49,13 +49,19 @@ export default function FormGenerator<T extends AnyFormKeys>({
   const navigate = useNavigate();
 
   async function onSubmit(values: z.infer<typeof formDefiner.formSchema>) {
+    const valuesWithUndefined = Object.fromEntries(
+      Object.entries(values).map(([key, value]) => [
+        key,
+        value === "" ? undefined : value,
+      ]),
+    );
     (await formSubmit(
       fetchBackendApi,
       formDefiner.endpoint,
       formDefiner.method,
       {
         ...formDefiner.additionalSubmitFields,
-        ...values,
+        ...valuesWithUndefined,
       },
     )) && navigate("..", { relative: "path" });
   }
@@ -67,6 +73,7 @@ export default function FormGenerator<T extends AnyFormKeys>({
           const name = key as T;
           const type = formDefiner.formFields[key as T].type;
           const options = formDefiner.formFields[key as T].options;
+          const customLabel = formDefiner.formFields[key as T].customLabel;
 
           return (
             <FormField
@@ -77,13 +84,16 @@ export default function FormGenerator<T extends AnyFormKeys>({
               }
               render={({ field }) => (
                 <FormItem className="flex flex-col">
-                  <FormLabel>{camelToTitle(name)}:</FormLabel>
-
+                  <FormLabel>{customLabel ?? camelToTitle(name)}:</FormLabel>
+                  {/* Debug lines */}
+                  {/* <p className="font-bold">Wartość pola: {field.value as unknown instanceof Date ? (field.value as Date).toDateString() : field.value as string}</p> */}
+                  <p className="font-bold">Wartość pola: {`${field.value}`}</p>
                   {type == "INPUT" || type == "INPUT_NUMBER" ? (
                     <FormInput
                       field={field as unknown as ControllerRenderProps}
                       type={type}
                       name={name}
+                      customLabel={customLabel}
                     />
                   ) : type == "RADIO" ? (
                     <FormRadio
@@ -95,6 +105,7 @@ export default function FormGenerator<T extends AnyFormKeys>({
                       field={field as unknown as ControllerRenderProps}
                       options={options}
                       name={name}
+                      customLabel={customLabel}
                     />
                   ) : type == "DATEPICKER" ? (
                     <FormDatepicker
@@ -104,6 +115,7 @@ export default function FormGenerator<T extends AnyFormKeys>({
                     <FormTextArea
                       field={field as unknown as ControllerRenderProps}
                       name={name}
+                      customLabel={customLabel}
                     />
                   ) : (
                     <div className="flex items-center justify-center">
@@ -112,7 +124,6 @@ export default function FormGenerator<T extends AnyFormKeys>({
                       </span>
                     </div>
                   )}
-
                   <FormMessage />
                 </FormItem>
               )}

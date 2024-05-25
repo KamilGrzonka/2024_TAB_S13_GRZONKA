@@ -8,7 +8,10 @@ interface FormRadioProps<T extends ControllerRenderProps> {
   options: FormFieldOptionDefiner[];
 }
 
-export default function FormRadio<T extends ControllerRenderProps>({ field, options }: FormRadioProps<T>) {
+export default function FormRadio<T extends ControllerRenderProps>({
+  field,
+  options,
+}: FormRadioProps<T>) {
   return (
     <FormControl>
       <RadioGroup

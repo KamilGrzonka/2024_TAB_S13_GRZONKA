@@ -1,5 +1,5 @@
 import { ApartmentFormKeys } from "@/types/FormKeys";
-import { zNonNegative, zNumber, zPositive, zStringMinMax } from "../zodWrapper";
+import { zNonNegative, zNumber, zOptional, zPositive, zStringMinMax } from "../zodWrapper";
 import { formDefiner } from "../FormDefiner";
 import { ApartmentData } from "@/types/Entities";
 import { HttpMethods } from "@/types/HttpMethods";
@@ -25,7 +25,7 @@ export function apartmentForm({
       numerMieszkania: zNumber().pipe(zPositive()), // nullable = false
       pietro: zNumber().pipe(zNonNegative()), // nullable = false
       liczbaMieszkancow: zNumber().pipe(zNonNegative()), // nullable = false
-      opis: zStringMinMax({ min: 0, max: 65535 }).optional(), // length = 65535
+      opis: zOptional(zStringMinMax({ max: 65535 })), // length = 65535
     },
     {
       numerMieszkania: {

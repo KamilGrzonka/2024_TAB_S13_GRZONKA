@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 import com.s13tab.budynkibackend.dto.ZgloszenieDTO;
+import com.s13tab.budynkibackend.model.Mieszkanie;
+import com.s13tab.budynkibackend.model.Osoba;
 import com.s13tab.budynkibackend.model.Zgloszenie;
 import com.s13tab.budynkibackend.service.BudynekService;
 import com.s13tab.budynkibackend.service.MieszkanieService;
@@ -28,12 +30,24 @@ public class ZgloszenieMapper {
     public ZgloszenieDTO convertToDTO(Zgloszenie zgloszenie) {
         // List<Long> zadania = zgloszenie.getZadania().stream().map(Zadanie::getId)
         //         .collect(Collectors.toList());
+        Long osobaId = null;
+        Osoba osoba = zgloszenie.getOsoba();
+        if(osoba != null)
+        {
+            osobaId = osoba.getId();
+        }
+        Long mieszkanieId = null;
+        Mieszkanie mieszkanie = zgloszenie.getMieszkanie();
+        if(mieszkanie != null)
+        {
+            mieszkanieId = mieszkanie.getId();
+        }
         return new ZgloszenieDTO(zgloszenie.getId(), zgloszenie.getDataZgloszenia(),
                 zgloszenie.getDataWykonania(), zgloszenie.getStatusZgloszenia(),
                 zgloszenie.getTypZgloszenia(),
                 zgloszenie.getKosztCalkowity(), zgloszenie.getPriorytet(),
-                zgloszenie.getOsoba().getId(),
-                zgloszenie.getMieszkanie().getId(), zgloszenie.getBudynek().getId()
+                osobaId,
+                mieszkanieId, zgloszenie.getBudynek().getId()
                 // , zadania
                 );
     }
@@ -41,12 +55,24 @@ public class ZgloszenieMapper {
     public Zgloszenie convertToEntity(ZgloszenieDTO zgloszenieDTO) {
         // List<Zadanie> zadania = zgloszenieDTO.getZadaniaId().stream()
         //         .map(zadanieId -> zadanieService.findById(zadanieId)).collect(Collectors.toList());
+        Osoba osoba = null;
+        Long osobaId = zgloszenieDTO.getOsobaId();
+        if(osobaId != null)
+        {
+            osoba = osobaService.findById(osobaId);
+        }
+        Mieszkanie mieszkanie = null;
+        Long mieszkanieId = zgloszenieDTO.getMieszkanieId();
+        if(mieszkanieId != null)
+        {
+            mieszkanie = mieszkanieService.findById(mieszkanieId);
+        }
         return new Zgloszenie(zgloszenieDTO.getId(), zgloszenieDTO.getDataZgloszenia(),
                 zgloszenieDTO.getDataWykonania(), zgloszenieDTO.getStatusZgloszenia(),
                 zgloszenieDTO.getTypZgloszenia(),
                 zgloszenieDTO.getKosztCalkowity(), zgloszenieDTO.getPriorytet(),
-                osobaService.findById(zgloszenieDTO.getOsobaId()),
-                mieszkanieService.findById(zgloszenieDTO.getMieszkanieId()),
+                osoba,
+                mieszkanie,
                 budynekService.findById(zgloszenieDTO.getBudynekId()),
                 // zadania
                 null

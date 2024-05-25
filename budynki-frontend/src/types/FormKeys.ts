@@ -50,7 +50,6 @@ export type RepairFormKeys =
   | "kosztCalkowity"
   | "priorytet"
   | "osobaId"
-  | "budynekId"
   | "mieszkanieId";
 
 export type TaskFormKeys =

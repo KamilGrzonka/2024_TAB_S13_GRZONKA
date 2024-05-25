@@ -14,14 +14,20 @@ interface FormSelectProps<T extends ControllerRenderProps> {
   field: T;
   name: string;
   options: FormFieldOptionDefiner[];
+  customLabel?: string;
 }
 
-export default function FormSelect<T extends ControllerRenderProps>({ field, name, options }: FormSelectProps<T>) {
+export default function FormSelect<T extends ControllerRenderProps>({
+  field,
+  name,
+  options,
+  customLabel,
+}: FormSelectProps<T>) {
   return (
     <Select onValueChange={field.onChange} defaultValue={field.value}>
       <FormControl>
         <SelectTrigger>
-          <SelectValue placeholder={camelToTitle(name)} />
+          <SelectValue placeholder={customLabel ?? camelToTitle(name)} />
         </SelectTrigger>
       </FormControl>
       <SelectContent>
