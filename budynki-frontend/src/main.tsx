@@ -26,7 +26,9 @@ import { PriceListFormAdd, PriceListFormEdit } from "./components/forms/priceLis
 import { PersonFormAdd, PersonFormEdit } from "./components/forms/person/PersonForms.tsx";
 import { RegistrationFormAdd, RegistrationFormEdit } from "./components/forms/registration/ResistrationForms.tsx";
 import RegistrationsOfBuilding from "./pages/RegistrationsOfBuilding.tsx";
+import BuildingRepairs from "./pages/RepairsOfBuilding.tsx";
 import DisplayRegistration from "./pages/DisplayRegistration.tsx";
+import DisplayRepair from "./pages/DisplayRepair.tsx";
 import DisplayPerson from "./pages/DisplayPerson.tsx";
 import { CompanyFormAdd, CompanyFormEdit } from "./components/forms/company/CompanyForms.tsx";
 import { RepairFormAdd, RepairFormEdit } from "./components/forms/repair/RepairForms.tsx";
@@ -65,6 +67,14 @@ const router = createBrowserRouter([
       {
         path: "zgloszenia",
         element: <Repairs />,
+      },
+      {
+        path: "zgloszenia/:buildingId",
+        element: <BuildingRepairs />,
+      },
+      {
+        path: "zgloszenia/:buildingId/:repairId",
+        element: <DisplayRepair />,
       },
       {
         path: "osoby",
