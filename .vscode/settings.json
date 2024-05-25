@@ -4,6 +4,7 @@
         "@material-ui",
         "@mui",
         "react-day-picker",
+        "cmdk",
     ],
     "java.compile.nullAnalysis.mode": "automatic"
 }

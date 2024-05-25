@@ -3,10 +3,11 @@ import {
   ControllerRenderProps,
   DefaultValues,
   Path,
+  UseFormReturn,
   useForm,
 } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { z } from "zod";
+import { ZodLiteral, ZodUnion, z } from "zod";
 import { formSubmit } from "./formSubmit";
 import { fetchBackendApi } from "../fetchBackendApi";
 import { Button } from "../ui/button";
@@ -75,6 +76,13 @@ export default function FormGenerator<T extends AnyFormKeys>({
           const options = formDefiner.formFields[key as T].options;
           const customLabel = formDefiner.formFields[key as T].customLabel;
 
+          const isOptional =
+            formDefiner.formSchema.shape[name] instanceof ZodUnion &&
+            formDefiner.formSchema.shape[name]._def.options.some(
+              (option: unknown) =>
+                option instanceof ZodLiteral && option.value === "",
+            );
+
           return (
             <FormField
               key={name}
@@ -84,7 +92,14 @@ export default function FormGenerator<T extends AnyFormKeys>({
               }
               render={({ field }) => (
                 <FormItem className="flex flex-col">
-                  <FormLabel>{customLabel ?? camelToTitle(name)}:</FormLabel>
+                  <FormLabel>
+                    {!isOptional ? (
+                      <span className="text-red-500">*</span>
+                    ) : (
+                      <></>
+                    )}
+                    {customLabel ?? camelToTitle(name)}:
+                  </FormLabel>
                   {/* Debug lines */}
                   {/* <p className="font-bold">Wartość pola: {field.value as unknown instanceof Date ? (field.value as Date).toDateString() : field.value as string}</p> */}
                   {/* <p className="font-bold">Wartość pola: {`${field.value}`}</p> */}
@@ -106,6 +121,7 @@ export default function FormGenerator<T extends AnyFormKeys>({
                       options={options}
                       name={name}
                       customLabel={customLabel}
+                      form={form as unknown as UseFormReturn}
                     />
                   ) : type == "DATEPICKER" ? (
                     <FormDatepicker
