@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 import com.s13tab.budynkibackend.dto.ZadanieDTO;
+import com.s13tab.budynkibackend.model.Firma;
 import com.s13tab.budynkibackend.model.Zadanie;
 import com.s13tab.budynkibackend.service.FirmaService;
 import com.s13tab.budynkibackend.service.ZgloszenieService;
@@ -21,15 +22,27 @@ public class ZadanieMapper {
     private final ZgloszenieService zgloszenieService;
 
     public ZadanieDTO convertToDTO(Zadanie zadanie) {
+        Long firmaId = null;
+        Firma firma = zadanie.getFirma();
+        if(firma != null)
+        {
+            firmaId = firma.getId();
+        }
         return new ZadanieDTO(zadanie.getId(), zadanie.getKoszt(), zadanie.getOpis(),
                 zadanie.getDataRozpoczecia(), zadanie.getDataZakonczenia(),
-                zadanie.getFirma().getId(), zadanie.getZgloszenie().getId());
+                firmaId, zadanie.getZgloszenie().getId());
     }
 
     public Zadanie convertToEntity(ZadanieDTO zadanieDTO) {
+        Firma firma = null;
+        Long firmaId = zadanieDTO.getFirmaId();
+        if(firmaId != null)
+        {
+            firma = firmaService.findById(firmaId);
+        }
         return new Zadanie(zadanieDTO.getId(), zadanieDTO.getKoszt(), zadanieDTO.getOpis(),
                 zadanieDTO.getDataRozpoczecia(), zadanieDTO.getDataZakonczenia(),
-                firmaService.findById(zadanieDTO.getFirmaId()),
+                firma,
                 zgloszenieService.findById(zadanieDTO.getZgloszenieId()));
     }
 

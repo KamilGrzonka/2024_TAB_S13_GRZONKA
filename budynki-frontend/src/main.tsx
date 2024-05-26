@@ -33,6 +33,7 @@ import DisplayPerson from "./pages/DisplayPerson.tsx";
 import { CompanyFormAdd, CompanyFormEdit } from "./components/forms/company/CompanyForms.tsx";
 import { RepairFormAdd, RepairFormEdit } from "./components/forms/repair/RepairForms.tsx";
 import Companies from "./pages/Companies.tsx";
+import { TaskFormAdd, TaskFormEdit } from "./components/forms/task/TaskForms.tsx";
 
 const router = createBrowserRouter([
   {
@@ -162,6 +163,14 @@ const router = createBrowserRouter([
           {
             path: "zgloszenia/:buildingId/:repairId/edytuj",
             element: <RepairFormEdit />,
+          },
+          {
+            path: "zgloszenia/:buildingId/:repairId/zadania/dodaj",
+            element: <TaskFormAdd />,
+          },
+          {
+            path: "zgloszenia/:buildingId/:repairId/zadania/:taskId/edytuj",
+            element: <TaskFormEdit />,
           },
         ]
       }

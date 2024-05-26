@@ -69,5 +69,5 @@ export type AnyFormKeys =
   | PersonFormKeys
   | PriceListFormKeys
   | RegistrationFormKeys
-  | RepairFormKeys;
-// | TaskFormKeys;
+  | RepairFormKeys
+  | TaskFormKeys;
