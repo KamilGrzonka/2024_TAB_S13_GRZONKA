@@ -11,7 +11,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { LoaderCircle } from "lucide-react";
-import { ChevronRight } from 'lucide-react';
+import { Pencil } from 'lucide-react';
 import { getBackendApi } from "@/components/fetchBackendApi";
 import { PersonData } from "@/types/Entities";
 
@@ -59,7 +59,7 @@ const Persons = () => {
                 <TableCell className="text-center">{apartment.pesel}</TableCell>
                 <TableCell className="justify-center flex">
                   <Link to={`${apartment.id}/edytuj`}>
-                    <ChevronRight className="mr-5"/>
+                    <Pencil className="mr-5"/>
                   </Link>
                 </TableCell>
               </TableRow>

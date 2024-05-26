@@ -83,7 +83,7 @@ const BuildingRepairs = () => {
           <TableHeader>
             <TableRow>
               <TableHead className="w-1/6 text-center">Numer zgłoszenia</TableHead>
-              <TableHead className="w-1/6 text-center">Osoba zgłaszająca</TableHead>
+              <TableHead className="w-1/6 text-center">Priorytet</TableHead>
               <TableHead className="w-1/6 text-center">Numer mieszkania</TableHead>
               <TableHead className="w-1/6 text-center">Typ zgłoszenia</TableHead>
               <TableHead className="w-1/6 text-center">Status zgłoszenia</TableHead>
@@ -97,9 +97,7 @@ const BuildingRepairs = () => {
                     {`${repair.id}`}
                 </TableCell>
                 <TableCell className="text-center">
-                  <Link to={`/osoby/${repair.osobaId}`}>
-                    {`${repair.imie} ${repair.nazwisko}`}
-                  </Link>
+                    {`${repair.priorytet}`}
                 </TableCell>
                 <TableCell className="text-center">
                   <Link

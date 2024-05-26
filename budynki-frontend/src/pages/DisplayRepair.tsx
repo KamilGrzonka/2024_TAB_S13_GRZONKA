@@ -5,7 +5,7 @@ import { LoaderCircle } from "lucide-react";
 import { getBackendApi } from "@/components/fetchBackendApi";
 import { Box, Container, Typography } from "@mui/material";
 import { X } from "lucide-react";
-import { BuildingData, RepairData } from "@/types/Entities";
+import { BuildingData, RepairData, PersonData } from "@/types/Entities";
 
 export default function DisplayRepair() {
   const navigate = useNavigate();
@@ -19,6 +19,11 @@ export default function DisplayRepair() {
   const building = useQuery({
     queryKey: ["building", buildingId],
     queryFn: () => getBackendApi<BuildingData>(`/budynki/${buildingId}`),
+  });
+
+  const person = useQuery({
+    queryKey: ["person"],
+    queryFn: () => getBackendApi<PersonData>(`/osoby/${repair.data.osobaId}`),
   });
 
   return (
@@ -73,7 +78,7 @@ export default function DisplayRepair() {
           </Typography>
           <Typography variant="h6">
             <Link to={`/osoby/${repair.data.osobaId}`}>
-              Osoba zgłaszająca: {repair.data.imie} {repair.data.nazwisko}
+              Osoba zgłaszająca: {person.isSuccess ? (`${person.data.imie} ${person.data.nazwisko}`) : `${repair.data.osobaId}`}
             </Link>
           </Typography>
           <Typography variant="h6">
