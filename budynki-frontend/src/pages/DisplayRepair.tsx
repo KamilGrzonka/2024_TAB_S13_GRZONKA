@@ -12,8 +12,7 @@ export default function DisplayRepair() {
   const { buildingId, repairId } = useParams();
   const repair = useQuery({
     queryKey: ["repair", repairId],
-    queryFn: () =>
-      getBackendApi<RepairData>(`/zgloszenia/${repairId}`),
+    queryFn: () => getBackendApi<RepairData>(`/zgloszenia/${repairId}`),
   });
 
   const building = useQuery({
@@ -21,9 +20,12 @@ export default function DisplayRepair() {
     queryFn: () => getBackendApi<BuildingData>(`/budynki/${buildingId}`),
   });
 
+  const personId = repair.data?.osobaId;
+
   const person = useQuery({
-    queryKey: ["person"],
-    queryFn: () => getBackendApi<PersonData>(`/osoby/${repair.data.osobaId}`),
+    queryKey: ["person", personId],
+    queryFn: () => getBackendApi<PersonData>(`/osoby/${personId}`),
+    enabled: !!personId,
   });
 
   return (
@@ -38,7 +40,11 @@ export default function DisplayRepair() {
           }}
         >
           <Typography variant="h3">{`${building.data.numerBudynku} ${building.data.ulica}`}</Typography>
-          <X className="hover:cursor-pointer" onClick={() => navigate("..", { relative: "path" })} size={36} />
+          <X
+            className="hover:cursor-pointer"
+            onClick={() => navigate("..", { relative: "path" })}
+            size={36}
+          />
         </Box>
       ) : building.isLoading ? (
         <div className="flex items-center justify-center">
@@ -78,7 +84,12 @@ export default function DisplayRepair() {
           </Typography>
           <Typography variant="h6">
             <Link to={`/osoby/${repair.data.osobaId}`}>
-              Osoba zgłaszająca: {person.isSuccess ? (`${person.data.imie} ${person.data.nazwisko}`) : `${repair.data.osobaId}`}
+              Osoba zgłaszająca:{" "}
+              {personId
+                ? person.isSuccess
+                  ? `${person.data.imie} ${person.data.nazwisko}`
+                  : `${personId}`
+                : ""}
             </Link>
           </Typography>
           <Typography variant="h6">
