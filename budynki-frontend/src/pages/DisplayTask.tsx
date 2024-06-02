@@ -79,8 +79,18 @@ export default function DisplayTask() {
             Opis: {task.data.opis}
           </Typography>
           <Typography variant="h6">
+            Data rozpoczęcia: {task.data.dataRozpoczecia.toLocaleDateString()}{" "}
+          </Typography>
+          <Typography variant="h6">
+            Data zakończenia:{" "}
+            {task.data.dataZakonczenia?.toLocaleDateString() || ""}
+          </Typography>
+          <Typography variant="h6">
+            Koszt: {task.data.koszt}
+          </Typography>
+          <Typography variant="h6">
             <Link to={`/firmy/${task.data.firmaId}`}>
-              Firma podwykonawcza:{" "}
+              <span className="font-semibold">Firma podwykonawcza:</span>
               {companyId
                 ? company.isSuccess
                   ? <Box>
@@ -91,16 +101,6 @@ export default function DisplayTask() {
                   : `${companyId}`
                 : ""}
             </Link>
-          </Typography>
-          <Typography variant="h6">
-            Data rozpoczęcia: {task.data.dataRozpoczecia.toLocaleDateString()}{" "}
-          </Typography>
-          <Typography variant="h6">
-            Data zakończenia:{" "}
-            {task.data.dataZakonczenia?.toLocaleDateString() || ""}
-          </Typography>
-          <Typography variant="h6">
-            Koszt: {task.data.koszt}
           </Typography>
           <div id="buttons" className="flex mt-20 justify-center">
             <Button asChild className="pt-6 pb-6 pl-10 pr-10">

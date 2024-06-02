@@ -37,6 +37,7 @@ import { CompanyFormAdd, CompanyFormEdit } from "./components/forms/company/Comp
 import { RepairFormAdd, RepairFormEdit } from "./components/forms/repair/RepairForms.tsx";
 import Companies from "./pages/Companies.tsx";
 import { TaskFormAdd, TaskFormEdit } from "./components/forms/task/TaskForms.tsx";
+import TasksOfCompany from "./pages/TasksOfCompany.tsx";
 
 const router = createBrowserRouter([
   {
@@ -107,6 +108,10 @@ const router = createBrowserRouter([
       {
         path: "firmy/:companyId",
         element: <DisplayCompany />,
+      },
+      {
+        path: "firmy/:companyId/zadania",
+        element: <TasksOfCompany />,
       },
       {
         path: "raporty",
