@@ -55,11 +55,13 @@ export function taskForm({
         type: "DATEPICKER",
         defaultValue: entityData.task?.dataRozpoczecia,
         options: [],
+        datePickerLimits: { maxField: "dataZakonczenia" },
       },
       dataZakonczenia: {
         type: "DATEPICKER",
         defaultValue: entityData.task?.dataZakonczenia,
         options: [],
+        datePickerLimits: { minField: "dataRozpoczecia" },
       },
       firmaId: {
         type: "SELECT",

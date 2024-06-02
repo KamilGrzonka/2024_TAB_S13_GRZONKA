@@ -1,11 +1,21 @@
 import { PriceListData } from "@/types/Entities";
 import { PriceListFormKeys } from "@/types/FormKeys";
 import { HttpMethods } from "@/types/HttpMethods";
-import { formDefiner } from "../FormDefiner";
-import { zNumber, zNonNegative, zDate, zNumberPrecisionScale } from "../zodWrapper";
+import { formDefiner, priceListsToDatesRange } from "../FormDefiner";
+import {
+  zNumber,
+  zNonNegative,
+  zDate,
+  zNumberPrecisionScale,
+} from "../zodWrapper";
+
+interface PriceListFormEntityData {
+  priceList?: PriceListData;
+  priceLists: PriceListData[];
+}
 
 interface PriceListFormArgs {
-  entityData?: PriceListData;
+  entityData: PriceListFormEntityData;
   endpoint: string;
   method: HttpMethods;
   additionalSubmitFields: {
@@ -29,17 +39,28 @@ export function priceListForm({
     {
       dataPoczatkowa: {
         type: "DATEPICKER",
-        defaultValue: entityData?.dataPoczatkowa,
+        defaultValue: entityData.priceList?.dataPoczatkowa,
         options: [],
+        datePickerLimits: {
+          maxField: "dataKoncowa",
+          ranges: priceListsToDatesRange(entityData.priceLists),
+        },
       },
       dataKoncowa: {
         type: "DATEPICKER",
-        defaultValue: entityData?.dataKoncowa,
+        defaultValue: entityData.priceList?.dataKoncowa,
         options: [],
+        datePickerLimits: {
+          minField: "dataPoczatkowa",
+          ranges: priceListsToDatesRange(
+            entityData.priceLists,
+            entityData.priceList,
+          ),
+        },
       },
       cena: {
         type: "INPUT_NUMBER",
-        defaultValue: entityData?.cena,
+        defaultValue: entityData.priceList?.cena,
         options: [],
       },
     },

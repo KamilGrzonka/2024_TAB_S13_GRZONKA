@@ -1,4 +1,4 @@
-import { AnyEntity } from "@/types/Entities";
+import { AnyEntity, PriceListData } from "@/types/Entities";
 import { AnyFormKeys } from "@/types/FormKeys";
 import { HttpMethods } from "@/types/HttpMethods";
 import { ZodObject, z } from "zod";
@@ -15,17 +15,29 @@ export type FormFieldType =
 export type FormFieldOptionDefiner = {
   id: number | string;
   label: string;
-}
+};
 
-type FormFieldDefiner = {
+type DateRange = {
+  min: Date;
+  max: Date;
+};
+
+export type DatePickerLimits<T extends string> = {
+  minField?: T;
+  ranges?: DateRange[];
+  maxField?: T;
+};
+
+type FormFieldDefiner<T extends AnyFormKeys> = {
   type: FormFieldType;
   defaultValue: unknown;
   options: FormFieldOptionDefiner[];
   customLabel?: string;
-}
+  datePickerLimits?: DatePickerLimits<T>;
+};
 
 type FormFieldsDefiner<T extends AnyFormKeys> = {
-  [K in T]-?: FormFieldDefiner;
+  [K in T]-?: FormFieldDefiner<T>;
 };
 
 export type FormSchema<T extends AnyFormKeys> = {
@@ -59,15 +71,32 @@ export function formDefiner<T extends AnyFormKeys>(
   return formDefiner;
 }
 
-export function optionDataToLabel<U extends AnyEntity>( // nie testowane
+export function optionDataToLabel<U extends AnyEntity>(
   labels: (keyof U)[],
   optionsData: U[],
-  additionalLabelText?: {[K in keyof U]? : string}
+  additionalLabelText?: { [K in keyof U]?: string },
 ): FormFieldOptionDefiner[] {
   return optionsData
     ? optionsData.map((option: U) => ({
         id: option.id,
-        label: labels.map((label) => `${additionalLabelText?.[label] || ""}${option[label]}`).join(" "),
+        label: labels
+          .map(
+            (label) => `${additionalLabelText?.[label] || ""}${option[label]}`,
+          )
+          .join(" "),
       }))
     : [];
+}
+
+export function priceListsToDatesRange(
+  priceLists: PriceListData[],
+  priceList?: PriceListData,
+): DateRange[] {
+  const currentPriceListId = priceList?.id || null;
+  return priceLists
+    .filter(({ id }) => id !== currentPriceListId)
+    .map(({ dataPoczatkowa, dataKoncowa }) => ({
+      min: dataPoczatkowa,
+      max: dataKoncowa,
+    }));
 }

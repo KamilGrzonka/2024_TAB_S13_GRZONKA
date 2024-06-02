@@ -37,11 +37,13 @@ export function registrationForm({
         type: "DATEPICKER",
         defaultValue: entityData.registration?.dataMeldunku,
         options: [],
+        datePickerLimits: { maxField: "dataWymeldowania" },
       },
       dataWymeldowania: {
         type: "DATEPICKER",
         defaultValue: entityData.registration?.dataWymeldowania,
         options: [],
+        datePickerLimits: { minField: "dataMeldunku" },
       },
       osobaId: {
         type: "SELECT",

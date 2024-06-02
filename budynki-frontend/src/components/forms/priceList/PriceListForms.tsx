@@ -8,18 +8,26 @@ import { priceListForm } from "./PriceListFormSchema";
 
 export function PriceListFormAdd() {
   const { apartmentId } = useParams();
+  const priceLists = useQuery({
+    queryKey: ["prices", apartmentId],
+    queryFn: () =>
+      getBackendApi<PriceListData[]>(`/mieszkania/${apartmentId}/cenniki`),
+  });
   return (
     <>
       <h2 className="pb-5 text-3xl tracking-tight">Dodawanie Cennika</h2>
-      <FormGenerator
-        formDefiner={priceListForm({
-          endpoint: `/cenniki`,
-          method: "POST",
-          additionalSubmitFields: {
-            mieszkanieId: `${apartmentId}`,
-          },
-        })}
-      />
+      <LoadingComponent queryResult={priceLists}>
+        <FormGenerator
+          formDefiner={priceListForm({
+            endpoint: `/cenniki`,
+            method: "POST",
+            additionalSubmitFields: {
+              mieszkanieId: `${apartmentId}`,
+            },
+            entityData: { priceLists: priceLists.data! },
+          })}
+        />
+      </LoadingComponent>
     </>
   );
 }
@@ -29,6 +37,11 @@ export function PriceListFormEdit() {
   const query = useQuery({
     queryKey: ["cennik", priceListId],
     queryFn: () => getBackendApi<PriceListData>(`/cenniki/${priceListId}`),
+  });
+  const priceLists = useQuery({
+    queryKey: ["prices", apartmentId],
+    queryFn: () =>
+      getBackendApi<PriceListData[]>(`/mieszkania/${apartmentId}/cenniki`),
   });
   return (
     <>
@@ -42,7 +55,7 @@ export function PriceListFormEdit() {
               mieszkanieId: `${apartmentId}`,
               cennikId: `${priceListId}`,
             },
-            entityData: query.data,
+            entityData: { priceLists: priceLists.data!, priceList: query.data },
           })}
         />
       </LoadingComponent>

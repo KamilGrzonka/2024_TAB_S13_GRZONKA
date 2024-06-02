@@ -75,6 +75,8 @@ export default function FormGenerator<T extends AnyFormKeys>({
           const type = formDefiner.formFields[key as T].type;
           const options = formDefiner.formFields[key as T].options;
           const customLabel = formDefiner.formFields[key as T].customLabel;
+          const datePickerLimits =
+            formDefiner.formFields[key as T].datePickerLimits;
 
           const isOptional =
             formDefiner.formSchema.shape[name] instanceof ZodUnion &&
@@ -128,6 +130,7 @@ export default function FormGenerator<T extends AnyFormKeys>({
                       field={field as unknown as ControllerRenderProps}
                       name={name}
                       form={form as unknown as UseFormReturn}
+                      datePickerLimits={datePickerLimits}
                     />
                   ) : type == "TEXTAREA" ? (
                     <FormTextArea
