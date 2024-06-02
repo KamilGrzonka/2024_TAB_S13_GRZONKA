@@ -18,6 +18,7 @@ import Reports from "./pages/Reports.tsx";
 import Buildings from "./pages/Buildings.tsx";
 import Apartments from "./pages/Apartments.tsx";
 import PricesList from "./pages/PricesList.tsx";
+import TasksList from "./pages/TasksList.tsx";
 import DisplayApartment from "./pages/DisplayApartment.tsx";
 import DisplayForm from "./components/forms/DisplayForm.tsx";
 import { BuildingFormAdd, BuildingFormEdit } from "./components/forms/building/BuildingForms.tsx";
@@ -30,6 +31,8 @@ import BuildingRepairs from "./pages/RepairsOfBuilding.tsx";
 import DisplayRegistration from "./pages/DisplayRegistration.tsx";
 import DisplayRepair from "./pages/DisplayRepair.tsx";
 import DisplayPerson from "./pages/DisplayPerson.tsx";
+import DisplayCompany from "./pages/DisplayCompany.tsx";
+import DisplayTask from "./pages/DisplayTask.tsx";
 import { CompanyFormAdd, CompanyFormEdit } from "./components/forms/company/CompanyForms.tsx";
 import { RepairFormAdd, RepairFormEdit } from "./components/forms/repair/RepairForms.tsx";
 import Companies from "./pages/Companies.tsx";
@@ -78,6 +81,14 @@ const router = createBrowserRouter([
         element: <DisplayRepair />,
       },
       {
+        path: "zgloszenia/:buildingId/:repairId/zadania",
+        element: <TasksList />,
+      },
+      {
+        path: "zgloszenia/:buildingId/:repairId/zadania/:taskId",
+        element: <DisplayTask />,
+      },
+      {
         path: "osoby",
         element: <Persons />,
       },
@@ -92,6 +103,10 @@ const router = createBrowserRouter([
       {
         path: "firmy",
         element: <Companies />,
+      },
+      {
+        path: "firmy/:companyId",
+        element: <DisplayCompany />,
       },
       {
         path: "raporty",
