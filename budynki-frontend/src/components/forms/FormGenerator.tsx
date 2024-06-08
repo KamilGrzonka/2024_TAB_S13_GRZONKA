@@ -17,10 +17,12 @@ import { FormField, FormItem, FormLabel, FormMessage, Form } from "../ui/form";
 import FormInput from "./formElement/FormInput";
 import FormRadio from "./formElement/FormRadio";
 import FormSelect from "./formElement/FormSelect";
-import FormDatepicker from "./formElement/DatePicker";
-import FormTextArea from "./formElement/TextArea";
+import FormDatepicker from "./formElement/FormDatePicker";
+import FormTextArea from "./formElement/FormTextArea";
 import { FormDefiner } from "./FormDefiner";
 import { AnyFormKeys } from "@/types/FormKeys";
+import FormCheckbox from "./formElement/FormCheckbox";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface FormGeneratorProps<T extends AnyFormKeys> {
   formDefiner: FormDefiner<T>;
@@ -48,6 +50,7 @@ export default function FormGenerator<T extends AnyFormKeys>({
   });
 
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   async function onSubmit(values: z.infer<typeof formDefiner.formSchema>) {
     const valuesWithUndefined = Object.fromEntries(
@@ -56,7 +59,7 @@ export default function FormGenerator<T extends AnyFormKeys>({
         value === "" ? undefined : value,
       ]),
     );
-    (await formSubmit(
+    const result = await formSubmit(
       fetchBackendApi,
       formDefiner.endpoint,
       formDefiner.method,
@@ -64,7 +67,11 @@ export default function FormGenerator<T extends AnyFormKeys>({
         ...formDefiner.additionalSubmitFields,
         ...valuesWithUndefined,
       },
-    )) && navigate("..", { relative: "path" });
+    );
+    if (result) {
+      queryClient.clear();
+      navigate("..", { relative: "path" });
+    }
   }
 
   return (
@@ -137,6 +144,10 @@ export default function FormGenerator<T extends AnyFormKeys>({
                       field={field as unknown as ControllerRenderProps}
                       name={name}
                       customLabel={customLabel}
+                    />
+                  ) : type == "CHECKBOX" ? (
+                    <FormCheckbox
+                      field={field as unknown as ControllerRenderProps}
                     />
                   ) : (
                     <div className="flex items-center justify-center">

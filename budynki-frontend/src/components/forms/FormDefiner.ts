@@ -10,7 +10,8 @@ export type FormFieldType =
   | "SELECT"
   | "SELECT_MULTIPLE"
   | "DATEPICKER"
-  | "TEXTAREA";
+  | "TEXTAREA"
+  | "CHECKBOX";
 
 export type FormFieldOptionDefiner = {
   id: number | string;

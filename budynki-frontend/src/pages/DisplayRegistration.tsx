@@ -36,7 +36,11 @@ export default function DisplayRegistration() {
           }}
         >
           <Typography variant="h3">{`${building.data.numerBudynku} ${building.data.ulica}`}</Typography>
-          <X className="hover:cursor-pointer" onClick={() => navigate("..", { relative: "path" })} size={36} />
+          <X
+            className="hover:cursor-pointer"
+            onClick={() => navigate("..", { relative: "path" })}
+            size={36}
+          />
         </Box>
       ) : building.isLoading ? (
         <div className="flex items-center justify-center">
@@ -72,9 +76,7 @@ export default function DisplayRegistration() {
       {registration.isSuccess ? (
         <div>
           <Typography variant="h6">
-          <Link
-              to={`/osoby/${registration.data.osobaId}`}
-            >
+            <Link to={`/osoby/${registration.data.osobaId}`}>
               Wynajmujący: {registration.data.imie} {registration.data.nazwisko}
             </Link>
           </Typography>
@@ -86,11 +88,15 @@ export default function DisplayRegistration() {
             </Link>
           </Typography>
           <Typography variant="h6">
-            Data początkowa: {registration.data.dataMeldunku.toLocaleDateString()}{" "}
+            Data początkowa:{" "}
+            {registration.data.dataMeldunku.toLocaleDateString()}{" "}
           </Typography>
           <Typography variant="h6">
             Data końcowa:{" "}
             {registration.data.dataWymeldowania?.toLocaleDateString() || ""}
+          </Typography>
+          <Typography variant="h6">
+            Wynajmujący: {registration.data.wynajmujacy ? "Tak" : "Nie"}
           </Typography>
           <div id="buttons" className="flex mt-20 justify-center">
             <Button asChild className="mr-40 pt-6 pb-6 pl-10 pr-10">

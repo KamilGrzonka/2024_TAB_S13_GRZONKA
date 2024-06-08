@@ -19,6 +19,8 @@ public class MeldunekDTO {
 
     private Date dataWymeldowania;
 
+    private Boolean wynajmujacy;
+
     private Long osobaId;
 
     private Long mieszkanieId;

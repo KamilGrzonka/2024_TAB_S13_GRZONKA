@@ -39,6 +39,7 @@ export type PriceListFormKeys = "dataPoczatkowa" | "dataKoncowa" | "cena";
 export type RegistrationFormKeys =
   | "dataMeldunku"
   | "dataWymeldowania"
+  | "wynajmujacy"
   | "osobaId"
   | "mieszkanieId";
 

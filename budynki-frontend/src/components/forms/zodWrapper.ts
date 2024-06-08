@@ -130,4 +130,8 @@ export function zNumberPrecisionScale({
   });
 }
 
+export function zBoolean() {
+  return z.coerce.boolean();
+}
+
 export const polishChars = "a-zA-ZąćęłńóśżźĄĆĘŁŃÓŚŻŹ";

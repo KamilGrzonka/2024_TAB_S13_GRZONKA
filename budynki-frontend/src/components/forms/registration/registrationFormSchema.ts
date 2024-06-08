@@ -2,7 +2,7 @@ import { RegistrationFormKeys } from "@/types/FormKeys";
 import { formDefiner, optionDataToLabel } from "../FormDefiner";
 import { ApartmentData, PersonData, RegistrationData } from "@/types/Entities";
 import { HttpMethods } from "@/types/HttpMethods";
-import { zDate, zNonNegative, zNumber, zOptional } from "../zodWrapper";
+import { zBoolean, zDate, zNonNegative, zNumber, zOptional } from "../zodWrapper";
 
 interface RegistrationFormEntityData {
   registration?: RegistrationData;
@@ -29,6 +29,7 @@ export function registrationForm({
     {
       dataMeldunku: zDate(), // nullable = false
       dataWymeldowania: zOptional(zDate()),
+      wynajmujacy: zBoolean(),
       osobaId: zNumber().pipe(zNonNegative()), // nullable = false
       mieszkanieId: zNumber().pipe(zNonNegative()), // nullable = false
     },
@@ -44,6 +45,11 @@ export function registrationForm({
         defaultValue: entityData.registration?.dataWymeldowania,
         options: [],
         datePickerLimits: { minField: "dataMeldunku" },
+      },
+      wynajmujacy: {
+        type: "CHECKBOX",
+        defaultValue: entityData.registration?.wynajmujacy,
+        options: [],
       },
       osobaId: {
         type: "SELECT",

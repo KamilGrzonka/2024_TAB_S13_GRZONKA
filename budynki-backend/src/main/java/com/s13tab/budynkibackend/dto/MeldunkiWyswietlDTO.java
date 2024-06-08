@@ -20,4 +20,5 @@ public class MeldunkiWyswietlDTO {
     String nazwisko;
     Date dataMeldunku;
     Date dataWymeldowania;
+    Boolean wynajmujacy;
 }

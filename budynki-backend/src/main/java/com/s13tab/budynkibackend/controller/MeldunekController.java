@@ -54,7 +54,7 @@ public class MeldunekController {
         Meldunek meldunek = meldunekService.findById(id);
         return new MeldunkiWyswietlDTO(meldunek.getId(), meldunek.getOsoba().getId(), meldunek.getMieszkanie().getId(),
                 meldunek.getMieszkanie().getNumerMieszkania(), meldunek.getOsoba().getImie(),
-                meldunek.getOsoba().getNazwisko(), meldunek.getDataMeldunku(), meldunek.getDataWymeldowania());
+                meldunek.getOsoba().getNazwisko(), meldunek.getDataMeldunku(), meldunek.getDataWymeldowania(), meldunek.isWynajmujacy());
     }
 
 }

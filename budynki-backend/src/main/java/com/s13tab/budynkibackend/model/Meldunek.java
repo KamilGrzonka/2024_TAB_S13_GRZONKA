@@ -34,6 +34,9 @@ public class Meldunek {
     @Column(name = "data_wymeldowania")
     private Date dataWymeldowania;
 
+    @Column(name = "wynajmujacy", nullable = false)
+    private boolean wynajmujacy;
+
     @ManyToOne
     @JoinColumn(name = "osoba_id", nullable = false)
     private Osoba osoba;

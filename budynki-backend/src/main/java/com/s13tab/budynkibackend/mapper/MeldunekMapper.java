@@ -22,11 +22,13 @@ public class MeldunekMapper {
 
     public MeldunekDTO convertToDTO(Meldunek meldunek) {
         return new MeldunekDTO(meldunek.getId(), meldunek.getDataMeldunku(), meldunek.getDataWymeldowania(),
+                meldunek.isWynajmujacy(),
                 meldunek.getOsoba().getId(), meldunek.getMieszkanie().getId());
     }
 
     public Meldunek convertToEntity(MeldunekDTO meldunekDTO) {
         return new Meldunek(meldunekDTO.getId(), meldunekDTO.getDataMeldunku(), meldunekDTO.getDataWymeldowania(),
+                meldunekDTO.getWynajmujacy(),
                 osobaService.findById(meldunekDTO.getOsobaId()),
                 mieszkanieService.findById(meldunekDTO.getMieszkanieId()));
     }

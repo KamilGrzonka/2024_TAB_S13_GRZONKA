@@ -36,6 +36,7 @@ public class MeldunekService {
         return meldunekRepository.findById(id).map(meldunek -> {
             meldunek.setDataMeldunku(newMeldunek.getDataMeldunku());
             meldunek.setDataWymeldowania(newMeldunek.getDataWymeldowania());
+            meldunek.setWynajmujacy(newMeldunek.isWynajmujacy());
             meldunek.setOsoba(newMeldunek.getOsoba());
             meldunek.setMieszkanie(newMeldunek.getMieszkanie());
             return save(meldunek);

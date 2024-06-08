@@ -102,17 +102,19 @@ public class BootstrapService {
                 osobaService.save(new Osoba(null, "65432110987", "Dariusz", "Lewandowski", null, null, null));
                 osobaService.save(new Osoba(null, "65498732110", "Grzegoż", "Wójcik", null, null, null));
 
-                meldunekService.save(new Meldunek(null, Date.valueOf("2023-05-12"), Date.valueOf("2024-05-12"),
+                meldunekService.save(new Meldunek(null, Date.valueOf("2023-05-12"), Date.valueOf("2024-05-12"), true,
                                 osobaService.findById(1), mieszkanieService.findById(1)));
-                meldunekService.save(new Meldunek(null, Date.valueOf("2023-10-15"), null, osobaService.findById(2),
-                                mieszkanieService.findById(1)));
-                meldunekService.save(new Meldunek(null, Date.valueOf("2023-03-15"), Date.valueOf("2024-03-15"),
+                meldunekService.save(
+                                new Meldunek(null, Date.valueOf("2023-10-15"), null, false, osobaService.findById(2),
+                                                mieszkanieService.findById(1)));
+                meldunekService.save(new Meldunek(null, Date.valueOf("2023-03-15"), Date.valueOf("2024-03-15"), true,
                                 osobaService.findById(3), mieszkanieService.findById(2)));
-                meldunekService.save(new Meldunek(null, Date.valueOf("2023-08-06"), Date.valueOf("2024-08-06"),
+                meldunekService.save(new Meldunek(null, Date.valueOf("2023-08-06"), Date.valueOf("2024-08-06"), true,
                                 osobaService.findById(4), mieszkanieService.findById(3)));
 
                 zgloszenieService.save(new Zgloszenie(null, Date.valueOf("2023-03-11"), Date.valueOf("2023-03-12"),
-                                Status.ZAKONCZONE, Typ.USTERKA, new BigDecimal(240.35), (short) 5, osobaService.findById(1), mieszkanieService.findById(1),
+                                Status.ZAKONCZONE, Typ.USTERKA, new BigDecimal(240.35), (short) 5,
+                                osobaService.findById(1), mieszkanieService.findById(1),
                                 budynekService.findById(1),
                                 null));
                 zgloszenieService.save(new Zgloszenie(null, Date.valueOf("2024-05-11"), null,
@@ -123,14 +125,25 @@ public class BootstrapService {
                                 Status.ZGLOSZONE, Typ.USTERKA, null, (short) 1, osobaService.findById(2), null,
                                 budynekService.findById(2),
                                 null));
-                
-                firmaService.save(new Firma(null, "Tanie Okna", "1234567890", "3 Maja", "10A", "3", "12-345", "Gliwice", null));
-                firmaService.save(new Firma(null, "Bob Budowniczy", "6789012345", "Akademicka", "20", null, "12-345", "Gliwice", null));
 
-                zadanieService.save(new Zadanie(null, new BigDecimal(240.35), "Wybita szyba w łazience", Date.valueOf("2023-03-12"), Date.valueOf("2023-03-12"), firmaService.findById(1), zgloszenieService.findById(1)));
-                zadanieService.save(new Zadanie(null, new BigDecimal(307.40), "Wymiana barierek na klatce schodowej", Date.valueOf("2024-05-14"), Date.valueOf("2024-06-01"), firmaService.findById(2), zgloszenieService.findById(2)));
-                zadanieService.save(new Zadanie(null, new BigDecimal(270.30), "Malowanie ścian na klatce schodowej", Date.valueOf("2024-06-02"), Date.valueOf("2023-06-06"), firmaService.findById(2), zgloszenieService.findById(2)));
-                zadanieService.save(new Zadanie(null, new BigDecimal(804.63), "Wymana okien na klatce schodowej", Date.valueOf("2024-06-07"), null, firmaService.findById(1), zgloszenieService.findById(2)));
-                zadanieService.save(new Zadanie(null, new BigDecimal(250.27), "Zacinające się drzwi wejściowe", Date.valueOf("2024-06-07"), null, null, zgloszenieService.findById(3)));
+                firmaService.save(new Firma(null, "Tanie Okna", "1234567890", "3 Maja", "10A", "3", "12-345", "Gliwice",
+                                null));
+                firmaService.save(new Firma(null, "Bob Budowniczy", "6789012345", "Akademicka", "20", null, "12-345",
+                                "Gliwice", null));
+
+                zadanieService.save(new Zadanie(null, new BigDecimal(240.35), "Wybita szyba w łazience",
+                                Date.valueOf("2023-03-12"), Date.valueOf("2023-03-12"), firmaService.findById(1),
+                                zgloszenieService.findById(1)));
+                zadanieService.save(new Zadanie(null, new BigDecimal(307.40), "Wymiana barierek na klatce schodowej",
+                                Date.valueOf("2024-05-14"), Date.valueOf("2024-06-01"), firmaService.findById(2),
+                                zgloszenieService.findById(2)));
+                zadanieService.save(new Zadanie(null, new BigDecimal(270.30), "Malowanie ścian na klatce schodowej",
+                                Date.valueOf("2024-06-02"), Date.valueOf("2023-06-06"), firmaService.findById(2),
+                                zgloszenieService.findById(2)));
+                zadanieService.save(new Zadanie(null, new BigDecimal(804.63), "Wymana okien na klatce schodowej",
+                                Date.valueOf("2024-06-07"), null, firmaService.findById(1),
+                                zgloszenieService.findById(2)));
+                zadanieService.save(new Zadanie(null, new BigDecimal(250.27), "Zacinające się drzwi wejściowe",
+                                Date.valueOf("2024-06-07"), null, null, zgloszenieService.findById(3)));
         }
 }

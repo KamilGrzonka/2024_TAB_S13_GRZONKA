@@ -64,6 +64,7 @@ export interface RegistrationData {
   id: number; // id
   dataMeldunku: Date; // nullable = false
   dataWymeldowania?: Date;
+  wynajmujacy: boolean;
   osobaId: number; // nullable = false
   mieszkanieId: number; // nullable = false
 }

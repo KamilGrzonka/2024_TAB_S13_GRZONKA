@@ -7,4 +7,5 @@ export interface RegistrationDisplay {
   nazwisko: string;
   dataMeldunku: Date;
   dataWymeldowania?: Date;
+  wynajmujacy: boolean;
 }

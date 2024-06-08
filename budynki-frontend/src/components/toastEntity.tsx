@@ -1,4 +1,5 @@
 import { AnyEntity } from "@/types/Entities";
+import { entityBoolToString } from "@/utils/convertBools";
 import { entityDateToString } from "@/utils/convertDates";
 import { toast } from "sonner";
 
@@ -7,6 +8,7 @@ export function toastEntity(
   title?: string,
 ) {
   entity = entityDateToString(entity);
+  entity = entityBoolToString(entity);
   type DataKeyType = keyof typeof entity;
   toast(
     <div>
