@@ -1,16 +1,17 @@
 import LoadingComponent from "@/components/LoadingComponent";
 import { getBackendApi } from "@/components/fetchBackendApi";
-import { PaymentData, RegistrationData } from "@/types/Entities";
+import { PaymentData } from "@/types/Entities";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import FormGenerator from "../FormGenerator";
 import { incomingPaymentForm } from "./incomingPaymentFormSchema";
+import { RegistrationDisplay } from "@/types/EntitiesDisplayHelpers";
 
 export function IncomingPaymentFormAdd() {
   const { buildingId } = useParams();
   const registrations = useQuery({
     queryKey: ["registrations"],
-    queryFn: () => getBackendApi<RegistrationData[]>(`/budynki/${buildingId}/meldunki`),
+    queryFn: () => getBackendApi<RegistrationDisplay[]>(`/budynki/${buildingId}/meldunkiWyswietl`),
   });
   return (
     <>
@@ -21,7 +22,7 @@ export function IncomingPaymentFormAdd() {
             endpoint: `/platnosci`,
             method: "POST",
             entityData: {
-              registrations: registrations.data!,
+              registrations: registrations.data?.filter(registration => registration.wynajmujacy) || [],
             },
           })}
         />
@@ -34,7 +35,7 @@ export function IncomingPaymentFormEdit() {
   const { buildingId, paymentId } = useParams();
   const registrations = useQuery({
     queryKey: ["registrations"],
-    queryFn: () => getBackendApi<RegistrationData[]>(`/budynki/${buildingId}/meldunki`),
+    queryFn: () => getBackendApi<RegistrationDisplay[]>(`/budynki/${buildingId}/meldunkiWyswietl`),
   });
   const query = useQuery({
     queryKey: ["payment", paymentId],
@@ -49,7 +50,7 @@ export function IncomingPaymentFormEdit() {
             endpoint: `/platnosci/${paymentId}`,
             method: "PUT",
             entityData: {
-              registrations: registrations.data!,
+              registrations: registrations.data?.filter(registration => registration.wynajmujacy) || [],
               payment: query.data,
             },
             additionalSubmitFields: {

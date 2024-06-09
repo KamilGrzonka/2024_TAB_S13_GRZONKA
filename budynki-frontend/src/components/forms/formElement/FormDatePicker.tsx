@@ -81,6 +81,7 @@ export default function FormDatepicker<
           className="w-full"
           onClick={() => {
             form.setValue(name, "");
+            form.trigger(name);
           }}
         >
           Reset

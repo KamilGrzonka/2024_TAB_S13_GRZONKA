@@ -49,7 +49,12 @@ export function outgoingPaymentForm({
       zadanieId: {
         type: "SELECT",
         defaultValue: entityData.payment?.zadanieId,
-        options: optionDataToLabel(["id"], entityData.tasks),
+        options: optionDataToLabel(
+          "id",
+          ["opis", "dataRozpoczecia"],
+          entityData.tasks,
+        ),
+        customLabel: "Zadanie",
       },
     },
     endpoint,
