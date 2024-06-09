@@ -27,12 +27,14 @@ import { PriceListFormAdd, PriceListFormEdit } from "./components/forms/priceLis
 import { PersonFormAdd, PersonFormEdit } from "./components/forms/person/PersonForms.tsx";
 import { RegistrationFormAdd, RegistrationFormEdit } from "./components/forms/registration/ResistrationForms.tsx";
 import RegistrationsOfBuilding from "./pages/RegistrationsOfBuilding.tsx";
+import BuildingPayments from "./pages/PaymentsOfBuilding.tsx";
 import BuildingRepairs from "./pages/RepairsOfBuilding.tsx";
 import DisplayRegistration from "./pages/DisplayRegistration.tsx";
 import DisplayRepair from "./pages/DisplayRepair.tsx";
 import DisplayPerson from "./pages/DisplayPerson.tsx";
 import DisplayCompany from "./pages/DisplayCompany.tsx";
 import DisplayTask from "./pages/DisplayTask.tsx";
+import DisplayPayment from "./pages/DisplayPayment.tsx";
 import { CompanyFormAdd, CompanyFormEdit } from "./components/forms/company/CompanyForms.tsx";
 import { RepairFormAdd, RepairFormEdit } from "./components/forms/repair/RepairForms.tsx";
 import Companies from "./pages/Companies.tsx";
@@ -102,6 +104,14 @@ const router = createBrowserRouter([
       {
         path: "platnosci",
         element: <Payments />,
+      },
+      {
+        path: "platnosci/:buildingId",
+        element: <BuildingPayments />,
+      },
+      {
+        path: "platnosci/:buildingId/:paymentId",
+        element: <DisplayPayment />,
       },
       {
         path: "firmy",
@@ -195,19 +205,19 @@ const router = createBrowserRouter([
             element: <TaskFormEdit />,
           },
           {
-            path: "platnosci/:buildingId/przychodzace/dodaj",
+            path: "platnosci/:buildingId/przychodzacedodaj",
             element: <IncomingPaymentFormAdd />,
           },
           {
-            path: "platnosci/:buildingId/przychodzace/:paymentId/edytuj",
+            path: "platnosci/:buildingId/:paymentId/przychodzaceedytuj",
             element: <IncomingPaymentFormEdit />,
           },
           {
-            path: "platnosci/:buildingId/wychodzace/dodaj",
+            path: "platnosci/:buildingId/wychodzacedodaj",
             element: <OutgoingPaymentFormAdd />,
           },
           {
-            path: "platnosci/:buildingId/wychodzace/:paymentId/edytuj",
+            path: "platnosci/:buildingId/:paymentId/wychodzaceedytuj",
             element: <OutgoingPaymentFormEdit />,
           },
         ]
