@@ -6,12 +6,14 @@ import com.s13tab.budynkibackend.dto.BudynekDTO;
 import com.s13tab.budynkibackend.dto.MeldunekDTO;
 import com.s13tab.budynkibackend.dto.MeldunkiWyswietlDTO;
 import com.s13tab.budynkibackend.dto.MieszkanieDTO;
+import com.s13tab.budynkibackend.dto.PlatnoscDTO;
 import com.s13tab.budynkibackend.dto.ZadanieDTO;
 import com.s13tab.budynkibackend.dto.ZgloszeniaWyswietlDTO;
 import com.s13tab.budynkibackend.dto.ZgloszenieDTO;
 import com.s13tab.budynkibackend.mapper.BudynekMapper;
 import com.s13tab.budynkibackend.mapper.MeldunekMapper;
 import com.s13tab.budynkibackend.mapper.MieszkanieMapper;
+import com.s13tab.budynkibackend.mapper.PlatnoscMapper;
 import com.s13tab.budynkibackend.mapper.ZadanieMapper;
 import com.s13tab.budynkibackend.mapper.ZgloszenieMapper;
 import com.s13tab.budynkibackend.model.Meldunek;
@@ -48,6 +50,7 @@ public class BudynekController {
     private final MeldunekMapper meldunekMapper;
     private final ZgloszenieMapper zgloszenieMapper;
     private final ZadanieMapper zadanieMapper;
+    private final PlatnoscMapper platnoscMapper;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -90,6 +93,12 @@ public class BudynekController {
     @ResponseStatus(HttpStatus.OK)
     public List<ZadanieDTO> findZadaniaById(@PathVariable Long id) {
         return zadanieMapper.convertToDTO(budynekService.findZadaniaById(id));
+    }
+
+    @GetMapping("/{id}/platnosci")
+    @ResponseStatus(HttpStatus.OK)
+    public List<PlatnoscDTO> findPlatnosciById(@PathVariable Long id) {
+        return platnoscMapper.convertToDTO(budynekService.findPlatnosciById(id));
     }
 
     @GetMapping("/{id}/meldunkiWyswietl")

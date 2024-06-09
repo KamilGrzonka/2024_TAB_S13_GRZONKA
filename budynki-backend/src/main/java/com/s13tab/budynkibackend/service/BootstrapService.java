@@ -101,14 +101,14 @@ public class BootstrapService {
                 osobaService.save(new Osoba(null, "65498732110", "Grzegoż", "Wójcik", null, null));
 
                 meldunekService.save(new Meldunek(null, Date.valueOf("2023-05-12"), Date.valueOf("2024-05-12"), true,
-                                osobaService.findById(1), mieszkanieService.findById(1)));
+                                osobaService.findById(1), mieszkanieService.findById(1), null));
                 meldunekService.save(
                                 new Meldunek(null, Date.valueOf("2023-10-15"), null, false, osobaService.findById(2),
-                                                mieszkanieService.findById(1)));
+                                                mieszkanieService.findById(1), null));
                 meldunekService.save(new Meldunek(null, Date.valueOf("2023-03-15"), Date.valueOf("2024-03-15"), true,
-                                osobaService.findById(3), mieszkanieService.findById(2)));
+                                osobaService.findById(3), mieszkanieService.findById(2), null));
                 meldunekService.save(new Meldunek(null, Date.valueOf("2023-08-06"), Date.valueOf("2024-08-06"), true,
-                                osobaService.findById(4), mieszkanieService.findById(3)));
+                                osobaService.findById(4), mieszkanieService.findById(3), null));
 
                 zgloszenieService.save(new Zgloszenie(null, Date.valueOf("2023-03-11"),
                                 Status.ZAKONCZONE, Typ.USTERKA, (short) 5, "Wybita szyba w mieszkaniu",
@@ -132,17 +132,17 @@ public class BootstrapService {
 
                 zadanieService.save(new Zadanie(null, new BigDecimal(240.35), "Wymiana szyby w łazience",
                                 Date.valueOf("2023-03-12"), Date.valueOf("2023-03-12"), firmaService.findById(1),
-                                zgloszenieService.findById(1)));
+                                zgloszenieService.findById(1), null));
                 zadanieService.save(new Zadanie(null, new BigDecimal(307.40), "Wymiana barierek na klatce schodowej",
                                 Date.valueOf("2024-05-14"), Date.valueOf("2024-06-01"), firmaService.findById(2),
-                                zgloszenieService.findById(2)));
+                                zgloszenieService.findById(2), null));
                 zadanieService.save(new Zadanie(null, new BigDecimal(270.30), "Malowanie ścian na klatce schodowej",
                                 Date.valueOf("2024-06-02"), Date.valueOf("2023-06-06"), firmaService.findById(2),
-                                zgloszenieService.findById(2)));
+                                zgloszenieService.findById(2), null));
                 zadanieService.save(new Zadanie(null, new BigDecimal(804.63), "Wymana okien na klatce schodowej",
                                 Date.valueOf("2024-06-07"), null, firmaService.findById(1),
-                                zgloszenieService.findById(2)));
+                                zgloszenieService.findById(2), null));
                 zadanieService.save(new Zadanie(null, new BigDecimal(150.27), "Wymiana zawiasów drzwi wejściowych",
-                                Date.valueOf("2024-06-07"), null, null, zgloszenieService.findById(3)));
+                                Date.valueOf("2024-06-07"), null, null, zgloszenieService.findById(3), null));
         }
 }

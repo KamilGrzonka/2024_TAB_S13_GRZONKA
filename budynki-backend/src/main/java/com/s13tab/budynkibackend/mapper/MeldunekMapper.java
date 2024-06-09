@@ -30,7 +30,7 @@ public class MeldunekMapper {
         return new Meldunek(meldunekDTO.getId(), meldunekDTO.getDataMeldunku(), meldunekDTO.getDataWymeldowania(),
                 meldunekDTO.getWynajmujacy(),
                 osobaService.findById(meldunekDTO.getOsobaId()),
-                mieszkanieService.findById(meldunekDTO.getMieszkanieId()));
+                mieszkanieService.findById(meldunekDTO.getMieszkanieId()), null);
     }
 
     public List<MeldunekDTO> convertToDTO(List<Meldunek> meldunki) {

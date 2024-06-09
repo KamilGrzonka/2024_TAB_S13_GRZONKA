@@ -43,7 +43,7 @@ public class ZadanieMapper {
         return new Zadanie(zadanieDTO.getId(), zadanieDTO.getKoszt(), zadanieDTO.getOpis(),
                 zadanieDTO.getDataRozpoczecia(), zadanieDTO.getDataZakonczenia(),
                 firma,
-                zgloszenieService.findById(zadanieDTO.getZgloszenieId()));
+                zgloszenieService.findById(zadanieDTO.getZgloszenieId()), null);
     }
 
     public List<ZadanieDTO> convertToDTO(List<Zadanie> zadania) {
