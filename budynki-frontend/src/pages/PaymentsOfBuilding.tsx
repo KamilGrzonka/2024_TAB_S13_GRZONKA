@@ -109,11 +109,7 @@ const BuildingPayments = () => {
                     {`${payment.dataZrealizowania.toLocaleDateString()}`}
                 </TableCell>
                 <TableCell className="text-center">
-                  <Link
-                    to={`/budynki/${buildingId}/${payment.mieszkanieId}`}
-                  >
-                    {payment.wartosc}  
-                  </Link>
+                  {payment.wartosc}
                 </TableCell>
                 <TableCell>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>

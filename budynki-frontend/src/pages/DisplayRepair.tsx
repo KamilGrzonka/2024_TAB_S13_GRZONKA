@@ -111,6 +111,9 @@ export default function DisplayRepair() {
           <Typography variant="h6">
             Koszt całkowity: {repair.data.kosztCalkowity}
           </Typography>
+          <Typography variant="h6">
+            Opis: {repair.data.opis}
+          </Typography>
           <div id="buttons" className="flex mt-20 justify-center">
             <Button asChild className="mr-40 pt-6 pb-6 pl-10 pr-10">
               <Link to="edytuj">Edytuj zgłoszenie</Link>
