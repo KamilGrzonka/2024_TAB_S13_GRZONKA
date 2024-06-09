@@ -30,19 +30,12 @@ export interface CompanyData {
   miasto: string; // length = 80, nullable = false
 }
 
-export interface ContractData {
-  id: number; // id
-  dataZawarcia: Date; // nullable = false
-  osobaId: number; // nullable = false
-  cennikId: number; // nullable = false
-}
-
 export interface PaymentData {
   id: number; // id
   dataZrealizowania: Date; // nullable = false
   wartosc: number; // scale = 2, precision = 10, nullable = false
   zadanieId?: number;
-  umowaId?: number;
+  meldunekId?: number;
 }
 
 export interface PersonData {
@@ -95,7 +88,6 @@ export type AnyEntity =
   | ApartmentData
   | BuildingData
   | CompanyData
-  | ContractData
   | PaymentData
   | PersonData
   | PriceListData

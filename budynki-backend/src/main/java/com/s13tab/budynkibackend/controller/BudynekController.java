@@ -6,11 +6,13 @@ import com.s13tab.budynkibackend.dto.BudynekDTO;
 import com.s13tab.budynkibackend.dto.MeldunekDTO;
 import com.s13tab.budynkibackend.dto.MeldunkiWyswietlDTO;
 import com.s13tab.budynkibackend.dto.MieszkanieDTO;
+import com.s13tab.budynkibackend.dto.ZadanieDTO;
 import com.s13tab.budynkibackend.dto.ZgloszeniaWyswietlDTO;
 import com.s13tab.budynkibackend.dto.ZgloszenieDTO;
 import com.s13tab.budynkibackend.mapper.BudynekMapper;
 import com.s13tab.budynkibackend.mapper.MeldunekMapper;
 import com.s13tab.budynkibackend.mapper.MieszkanieMapper;
+import com.s13tab.budynkibackend.mapper.ZadanieMapper;
 import com.s13tab.budynkibackend.mapper.ZgloszenieMapper;
 import com.s13tab.budynkibackend.model.Meldunek;
 import com.s13tab.budynkibackend.model.Zgloszenie;
@@ -45,6 +47,7 @@ public class BudynekController {
     private final MieszkanieMapper mieszkanieMapper;
     private final MeldunekMapper meldunekMapper;
     private final ZgloszenieMapper zgloszenieMapper;
+    private final ZadanieMapper zadanieMapper;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -81,6 +84,12 @@ public class BudynekController {
     @ResponseStatus(HttpStatus.OK)
     public List<ZgloszenieDTO> findZgloszeniaById(@PathVariable Long id) {
         return zgloszenieMapper.convertToDTO(budynekService.findZgloszeniaById(id));
+    }
+    
+    @GetMapping("/{id}/zadania")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ZadanieDTO> findZadaniaById(@PathVariable Long id) {
+        return zadanieMapper.convertToDTO(budynekService.findZadaniaById(id));
     }
 
     @GetMapping("/{id}/meldunkiWyswietl")

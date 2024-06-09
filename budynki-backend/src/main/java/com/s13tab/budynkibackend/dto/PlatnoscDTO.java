@@ -22,6 +22,6 @@ public class PlatnoscDTO {
 
     private Long zadanieId;
 
-    private Long umowaId;
+    private Long meldunekId;
 
 }

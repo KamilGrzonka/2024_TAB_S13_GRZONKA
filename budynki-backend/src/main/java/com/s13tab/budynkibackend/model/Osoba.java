@@ -34,9 +34,6 @@ public class Osoba {
     private List<Meldunek> meldunki;
 
     @OneToMany(mappedBy = "osoba")
-    private List<Umowa> umowy;
-
-    @OneToMany(mappedBy = "osoba")
     private List<Zgloszenie> zgloszenia;
 
 }

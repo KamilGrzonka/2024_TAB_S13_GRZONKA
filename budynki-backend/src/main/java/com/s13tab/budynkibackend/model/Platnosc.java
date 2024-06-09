@@ -40,7 +40,7 @@ public class Platnosc {
     private Zadanie zadanie;
 
     @ManyToOne
-    @JoinColumn(name = "umowa_id")
-    private Umowa umowa;
+    @JoinColumn(name = "meldunek_id")
+    private Meldunek meldunek;
 
 }

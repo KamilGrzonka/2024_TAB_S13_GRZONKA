@@ -40,8 +40,6 @@ public class BootstrapService {
 
         private final PlatnoscService platnoscService;
 
-        private final UmowaService umowaService;
-
         private final ZadanieService zadanieService;
 
         private final ZgloszenieService zgloszenieService;
@@ -59,7 +57,7 @@ public class BootstrapService {
                 if (budynekService.count() != 0 || cennikService.count() != 0 || firmaService.count() != 0
                                 || meldunekService.count() != 0 || mieszkanieService.count() != 0
                                 || osobaService.count() != 0
-                                || platnoscService.count() != 0 || umowaService.count() != 0
+                                || platnoscService.count() != 0
                                 || zadanieService.count() != 0
                                 || zgloszenieService.count() != 0) {
                         return;
@@ -97,10 +95,10 @@ public class BootstrapService {
                                 new BigDecimal(1530.47),
                                 mieszkanieService.findById(3)));
 
-                osobaService.save(new Osoba(null, "12345678901", "Krzysztof", "Kowalski", null, null, null));
-                osobaService.save(new Osoba(null, "10987654321", "Andrzej", "Nowak", null, null, null));
-                osobaService.save(new Osoba(null, "65432110987", "Dariusz", "Lewandowski", null, null, null));
-                osobaService.save(new Osoba(null, "65498732110", "Grzegoż", "Wójcik", null, null, null));
+                osobaService.save(new Osoba(null, "12345678901", "Krzysztof", "Kowalski", null, null));
+                osobaService.save(new Osoba(null, "10987654321", "Andrzej", "Nowak", null, null));
+                osobaService.save(new Osoba(null, "65432110987", "Dariusz", "Lewandowski", null, null));
+                osobaService.save(new Osoba(null, "65498732110", "Grzegoż", "Wójcik", null, null));
 
                 meldunekService.save(new Meldunek(null, Date.valueOf("2023-05-12"), Date.valueOf("2024-05-12"), true,
                                 osobaService.findById(1), mieszkanieService.findById(1)));

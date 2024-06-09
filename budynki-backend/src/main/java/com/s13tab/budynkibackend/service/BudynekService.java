@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.s13tab.budynkibackend.model.Budynek;
 import com.s13tab.budynkibackend.model.Meldunek;
 import com.s13tab.budynkibackend.model.Mieszkanie;
+import com.s13tab.budynkibackend.model.Zadanie;
 import com.s13tab.budynkibackend.model.Zgloszenie;
 import com.s13tab.budynkibackend.repository.BudynekRepository;
 
@@ -40,6 +41,10 @@ public class BudynekService {
 
     public List<Zgloszenie> findZgloszeniaById(Long id) {
         return findById(id).getZgloszenia();
+    }
+
+    public List<Zadanie> findZadaniaById(Long id) {
+        return findById(id).getZgloszenia().stream().map(zgloszenie -> zgloszenie.getZadania()).flatMap(List::stream).toList();
     }
 
     public List<Meldunek> findMeldunkiById(Long id) {

@@ -1,6 +1,5 @@
 function convertDates<T>(object: T, fn: (date: Date) => Date | string) {
   const dateFields = [
-    "dataZawarcia",
     "dataZrealizowania",
     "dataPoczatkowa",
     "dataKoncowa",

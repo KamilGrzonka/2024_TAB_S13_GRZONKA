@@ -40,7 +40,7 @@ public class PlatnoscService {
             platnosc.setDataZrealizowania(newPlatnosc.getDataZrealizowania());
             platnosc.setWartosc(newPlatnosc.getWartosc());
             platnosc.setZadanie(newPlatnosc.getZadanie());
-            platnosc.setUmowa(newPlatnosc.getUmowa());
+            platnosc.setMeldunek(newPlatnosc.getMeldunek());
             return save(platnosc);
         }).orElseGet(() -> {
             newPlatnosc.setId(id);

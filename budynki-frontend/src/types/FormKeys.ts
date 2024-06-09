@@ -20,12 +20,10 @@ export type CompanyFormKeys =
   | "kodPocztowy"
   | "miasto";
 
-export type ContractFormKeys = "dataZawarcia" | "osobaId" | "cennikId";
-
 export type IncomingPaymentFormKeys =
   | "dataZrealizowania"
   | "wartosc"
-  | "umowaId";
+  | "meldunekId";
 
 export type OutgoingPaymentFormKeys =
   | "dataZrealizowania"
@@ -63,9 +61,8 @@ export type AnyFormKeys =
   | ApartmentFormKeys
   | BuildingFormKeys
   | CompanyFormKeys
-  // | ContractFormKeys
-  // | IncomingPaymentFormKeys
-  // | OutgoingPaymentFormKeys
+  | IncomingPaymentFormKeys
+  | OutgoingPaymentFormKeys
   | PersonFormKeys
   | PriceListFormKeys
   | RegistrationFormKeys

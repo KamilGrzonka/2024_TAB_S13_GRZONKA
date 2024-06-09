@@ -38,6 +38,8 @@ import { RepairFormAdd, RepairFormEdit } from "./components/forms/repair/RepairF
 import Companies from "./pages/Companies.tsx";
 import { TaskFormAdd, TaskFormEdit } from "./components/forms/task/TaskForms.tsx";
 import TasksOfCompany from "./pages/TasksOfCompany.tsx";
+import { IncomingPaymentFormAdd, IncomingPaymentFormEdit } from "./components/forms/incomingPayment/IncomingPaymentForms.tsx";
+import { OutgoingPaymentFormAdd, OutgoingPaymentFormEdit } from "./components/forms/outgoingPayment/OutgoingPaymentForms.tsx";
 
 const router = createBrowserRouter([
   {
@@ -191,6 +193,22 @@ const router = createBrowserRouter([
           {
             path: "zgloszenia/:buildingId/:repairId/zadania/:taskId/edytuj",
             element: <TaskFormEdit />,
+          },
+          {
+            path: "platnosci/:buildingId/przychodzace/dodaj",
+            element: <IncomingPaymentFormAdd />,
+          },
+          {
+            path: "platnosci/:buildingId/przychodzace/:paymentId/edytuj",
+            element: <IncomingPaymentFormEdit />,
+          },
+          {
+            path: "platnosci/:buildingId/wychodzace/dodaj",
+            element: <OutgoingPaymentFormAdd />,
+          },
+          {
+            path: "platnosci/:buildingId/wychodzace/:paymentId/edytuj",
+            element: <OutgoingPaymentFormEdit />,
           },
         ]
       }

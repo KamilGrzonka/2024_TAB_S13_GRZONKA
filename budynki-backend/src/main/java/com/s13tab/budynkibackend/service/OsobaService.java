@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.s13tab.budynkibackend.model.Meldunek;
 import com.s13tab.budynkibackend.model.Osoba;
-import com.s13tab.budynkibackend.model.Umowa;
 import com.s13tab.budynkibackend.model.Zgloszenie;
 import com.s13tab.budynkibackend.repository.OsobaRepository;
 
@@ -49,10 +48,6 @@ public class OsobaService {
 
     public List<Meldunek> findMeldunkiById(Long id) {
         return findById(id).getMeldunki();
-    }
-
-    public List<Umowa> findUmowyById(Long id) {
-        return findById(id).getUmowy();
     }
 
     public List<Zgloszenie> findZgloszeniaById(Long id) {
