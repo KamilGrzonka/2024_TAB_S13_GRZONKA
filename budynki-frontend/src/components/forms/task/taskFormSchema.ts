@@ -66,7 +66,11 @@ export function taskForm({
       firmaId: {
         type: "SELECT",
         defaultValue: entityData.task?.firmaId,
-        options: optionDataToLabel(["nazwa", "nip"], entityData.companies),
+        options: optionDataToLabel(
+          "id",
+          ["nazwa", "nip"],
+          entityData.companies,
+        ),
         customLabel: "Firma",
       },
     },

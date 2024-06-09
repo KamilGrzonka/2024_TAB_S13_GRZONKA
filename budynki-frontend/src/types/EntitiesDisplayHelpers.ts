@@ -29,3 +29,5 @@ export interface RepairDisplay {
   dataWykonania?: Date;
   kosztCalkowity: number;
 }
+
+export type AnyEntityDisplayHelper = RegistrationDisplay | RepairDisplay;

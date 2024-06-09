@@ -1,4 +1,5 @@
 import { AnyEntity, PriceListData } from "@/types/Entities";
+import { AnyEntityDisplayHelper } from "@/types/EntitiesDisplayHelpers";
 import { AnyFormKeys } from "@/types/FormKeys";
 import { HttpMethods } from "@/types/HttpMethods";
 import { ZodObject, z } from "zod";
@@ -72,17 +73,19 @@ export function formDefiner<T extends AnyFormKeys>(
   return formDefiner;
 }
 
-export function optionDataToLabel<U extends AnyEntity>(
+export function optionDataToLabel<U extends AnyEntity | AnyEntityDisplayHelper>(
+  id: keyof U,
   labels: (keyof U)[],
   optionsData: U[],
   additionalLabelText?: { [K in keyof U]?: string },
 ): FormFieldOptionDefiner[] {
   return optionsData
     ? optionsData.map((option: U) => ({
-        id: option.id,
+        id: option[id] as number | string,
         label: labels
           .map(
-            (label) => `${additionalLabelText?.[label] || ""}${option[label]}`,
+            (label) =>
+              `${additionalLabelText?.[label] || ""}${option[label] instanceof Date ? (option[label] as Date).toLocaleDateString() : option[label]}`,
           )
           .join(" "),
       }))

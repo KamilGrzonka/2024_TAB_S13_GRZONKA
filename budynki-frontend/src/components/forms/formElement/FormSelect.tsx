@@ -65,7 +65,7 @@ export default function FormSelect<T extends ControllerRenderProps>({
                 value={`-`}
                 onSelect={() => {
                   form.setValue(name, "");
-                  form.trigger();
+                  form.trigger(name);
                   setOpen(false);
                 }}
               >
@@ -83,7 +83,7 @@ export default function FormSelect<T extends ControllerRenderProps>({
                   value={`${id} ${label}`}
                   onSelect={() => {
                     form.setValue(name, id);
-                    form.trigger();
+                    form.trigger(name);
                     setOpen(false);
                   }}
                 >

@@ -2,7 +2,13 @@ import { RegistrationFormKeys } from "@/types/FormKeys";
 import { formDefiner, optionDataToLabel } from "../FormDefiner";
 import { ApartmentData, PersonData, RegistrationData } from "@/types/Entities";
 import { HttpMethods } from "@/types/HttpMethods";
-import { zBoolean, zDate, zNonNegative, zNumber, zOptional } from "../zodWrapper";
+import {
+  zBoolean,
+  zDate,
+  zNonNegative,
+  zNumber,
+  zOptional,
+} from "../zodWrapper";
 
 interface RegistrationFormEntityData {
   registration?: RegistrationData;
@@ -55,6 +61,7 @@ export function registrationForm({
         type: "SELECT",
         defaultValue: entityData.registration?.osobaId,
         options: optionDataToLabel(
+          "id",
           ["imie", "nazwisko", "pesel"],
           entityData.persons,
         ),
@@ -63,9 +70,14 @@ export function registrationForm({
       mieszkanieId: {
         type: "SELECT",
         defaultValue: entityData.registration?.mieszkanieId,
-        options: optionDataToLabel(["numerMieszkania"], entityData.apartments, {
-          numerMieszkania: "mieszkanie nr.: ",
-        }),
+        options: optionDataToLabel(
+          "id",
+          ["numerMieszkania"],
+          entityData.apartments,
+          {
+            numerMieszkania: "mieszkanie nr.: ",
+          },
+        ),
         customLabel: "Mieszkanie",
       },
     },

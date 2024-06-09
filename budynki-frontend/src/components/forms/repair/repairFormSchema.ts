@@ -91,6 +91,7 @@ export function repairForm({
         type: "SELECT",
         defaultValue: entityData.repair?.osobaId,
         options: optionDataToLabel(
+          "id",
           ["imie", "nazwisko", "pesel"],
           entityData.persons,
         ),
@@ -98,9 +99,14 @@ export function repairForm({
       mieszkanieId: {
         type: "SELECT",
         defaultValue: entityData.repair?.mieszkanieId,
-        options: optionDataToLabel(["numerMieszkania"], entityData.apartments, {
-          numerMieszkania: "mieszkanie nr.: ",
-        }),
+        options: optionDataToLabel(
+          "id",
+          ["numerMieszkania"],
+          entityData.apartments,
+          {
+            numerMieszkania: "mieszkanie nr.: ",
+          },
+        ),
       },
     },
     endpoint,

@@ -6,12 +6,13 @@ import {
   zNumberPrecisionScale,
 } from "../zodWrapper";
 import { formDefiner, optionDataToLabel } from "../FormDefiner";
-import { PaymentData, RegistrationData } from "@/types/Entities";
+import { PaymentData } from "@/types/Entities";
 import { HttpMethods } from "@/types/HttpMethods";
+import { RegistrationDisplay } from "@/types/EntitiesDisplayHelpers";
 
 interface IncomingPaymentFormEntityData {
   payment?: PaymentData;
-  registrations: RegistrationData[];
+  registrations: RegistrationDisplay[];
 }
 
 interface IncomingPaymentFormArgs {
@@ -49,7 +50,15 @@ export function incomingPaymentForm({
       meldunekId: {
         type: "SELECT",
         defaultValue: entityData.payment?.meldunekId,
-        options: optionDataToLabel(["id"], entityData.registrations),
+        options: optionDataToLabel(
+          "meldunekId",
+          ["numerMieszkania", "imie", "nazwisko", "dataMeldunku"],
+          entityData.registrations,
+          {
+            numerMieszkania: "Mieszkanie nr.: ",
+          },
+        ),
+        customLabel: "Meldunek",
       },
     },
     endpoint,
