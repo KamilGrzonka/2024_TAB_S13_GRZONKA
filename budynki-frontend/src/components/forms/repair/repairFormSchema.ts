@@ -7,8 +7,8 @@ import {
   zEnum,
   zNonNegative,
   zNumber,
-  zNumberPrecisionScale,
   zOptional,
+  zStringMinMax,
 } from "../zodWrapper";
 import { RepairStatus } from "@/types/enums/RepairStatus";
 import { RepairType } from "@/types/enums/RepairType";
@@ -38,7 +38,6 @@ export function repairForm({
   return formDefiner<RepairFormKeys>(
     {
       dataZgloszenia: zDate(), // nullable = false
-      dataWykonania: zOptional(zDate()),
       statusZgloszenia: zEnum({
         enums: [
           RepairStatus.W_TRAKCIE,
@@ -47,10 +46,8 @@ export function repairForm({
         ],
       }), // nullable = false
       typZgloszenia: zEnum({ enums: [RepairType.REMONT, RepairType.USTERKA] }), // nullable = false
-      kosztCalkowity: zOptional(
-        zNumber().pipe(zNonNegative()).pipe(zNumberPrecisionScale()),
-      ), // scale = 2, precision = 10
       priorytet: zNumber(), // nullable = false
+      opis: zOptional(zStringMinMax({ max: 65535 })), // length = 65535
       osobaId: zOptional(zNumber().pipe(zNonNegative())),
       mieszkanieId: zOptional(zNumber().pipe(zNonNegative())),
     },
@@ -59,13 +56,6 @@ export function repairForm({
         type: "DATEPICKER",
         defaultValue: entityData.repair?.dataZgloszenia,
         options: [],
-        datePickerLimits: { maxField: "dataWykonania" },
-      },
-      dataWykonania: {
-        type: "DATEPICKER",
-        defaultValue: entityData.repair?.dataWykonania,
-        options: [],
-        datePickerLimits: { minField: "dataZgloszenia" },
       },
       statusZgloszenia: {
         type: "RADIO",
@@ -87,14 +77,14 @@ export function repairForm({
         ],
         customLabel: "Typ Zgłoszenia",
       },
-      kosztCalkowity: {
-        type: "INPUT_NUMBER",
-        defaultValue: entityData.repair?.kosztCalkowity,
-        options: [],
-      },
       priorytet: {
         type: "INPUT_NUMBER",
         defaultValue: entityData.repair?.priorytet,
+        options: [],
+      },
+      opis: {
+        type: "TEXTAREA",
+        defaultValue: entityData.repair?.opis,
         options: [],
       },
       osobaId: {

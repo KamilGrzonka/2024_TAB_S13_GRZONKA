@@ -45,11 +45,10 @@ export type RegistrationFormKeys =
 
 export type RepairFormKeys =
   | "dataZgloszenia"
-  | "dataWykonania"
   | "statusZgloszenia"
   | "typZgloszenia"
-  | "kosztCalkowity"
   | "priorytet"
+  | "opis"
   | "osobaId"
   | "mieszkanieId";
 

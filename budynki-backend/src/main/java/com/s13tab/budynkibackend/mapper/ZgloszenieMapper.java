@@ -43,9 +43,9 @@ public class ZgloszenieMapper {
             mieszkanieId = mieszkanie.getId();
         }
         return new ZgloszenieDTO(zgloszenie.getId(), zgloszenie.getDataZgloszenia(),
-                zgloszenie.getDataWykonania(), zgloszenie.getStatusZgloszenia(),
-                zgloszenie.getTypZgloszenia(),
-                zgloszenie.getKosztCalkowity(), zgloszenie.getPriorytet(),
+                zgloszenie.getStatusZgloszenia(),
+                zgloszenie.getTypZgloszenia(), zgloszenie.getPriorytet(),
+                zgloszenie.getOpis(),
                 osobaId,
                 mieszkanieId, zgloszenie.getBudynek().getId()
                 // , zadania
@@ -68,9 +68,9 @@ public class ZgloszenieMapper {
             mieszkanie = mieszkanieService.findById(mieszkanieId);
         }
         return new Zgloszenie(zgloszenieDTO.getId(), zgloszenieDTO.getDataZgloszenia(),
-                zgloszenieDTO.getDataWykonania(), zgloszenieDTO.getStatusZgloszenia(),
-                zgloszenieDTO.getTypZgloszenia(),
-                zgloszenieDTO.getKosztCalkowity(), zgloszenieDTO.getPriorytet(),
+                zgloszenieDTO.getStatusZgloszenia(),
+                zgloszenieDTO.getTypZgloszenia(), zgloszenieDTO.getPriorytet(),
+                zgloszenieDTO.getOpis(),
                 osoba,
                 mieszkanie,
                 budynekService.findById(zgloszenieDTO.getBudynekId()),

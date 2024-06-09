@@ -9,8 +9,7 @@ import { BuildingData } from "@/types/Entities";
 import { RegistrationDisplay } from "@/types/EntitiesDisplayHelpers";
 
 export default function DisplayRegistration() {
-  const { registrationId } = useParams();
-  const { buildingId } = useParams();
+  const { registrationId, buildingId } = useParams();
   const navigate = useNavigate();
   const registration = useQuery({
     queryKey: ["registrations-display", registrationId],

@@ -5,27 +5,23 @@ import { LoaderCircle } from "lucide-react";
 import { getBackendApi } from "@/components/fetchBackendApi";
 import { Box, Container, Typography } from "@mui/material";
 import { X } from "lucide-react";
-import { BuildingData, RepairData, PersonData } from "@/types/Entities";
+import { BuildingData } from "@/types/Entities";
+import { RepairDisplay } from "@/types/EntitiesDisplayHelpers";
 
 export default function DisplayRepair() {
   const navigate = useNavigate();
   const { buildingId, repairId } = useParams();
   const repair = useQuery({
     queryKey: ["repair", repairId],
-    queryFn: () => getBackendApi<RepairData>(`/zgloszenia/${repairId}`),
+    queryFn: () =>
+      getBackendApi<RepairDisplay>(
+        `/zgloszenia/${repairId}/zgloszeniaWyswietl`,
+      ),
   });
 
   const building = useQuery({
     queryKey: ["building", buildingId],
     queryFn: () => getBackendApi<BuildingData>(`/budynki/${buildingId}`),
-  });
-
-  const personId = repair.data?.osobaId;
-
-  const person = useQuery({
-    queryKey: ["person", personId],
-    queryFn: () => getBackendApi<PersonData>(`/osoby/${personId}`),
-    enabled: !!personId,
   });
 
   return (
@@ -80,22 +76,21 @@ export default function DisplayRepair() {
       {repair.isSuccess ? (
         <div>
           <Typography variant="h6">
-            Numer zgłoszenia: {repair.data.id}
+            Numer zgłoszenia: {repair.data.zgloszenieid}
           </Typography>
           <Typography variant="h6">
-            <Link to={`/osoby/${repair.data.osobaId}`}>
-              Osoba zgłaszająca:{" "}
-              {personId
-                ? person.isSuccess
-                  ? `${person.data.imie} ${person.data.nazwisko}`
-                  : `${personId}`
-                : ""}
-            </Link>
+            {repair.data.osobaId != null && (
+              <Link to={`/osoby/${repair.data.osobaId}`}>
+                Osoba zgłaszająca: {repair.data.imie} {repair.data.nazwisko}
+              </Link>
+            )}
           </Typography>
           <Typography variant="h6">
-            <Link to={`/budynki/${buildingId}/${repair.data.mieszkanieId}`}>
-              Numer mieszkania: {repair.data.mieszkanieId}
-            </Link>
+            {repair.data.mieszkanieId != null && (
+              <Link to={`/budynki/${buildingId}/${repair.data.mieszkanieId}`}>
+                Numer mieszkania: {repair.data.mieszkanieId}
+              </Link>
+            )}
           </Typography>
           <Typography variant="h6">
             Priorytet: {repair.data.priorytet}

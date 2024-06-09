@@ -13,15 +13,16 @@ import {
 import { LoaderCircle } from "lucide-react";
 import { getBackendApi } from "@/components/fetchBackendApi";
 import { ChevronRight } from "lucide-react";
-import { RepairData, BuildingData } from "@/types/Entities";
+import { BuildingData } from "@/types/Entities";
+import { RepairDisplay } from "@/types/EntitiesDisplayHelpers";
 
 const BuildingRepairs = () => {
   const { buildingId } = useParams();
   const repairs = useQuery({
     queryKey: ["building-repairs", buildingId],
     queryFn: () =>
-      getBackendApi<RepairData[]>(
-        `/budynki/${buildingId}/zgloszenia`,
+      getBackendApi<RepairDisplay[]>(
+        `/budynki/${buildingId}/zgloszeniaWyswietl`,
       ),
   });
   const building = useQuery({
@@ -92,9 +93,9 @@ const BuildingRepairs = () => {
           </TableHeader>
           <TableBody>
             {repairs.data.map((repair) => (
-              <TableRow key={repair.id}>
+              <TableRow key={repair.zgloszenieid}>
                 <TableCell className="font-medium text-center">
-                    {`${repair.id}`}
+                    {`${repair.zgloszenieid}`}
                 </TableCell>
                 <TableCell className="text-center">
                     {`${repair.priorytet}`}
@@ -113,7 +114,7 @@ const BuildingRepairs = () => {
                   {repair.statusZgloszenia}
                 </TableCell>
                 <TableCell className="justify-center flex">
-                  <Link to={`${repair.id}`}>
+                  <Link to={`${repair.zgloszenieid}`}>
                     <ChevronRight className="mr-5" />
                   </Link>
                 </TableCell>

@@ -12,13 +12,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MeldunkiWyswietlDTO {
-    Long meldunekId;
-    Long osobaId;
-    Long mieszkanieId;
-    Integer numerMieszkania;
-    String imie;
-    String nazwisko;
-    Date dataMeldunku;
-    Date dataWymeldowania;
-    Boolean wynajmujacy;
+    private Long meldunekId;
+    private Long osobaId;
+    private Long mieszkanieId;
+    private Integer numerMieszkania;
+    private String imie;
+    private String nazwisko;
+    private Date dataMeldunku;
+    private Date dataWymeldowania;
+    private Boolean wynajmujacy;
 }

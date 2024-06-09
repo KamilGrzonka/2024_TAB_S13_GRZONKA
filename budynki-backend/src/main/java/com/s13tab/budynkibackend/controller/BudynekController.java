@@ -6,13 +6,16 @@ import com.s13tab.budynkibackend.dto.BudynekDTO;
 import com.s13tab.budynkibackend.dto.MeldunekDTO;
 import com.s13tab.budynkibackend.dto.MeldunkiWyswietlDTO;
 import com.s13tab.budynkibackend.dto.MieszkanieDTO;
+import com.s13tab.budynkibackend.dto.ZgloszeniaWyswietlDTO;
 import com.s13tab.budynkibackend.dto.ZgloszenieDTO;
 import com.s13tab.budynkibackend.mapper.BudynekMapper;
 import com.s13tab.budynkibackend.mapper.MeldunekMapper;
 import com.s13tab.budynkibackend.mapper.MieszkanieMapper;
 import com.s13tab.budynkibackend.mapper.ZgloszenieMapper;
 import com.s13tab.budynkibackend.model.Meldunek;
+import com.s13tab.budynkibackend.model.Zgloszenie;
 import com.s13tab.budynkibackend.service.BudynekService;
+import com.s13tab.budynkibackend.service.ZgloszenieService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -35,6 +38,8 @@ import java.util.stream.Collectors;
 public class BudynekController {
 
     private final BudynekService budynekService;
+
+    private final ZgloszenieService zgloszenieService;
 
     private final BudynekMapper budynekMapper;
     private final MieszkanieMapper mieszkanieMapper;
@@ -87,6 +92,14 @@ public class BudynekController {
                         meldunek.getMieszkanie().getId(),
                         meldunek.getMieszkanie().getNumerMieszkania(), meldunek.getOsoba().getImie(),
                         meldunek.getOsoba().getNazwisko(), meldunek.getDataMeldunku(), meldunek.getDataWymeldowania(), meldunek.isWynajmujacy()))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/{id}/zgloszeniaWyswietl")
+    public List<ZgloszeniaWyswietlDTO> findZgloszeniaToDisplayById(@PathVariable Long id) {
+        List<Zgloszenie> zgloszenia = budynekService.findZgloszeniaById(id);
+        return zgloszenia.stream()
+                .map(zgloszenie -> zgloszenieService.findZgloszenieToDisplayById(zgloszenie.getId()))
                 .collect(Collectors.toList());
     }
 

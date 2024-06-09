@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.s13tab.budynkibackend.dto.OsobaDTO;
 import com.s13tab.budynkibackend.dto.ZadanieDTO;
+import com.s13tab.budynkibackend.dto.ZgloszeniaWyswietlDTO;
 import com.s13tab.budynkibackend.dto.ZgloszenieDTO;
 import com.s13tab.budynkibackend.mapper.OsobaMapper;
 import com.s13tab.budynkibackend.mapper.ZadanieMapper;
@@ -74,6 +75,12 @@ public class ZgloszenieController {
     public OsobaDTO findOsobaById(@PathVariable Long id)
     {
         return osobaMapper.convertToDTO(zgloszenieService.findOsobaById(id));
+    }
+
+    @GetMapping("/{id}/zgloszeniaWyswietl")
+    public ZgloszeniaWyswietlDTO findZgloszenieToDisplayById(@PathVariable Long id)
+    {
+        return zgloszenieService.findZgloszenieToDisplayById(id);
     }
 
 }

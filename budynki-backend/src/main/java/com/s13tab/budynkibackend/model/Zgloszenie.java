@@ -1,6 +1,5 @@
 package com.s13tab.budynkibackend.model;
 
-import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 
@@ -39,9 +38,6 @@ public class Zgloszenie {
     @Column(name = "data_zgloszenia", nullable = false)
     private Date dataZgloszenia;
 
-    @Column(name = "data_wykonania")
-    private Date dataWykonania;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "status_zgloszenia", nullable = false)
     private Status statusZgloszenia;
@@ -50,11 +46,11 @@ public class Zgloszenie {
     @Column(name = "typ_zgloszenia", nullable = false)
     private Typ typZgloszenia;
 
-    @Column(name = "koszt_calkowity", scale = 2, precision = 10)
-    private BigDecimal kosztCalkowity;
-
     @Column(name = "priorytet", nullable = false)
     private Short priorytet;
+
+    @Column(name = "opis", length = 65535)
+    private String opis;
 
     @ManyToOne
     @JoinColumn(name = "osoba_id")
