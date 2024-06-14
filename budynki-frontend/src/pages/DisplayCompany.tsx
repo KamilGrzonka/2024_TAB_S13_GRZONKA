@@ -46,7 +46,7 @@ export default function DisplayCompany() {
         <div>
           <Typography variant="h5">Nazwa: {company.data.nazwa}</Typography>
           <Typography variant="h5">NIP: {company.data.nip} </Typography>
-          <Typography variant="h5">Adres: {`${company.data.ulica} ${company.data.numerBudynku}/${company.data.numerLokalu}, ${company.data.kodPocztowy} ${company.data.miasto}`} </Typography>
+          <Typography variant="h5">Adres: {`${company.data.ulica} ${company.data.numerBudynku}${company.data.numerLokalu ? `/${company.data.numerLokalu}` : ""}, ${company.data.kodPocztowy} ${company.data.miasto}`} </Typography>
           <div id="buttons" className="flex mt-20 justify-center">
             <Button asChild className="mr-40 pt-6 pb-6 pl-10 pr-10">
               <Link to="edytuj">Edytuj dane</Link>

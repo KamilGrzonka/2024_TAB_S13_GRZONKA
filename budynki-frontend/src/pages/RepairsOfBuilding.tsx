@@ -83,7 +83,7 @@ const BuildingRepairs = () => {
         <Table className="table-fixed w-full">
           <TableHeader>
             <TableRow>
-              <TableHead className="w-1/6 text-center">Numer zgłoszenia</TableHead>
+              <TableHead className="w-1/6 text-center">Zgłoszenie</TableHead>
               <TableHead className="w-1/6 text-center">Priorytet</TableHead>
               <TableHead className="w-1/6 text-center">Numer mieszkania</TableHead>
               <TableHead className="w-1/6 text-center">Typ zgłoszenia</TableHead>
@@ -95,7 +95,7 @@ const BuildingRepairs = () => {
             {repairs.data.map((repair) => (
               <TableRow key={repair.zgloszenieid}>
                 <TableCell className="font-medium text-center">
-                    {`${repair.zgloszenieid}`}
+                    <div className="line-clamp-2">{`${repair.opis}`}</div>
                 </TableCell>
                 <TableCell className="text-center">
                     {`${repair.priorytet}`}

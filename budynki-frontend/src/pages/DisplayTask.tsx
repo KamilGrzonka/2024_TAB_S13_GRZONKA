@@ -96,7 +96,7 @@ export default function DisplayTask() {
                   ? <Box>
                       <Typography variant="h6">{`Nazwa firmy: ${company.data.nazwa}`} </Typography>
                       <Typography variant="h6">{`NIP: ${company.data.nip}`} </Typography>
-                      <Typography variant="h6">{`Adres: ${company.data.ulica} ${company.data.numerBudynku}/${company.data.numerLokalu}, ${company.data.kodPocztowy} ${company.data.miasto}`} </Typography>
+                      <Typography variant="h6">{`Adres: ${company.data.ulica} ${company.data.numerBudynku}${company.data.numerLokalu ? `/${company.data.numerLokalu}` : ""}, ${company.data.kodPocztowy} ${company.data.miasto}`} </Typography>
                     </Box> 
                   : `${companyId}`
                 : ""}

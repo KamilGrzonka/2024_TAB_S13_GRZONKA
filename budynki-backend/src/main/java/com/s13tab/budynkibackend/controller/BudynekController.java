@@ -9,6 +9,7 @@ import com.s13tab.budynkibackend.dto.MeldunkiWyswietlDTO;
 import com.s13tab.budynkibackend.dto.MieszkanieDTO;
 import com.s13tab.budynkibackend.dto.PlatnoscDTO;
 import com.s13tab.budynkibackend.dto.ZadanieDTO;
+import com.s13tab.budynkibackend.dto.ZaleglaPlatnoscDTO;
 import com.s13tab.budynkibackend.dto.ZgloszeniaWyswietlDTO;
 import com.s13tab.budynkibackend.dto.ZgloszenieDTO;
 import com.s13tab.budynkibackend.mapper.BudynekMapper;
@@ -129,6 +130,21 @@ public class BudynekController {
     @ResponseStatus(HttpStatus.OK)
     public List<BudynekZyskDTO> findAllZyski(@RequestParam Long dataPoczatkowa, @RequestParam Long dataKoncowa) {
         return budynekService.findAllBudynekZyskDTO(new Date(dataPoczatkowa), new Date(dataKoncowa));
+    }
+    
+    @GetMapping("/aktywneZgloszeniaWyswietl")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ZgloszeniaWyswietlDTO> findAllActiveZgloszenia() {
+        List<Zgloszenie> zgloszenia = budynekService.findAllActiveZgloszenia();
+        return zgloszenia.stream()
+                .map(zgloszenie -> zgloszenieService.findZgloszenieToDisplayById(zgloszenie.getId()))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/zaleglePlatnosci")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ZaleglaPlatnoscDTO> findAllOverduePlatnosci() {
+        return budynekService.findAllOverduePlatnosci();
     }
 
 }
