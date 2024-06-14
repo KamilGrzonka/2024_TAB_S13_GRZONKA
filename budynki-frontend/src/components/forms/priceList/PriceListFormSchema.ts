@@ -45,6 +45,7 @@ export function priceListForm({
           maxField: "dataKoncowa",
           ranges: priceListsToDatesRange(entityData.priceLists),
         },
+        customLabel: "Data Początkowa",
       },
       dataKoncowa: {
         type: "DATEPICKER",
@@ -57,6 +58,7 @@ export function priceListForm({
             entityData.priceList,
           ),
         },
+        customLabel: "Data Końcowa",
       },
       cena: {
         type: "INPUT_NUMBER",

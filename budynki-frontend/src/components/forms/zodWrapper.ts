@@ -69,7 +69,12 @@ export function zNumberMinMaxDigits({
 
 export function zDate({ message }: zNonValueArgs = {}) {
   message = message ?? "Podaj datę";
-  return z.coerce.date({ message: message });
+  return z.coerce.date({
+    message: message,
+    errorMap: (issue, { defaultError }) => ({
+      message: issue.code === "invalid_date" ? message : defaultError,
+    }),
+  });
 }
 
 export function zOptional(schema: z.ZodTypeAny) {

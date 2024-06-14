@@ -78,6 +78,7 @@ public class ZgloszenieController {
     }
 
     @GetMapping("/{id}/zgloszeniaWyswietl")
+    @ResponseStatus(HttpStatus.OK)
     public ZgloszeniaWyswietlDTO findZgloszenieToDisplayById(@PathVariable Long id)
     {
         return zgloszenieService.findZgloszenieToDisplayById(id);

@@ -33,5 +33,10 @@ export const SidebarData = [
     title: 'Raporty',
     path: '/raporty',
     cName: 'nav-text'
-  }
+  },
+  {
+    title: 'Pomoc',
+    path: '/pomoc',
+    cName: 'nav-text'
+  },
 ];

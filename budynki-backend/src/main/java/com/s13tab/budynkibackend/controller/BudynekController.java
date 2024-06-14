@@ -3,6 +3,7 @@ package com.s13tab.budynkibackend.controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.s13tab.budynkibackend.dto.BudynekDTO;
+import com.s13tab.budynkibackend.dto.BudynekZyskDTO;
 import com.s13tab.budynkibackend.dto.MeldunekDTO;
 import com.s13tab.budynkibackend.dto.MeldunkiWyswietlDTO;
 import com.s13tab.budynkibackend.dto.MieszkanieDTO;
@@ -30,8 +31,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -114,11 +117,18 @@ public class BudynekController {
     }
 
     @GetMapping("/{id}/zgloszeniaWyswietl")
+    @ResponseStatus(HttpStatus.OK)
     public List<ZgloszeniaWyswietlDTO> findZgloszeniaToDisplayById(@PathVariable Long id) {
         List<Zgloszenie> zgloszenia = budynekService.findZgloszeniaById(id);
         return zgloszenia.stream()
                 .map(zgloszenie -> zgloszenieService.findZgloszenieToDisplayById(zgloszenie.getId()))
                 .collect(Collectors.toList());
+    }
+
+    @GetMapping("/zyski")
+    @ResponseStatus(HttpStatus.OK)
+    public List<BudynekZyskDTO> findAllZyski(@RequestParam Long dataPoczatkowa, @RequestParam Long dataKoncowa) {
+        return budynekService.findAllBudynekZyskDTO(new Date(dataPoczatkowa), new Date(dataKoncowa));
     }
 
 }

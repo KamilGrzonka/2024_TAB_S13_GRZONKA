@@ -1,5 +1,7 @@
 package com.s13tab.budynkibackend.service;
 
+import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,6 +10,7 @@ import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.s13tab.budynkibackend.dto.BudynekZyskDTO;
 import com.s13tab.budynkibackend.model.Budynek;
 import com.s13tab.budynkibackend.model.Meldunek;
 import com.s13tab.budynkibackend.model.Mieszkanie;
@@ -50,14 +53,20 @@ public class BudynekService {
     public List<Zadanie> findZadaniaById(Long id) {
         return findById(id).getZgloszenia().stream().map(zgloszenie -> zgloszenie.getZadania()).flatMap(List::stream).toList();
     }
-    
-    public List<Platnosc> findPlatnosciById(Long id) {
-        List<Platnosc> platnosciWychodzace = findZadaniaById(id).stream().map(zadanie -> zadanie.getPlatnosci())
-                .flatMap(List::stream).toList();
-        List<Platnosc> platnosciPrzychodzace = findMieszkaniaById(id).stream()
+
+    public List<Platnosc> findPlatnosciWychodzaceById(Long id) {
+        return findZadaniaById(id).stream().map(zadanie -> zadanie.getPlatnosci())
+        .flatMap(List::stream).toList();
+    }
+
+    public List<Platnosc> findPlatnosciPrzychodzaceById(Long id) {
+        return findMieszkaniaById(id).stream()
                 .map(mieszkanie -> mieszkanie.getMeldunki()).flatMap(List::stream)
                 .map(meldunek -> meldunek.getPlatnosci()).flatMap(List::stream).toList();
-        return Stream.concat(platnosciWychodzace.stream(), platnosciPrzychodzace.stream())
+    }
+    
+    public List<Platnosc> findPlatnosciById(Long id) {
+        return Stream.concat(findPlatnosciWychodzaceById(id).stream(), findPlatnosciPrzychodzaceById(id).stream())
                 .sorted(Comparator.comparing(Platnosc::getId)).collect(Collectors.toList());
     }
 
@@ -65,6 +74,23 @@ public class BudynekService {
        List<Mieszkanie> mieszkania = findById(id).getMieszkania();
        return mieszkania.stream()
        .map(mieszkanie -> mieszkanie.getMeldunki()).flatMap(List::stream).toList();
+    }
+
+    public List<BudynekZyskDTO> findAllBudynekZyskDTO(Date dataPoczatkowa, Date dataKoncowa) {
+        List<Budynek> budynki = findAll();
+        return budynki.stream().map(budynek -> {
+            BigDecimal zysk = findPlatnosciById(budynek.getId()).stream().filter(platnosc -> {
+                Date dataZrealizowania = platnosc.getDataZrealizowania();
+                return dataZrealizowania.compareTo(dataPoczatkowa) >= 0
+                        && dataKoncowa.compareTo(dataZrealizowania) >= 0;
+            }).map(platnosc -> {
+                BigDecimal wartosc = platnosc.getWartosc();
+                return platnosc.getMeldunek() != null ? wartosc : wartosc.negate();
+            })
+                    .reduce(BigDecimal.ZERO, BigDecimal::add);
+            return new BudynekZyskDTO(budynek.getId(), budynek.getUlica(), budynek.getNumerBudynku(),
+                    budynek.getKodPocztowy(), budynek.getMiasto(), zysk);
+        }).collect(Collectors.toList());
     }
 
     public Long count() {

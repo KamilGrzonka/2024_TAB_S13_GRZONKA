@@ -42,6 +42,9 @@ import { TaskFormAdd, TaskFormEdit } from "./components/forms/task/TaskForms.tsx
 import TasksOfCompany from "./pages/TasksOfCompany.tsx";
 import { IncomingPaymentFormAdd, IncomingPaymentFormEdit } from "./components/forms/incomingPayment/IncomingPaymentForms.tsx";
 import { OutgoingPaymentFormAdd, OutgoingPaymentFormEdit } from "./components/forms/outgoingPayment/OutgoingPaymentForms.tsx";
+import Help from "./pages/Help.tsx";
+import OperationalReport from "./pages/OperationalReport.tsx";
+import ManagementReport from "./pages/ManagementReport.tsx";
 
 const router = createBrowserRouter([
   {
@@ -128,6 +131,18 @@ const router = createBrowserRouter([
       {
         path: "raporty",
         element: <Reports />,
+      },
+      {
+        path: "raporty/operacyjny",
+        element: <OperationalReport />,
+      },
+      {
+        path: "raporty/zarzadczy",
+        element: <ManagementReport />,
+      },
+      {
+        path: "pomoc",
+        element: <Help />,
       },
       {
         element: <DisplayForm />,
