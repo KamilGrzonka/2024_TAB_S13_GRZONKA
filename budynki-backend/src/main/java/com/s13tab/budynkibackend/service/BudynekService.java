@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -67,12 +68,13 @@ public class BudynekService {
     }
 
     public List<Zadanie> findZadaniaById(Long id) {
-        return findById(id).getZgloszenia().stream().map(zgloszenie -> zgloszenie.getZadania()).flatMap(List::stream).toList();
+        return findById(id).getZgloszenia().stream().map(zgloszenie -> zgloszenie.getZadania()).flatMap(List::stream)
+                .toList();
     }
 
     public List<Platnosc> findPlatnosciWychodzaceById(Long id) {
         return findZadaniaById(id).stream().map(zadanie -> zadanie.getPlatnosci())
-        .flatMap(List::stream).toList();
+                .flatMap(List::stream).toList();
     }
 
     public List<Platnosc> findPlatnosciPrzychodzaceById(Long id) {
@@ -80,16 +82,16 @@ public class BudynekService {
                 .map(mieszkanie -> mieszkanie.getMeldunki()).flatMap(List::stream)
                 .map(meldunek -> meldunek.getPlatnosci()).flatMap(List::stream).toList();
     }
-    
+
     public List<Platnosc> findPlatnosciById(Long id) {
         return Stream.concat(findPlatnosciWychodzaceById(id).stream(), findPlatnosciPrzychodzaceById(id).stream())
                 .sorted(Comparator.comparing(Platnosc::getId)).collect(Collectors.toList());
     }
 
     public List<Meldunek> findMeldunkiById(Long id) {
-       List<Mieszkanie> mieszkania = findById(id).getMieszkania();
-       return mieszkania.stream()
-       .map(mieszkanie -> mieszkanie.getMeldunki()).flatMap(List::stream).toList();
+        List<Mieszkanie> mieszkania = findById(id).getMieszkania();
+        return mieszkania.stream()
+                .map(mieszkanie -> mieszkanie.getMeldunki()).flatMap(List::stream).toList();
     }
 
     public List<BudynekZyskDTO> findAllBudynekZyskDTO(Date dataPoczatkowa, Date dataKoncowa) {
@@ -119,10 +121,10 @@ public class BudynekService {
             price = foundCennik.getCena();
             Period period = Period.between(start, end);
             Integer days = period.getDays();
-            if(period.getMonths() == 0 && days != 0) {
+            if (period.getMonths() == 0 && days != 0) {
                 price = price.divide(new BigDecimal(30), 2, RoundingMode.HALF_UP).multiply(new BigDecimal(days));
             }
-            
+
         }
         return price;
     }
@@ -161,6 +163,13 @@ public class BudynekService {
             if (!datyPlatnosci.get(datyPlatnosci.size() - 1).equals(dataWymeldowania)) {
                 datyPlatnosci.add(dataWymeldowania);
             }
+            Iterator<LocalDate> iterator = datyPlatnosci.iterator();
+            while (iterator.hasNext()) {
+                LocalDate date = iterator.next();
+                if (date.isAfter(LocalDate.now())) {
+                    iterator.remove();
+                }
+            }
             LocalDate lastDate = dataMeldunku;
             for (LocalDate date : datyPlatnosci) {
                 if (lastDate == null) {
@@ -188,13 +197,15 @@ public class BudynekService {
     }
 
     public List<ZaleglaPlatnoscDTO> findAllOverduePlatnosciWychodzace() {
-        Stream<Zadanie> zadania = zadanieService.findAll().stream().filter(zadanie -> zadanie.getDataZakonczenia() != null && zadanie.getDataZakonczenia().toLocalDate().compareTo(LocalDate.now()) < 0);
+        Stream<Zadanie> zadania = zadanieService.findAll().stream()
+                .filter(zadanie -> zadanie.getDataZakonczenia() != null
+                        && zadanie.getDataZakonczenia().toLocalDate().compareTo(LocalDate.now()) < 0);
 
         return zadania.map(zadanie -> {
             BigDecimal wartosc = zadanie.getKoszt().subtract(zadanie.getPlatnosci().stream()
                     .map(platnosc -> platnosc.getWartosc()).reduce(BigDecimal.ZERO, BigDecimal::add));
             Period period = Period.between(zadanie.getDataZakonczenia().toLocalDate(), LocalDate.now());
-            Integer months = period.getYears()*12 + period.getMonths();
+            Integer months = period.getYears() * 12 + period.getMonths();
             return new ZaleglaPlatnoscDTO(zadanie.getZgloszenie().getBudynek().getId(), wartosc, months, null, null,
                     zadanie.getZgloszenie().getId(), zadanie.getId());
         }).filter(platnosc -> platnosc.getWartosc().compareTo(BigDecimal.ZERO) > 0).collect(Collectors.toList());
@@ -203,7 +214,8 @@ public class BudynekService {
     public List<ZaleglaPlatnoscDTO> findAllOverduePlatnosci() {
         return Stream
                 .concat(findAllOverduePlatnosciPrzychodzace().stream(), findAllOverduePlatnosciWychodzace().stream())
-                .sorted(Comparator.comparing(ZaleglaPlatnoscDTO::getMiesiaceOpoznienia).thenComparing(ZaleglaPlatnoscDTO::getWartosc, Comparator.reverseOrder()))
+                .sorted(Comparator.comparing(ZaleglaPlatnoscDTO::getMiesiaceOpoznienia)
+                        .thenComparing(ZaleglaPlatnoscDTO::getWartosc, Comparator.reverseOrder()))
                 .collect(Collectors.toList());
     }
 

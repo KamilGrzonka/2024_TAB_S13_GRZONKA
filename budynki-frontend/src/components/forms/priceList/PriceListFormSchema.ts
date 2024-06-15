@@ -44,7 +44,7 @@ export function priceListForm({
         datePickerLimits: {
           maxField: "dataKoncowa",
           ranges: priceListsToDatesRange(entityData.priceLists),
-          onlyAllowedDaysOfMonth: [15],
+          onlyAllowedDaysOfMonth: [16],
         },
         customLabel: "Data Początkowa",
       },
@@ -58,7 +58,7 @@ export function priceListForm({
             entityData.priceLists,
             entityData.priceList,
           ),
-          onlyAllowedDaysOfMonth: [14],
+          onlyAllowedDaysOfMonth: [15],
         },
         customLabel: "Data Końcowa",
       },

@@ -83,19 +83,19 @@ public class BootstrapService {
                                 new Mieszkanie(null, 2, (short) 0, (short) 1, null, budynekService.findById(2), null,
                                                 null, null));
 
-                cennikService.save(new Cennik(null, Date.valueOf("2024-04-15"), Date.valueOf("2024-05-14"),
+                cennikService.save(new Cennik(null, Date.valueOf("2024-04-16"), Date.valueOf("2024-05-15"),
                                 new BigDecimal(1807.23),
                                 mieszkanieService.findById(1)));
-                cennikService.save(new Cennik(null, Date.valueOf("2024-05-15"), Date.valueOf("2024-06-14"),
+                cennikService.save(new Cennik(null, Date.valueOf("2024-05-16"), Date.valueOf("2024-06-15"),
                                 new BigDecimal(1653.86),
                                 mieszkanieService.findById(1)));
-                cennikService.save(new Cennik(null, Date.valueOf("2023-10-15"), Date.valueOf("2024-01-14"),
+                cennikService.save(new Cennik(null, Date.valueOf("2023-10-16"), Date.valueOf("2024-01-15"),
                                 new BigDecimal(1530.47),
                                 mieszkanieService.findById(2)));
-                cennikService.save(new Cennik(null, Date.valueOf("2024-04-15"), Date.valueOf("2024-05-14"),
+                cennikService.save(new Cennik(null, Date.valueOf("2024-04-16"), Date.valueOf("2024-05-15"),
                                 new BigDecimal(1430.24),
                                 mieszkanieService.findById(3)));
-                cennikService.save(new Cennik(null, Date.valueOf("2024-01-15"), Date.valueOf("2024-11-14"),
+                cennikService.save(new Cennik(null, Date.valueOf("2024-01-16"), Date.valueOf("2024-11-15"),
                                 new BigDecimal(1708.54),
                                 mieszkanieService.findById(2)));
 
@@ -104,7 +104,7 @@ public class BootstrapService {
                 osobaService.save(new Osoba(null, "65432110987", "Dariusz", "Lewandowski", null, null));
                 osobaService.save(new Osoba(null, "65498732110", "Grzegoż", "Wójcik", null, null));
 
-                meldunekService.save(new Meldunek(null, Date.valueOf("2023-05-12"), Date.valueOf("2024-05-12"), true,
+                meldunekService.save(new Meldunek(null, Date.valueOf("2023-05-12"), Date.valueOf("2024-08-12"), true,
                                 osobaService.findById(1), mieszkanieService.findById(1), null));
                 meldunekService.save(
                                 new Meldunek(null, Date.valueOf("2023-10-15"), null, false, osobaService.findById(2),
