@@ -28,6 +28,7 @@ export type DatePickerLimits<T extends string> = {
   minField?: T;
   ranges?: DateRange[];
   maxField?: T;
+  onlyAllowedDaysOfMonth?: number[];
 };
 
 type FormFieldDefiner<T extends AnyFormKeys> = {

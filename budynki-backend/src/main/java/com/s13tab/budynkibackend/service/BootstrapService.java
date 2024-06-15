@@ -18,6 +18,7 @@ import com.s13tab.budynkibackend.model.Firma;
 import com.s13tab.budynkibackend.model.Meldunek;
 import com.s13tab.budynkibackend.model.Mieszkanie;
 import com.s13tab.budynkibackend.model.Osoba;
+import com.s13tab.budynkibackend.model.Platnosc;
 import com.s13tab.budynkibackend.model.Zadanie;
 import com.s13tab.budynkibackend.model.Zgloszenie;
 
@@ -82,18 +83,21 @@ public class BootstrapService {
                                 new Mieszkanie(null, 2, (short) 0, (short) 1, null, budynekService.findById(2), null,
                                                 null, null));
 
-                cennikService.save(new Cennik(null, Date.valueOf("2024-04-12"), Date.valueOf("2024-05-12"),
+                cennikService.save(new Cennik(null, Date.valueOf("2024-04-15"), Date.valueOf("2024-05-14"),
                                 new BigDecimal(1807.23),
                                 mieszkanieService.findById(1)));
-                cennikService.save(new Cennik(null, Date.valueOf("2024-05-13"), Date.valueOf("2024-06-13"),
+                cennikService.save(new Cennik(null, Date.valueOf("2024-05-15"), Date.valueOf("2024-06-14"),
                                 new BigDecimal(1653.86),
                                 mieszkanieService.findById(1)));
-                cennikService.save(new Cennik(null, Date.valueOf("2024-02-11"), Date.valueOf("2024-04-11"),
+                cennikService.save(new Cennik(null, Date.valueOf("2023-10-15"), Date.valueOf("2024-01-14"),
                                 new BigDecimal(1530.47),
                                 mieszkanieService.findById(2)));
-                cennikService.save(new Cennik(null, Date.valueOf("2024-04-15"), Date.valueOf("2024-05-15"),
-                                new BigDecimal(1530.47),
+                cennikService.save(new Cennik(null, Date.valueOf("2024-04-15"), Date.valueOf("2024-05-14"),
+                                new BigDecimal(1430.24),
                                 mieszkanieService.findById(3)));
+                cennikService.save(new Cennik(null, Date.valueOf("2024-01-15"), Date.valueOf("2024-11-14"),
+                                new BigDecimal(1708.54),
+                                mieszkanieService.findById(2)));
 
                 osobaService.save(new Osoba(null, "12345678901", "Krzysztof", "Kowalski", null, null));
                 osobaService.save(new Osoba(null, "10987654321", "Andrzej", "Nowak", null, null));
@@ -105,7 +109,7 @@ public class BootstrapService {
                 meldunekService.save(
                                 new Meldunek(null, Date.valueOf("2023-10-15"), null, false, osobaService.findById(2),
                                                 mieszkanieService.findById(1), null));
-                meldunekService.save(new Meldunek(null, Date.valueOf("2023-03-15"), Date.valueOf("2024-03-15"), true,
+                meldunekService.save(new Meldunek(null, Date.valueOf("2023-11-01"), Date.valueOf("2024-03-30"), true,
                                 osobaService.findById(3), mieszkanieService.findById(2), null));
                 meldunekService.save(new Meldunek(null, Date.valueOf("2023-08-06"), Date.valueOf("2024-08-06"), true,
                                 osobaService.findById(4), mieszkanieService.findById(3), null));
@@ -144,5 +148,10 @@ public class BootstrapService {
                                 zgloszenieService.findById(2), null));
                 zadanieService.save(new Zadanie(null, new BigDecimal(150.27), "Wymiana zawiasów drzwi wejściowych",
                                 Date.valueOf("2024-06-07"), null, null, zgloszenieService.findById(3), null));
+
+                platnoscService.save(new Platnosc(null, Date.valueOf("2024-06-12"), new BigDecimal(240.35), zadanieService.findById(1), null));
+                platnoscService.save(new Platnosc(null, Date.valueOf("2024-06-14"), new BigDecimal(1807.23), null, meldunekService.findById(1)));
+                platnoscService.save(new Platnosc(null, Date.valueOf("2024-05-10"), new BigDecimal(1100.00), null, meldunekService.findById(3)));
+                platnoscService.save(new Platnosc(null, Date.valueOf("2024-06-13"), new BigDecimal(1800.00), null, meldunekService.findById(3)));
         }
 }

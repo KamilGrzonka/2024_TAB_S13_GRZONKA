@@ -49,6 +49,9 @@ export default function FormDatepicker<
     if (formMaxDate && date > new Date(formMaxDate)) {
       return true;
     }
+    if (datePickerLimits?.onlyAllowedDaysOfMonth != undefined) {
+      return !datePickerLimits.onlyAllowedDaysOfMonth.some((day) => date.getDate() == day);
+    }
     return false;
   }
 

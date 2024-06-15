@@ -1,6 +1,7 @@
 package com.s13tab.budynkibackend.service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
@@ -109,22 +110,36 @@ public class BudynekService {
     }
 
     private BigDecimal getPriceInRange(LocalDate start, LocalDate end, List<Cennik> cenniki) {
-        // tutaj srodkowe oplaty
-        return BigDecimal.ZERO;
+        BigDecimal price = BigDecimal.ZERO;
+        Cennik foundCennik = cenniki.stream()
+                .filter(cennik -> cennik.getDataPoczatkowa().toLocalDate().compareTo(start) <= 0
+                        && cennik.getDataKoncowa().toLocalDate().compareTo(start) >= 0)
+                .findFirst().orElse(null);
+        if (foundCennik != null) {
+            price = foundCennik.getCena();
+            Period period = Period.between(start, end);
+            Integer days = period.getDays();
+            if(period.getMonths() == 0 && days != 0) {
+                price = price.divide(new BigDecimal(30), 2, RoundingMode.HALF_UP).multiply(new BigDecimal(days));
+            }
+            
+        }
+        return price;
     }
 
     public List<ZaleglaPlatnoscDTO> findAllOverduePlatnosciPrzychodzace() {
         Stream<Meldunek> meldunki = meldunekService.findAll().stream().filter(meldunek -> meldunek.isWynajmujacy());
         return meldunki.map(meldunek -> {
+            LocalDate dataMeldunku = meldunek.getDataMeldunku().toLocalDate();
+            LocalDate dataWymeldowania = meldunek.getDataWymeldowania().toLocalDate();
+            if (dataWymeldowania == null) {
+                dataWymeldowania = LocalDate.now();
+            }
+
             BigDecimal oplaconaKwota = meldunek.getPlatnosci().stream().map(platnosc -> platnosc.getWartosc())
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
             List<Cennik> cenniki = meldunek.getMieszkanie().getCenniki().stream()
-                    .filter(cennik -> cennik.getDataPoczatkowa().compareTo(meldunek.getDataMeldunku()) <= 0
-                            && cennik.getDataKoncowa().compareTo(meldunek.getDataWymeldowania()) >= 0)
                     .collect(Collectors.toList());
-
-            LocalDate dataMeldunku = meldunek.getDataMeldunku().toLocalDate();
-            LocalDate dataWymeldowania = meldunek.getDataWymeldowania().toLocalDate();
 
             int daysToFifteen = 15 - dataMeldunku.getDayOfMonth();
             if (daysToFifteen < 0) {
@@ -137,32 +152,37 @@ public class BudynekService {
                 daysToFifteen = -daysToFifteen;
                 daysToFifteen += dataWymeldowania.lengthOfMonth();
             }
-            LocalDate lastPayment = meldunek.getDataMeldunku().toLocalDate().plusDays(daysToFifteen);
 
             List<LocalDate> datyPlatnosci = new ArrayList<>();
 
             firstPayment.datesUntil(dataWymeldowania, Period.ofMonths(1)).forEach(date -> datyPlatnosci.add(date));
 
             List<ZaleglaPlatnoscDTO> zaleglePlatnosci = new ArrayList<>();
-            // tutaj pierwsza oplata
-            LocalDate lasDate = null;
+            if (!datyPlatnosci.get(datyPlatnosci.size() - 1).equals(dataWymeldowania)) {
+                datyPlatnosci.add(dataWymeldowania);
+            }
+            LocalDate lastDate = dataMeldunku;
             for (LocalDate date : datyPlatnosci) {
-                BigDecimal wartosc = getPriceInRange(lasDate, lastPayment, cenniki);
-                if(oplaconaKwota.compareTo(BigDecimal.ZERO) > 0) {
+                if (lastDate == null) {
+                    lastDate = date;
+                    continue;
+                }
+                BigDecimal wartosc = getPriceInRange(lastDate, date, cenniki);
+                if (oplaconaKwota.compareTo(BigDecimal.ZERO) > 0) {
                     BigDecimal temp = new BigDecimal(wartosc.toString());
                     wartosc = wartosc.subtract(oplaconaKwota);
                     oplaconaKwota = oplaconaKwota.subtract(temp);
                 }
-                if(wartosc.compareTo(BigDecimal.ZERO) > 0) {
+                if (wartosc.compareTo(BigDecimal.ZERO) > 0) {
                     Period period = Period.between(date, LocalDate.now());
                     Integer months = period.getYears() * 12 + period.getMonths();
-                    zaleglePlatnosci.add(new ZaleglaPlatnoscDTO(meldunek.getMieszkanie().getBudynek().getId(), wartosc, months,
-                    meldunek.getMieszkanie().getId(), meldunek.getId(), null, null));
+                    zaleglePlatnosci
+                            .add(new ZaleglaPlatnoscDTO(meldunek.getMieszkanie().getBudynek().getId(), wartosc, months,
+                                    meldunek.getMieszkanie().getId(), meldunek.getId(), null, null));
                 }
-                lasDate = date;
+                lastDate = date;
             }
             return zaleglePlatnosci;
-            // tutaj ostatnia oplata
 
         }).flatMap(List::stream).toList();
     }
@@ -183,7 +203,7 @@ public class BudynekService {
     public List<ZaleglaPlatnoscDTO> findAllOverduePlatnosci() {
         return Stream
                 .concat(findAllOverduePlatnosciPrzychodzace().stream(), findAllOverduePlatnosciWychodzace().stream())
-                .sorted(Comparator.comparing(ZaleglaPlatnoscDTO::getMiesiaceOpoznienia))
+                .sorted(Comparator.comparing(ZaleglaPlatnoscDTO::getMiesiaceOpoznienia).thenComparing(ZaleglaPlatnoscDTO::getWartosc, Comparator.reverseOrder()))
                 .collect(Collectors.toList());
     }
 

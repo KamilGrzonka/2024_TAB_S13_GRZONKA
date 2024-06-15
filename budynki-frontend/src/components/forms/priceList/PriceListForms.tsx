@@ -17,16 +17,20 @@ export function PriceListFormAdd() {
     <>
       <h2 className="pb-5 text-3xl tracking-tight">Dodawanie Cennika</h2>
       <LoadingComponent queryResult={priceLists}>
-        <FormGenerator
-          formDefiner={priceListForm({
-            endpoint: `/cenniki`,
-            method: "POST",
-            additionalSubmitFields: {
-              mieszkanieId: `${apartmentId}`,
-            },
-            entityData: { priceLists: priceLists.data! },
-          })}
-        />
+        {priceLists.isSuccess ? ( // z LoadingComponent jest więcej problemów niż zakładałem
+          <FormGenerator
+            formDefiner={priceListForm({
+              endpoint: `/cenniki`,
+              method: "POST",
+              additionalSubmitFields: {
+                mieszkanieId: `${apartmentId}`,
+              },
+              entityData: { priceLists: priceLists.data! },
+            })}
+          />
+        ) : (
+          <></>
+        )}
       </LoadingComponent>
     </>
   );
@@ -46,18 +50,25 @@ export function PriceListFormEdit() {
   return (
     <>
       <h2 className="pb-5 text-3xl tracking-tight">Edytowanie cennika</h2>
-      <LoadingComponent queryResult={query}>
-        <FormGenerator
-          formDefiner={priceListForm({
-            endpoint: `/cenniki/${priceListId}`,
-            method: "PUT",
-            additionalSubmitFields: {
-              mieszkanieId: `${apartmentId}`,
-              cennikId: `${priceListId}`,
-            },
-            entityData: { priceLists: priceLists.data!, priceList: query.data },
-          })}
-        />
+      <LoadingComponent queryResult={[query, priceLists]}>
+        {query.isSuccess && priceLists.isSuccess ? ( // z LoadingComponent jest więcej problemów niż zakładałem
+          <FormGenerator
+            formDefiner={priceListForm({
+              endpoint: `/cenniki/${priceListId}`,
+              method: "PUT",
+              additionalSubmitFields: {
+                mieszkanieId: `${apartmentId}`,
+                cennikId: `${priceListId}`,
+              },
+              entityData: {
+                priceLists: priceLists.data!,
+                priceList: query.data,
+              },
+            })}
+          />
+        ) : (
+          <></>
+        )}
       </LoadingComponent>
     </>
   );
