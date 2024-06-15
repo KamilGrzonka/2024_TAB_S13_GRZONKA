@@ -5,7 +5,7 @@
 -- Dumped from database version 16.2
 -- Dumped by pg_dump version 16.2
 
--- Started on 2024-05-15 15:15:40
+-- Started on 2024-06-15 14:22:00
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -23,7 +23,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 216 (class 1259 OID 18677)
+-- TOC entry 216 (class 1259 OID 48765)
 -- Name: budynek; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -40,7 +40,7 @@ CREATE TABLE public.budynek (
 ALTER TABLE public.budynek OWNER TO postgres;
 
 --
--- TOC entry 215 (class 1259 OID 18676)
+-- TOC entry 215 (class 1259 OID 48764)
 -- Name: budynek_budynek_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -55,7 +55,7 @@ CREATE SEQUENCE public.budynek_budynek_id_seq
 ALTER SEQUENCE public.budynek_budynek_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4950 (class 0 OID 0)
+-- TOC entry 4920 (class 0 OID 0)
 -- Dependencies: 215
 -- Name: budynek_budynek_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -64,7 +64,7 @@ ALTER SEQUENCE public.budynek_budynek_id_seq OWNED BY public.budynek.budynek_id;
 
 
 --
--- TOC entry 218 (class 1259 OID 18684)
+-- TOC entry 218 (class 1259 OID 48772)
 -- Name: cennik; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -80,7 +80,7 @@ CREATE TABLE public.cennik (
 ALTER TABLE public.cennik OWNER TO postgres;
 
 --
--- TOC entry 217 (class 1259 OID 18683)
+-- TOC entry 217 (class 1259 OID 48771)
 -- Name: cennik_cennik_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -95,7 +95,7 @@ CREATE SEQUENCE public.cennik_cennik_id_seq
 ALTER SEQUENCE public.cennik_cennik_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4951 (class 0 OID 0)
+-- TOC entry 4921 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: cennik_cennik_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -104,7 +104,7 @@ ALTER SEQUENCE public.cennik_cennik_id_seq OWNED BY public.cennik.cennik_id;
 
 
 --
--- TOC entry 220 (class 1259 OID 18691)
+-- TOC entry 220 (class 1259 OID 48779)
 -- Name: firma_podwykonawcza; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -123,7 +123,7 @@ CREATE TABLE public.firma_podwykonawcza (
 ALTER TABLE public.firma_podwykonawcza OWNER TO postgres;
 
 --
--- TOC entry 219 (class 1259 OID 18690)
+-- TOC entry 219 (class 1259 OID 48778)
 -- Name: firma_podwykonawcza_firma_podwykonawcza_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -138,7 +138,7 @@ CREATE SEQUENCE public.firma_podwykonawcza_firma_podwykonawcza_id_seq
 ALTER SEQUENCE public.firma_podwykonawcza_firma_podwykonawcza_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4952 (class 0 OID 0)
+-- TOC entry 4922 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: firma_podwykonawcza_firma_podwykonawcza_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -147,13 +147,14 @@ ALTER SEQUENCE public.firma_podwykonawcza_firma_podwykonawcza_id_seq OWNED BY pu
 
 
 --
--- TOC entry 222 (class 1259 OID 18700)
+-- TOC entry 222 (class 1259 OID 48788)
 -- Name: meldunek; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.meldunek (
     data_meldunku date NOT NULL,
     data_wymeldowania date,
+    wynajmujacy boolean NOT NULL,
     meldunek_id bigint NOT NULL,
     mieszkanie_id bigint NOT NULL,
     osoba_id bigint NOT NULL
@@ -163,7 +164,7 @@ CREATE TABLE public.meldunek (
 ALTER TABLE public.meldunek OWNER TO postgres;
 
 --
--- TOC entry 221 (class 1259 OID 18699)
+-- TOC entry 221 (class 1259 OID 48787)
 -- Name: meldunek_meldunek_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -178,7 +179,7 @@ CREATE SEQUENCE public.meldunek_meldunek_id_seq
 ALTER SEQUENCE public.meldunek_meldunek_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4953 (class 0 OID 0)
+-- TOC entry 4923 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: meldunek_meldunek_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -187,7 +188,7 @@ ALTER SEQUENCE public.meldunek_meldunek_id_seq OWNED BY public.meldunek.meldunek
 
 
 --
--- TOC entry 224 (class 1259 OID 18707)
+-- TOC entry 224 (class 1259 OID 48795)
 -- Name: mieszkanie; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -204,7 +205,7 @@ CREATE TABLE public.mieszkanie (
 ALTER TABLE public.mieszkanie OWNER TO postgres;
 
 --
--- TOC entry 223 (class 1259 OID 18706)
+-- TOC entry 223 (class 1259 OID 48794)
 -- Name: mieszkanie_mieszkanie_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -219,7 +220,7 @@ CREATE SEQUENCE public.mieszkanie_mieszkanie_id_seq
 ALTER SEQUENCE public.mieszkanie_mieszkanie_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4954 (class 0 OID 0)
+-- TOC entry 4924 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: mieszkanie_mieszkanie_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -228,7 +229,7 @@ ALTER SEQUENCE public.mieszkanie_mieszkanie_id_seq OWNED BY public.mieszkanie.mi
 
 
 --
--- TOC entry 226 (class 1259 OID 18716)
+-- TOC entry 226 (class 1259 OID 48804)
 -- Name: osoba; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -243,7 +244,7 @@ CREATE TABLE public.osoba (
 ALTER TABLE public.osoba OWNER TO postgres;
 
 --
--- TOC entry 225 (class 1259 OID 18715)
+-- TOC entry 225 (class 1259 OID 48803)
 -- Name: osoba_osoba_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -258,7 +259,7 @@ CREATE SEQUENCE public.osoba_osoba_id_seq
 ALTER SEQUENCE public.osoba_osoba_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4955 (class 0 OID 0)
+-- TOC entry 4925 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: osoba_osoba_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -267,15 +268,15 @@ ALTER SEQUENCE public.osoba_osoba_id_seq OWNED BY public.osoba.osoba_id;
 
 
 --
--- TOC entry 228 (class 1259 OID 18725)
+-- TOC entry 228 (class 1259 OID 48813)
 -- Name: platnosc; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.platnosc (
     data_zrealizowania date NOT NULL,
     wartosc numeric(10,2) NOT NULL,
+    meldunek_id bigint,
     platnosc_id bigint NOT NULL,
-    umowa_id bigint,
     zadanie_id bigint
 );
 
@@ -283,7 +284,7 @@ CREATE TABLE public.platnosc (
 ALTER TABLE public.platnosc OWNER TO postgres;
 
 --
--- TOC entry 227 (class 1259 OID 18724)
+-- TOC entry 227 (class 1259 OID 48812)
 -- Name: platnosc_platnosc_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -298,7 +299,7 @@ CREATE SEQUENCE public.platnosc_platnosc_id_seq
 ALTER SEQUENCE public.platnosc_platnosc_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4956 (class 0 OID 0)
+-- TOC entry 4926 (class 0 OID 0)
 -- Dependencies: 227
 -- Name: platnosc_platnosc_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -307,46 +308,7 @@ ALTER SEQUENCE public.platnosc_platnosc_id_seq OWNED BY public.platnosc.platnosc
 
 
 --
--- TOC entry 230 (class 1259 OID 18732)
--- Name: umowa; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.umowa (
-    data_zawarcia date NOT NULL,
-    cennik_id bigint NOT NULL,
-    osoba_id bigint NOT NULL,
-    umowa_id bigint NOT NULL
-);
-
-
-ALTER TABLE public.umowa OWNER TO postgres;
-
---
--- TOC entry 229 (class 1259 OID 18731)
--- Name: umowa_umowa_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.umowa_umowa_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER SEQUENCE public.umowa_umowa_id_seq OWNER TO postgres;
-
---
--- TOC entry 4957 (class 0 OID 0)
--- Dependencies: 229
--- Name: umowa_umowa_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.umowa_umowa_id_seq OWNED BY public.umowa.umowa_id;
-
-
---
--- TOC entry 232 (class 1259 OID 18739)
+-- TOC entry 230 (class 1259 OID 48820)
 -- Name: zadanie; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -364,7 +326,7 @@ CREATE TABLE public.zadanie (
 ALTER TABLE public.zadanie OWNER TO postgres;
 
 --
--- TOC entry 231 (class 1259 OID 18738)
+-- TOC entry 229 (class 1259 OID 48819)
 -- Name: zadanie_zadanie_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -379,8 +341,8 @@ CREATE SEQUENCE public.zadanie_zadanie_id_seq
 ALTER SEQUENCE public.zadanie_zadanie_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4958 (class 0 OID 0)
--- Dependencies: 231
+-- TOC entry 4927 (class 0 OID 0)
+-- Dependencies: 229
 -- Name: zadanie_zadanie_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -388,19 +350,18 @@ ALTER SEQUENCE public.zadanie_zadanie_id_seq OWNED BY public.zadanie.zadanie_id;
 
 
 --
--- TOC entry 234 (class 1259 OID 18748)
+-- TOC entry 232 (class 1259 OID 48829)
 -- Name: zgloszenie; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.zgloszenie (
-    data_wykonania date,
     data_zgloszenia date NOT NULL,
-    koszt_calkowity numeric(10,2),
     priorytet smallint NOT NULL,
-    budynek_id bigint,
-    meldunek_id bigint,
+    budynek_id bigint NOT NULL,
     mieszkanie_id bigint,
+    osoba_id bigint,
     zgloszenie_id bigint NOT NULL,
+    opis character varying(65535),
     status_zgloszenia character varying(255) NOT NULL,
     typ_zgloszenia character varying(255) NOT NULL,
     CONSTRAINT zgloszenie_status_zgloszenia_check CHECK (((status_zgloszenia)::text = ANY ((ARRAY['ZGLOSZONE'::character varying, 'W_TRAKCIE'::character varying, 'ZAKONCZONE'::character varying])::text[]))),
@@ -411,7 +372,7 @@ CREATE TABLE public.zgloszenie (
 ALTER TABLE public.zgloszenie OWNER TO postgres;
 
 --
--- TOC entry 233 (class 1259 OID 18747)
+-- TOC entry 231 (class 1259 OID 48828)
 -- Name: zgloszenie_zgloszenie_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -426,8 +387,8 @@ CREATE SEQUENCE public.zgloszenie_zgloszenie_id_seq
 ALTER SEQUENCE public.zgloszenie_zgloszenie_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4959 (class 0 OID 0)
--- Dependencies: 233
+-- TOC entry 4928 (class 0 OID 0)
+-- Dependencies: 231
 -- Name: zgloszenie_zgloszenie_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -435,7 +396,7 @@ ALTER SEQUENCE public.zgloszenie_zgloszenie_id_seq OWNED BY public.zgloszenie.zg
 
 
 --
--- TOC entry 4733 (class 2604 OID 18680)
+-- TOC entry 4728 (class 2604 OID 48768)
 -- Name: budynek budynek_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -443,7 +404,7 @@ ALTER TABLE ONLY public.budynek ALTER COLUMN budynek_id SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 4734 (class 2604 OID 18687)
+-- TOC entry 4729 (class 2604 OID 48775)
 -- Name: cennik cennik_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -451,7 +412,7 @@ ALTER TABLE ONLY public.cennik ALTER COLUMN cennik_id SET DEFAULT nextval('publi
 
 
 --
--- TOC entry 4735 (class 2604 OID 18694)
+-- TOC entry 4730 (class 2604 OID 48782)
 -- Name: firma_podwykonawcza firma_podwykonawcza_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -459,7 +420,7 @@ ALTER TABLE ONLY public.firma_podwykonawcza ALTER COLUMN firma_podwykonawcza_id 
 
 
 --
--- TOC entry 4736 (class 2604 OID 18703)
+-- TOC entry 4731 (class 2604 OID 48791)
 -- Name: meldunek meldunek_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -467,7 +428,7 @@ ALTER TABLE ONLY public.meldunek ALTER COLUMN meldunek_id SET DEFAULT nextval('p
 
 
 --
--- TOC entry 4737 (class 2604 OID 18710)
+-- TOC entry 4732 (class 2604 OID 48798)
 -- Name: mieszkanie mieszkanie_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -475,7 +436,7 @@ ALTER TABLE ONLY public.mieszkanie ALTER COLUMN mieszkanie_id SET DEFAULT nextva
 
 
 --
--- TOC entry 4738 (class 2604 OID 18719)
+-- TOC entry 4733 (class 2604 OID 48807)
 -- Name: osoba osoba_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -483,7 +444,7 @@ ALTER TABLE ONLY public.osoba ALTER COLUMN osoba_id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 4739 (class 2604 OID 18728)
+-- TOC entry 4734 (class 2604 OID 48816)
 -- Name: platnosc platnosc_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -491,15 +452,7 @@ ALTER TABLE ONLY public.platnosc ALTER COLUMN platnosc_id SET DEFAULT nextval('p
 
 
 --
--- TOC entry 4740 (class 2604 OID 18735)
--- Name: umowa umowa_id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.umowa ALTER COLUMN umowa_id SET DEFAULT nextval('public.umowa_umowa_id_seq'::regclass);
-
-
---
--- TOC entry 4741 (class 2604 OID 18742)
+-- TOC entry 4735 (class 2604 OID 48823)
 -- Name: zadanie zadanie_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -507,7 +460,7 @@ ALTER TABLE ONLY public.zadanie ALTER COLUMN zadanie_id SET DEFAULT nextval('pub
 
 
 --
--- TOC entry 4742 (class 2604 OID 18751)
+-- TOC entry 4736 (class 2604 OID 48832)
 -- Name: zgloszenie zgloszenie_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -515,197 +468,7 @@ ALTER TABLE ONLY public.zgloszenie ALTER COLUMN zgloszenie_id SET DEFAULT nextva
 
 
 --
--- TOC entry 4926 (class 0 OID 18677)
--- Dependencies: 216
--- Data for Name: budynek; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.budynek (liczba_miejsc, numer_budynku, kod_pocztowy, budynek_id, miasto, ulica) FROM stdin;
-\.
-
-
---
--- TOC entry 4928 (class 0 OID 18684)
--- Dependencies: 218
--- Data for Name: cennik; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.cennik (cena, data_koncowa, data_poczatkowa, cennik_id, mieszkanie_id) FROM stdin;
-\.
-
-
---
--- TOC entry 4930 (class 0 OID 18691)
--- Dependencies: 220
--- Data for Name: firma_podwykonawcza; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.firma_podwykonawcza (numer_budynku, numer_lokalu, kod_pocztowy, firma_podwykonawcza_id, nip, miasto, ulica, nazwa) FROM stdin;
-\.
-
-
---
--- TOC entry 4932 (class 0 OID 18700)
--- Dependencies: 222
--- Data for Name: meldunek; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.meldunek (data_meldunku, data_wymeldowania, meldunek_id, mieszkanie_id, osoba_id) FROM stdin;
-\.
-
-
---
--- TOC entry 4934 (class 0 OID 18707)
--- Dependencies: 224
--- Data for Name: mieszkanie; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.mieszkanie (liczba_mieszkancow, numer_mieszkania, pietro, budynek_id, mieszkanie_id, opis) FROM stdin;
-\.
-
-
---
--- TOC entry 4936 (class 0 OID 18716)
--- Dependencies: 226
--- Data for Name: osoba; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.osoba (osoba_id, pesel, imie, nazwisko) FROM stdin;
-\.
-
-
---
--- TOC entry 4938 (class 0 OID 18725)
--- Dependencies: 228
--- Data for Name: platnosc; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.platnosc (data_zrealizowania, wartosc, platnosc_id, umowa_id, zadanie_id) FROM stdin;
-\.
-
-
---
--- TOC entry 4940 (class 0 OID 18732)
--- Dependencies: 230
--- Data for Name: umowa; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.umowa (data_zawarcia, cennik_id, osoba_id, umowa_id) FROM stdin;
-\.
-
-
---
--- TOC entry 4942 (class 0 OID 18739)
--- Dependencies: 232
--- Data for Name: zadanie; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.zadanie (data_rozpoczecia, data_zakonczenia, koszt, firma_podwykonawcza_id, zadanie_id, zgloszenie_id, opis) FROM stdin;
-\.
-
-
---
--- TOC entry 4944 (class 0 OID 18748)
--- Dependencies: 234
--- Data for Name: zgloszenie; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.zgloszenie (data_wykonania, data_zgloszenia, koszt_calkowity, priorytet, budynek_id, meldunek_id, mieszkanie_id, zgloszenie_id, status_zgloszenia, typ_zgloszenia) FROM stdin;
-\.
-
-
---
--- TOC entry 4960 (class 0 OID 0)
--- Dependencies: 215
--- Name: budynek_budynek_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.budynek_budynek_id_seq', 1, false);
-
-
---
--- TOC entry 4961 (class 0 OID 0)
--- Dependencies: 217
--- Name: cennik_cennik_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.cennik_cennik_id_seq', 1, false);
-
-
---
--- TOC entry 4962 (class 0 OID 0)
--- Dependencies: 219
--- Name: firma_podwykonawcza_firma_podwykonawcza_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.firma_podwykonawcza_firma_podwykonawcza_id_seq', 1, false);
-
-
---
--- TOC entry 4963 (class 0 OID 0)
--- Dependencies: 221
--- Name: meldunek_meldunek_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.meldunek_meldunek_id_seq', 1, false);
-
-
---
--- TOC entry 4964 (class 0 OID 0)
--- Dependencies: 223
--- Name: mieszkanie_mieszkanie_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.mieszkanie_mieszkanie_id_seq', 1, false);
-
-
---
--- TOC entry 4965 (class 0 OID 0)
--- Dependencies: 225
--- Name: osoba_osoba_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.osoba_osoba_id_seq', 1, false);
-
-
---
--- TOC entry 4966 (class 0 OID 0)
--- Dependencies: 227
--- Name: platnosc_platnosc_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.platnosc_platnosc_id_seq', 1, false);
-
-
---
--- TOC entry 4967 (class 0 OID 0)
--- Dependencies: 229
--- Name: umowa_umowa_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.umowa_umowa_id_seq', 1, false);
-
-
---
--- TOC entry 4968 (class 0 OID 0)
--- Dependencies: 231
--- Name: zadanie_zadanie_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.zadanie_zadanie_id_seq', 1, false);
-
-
---
--- TOC entry 4969 (class 0 OID 0)
--- Dependencies: 233
--- Name: zgloszenie_zgloszenie_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.zgloszenie_zgloszenie_id_seq', 1, false);
-
-
---
--- TOC entry 4746 (class 2606 OID 18682)
+-- TOC entry 4740 (class 2606 OID 48770)
 -- Name: budynek budynek_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -714,7 +477,7 @@ ALTER TABLE ONLY public.budynek
 
 
 --
--- TOC entry 4748 (class 2606 OID 18689)
+-- TOC entry 4742 (class 2606 OID 48777)
 -- Name: cennik cennik_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -723,7 +486,7 @@ ALTER TABLE ONLY public.cennik
 
 
 --
--- TOC entry 4750 (class 2606 OID 18698)
+-- TOC entry 4744 (class 2606 OID 48786)
 -- Name: firma_podwykonawcza firma_podwykonawcza_nip_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -732,7 +495,7 @@ ALTER TABLE ONLY public.firma_podwykonawcza
 
 
 --
--- TOC entry 4752 (class 2606 OID 18696)
+-- TOC entry 4746 (class 2606 OID 48784)
 -- Name: firma_podwykonawcza firma_podwykonawcza_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -741,7 +504,7 @@ ALTER TABLE ONLY public.firma_podwykonawcza
 
 
 --
--- TOC entry 4754 (class 2606 OID 18705)
+-- TOC entry 4748 (class 2606 OID 48793)
 -- Name: meldunek meldunek_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -750,7 +513,7 @@ ALTER TABLE ONLY public.meldunek
 
 
 --
--- TOC entry 4756 (class 2606 OID 18714)
+-- TOC entry 4750 (class 2606 OID 48802)
 -- Name: mieszkanie mieszkanie_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -759,7 +522,7 @@ ALTER TABLE ONLY public.mieszkanie
 
 
 --
--- TOC entry 4758 (class 2606 OID 18723)
+-- TOC entry 4752 (class 2606 OID 48811)
 -- Name: osoba osoba_pesel_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -768,7 +531,7 @@ ALTER TABLE ONLY public.osoba
 
 
 --
--- TOC entry 4760 (class 2606 OID 18721)
+-- TOC entry 4754 (class 2606 OID 48809)
 -- Name: osoba osoba_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -777,7 +540,7 @@ ALTER TABLE ONLY public.osoba
 
 
 --
--- TOC entry 4762 (class 2606 OID 18730)
+-- TOC entry 4756 (class 2606 OID 48818)
 -- Name: platnosc platnosc_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -786,16 +549,7 @@ ALTER TABLE ONLY public.platnosc
 
 
 --
--- TOC entry 4764 (class 2606 OID 18737)
--- Name: umowa umowa_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.umowa
-    ADD CONSTRAINT umowa_pkey PRIMARY KEY (umowa_id);
-
-
---
--- TOC entry 4766 (class 2606 OID 18746)
+-- TOC entry 4758 (class 2606 OID 48827)
 -- Name: zadanie zadanie_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -804,7 +558,7 @@ ALTER TABLE ONLY public.zadanie
 
 
 --
--- TOC entry 4768 (class 2606 OID 18757)
+-- TOC entry 4760 (class 2606 OID 48838)
 -- Name: zgloszenie zgloszenie_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -813,7 +567,7 @@ ALTER TABLE ONLY public.zgloszenie
 
 
 --
--- TOC entry 4777 (class 2606 OID 18798)
+-- TOC entry 4767 (class 2606 OID 48869)
 -- Name: zadanie fk1ysygm278qtdf49qf2ti1p05f; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -822,7 +576,16 @@ ALTER TABLE ONLY public.zadanie
 
 
 --
--- TOC entry 4772 (class 2606 OID 18773)
+-- TOC entry 4765 (class 2606 OID 48859)
+-- Name: platnosc fk3fvy58b027d5ddfsadmrlpgsf; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.platnosc
+    ADD CONSTRAINT fk3fvy58b027d5ddfsadmrlpgsf FOREIGN KEY (meldunek_id) REFERENCES public.meldunek(meldunek_id);
+
+
+--
+-- TOC entry 4764 (class 2606 OID 48854)
 -- Name: mieszkanie fk6y028d19vsg44qcjcaui30t92; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -831,7 +594,7 @@ ALTER TABLE ONLY public.mieszkanie
 
 
 --
--- TOC entry 4770 (class 2606 OID 18768)
+-- TOC entry 4762 (class 2606 OID 48849)
 -- Name: meldunek fk90c3y55djifqi04mc253r93fw; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -840,16 +603,7 @@ ALTER TABLE ONLY public.meldunek
 
 
 --
--- TOC entry 4775 (class 2606 OID 18788)
--- Name: umowa fk953ovkdysrlynsdngjejs5qnu; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.umowa
-    ADD CONSTRAINT fk953ovkdysrlynsdngjejs5qnu FOREIGN KEY (cennik_id) REFERENCES public.cennik(cennik_id);
-
-
---
--- TOC entry 4779 (class 2606 OID 18818)
+-- TOC entry 4769 (class 2606 OID 48884)
 -- Name: zgloszenie fke0q0gv7tjroc7can7gwelb3sx; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -858,16 +612,7 @@ ALTER TABLE ONLY public.zgloszenie
 
 
 --
--- TOC entry 4776 (class 2606 OID 18793)
--- Name: umowa fkg2mebxh1null86mayg72ybuf5; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.umowa
-    ADD CONSTRAINT fkg2mebxh1null86mayg72ybuf5 FOREIGN KEY (osoba_id) REFERENCES public.osoba(osoba_id);
-
-
---
--- TOC entry 4773 (class 2606 OID 18783)
+-- TOC entry 4766 (class 2606 OID 48864)
 -- Name: platnosc fkgh5l1lh4tlyg4t5npwvm0d3lg; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -876,7 +621,7 @@ ALTER TABLE ONLY public.platnosc
 
 
 --
--- TOC entry 4769 (class 2606 OID 18758)
+-- TOC entry 4761 (class 2606 OID 48839)
 -- Name: cennik fkgjcxa0i2ntycy6wyt3kb4n2pn; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -885,7 +630,7 @@ ALTER TABLE ONLY public.cennik
 
 
 --
--- TOC entry 4778 (class 2606 OID 18803)
+-- TOC entry 4768 (class 2606 OID 48874)
 -- Name: zadanie fkj81s5t9jw3p4s6l2coejl065v; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -894,16 +639,7 @@ ALTER TABLE ONLY public.zadanie
 
 
 --
--- TOC entry 4774 (class 2606 OID 18778)
--- Name: platnosc fkjfomsw9ublamnaw1q1tiu3di6; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.platnosc
-    ADD CONSTRAINT fkjfomsw9ublamnaw1q1tiu3di6 FOREIGN KEY (umowa_id) REFERENCES public.umowa(umowa_id);
-
-
---
--- TOC entry 4780 (class 2606 OID 18808)
+-- TOC entry 4770 (class 2606 OID 48879)
 -- Name: zgloszenie fklobv4hrf8wqk5ag6ajjon8ghy; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -912,16 +648,16 @@ ALTER TABLE ONLY public.zgloszenie
 
 
 --
--- TOC entry 4781 (class 2606 OID 18813)
--- Name: zgloszenie fkm5hb5i3mts3s0u503046nfvcy; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 4771 (class 2606 OID 48889)
+-- Name: zgloszenie fko1gq8pa6ar4qfbdi525xd985q; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.zgloszenie
-    ADD CONSTRAINT fkm5hb5i3mts3s0u503046nfvcy FOREIGN KEY (meldunek_id) REFERENCES public.meldunek(meldunek_id);
+    ADD CONSTRAINT fko1gq8pa6ar4qfbdi525xd985q FOREIGN KEY (osoba_id) REFERENCES public.osoba(osoba_id);
 
 
 --
--- TOC entry 4771 (class 2606 OID 18763)
+-- TOC entry 4763 (class 2606 OID 48844)
 -- Name: meldunek fkr277ta4cacbqp4lmcydofg3hd; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -929,7 +665,7 @@ ALTER TABLE ONLY public.meldunek
     ADD CONSTRAINT fkr277ta4cacbqp4lmcydofg3hd FOREIGN KEY (mieszkanie_id) REFERENCES public.mieszkanie(mieszkanie_id);
 
 
--- Completed on 2024-05-15 15:15:40
+-- Completed on 2024-06-15 14:22:00
 
 --
 -- PostgreSQL database dump complete
