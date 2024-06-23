@@ -49,7 +49,7 @@ public class BootstrapService {
         public void init() {
                 log.info("Bootstrap start");
 
-                populateDatabase();
+                //populateDatabase();
 
                 log.info("Bootstrap end");
         }
