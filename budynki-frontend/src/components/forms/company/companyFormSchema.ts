@@ -3,6 +3,7 @@ import {
   polishChars,
   zNumber,
   zNumberMinMaxDigits,
+  zOptional,
   zStringMinMax,
 } from "../zodWrapper";
 import { formDefiner } from "../FormDefiner";
@@ -33,12 +34,11 @@ export function companyForm({
         RegExp(`^\\d+[${polishChars}]?$`),
         "Wprowadź poprawny numer budynku",
       ), // length = 5, nullable = false
-      numerLokalu: zStringMinMax({ max: 5 })
+      numerLokalu: zOptional(zStringMinMax({ max: 5 })
         .regex(
           RegExp(`^\\d+[${polishChars}]?$`),
           "Wprowadź poprawny numer lokalu",
-        )
-        .optional(), // length = 5
+        )), // length = 5
       kodPocztowy: zStringMinMax({ min: 6, max: 6 }).regex(
         /^\d{2}-\d{3}$/,
         "Wprowadź poprawny kod pocztowy",

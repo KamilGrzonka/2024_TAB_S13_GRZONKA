@@ -35,7 +35,7 @@ export function registrationForm({
     {
       dataMeldunku: zDate(), // nullable = false
       dataWymeldowania: zOptional(zDate()),
-      wynajmujacy: zBoolean(),
+      wynajmujacy: zBoolean(), // nullable = false
       osobaId: zNumber().pipe(zNonNegative()), // nullable = false
       mieszkanieId: zNumber().pipe(zNonNegative()), // nullable = false
     },

@@ -2,12 +2,12 @@ package com.s13tab.budynkibackend.controller;
 
 import com.s13tab.budynkibackend.service.MieszkanieService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import com.s13tab.budynkibackend.dto.CennikDTO;
@@ -20,7 +20,6 @@ import com.s13tab.budynkibackend.mapper.MieszkanieMapper;
 import com.s13tab.budynkibackend.mapper.ZgloszenieMapper;
 
 @RequiredArgsConstructor
-@Validated
 @RequestMapping("/api/mieszkania")
 @RestController
 public class MieszkanieController {
@@ -40,7 +39,7 @@ public class MieszkanieController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MieszkanieDTO add(@RequestBody MieszkanieDTO mieszkanie) {
+    public MieszkanieDTO add(@RequestBody @Valid MieszkanieDTO mieszkanie) {
         return mieszkanieMapper.convertToDTO(mieszkanieService.save(mieszkanieMapper.convertToEntity(mieszkanie)));
     }
 
@@ -51,8 +50,8 @@ public class MieszkanieController {
     }
 
     @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK) // powinno być OK przy zamianie i CREATE przy stworzeniu nowego
-    public MieszkanieDTO replace(@RequestBody MieszkanieDTO newMieszkanie, @PathVariable Long id) {
+    @ResponseStatus(HttpStatus.OK)
+    public MieszkanieDTO replace(@RequestBody @Valid MieszkanieDTO newMieszkanie, @PathVariable Long id) {
         return mieszkanieMapper
                 .convertToDTO(mieszkanieService.replace(mieszkanieMapper.convertToEntity(newMieszkanie), id));
     }

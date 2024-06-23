@@ -3,7 +3,6 @@ package com.s13tab.budynkibackend.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,10 +16,10 @@ import com.s13tab.budynkibackend.dto.PlatnoscDTO;
 import com.s13tab.budynkibackend.mapper.PlatnoscMapper;
 import com.s13tab.budynkibackend.service.PlatnoscService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@Validated
 @RequestMapping("/api/platnosci")
 @RestController
 public class PlatnoscController {
@@ -45,14 +44,14 @@ public class PlatnoscController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public PlatnoscDTO save(@RequestBody PlatnoscDTO newPlatnosc)
+    public PlatnoscDTO save(@RequestBody @Valid PlatnoscDTO newPlatnosc)
     {
         return platnoscMapper.convertToDTO(platnoscService.save(platnoscMapper.convertToEntity(newPlatnosc)));
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public PlatnoscDTO replace(@RequestBody PlatnoscDTO newPlatnosc, @PathVariable Long id)
+    public PlatnoscDTO replace(@RequestBody @Valid PlatnoscDTO newPlatnosc, @PathVariable Long id)
     {
         return platnoscMapper.convertToDTO(platnoscService.replace(platnoscMapper.convertToEntity(newPlatnosc), id));
     }

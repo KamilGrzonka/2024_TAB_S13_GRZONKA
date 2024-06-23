@@ -3,7 +3,6 @@ package com.s13tab.budynkibackend.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,11 +18,10 @@ import com.s13tab.budynkibackend.mapper.FirmaMapper;
 import com.s13tab.budynkibackend.mapper.ZadanieMapper;
 import com.s13tab.budynkibackend.service.FirmaService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
-
 @RequiredArgsConstructor
-@Validated
 @RequestMapping("/api/firmy")
 @RestController
 public class FirmaController {
@@ -48,14 +46,14 @@ public class FirmaController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public FirmaDTO save(@RequestBody FirmaDTO newFirma)
+    public FirmaDTO save(@RequestBody @Valid FirmaDTO newFirma)
     {
         return firmaMapper.convertToDTO(firmaService.save(firmaMapper.convertToEntity(newFirma)));
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public FirmaDTO replace(@RequestBody FirmaDTO newFirma, @PathVariable Long id)
+    public FirmaDTO replace(@RequestBody @Valid FirmaDTO newFirma, @PathVariable Long id)
     {
         return firmaMapper.convertToDTO(firmaService.replace(firmaMapper.convertToEntity(newFirma), id));
     }

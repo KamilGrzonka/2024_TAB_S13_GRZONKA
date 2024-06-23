@@ -10,7 +10,6 @@ import com.s13tab.budynkibackend.mapper.OsobaMapper;
 import com.s13tab.budynkibackend.mapper.ZgloszenieMapper;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,10 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.s13tab.budynkibackend.service.OsobaService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@Validated
 @RequestMapping("/api/osoby")
 @RestController
 public class OsobaController {
@@ -44,7 +43,7 @@ public class OsobaController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public OsobaDTO add(@RequestBody OsobaDTO osoba) {
+    public OsobaDTO add(@RequestBody @Valid OsobaDTO osoba) {
         return osobaMapper.convertToDTO(osobaService.save(osobaMapper.convertToEntity(osoba)));
     }
 
@@ -55,8 +54,8 @@ public class OsobaController {
     }
 
     @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK) // powinno być OK przy zamianie i CREATE przy stworzeniu nowego
-    public OsobaDTO replace(@RequestBody OsobaDTO newOsoba, @PathVariable Long id) {
+    @ResponseStatus(HttpStatus.OK)
+    public OsobaDTO replace(@RequestBody @Valid OsobaDTO newOsoba, @PathVariable Long id) {
         return osobaMapper.convertToDTO(osobaService.replace(osobaMapper.convertToEntity(newOsoba), id));
     }
 

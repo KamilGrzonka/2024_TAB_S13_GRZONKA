@@ -23,10 +23,10 @@ import com.s13tab.budynkibackend.model.Zgloszenie;
 import com.s13tab.budynkibackend.service.BudynekService;
 import com.s13tab.budynkibackend.service.ZgloszenieService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,7 +40,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-@Validated
 @RequestMapping("/api/budynki")
 @RestController
 public class BudynekController {
@@ -64,7 +63,7 @@ public class BudynekController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public BudynekDTO add(@RequestBody BudynekDTO budynek) {
+    public BudynekDTO add(@RequestBody @Valid BudynekDTO budynek) {
         return budynekMapper.convertToDTO(budynekService.save(budynekMapper.convertToEntity(budynek)));
     }
 

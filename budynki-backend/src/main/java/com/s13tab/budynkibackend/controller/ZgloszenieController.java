@@ -3,7 +3,6 @@ package com.s13tab.budynkibackend.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,10 +21,10 @@ import com.s13tab.budynkibackend.mapper.ZadanieMapper;
 import com.s13tab.budynkibackend.mapper.ZgloszenieMapper;
 import com.s13tab.budynkibackend.service.ZgloszenieService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@Validated
 @RequestMapping("/api/zgloszenia")
 @RestController
 public class ZgloszenieController {
@@ -58,14 +57,14 @@ public class ZgloszenieController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ZgloszenieDTO save(@RequestBody ZgloszenieDTO newZgloszenie)
+    public ZgloszenieDTO save(@RequestBody @Valid ZgloszenieDTO newZgloszenie)
     {
         return zgloszenieMapper.convertToDTO(zgloszenieService.save(zgloszenieMapper.convertToEntity(newZgloszenie)));
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ZgloszenieDTO replace(@RequestBody ZgloszenieDTO newZgloszenie, @PathVariable Long id)
+    public ZgloszenieDTO replace(@RequestBody @Valid ZgloszenieDTO newZgloszenie, @PathVariable Long id)
     {
         return zgloszenieMapper.convertToDTO(zgloszenieService.replace(zgloszenieMapper.convertToEntity(newZgloszenie), id));
     }

@@ -6,16 +6,15 @@ import com.s13tab.budynkibackend.mapper.MeldunekMapper;
 import com.s13tab.budynkibackend.model.Meldunek;
 import com.s13tab.budynkibackend.service.MeldunekService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
-@Validated
 @RequestMapping("/api/meldunki")
 @RestController
 public class MeldunekController {
@@ -32,7 +31,7 @@ public class MeldunekController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MeldunekDTO add(@RequestBody MeldunekDTO mieszkanie) {
+    public MeldunekDTO add(@RequestBody @Valid MeldunekDTO mieszkanie) {
         return meldunekMapper.convertToDTO(meldunekService.save(meldunekMapper.convertToEntity(mieszkanie)));
     }
 
@@ -43,8 +42,8 @@ public class MeldunekController {
     }
 
     @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK) // powinno być OK przy zamianie i CREATE przy stworzeniu nowego
-    public MeldunekDTO replace(@RequestBody MeldunekDTO newMeldunek, @PathVariable Long id) {
+    @ResponseStatus(HttpStatus.OK)
+    public MeldunekDTO replace(@RequestBody @Valid MeldunekDTO newMeldunek, @PathVariable Long id) {
         return meldunekMapper.convertToDTO(meldunekService.replace(meldunekMapper.convertToEntity(newMeldunek), id));
     }
 

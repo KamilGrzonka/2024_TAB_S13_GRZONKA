@@ -3,7 +3,6 @@ package com.s13tab.budynkibackend.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,10 +16,10 @@ import com.s13tab.budynkibackend.dto.ZadanieDTO;
 import com.s13tab.budynkibackend.mapper.ZadanieMapper;
 import com.s13tab.budynkibackend.service.ZadanieService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@Validated
 @RequestMapping("/api/zadania")
 @RestController
 public class ZadanieController {
@@ -44,14 +43,14 @@ public class ZadanieController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ZadanieDTO save(@RequestBody ZadanieDTO newZadanie)
+    public ZadanieDTO save(@RequestBody @Valid ZadanieDTO newZadanie)
     {
         return zadanieMapper.convertToDTO(zadanieService.save(zadanieMapper.convertToEntity(newZadanie)));
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ZadanieDTO replace(@RequestBody ZadanieDTO newZadanie, @PathVariable Long id)
+    public ZadanieDTO replace(@RequestBody @Valid ZadanieDTO newZadanie, @PathVariable Long id)
     {
         return zadanieMapper.convertToDTO(zadanieService.replace(zadanieMapper.convertToEntity(newZadanie), id));
     }
