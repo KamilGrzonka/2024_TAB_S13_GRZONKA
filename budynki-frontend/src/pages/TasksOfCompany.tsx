@@ -1,5 +1,4 @@
 import { Box, Container, Typography } from "@mui/material";
-import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import {

@@ -1,0 +1,35 @@
+services:
+  budynki-frontend:
+    image: budynki-frontend
+    build:
+      context: ./budynki-frontend
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+  
+  budynki-backend:
+    image: budynki-backend
+    build:
+      context: ./budynki-backend
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - budynki-database
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://budynki-database:5432/budynki-database
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+
+  budynki-database:
+    image: postgres:16
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: budynki-database
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./budynki-database:/docker-entrypoint-initdb.d
