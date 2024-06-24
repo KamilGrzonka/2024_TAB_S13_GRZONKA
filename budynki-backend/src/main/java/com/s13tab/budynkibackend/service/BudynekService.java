@@ -30,6 +30,9 @@ import com.s13tab.budynkibackend.repository.BudynekRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Usługa obsługująca operacje na budynkach.
+ */
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 @Service
@@ -40,60 +43,132 @@ public class BudynekService {
     private final MeldunekService meldunekService;
     private final ZadanieService zadanieService;
 
+    /**
+     * Metoda znajdująca budynek o podanym identyfikatorze.
+     *
+     * @param id Identyfikator budynku.
+     * @return Znaleziony obiekt klasy Budynek.
+     * @throws EntityNotFoundException Jeśli budynek o podanym identyfikatorze nie istnieje.
+     */
     public Budynek findById(long id) {
         return budynekRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
+    /**
+     * Metoda zwracająca listę wszystkich budynków.
+     *
+     * @return Lista wszystkich budynków.
+     */
     public List<Budynek> findAll() {
         return budynekRepository.findAll();
     }
 
+    /**
+     * Metoda zapisująca lub aktualizująca obiekt klasy Budynek.
+     *
+     * @param budynek Obiekt klasy Budynek do zapisania lub aktualizacji.
+     * @return Zapisany obiekt klasy Budynek.
+     */
     @Transactional
     public Budynek save(Budynek budynek) {
         return budynekRepository.save(budynek);
     }
 
+    /**
+     * Metoda zwracająca listę mieszkań przypisanych do budynku o podanym identyfikatorze.
+     *
+     * @param id Identyfikator budynku.
+     * @return Lista mieszkań przypisanych do budynku.
+     */
     public List<Mieszkanie> findMieszkaniaById(Long id) {
         return findById(id).getMieszkania();
     }
 
+    /**
+     * Metoda zwracająca listę zgłoszeń przypisanych do budynku o podanym identyfikatorze.
+     *
+     * @param id Identyfikator budynku.
+     * @return Lista zgłoszeń przypisanych do budynku.
+     */
     public List<Zgloszenie> findZgloszeniaById(Long id) {
         return findById(id).getZgloszenia();
     }
 
+    /**
+     * Metoda zwracająca listę aktywnych zgłoszeń we wszystkich budynkach.
+     *
+     * @return Lista aktywnych zgłoszeń.
+     */
     public List<Zgloszenie> findAllActiveZgloszenia() {
         return findAll().stream().map(budynek -> budynek.getZgloszenia().stream()
                 .filter(zgloszenie -> zgloszenie.getStatusZgloszenia() != Status.ZAKONCZONE)
                 .collect(Collectors.toList())).flatMap(List::stream).toList();
     }
 
+    /**
+     * Metoda zwracająca listę zadań przypisanych do budynku o podanym identyfikatorze.
+     *
+     * @param id Identyfikator budynku.
+     * @return Lista zadań przypisanych do budynku.
+     */
     public List<Zadanie> findZadaniaById(Long id) {
         return findById(id).getZgloszenia().stream().map(zgloszenie -> zgloszenie.getZadania()).flatMap(List::stream)
                 .toList();
     }
 
+    /**
+     * Metoda zwracająca listę płatności wychodzących przypisanych do budynku o podanym identyfikatorze.
+     *
+     * @param id Identyfikator budynku.
+     * @return Lista płatności wychodzących przypisanych do budynku.
+     */
     public List<Platnosc> findPlatnosciWychodzaceById(Long id) {
         return findZadaniaById(id).stream().map(zadanie -> zadanie.getPlatnosci())
                 .flatMap(List::stream).toList();
     }
 
+    /**
+     * Metoda zwracająca listę płatności przychodzących przypisanych do mieszkań w budynku o podanym identyfikatorze.
+     *
+     * @param id Identyfikator budynku.
+     * @return Lista płatności przychodzących przypisanych do mieszkań w budynku.
+     */
     public List<Platnosc> findPlatnosciPrzychodzaceById(Long id) {
         return findMieszkaniaById(id).stream()
                 .map(mieszkanie -> mieszkanie.getMeldunki()).flatMap(List::stream)
                 .map(meldunek -> meldunek.getPlatnosci()).flatMap(List::stream).toList();
     }
 
+    /**
+     * Metoda zwracająca listę wszystkich płatności przypisanych do budynku o podanym identyfikatorze.
+     *
+     * @param id Identyfikator budynku.
+     * @return Lista wszystkich płatności przypisanych do budynku.
+     */
     public List<Platnosc> findPlatnosciById(Long id) {
         return Stream.concat(findPlatnosciWychodzaceById(id).stream(), findPlatnosciPrzychodzaceById(id).stream())
                 .sorted(Comparator.comparing(Platnosc::getId)).collect(Collectors.toList());
     }
 
+    /**
+     * Metoda zwracająca listę meldunków przypisanych do budynku o podanym identyfikatorze.
+     *
+     * @param id Identyfikator budynku.
+     * @return Lista meldunków przypisanych do budynku.
+     */
     public List<Meldunek> findMeldunkiById(Long id) {
         List<Mieszkanie> mieszkania = findById(id).getMieszkania();
         return mieszkania.stream()
                 .map(mieszkanie -> mieszkanie.getMeldunki()).flatMap(List::stream).toList();
     }
 
+    /**
+     * Metoda zwracająca listę obiektów DTO zawierających zyski dla wszystkich budynków w określonym przedziale czasowym.
+     *
+     * @param dataPoczatkowa Data początkowa przedziału czasowego.
+     * @param dataKoncowa    Data końcowa przedziału czasowego.
+     * @return Lista obiektów DTO zawierających zyski dla wszystkich budynków.
+     */
     public List<BudynekZyskDTO> findAllBudynekZyskDTO(Date dataPoczatkowa, Date dataKoncowa) {
         List<Budynek> budynki = findAll();
         return budynki.stream().map(budynek -> {
@@ -111,6 +186,14 @@ public class BudynekService {
         }).collect(Collectors.toList());
     }
 
+    /**
+     * Metoda pomocnicza obliczająca cenę dla danego przedziału czasowego na podstawie cenników.
+     *
+     * @param start   Data początkowa przedziału czasowego.
+     * @param end     Data końcowa przedziału czasowego.
+     * @param cenniki Lista cenników dla mieszkania.
+     * @return Obliczona cena dla podanego przedziału czasowego.
+     */
     private BigDecimal getPriceInRange(LocalDate start, LocalDate end, List<Cennik> cenniki) {
         BigDecimal price = BigDecimal.ZERO;
         Cennik foundCennik = cenniki.stream()
@@ -129,6 +212,11 @@ public class BudynekService {
         return price;
     }
 
+    /**
+     * Metoda zwracająca listę zaległych płatności przychodzących dla wszystkich meldunków w budynkach.
+     *
+     * @return Lista zaległych płatności przychodzących.
+     */
     public List<ZaleglaPlatnoscDTO> findAllOverduePlatnosciPrzychodzace() {
         Stream<Meldunek> meldunki = meldunekService.findAll().stream().filter(meldunek -> meldunek.isWynajmujacy());
         return meldunki.map(meldunek -> {
@@ -196,6 +284,11 @@ public class BudynekService {
         }).flatMap(List::stream).toList();
     }
 
+    /**
+     * Metoda zwracająca listę zaległych płatności wychodzących dla wszystkich zadań w budynkach.
+     *
+     * @return Lista zaległych płatności wychodzących.
+     */
     public List<ZaleglaPlatnoscDTO> findAllOverduePlatnosciWychodzace() {
         Stream<Zadanie> zadania = zadanieService.findAll().stream()
                 .filter(zadanie -> zadanie.getDataZakonczenia() != null
@@ -211,6 +304,12 @@ public class BudynekService {
         }).filter(platnosc -> platnosc.getWartosc().compareTo(BigDecimal.ZERO) > 0).collect(Collectors.toList());
     }
 
+    /**
+     * Metoda zwracająca listę wszystkich zaległych płatności (zarówno przychodzących, jak i wychodzących) w budynkach,
+     * posortowanych najpierw rosnąco według liczby miesięcy opóźnienia, a następnie malejąco według wartości.
+     *
+     * @return Posortowana lista zaległych płatności.
+     */
     public List<ZaleglaPlatnoscDTO> findAllOverduePlatnosci() {
         return Stream
                 .concat(findAllOverduePlatnosciPrzychodzace().stream(), findAllOverduePlatnosciWychodzace().stream())
@@ -219,6 +318,11 @@ public class BudynekService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Metoda zwracająca liczbę wszystkich budynków.
+     *
+     * @return Liczba wszystkich budynków.
+     */
     public Long count() {
         return budynekRepository.count();
     }

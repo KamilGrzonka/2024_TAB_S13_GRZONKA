@@ -10,42 +10,54 @@ import com.s13tab.budynkibackend.model.Budynek;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Klasa odpowiedzialna za mapowanie pomiędzy encją {@link Budynek} a DTO {@link BudynekDTO}.
+ */
 @RequiredArgsConstructor
 @Component
 public class BudynekMapper {
 
-    // private final MieszkanieService mieszkanieService;
-    // private final ZgloszenieService zgloszenieService;
-
+    /**
+     * Konwertuje encję {@link Budynek} na DTO {@link BudynekDTO}.
+     *
+     * @param budynek encja {@link Budynek} do konwersji
+     * @return odpowiadające DTO {@link BudynekDTO}
+     */
     public BudynekDTO convertToDTO(Budynek budynek) {
-        // List<Long> mieszkania = budynek.getMieszkania().stream().map(Mieszkanie::getId)
-        //         .collect(Collectors.toList());
-        // List<Long> zgloszenia = budynek.getZgloszenia().stream().map(Zgloszenie::getId)
-        //         .collect(Collectors.toList());
         return new BudynekDTO(budynek.getId(), budynek.getUlica(), budynek.getNumerBudynku(),
                 budynek.getKodPocztowy(), budynek.getMiasto(), budynek.getLiczbaMiejsc()
-                // , mieszkania, zgloszenia
                 );
     }
 
+    /**
+     * Konwertuje DTO {@link BudynekDTO} na encję {@link Budynek}.
+     *
+     * @param budynekDTO DTO {@link BudynekDTO} do konwersji
+     * @return odpowiadająca encja {@link Budynek}
+     */
     public Budynek convertToEntity(BudynekDTO budynekDTO) {
-        // List<Mieszkanie> mieszkania = budynekDTO.getMieszkaniaId().stream()
-        //         .map(mieszkanieId -> mieszkanieService.findById(mieszkanieId))
-        //         .collect(Collectors.toList());
-        // List<Zgloszenie> zgloszenia = budynekDTO.getZgloszeniaId().stream()
-        //         .map(zgloszenieId -> zgloszenieService.findById(zgloszenieId))
-        //         .collect(Collectors.toList());
         return new Budynek(budynekDTO.getId(), budynekDTO.getUlica(), budynekDTO.getNumerBudynku(),
                 budynekDTO.getKodPocztowy(), budynekDTO.getMiasto(), budynekDTO.getLiczbaMiejsc(),
-                // mieszkania, zgloszenia
                 null, null
                 );
     }
 
+    /**
+     * Konwertuje listę encji {@link Budynek} na listę DTO {@link BudynekDTO}.
+     *
+     * @param budynki lista encji {@link Budynek} do konwersji
+     * @return odpowiadająca lista DTO {@link BudynekDTO}
+     */
     public List<BudynekDTO> convertToDTO(List<Budynek> budynki) {
         return budynki.stream().map(budynek -> convertToDTO(budynek)).collect(Collectors.toList());
     }
 
+    /**
+     * Konwertuje listę DTO {@link BudynekDTO} na listę encji {@link Budynek}.
+     *
+     * @param budynkiDTO lista DTO {@link BudynekDTO} do konwersji
+     * @return odpowiadająca lista encji {@link Budynek}
+     */
     public List<Budynek> convertToEntity(List<BudynekDTO> budynkiDTO) {
         return budynkiDTO.stream().map(budynekDTO -> convertToEntity(budynekDTO)).collect(Collectors.toList());
     }

@@ -19,6 +19,9 @@ import com.s13tab.budynkibackend.service.PlatnoscService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Kontroler obsługujący operacje na zasobach związanych z płatnościami.
+ */
 @RequiredArgsConstructor
 @RequestMapping("/api/platnosci")
 @RestController
@@ -27,7 +30,11 @@ public class PlatnoscController {
     private final PlatnoscMapper platnoscMapper;
     private final PlatnoscService platnoscService;
 
-
+    /**
+     * Pobiera wszystkie płatności.
+     *
+     * @return lista {@link PlatnoscDTO} reprezentująca wszystkie płatności
+     */
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<PlatnoscDTO> findAll()
@@ -35,6 +42,12 @@ public class PlatnoscController {
         return platnoscMapper.convertToDTO(platnoscService.findAll());
     }
 
+    /**
+     * Pobiera płatność o podanym identyfikatorze.
+     *
+     * @param id identyfikator płatności
+     * @return {@link PlatnoscDTO} reprezentujący płatność o podanym identyfikatorze
+     */
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public PlatnoscDTO findById(@PathVariable Long id)
@@ -42,6 +55,12 @@ public class PlatnoscController {
         return platnoscMapper.convertToDTO(platnoscService.findById(id));
     }
 
+    /**
+     * Zapisuje nową płatność.
+     *
+     * @param newPlatnosc obiekt {@link PlatnoscDTO} reprezentujący nową płatność do zapisania
+     * @return zapisana {@link PlatnoscDTO}
+     */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public PlatnoscDTO save(@RequestBody @Valid PlatnoscDTO newPlatnosc)
@@ -49,12 +68,18 @@ public class PlatnoscController {
         return platnoscMapper.convertToDTO(platnoscService.save(platnoscMapper.convertToEntity(newPlatnosc)));
     }
 
+    /**
+     * Aktualizuje płatność o podanym identyfikatorze.
+     *
+     * @param newPlatnosc obiekt {@link PlatnoscDTO} reprezentujący nowe dane płatności do zaktualizowania
+     * @param id identyfikator płatności do zaktualizowania
+     * @return zaktualizowana {@link PlatnoscDTO}
+     */
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public PlatnoscDTO replace(@RequestBody @Valid PlatnoscDTO newPlatnosc, @PathVariable Long id)
     {
         return platnoscMapper.convertToDTO(platnoscService.replace(platnoscMapper.convertToEntity(newPlatnosc), id));
     }
-
 
 }

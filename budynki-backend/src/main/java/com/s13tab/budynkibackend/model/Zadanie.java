@@ -18,6 +18,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Encja reprezentująca zadanie.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,31 +29,55 @@ import lombok.Setter;
 @Table(name = "zadanie")
 public class Zadanie {
 
+    /**
+     * Identyfikator zadania.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "zadanie_id", nullable = false)
     private Long id;
 
+    /**
+     * Koszt zadania.
+     */
     @Column(name = "koszt", scale = 2, precision = 10, nullable = false)
     private BigDecimal koszt;
 
+    /**
+     * Opis zadania.
+     */
     @Column(name = "opis", length = 65535)
     private String opis;
 
+    /**
+     * Data rozpoczęcia zadania.
+     */
     @Column(name = "data_rozpoczecia", nullable = false)
     private Date dataRozpoczecia;
 
+    /**
+     * Data zakończenia zadania.
+     */
     @Column(name = "data_zakonczenia")
     private Date dataZakonczenia;
 
+    /**
+     * Firma podwykonawcza wykonująca zadanie.
+     */
     @ManyToOne
     @JoinColumn(name = "firma_podwykonawcza_id")
     private Firma firma;
 
+    /**
+     * Zgłoszenie, do którego przypisane jest zadanie.
+     */
     @ManyToOne
     @JoinColumn(name = "zgloszenie_id", nullable = false)
     private Zgloszenie zgloszenie;
 
+    /**
+     * Lista płatności związanych z zadaniem.
+     */
     @OneToMany(mappedBy = "zadanie")
     private List<Platnosc> platnosci;
 

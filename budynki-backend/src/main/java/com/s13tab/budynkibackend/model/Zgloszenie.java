@@ -22,6 +22,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Encja reprezentująca zgłoszenie.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -30,40 +33,70 @@ import lombok.Setter;
 @Table(name = "zgloszenie")
 public class Zgloszenie {
 
+    /**
+     * Identyfikator zgłoszenia.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "zgloszenie_id", nullable = false)
     private Long id;
 
+    /**
+     * Data zgłoszenia.
+     */
     @Column(name = "data_zgloszenia", nullable = false)
     private Date dataZgloszenia;
 
+    /**
+     * Status zgłoszenia.
+     */
     @Enumerated(EnumType.STRING)
     @Column(name = "status_zgloszenia", nullable = false)
     private Status statusZgloszenia;
 
+    /**
+     * Typ zgłoszenia.
+     */
     @Enumerated(EnumType.STRING)
     @Column(name = "typ_zgloszenia", nullable = false)
     private Typ typZgloszenia;
 
+    /**
+     * Priorytet zgłoszenia.
+     */
     @Column(name = "priorytet", nullable = false)
     private Short priorytet;
 
+    /**
+     * Opis zgłoszenia.
+     */
     @Column(name = "opis", length = 65535)
     private String opis;
 
+    /**
+     * Osoba zgłaszająca zgłoszenie.
+     */
     @ManyToOne
     @JoinColumn(name = "osoba_id")
     private Osoba osoba;
 
+    /**
+     * Mieszkanie, do którego przypisane jest zgłoszenie.
+     */
     @ManyToOne
     @JoinColumn(name = "mieszkanie_id")
     private Mieszkanie mieszkanie;
 
+    /**
+     * Budynek, do którego przypisane jest zgłoszenie.
+     */
     @ManyToOne
     @JoinColumn(name = "budynek_id", nullable = false)
     private Budynek budynek;
 
+    /**
+     * Lista zadań powiązanych z zgłoszeniem.
+     */
     @OneToMany(mappedBy = "zgloszenie")
     private List<Zadanie> zadania;
 

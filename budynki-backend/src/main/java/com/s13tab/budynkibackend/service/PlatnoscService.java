@@ -11,6 +11,9 @@ import com.s13tab.budynkibackend.repository.PlatnoscRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Usługa obsługująca operacje na płatnościach.
+ */
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 @Service
@@ -18,21 +21,46 @@ public class PlatnoscService {
 
     private final PlatnoscRepository platnoscRepository;
 
+    /**
+     * Znajduje płatność o podanym identyfikatorze.
+     *
+     * @param id identyfikator płatności
+     * @return płatność o podanym identyfikatorze
+     * @throws EntityNotFoundException jeśli płatność o podanym identyfikatorze nie istnieje
+     */
     public Platnosc findById(long id) {
         return platnoscRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
+    /**
+     * Znajduje wszystkie płatności.
+     *
+     * @return lista wszystkich płatności
+     */
     public List<Platnosc> findAll()
     {
         return platnoscRepository.findAll();
     }
 
+    /**
+     * Zapisuje nową płatność.
+     *
+     * @param platnosc nowa płatność do zapisania
+     * @return zapisana płatność
+     */
     @Transactional
     public Platnosc save(Platnosc platnosc)
     {
         return platnoscRepository.save(platnosc);
     }
 
+    /**
+     * Aktualizuje płatność o podanym identyfikatorze.
+     *
+     * @param newPlatnosc nowe dane płatności
+     * @param id identyfikator płatności do aktualizacji
+     * @return zaktualizowana płatność
+     */
     @Transactional
     public Platnosc replace(Platnosc newPlatnosc, Long id)
     {
@@ -48,6 +76,11 @@ public class PlatnoscService {
         });
     }
 
+    /**
+     * Zlicza wszystkie płatności.
+     *
+     * @return liczba wszystkich płatności
+     */
     public Long count() {
         return platnoscRepository.count();
     }

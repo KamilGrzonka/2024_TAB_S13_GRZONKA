@@ -1,0 +1,11 @@
+com.s13tab.budynkibackend
+com.s13tab.budynkibackend.config
+com.s13tab.budynkibackend.controller
+com.s13tab.budynkibackend.dto
+com.s13tab.budynkibackend.enums
+com.s13tab.budynkibackend.helper
+com.s13tab.budynkibackend.mapper
+com.s13tab.budynkibackend.model
+com.s13tab.budynkibackend.repository
+com.s13tab.budynkibackend.service
+com.s13tab.budynkibackend.utility

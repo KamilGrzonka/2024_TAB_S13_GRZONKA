@@ -16,6 +16,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Encja reprezentująca płatność.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,21 +27,36 @@ import lombok.Setter;
 @Table(name = "platnosc")
 public class Platnosc {
 
+    /**
+     * Identyfikator płatności.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "platnosc_id", nullable = false)
     private Long id;
 
+    /**
+     * Data zrealizowania płatności.
+     */
     @Column(name = "data_zrealizowania", nullable = false)
     private Date dataZrealizowania;
 
+    /**
+     * Wartość płatności.
+     */
     @Column(name = "wartosc", scale = 2, precision = 10, nullable = false)
     private BigDecimal wartosc;
 
+    /**
+     * Zadanie powiązane z płatnością.
+     */
     @ManyToOne
     @JoinColumn(name = "zadanie_id")
     private Zadanie zadanie;
 
+    /**
+     * Meldunek powiązany z płatnością.
+     */
     @ManyToOne
     @JoinColumn(name = "meldunek_id")
     private Meldunek meldunek;

@@ -15,6 +15,9 @@ import com.s13tab.budynkibackend.service.OsobaService;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Klasa odpowiedzialna za mapowanie pomiędzy encją {@link Zgloszenie} a DTO {@link ZgloszenieDTO}.
+ */
 @RequiredArgsConstructor
 @Component
 public class ZgloszenieMapper {
@@ -25,11 +28,13 @@ public class ZgloszenieMapper {
 
     private final BudynekService budynekService;
 
-    // private final ZadanieService zadanieService;
-
+    /**
+     * Konwertuje encję {@link Zgloszenie} na DTO {@link ZgloszenieDTO}.
+     *
+     * @param zgloszenie encja {@link Zgloszenie} do konwersji
+     * @return odpowiadające DTO {@link ZgloszenieDTO}
+     */
     public ZgloszenieDTO convertToDTO(Zgloszenie zgloszenie) {
-        // List<Long> zadania = zgloszenie.getZadania().stream().map(Zadanie::getId)
-        //         .collect(Collectors.toList());
         Long osobaId = null;
         Osoba osoba = zgloszenie.getOsoba();
         if(osoba != null)
@@ -48,13 +53,16 @@ public class ZgloszenieMapper {
                 zgloszenie.getOpis(),
                 osobaId,
                 mieszkanieId, zgloszenie.getBudynek().getId()
-                // , zadania
                 );
     }
 
+    /**
+     * Konwertuje DTO {@link ZgloszenieDTO} na encję {@link Zgloszenie}.
+     *
+     * @param zgloszenieDTO DTO {@link ZgloszenieDTO} do konwersji
+     * @return odpowiadająca encja {@link Zgloszenie}
+     */
     public Zgloszenie convertToEntity(ZgloszenieDTO zgloszenieDTO) {
-        // List<Zadanie> zadania = zgloszenieDTO.getZadaniaId().stream()
-        //         .map(zadanieId -> zadanieService.findById(zadanieId)).collect(Collectors.toList());
         Osoba osoba = null;
         Long osobaId = zgloszenieDTO.getOsobaId();
         if(osobaId != null)
@@ -74,15 +82,26 @@ public class ZgloszenieMapper {
                 osoba,
                 mieszkanie,
                 budynekService.findById(zgloszenieDTO.getBudynekId()),
-                // zadania
                 null
                 );
     }
 
+    /**
+     * Konwertuje listę encji {@link Zgloszenie} na listę DTO {@link ZgloszenieDTO}.
+     *
+     * @param zgloszenia lista encji {@link Zgloszenie} do konwersji
+     * @return odpowiadająca lista DTO {@link ZgloszenieDTO}
+     */
     public List<ZgloszenieDTO> convertToDTO(List<Zgloszenie> zgloszenia) {
         return zgloszenia.stream().map(zgloszenie -> convertToDTO(zgloszenie)).collect(Collectors.toList());
     }
 
+    /**
+     * Konwertuje listę DTO {@link ZgloszenieDTO} na listę encji {@link Zgloszenie}.
+     *
+     * @param zgloszeniaDTO lista DTO {@link ZgloszenieDTO} do konwersji
+     * @return odpowiadająca lista encji {@link Zgloszenie}
+     */
     public List<Zgloszenie> convertToEntity(List<ZgloszenieDTO> zgloszeniaDTO) {
         return zgloszeniaDTO.stream().map(zgloszenieDTO -> convertToEntity(zgloszenieDTO)).collect(Collectors.toList());
     }

@@ -22,6 +22,9 @@ import com.s13tab.budynkibackend.model.Platnosc;
 import com.s13tab.budynkibackend.model.Zadanie;
 import com.s13tab.budynkibackend.model.Zgloszenie;
 
+/**
+ * Usługa inicjalizacji danych początkowych aplikacji.
+ */
 @Slf4j
 @RequiredArgsConstructor
 @Service
@@ -45,6 +48,9 @@ public class BootstrapService {
 
         private final ZgloszenieService zgloszenieService;
 
+        /**
+         * Metoda inicjalizująca dane przy starcie aplikacji.
+         */
         @EventListener(ApplicationReadyEvent.class)
         public void init() {
                 log.info("Bootstrap start");
@@ -54,6 +60,9 @@ public class BootstrapService {
                 log.info("Bootstrap end");
         }
 
+        /**
+         * Metoda wypełniająca bazę danych przykładowymi danymi, jeśli nie zostały wcześniej dodane.
+         */
         public void populateDatabase() {
                 if (budynekService.count() != 0 || cennikService.count() != 0 || firmaService.count() != 0
                                 || meldunekService.count() != 0 || mieszkanieService.count() != 0

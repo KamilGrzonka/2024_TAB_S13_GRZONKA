@@ -11,6 +11,9 @@ import com.s13tab.budynkibackend.repository.MeldunekRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Usługa obsługująca operacje na meldunkach.
+ */
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 @Service
@@ -18,19 +21,44 @@ public class MeldunekService {
 
     private final MeldunekRepository meldunekRepository;
 
+    /**
+     * Znajduje meldunek o podanym identyfikatorze.
+     *
+     * @param id identyfikator meldunku
+     * @return meldunek o podanym identyfikatorze
+     * @throws EntityNotFoundException jeśli meldunek o podanym identyfikatorze nie istnieje
+     */
     public Meldunek findById(long id) {
         return meldunekRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
+    /**
+     * Znajduje wszystkie meldunki.
+     *
+     * @return lista wszystkich meldunków
+     */
     public List<Meldunek> findAll() {
         return meldunekRepository.findAll();
     }
 
+    /**
+     * Zapisuje nowy meldunek.
+     *
+     * @param meldunek nowy meldunek do zapisania
+     * @return zapisany meldunek
+     */
     @Transactional
     public Meldunek save(Meldunek meldunek) {
         return meldunekRepository.save(meldunek);
     }
-    
+
+    /**
+     * Aktualizuje meldunek o podanym identyfikatorze.
+     *
+     * @param newMeldunek nowe dane meldunku
+     * @param id identyfikator meldunku do aktualizacji
+     * @return zaktualizowany meldunek
+     */
     @Transactional
     public Meldunek replace(Meldunek newMeldunek, Long id) {
         return meldunekRepository.findById(id).map(meldunek -> {
@@ -46,6 +74,11 @@ public class MeldunekService {
         });
     }
 
+    /**
+     * Zlicza wszystkie meldunki.
+     *
+     * @return liczba wszystkich meldunków
+     */
     public Long count() {
         return meldunekRepository.count();
     }

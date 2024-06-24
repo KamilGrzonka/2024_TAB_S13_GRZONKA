@@ -14,6 +14,9 @@ import com.s13tab.budynkibackend.service.ZadanieService;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Klasa odpowiedzialna za mapowanie pomiędzy encją {@link Platnosc} a DTO {@link PlatnoscDTO}.
+ */
 @RequiredArgsConstructor
 @Component
 public class PlatnoscMapper {
@@ -22,6 +25,12 @@ public class PlatnoscMapper {
 
     private final MeldunekService meldunekService;
 
+    /**
+     * Konwertuje encję {@link Platnosc} na DTO {@link PlatnoscDTO}.
+     *
+     * @param platnosc encja {@link Platnosc} do konwersji
+     * @return odpowiadające DTO {@link PlatnoscDTO}
+     */
     public PlatnoscDTO convertToDTO(Platnosc platnosc) {
         Long meldunekId = null;
         Meldunek meldunek = platnosc.getMeldunek();
@@ -39,6 +48,12 @@ public class PlatnoscMapper {
                 zadanieId, meldunekId);
     }
 
+    /**
+     * Konwertuje DTO {@link PlatnoscDTO} na encję {@link Platnosc}.
+     *
+     * @param platnoscDTO DTO {@link PlatnoscDTO} do konwersji
+     * @return odpowiadająca encja {@link Platnosc}
+     */
     public Platnosc convertToEntity(PlatnoscDTO platnoscDTO) {
         Meldunek meldunek = null;
         Long meldunekId = platnoscDTO.getMeldunekId();
@@ -56,10 +71,22 @@ public class PlatnoscMapper {
                 platnoscDTO.getWartosc(), zadanie, meldunek);
     }
 
+    /**
+     * Konwertuje listę encji {@link Platnosc} na listę DTO {@link PlatnoscDTO}.
+     *
+     * @param platnosci lista encji {@link Platnosc} do konwersji
+     * @return odpowiadająca lista DTO {@link PlatnoscDTO}
+     */
     public List<PlatnoscDTO> convertToDTO(List<Platnosc> platnosci) {
         return platnosci.stream().map(platnosc -> convertToDTO(platnosc)).collect(Collectors.toList());
     }
 
+    /**
+     * Konwertuje listę DTO {@link PlatnoscDTO} na listę encji {@link Platnosc}.
+     *
+     * @param platnosciDTO lista DTO {@link PlatnoscDTO} do konwersji
+     * @return odpowiadająca lista encji {@link Platnosc}
+     */
     public List<Platnosc> convertToEntity(List<PlatnoscDTO> platnosciDTO) {
         return platnosciDTO.stream().map(platnoscDTO -> convertToEntity(platnoscDTO)).collect(Collectors.toList());
     }
